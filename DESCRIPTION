@@ -16,3 +16,5 @@ LinkingTo:
     Rcpp
 Imports: 
     Rcpp
+URL: https://github.com/mrchypark/Elbird
+BugReports: https://github.com/mrchypark/Elbird/issues
