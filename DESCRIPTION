@@ -16,4 +16,5 @@ URL: https://github.com/mrchypark/Elbird
 BugReports: https://github.com/mrchypark/Elbird/issues
 Imports: 
     reticulate,
-    purrr
+    purrr,
+    tibble
