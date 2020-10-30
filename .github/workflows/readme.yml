@@ -16,7 +16,6 @@ jobs:
       - name: Install rmarkdown, remotes, and the local package
         run: |
           install.packages("remotes")
-          remotes::install_local(".")
           remotes::install_cran("rmarkdown")
           remotes::install_cran("dplyr")
           remotes::install_cran("stringr")
@@ -24,6 +23,7 @@ jobs:
           remotes::install_cran("reticulate")
           remotes::install_github("forkonlp/presidentSpeechKr")
           reticulate::install_miniconda()
+          remotes::install_local(".")
         shell: Rscript {0}
       - name: Render README
         run: Rscript -e 'rmarkdown::render("README.Rmd")'
