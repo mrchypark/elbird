@@ -25,6 +25,8 @@ The goal of Elbird is to ...
 You can install the released version of Elbird from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
+install.packages("reticulate")
+reticulate::install_miniconda()
 install.packages("Elbird")
 ```
 
