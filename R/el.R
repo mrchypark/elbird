@@ -5,7 +5,7 @@
 #' @param score score
 #'
 #' @export
-add_user_word <- function(word, pos, score){
+add_user_word <- function(word, pos, score) {
   el <- get("el", envir = .el)
   el$add_user_word(word, pos, score)
   assign("el", el, envir = .el)
@@ -35,11 +35,11 @@ analyze <- function(text, top_n = 1) {
 analyze_tbl <- function(text, top_n = 1) {
   res <- analyze(text, top_n = 1)
   res <- purrr::map(
-    res, ~  tibble(
-      morph = purrr::map_chr(.x, ~.x[[1]]),
-      tag = purrr::map_chr(.x, ~.x[[2]]),
-      start = purrr::map_int(.x, ~.x[[3]]),
-      end = purrr::map_int(.x, ~.x[[4]]),
+    res, ~ tibble(
+      morph = purrr::map_chr(.x, ~ .x[[1]]),
+      tag = purrr::map_chr(.x, ~ .x[[2]]),
+      start = purrr::map_int(.x, ~ .x[[3]]),
+      end = purrr::map_int(.x, ~ .x[[4]]),
     )
   )
   return(res)
@@ -52,7 +52,7 @@ analyze_tidytext <- function(text, top_n = 1) {
   res <- analyze_tbl(text, top_n = 1)
   res <- purrr::map(
     res, ~
-      paste0(.x$morph, "/",.x$tag)
+    paste0(.x$morph, "/", .x$tag)
   )
   return(res)
 }

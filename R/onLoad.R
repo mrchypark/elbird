@@ -12,8 +12,9 @@
 #' @importFrom reticulate conda_install
 install_conda_packages <- function() {
   reticulate::conda_install("r-Elbird",
-                            pip = TRUE,
-                            packages = c("kiwipiepy==0.8.2"))
+    pip = TRUE,
+    packages = c("kiwipiepy==0.8.2")
+  )
   cat("\nInstallation complete.\n\n")
 }
 
@@ -37,7 +38,7 @@ check_conda_set <- function() {
 #' @importFrom reticulate conda_create
 set_env <- function() {
   if (!check_conda_set()) {
-    reticulate::conda_create("r-Elbird", packages = "python=3.6")
+    reticulate::conda_create("r-Elbird", packages = "python=3.7")
   }
   if (!check_env()) {
     install_conda_packages()
