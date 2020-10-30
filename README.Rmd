@@ -21,6 +21,7 @@ knitr::opts_chunk$set(
 The goal of Elbird is to ...
 
 ## Installation
+## NOT YET
 
 You can install the released version of Elbird from [CRAN](https://CRAN.R-project.org) with:
 

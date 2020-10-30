@@ -37,7 +37,7 @@ check_conda_set <- function() {
 #' @importFrom reticulate conda_create
 set_env <- function() {
   if (!check_conda_set()) {
-    reticulate::conda_create("r-Elbird", packages = "python=3.7")
+    reticulate::conda_create("r-Elbird", packages = "python=3.6")
   }
   if (!check_env()) {
     install_conda_packages()
