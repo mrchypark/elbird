@@ -1,6 +1,6 @@
 Package: Elbird
 Title: R wrapper package Kiwi(Korean Intelligent Word Identifier)
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: person(given = "Chanyub",
              family = "Park",
              role = c("aut","cre"),
