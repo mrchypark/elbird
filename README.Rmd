@@ -35,4 +35,32 @@ This is a basic example which shows you how to solve a common problem:
 ```{r example}
 library(Elbird)
 analyze_tbl("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")
+analyze_tbl(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
+analyze_tidytext("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")
+analyze_tt(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
+
+```
+
+
+### With tidytext
+
+```{r}
+suppressMessages(library(dplyr))
+library(stringr)
+library(tidytext)
+library(presidentSpeechKr)
+
+spidx %>% 
+  filter(president == "이명박") %>% 
+  filter(str_detect(title, "취임사")) %>% 
+  pull(link) %>% 
+  get_speech(paragraph = T) %>%
+  select(paragraph, content) -> tar
+tar
+tar %>% 
+  unnest_tokens(
+    input = content,
+    output = word,
+    token = analyze_tt
+    )
 ```
