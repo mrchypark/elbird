@@ -5,7 +5,11 @@
 .onLoad <- function(libname, pkgname) {
   envnm <- "r-Elbird"
   set_env()
-  kiwi <- reticulate::import("kiwipiepy")
+  if (check_env()) {
+    kiwi <- reticulate::import("kiwipiepy")
+  } else {
+    message('Please reinstall package remotes::install_github("mrchypark/Elbird")')
+  }
   el <- kiwi$Kiwi()
   dict_history <- list()
   dict_history[["word"]] <-
@@ -17,6 +21,16 @@
   assign("el", el, envir = .el)
   assign("elp", 0, envir = .el)
   assign("dict_history", dict_history, envir = .el)
+}
+
+#' @importFrom reticulate conda_create
+set_env <- function() {
+  if (!check_conda_set()) {
+    reticulate::conda_create("r-Elbird", packages = "python=3.7")
+  }
+  if (!check_env()) {
+    install_conda_packages()
+  }
 }
 
 #' @importFrom reticulate conda_install
@@ -45,12 +59,4 @@ check_conda_set <- function() {
   return(res)
 }
 
-#' @importFrom reticulate conda_create
-set_env <- function() {
-  if (!check_conda_set()) {
-    reticulate::conda_create("r-Elbird", packages = "python=3.7")
-  }
-  if (!check_env()) {
-    install_conda_packages()
-  }
-}
+
