@@ -1,16 +1,3 @@
-#' Add user word dic
-#'
-#' @param word word
-#' @param pos   pos
-#' @param score score
-#'
-#' @export
-add_user_word <- function(word, pos, score) {
-  el <- get("el", envir = .el)
-  el$add_user_word(word, pos, score)
-  assign("el", el, envir = .el)
-}
-
 #' analyze
 #'
 #' @param text target text.
@@ -21,11 +8,13 @@ add_user_word <- function(word, pos, score) {
 #' @export
 analyze <- function(text, top_n = 1) {
   el <- get("el", envir = .el)
-  el$prepare()
+  elp <- get("elp", envir = .el)
+  if (elp == 0) {
+    el$prepare()
+    assign("elp", 1, envir = .el)
+  }
   top_n <- as.integer(top_n)
-  res <- purrr::map(
-    text, ~ el$async_analyze(.x, top_n)()[[1]][[1]]
-  )
+  res <- purrr::map(text, ~ el$async_analyze(.x, top_n)()[[1]][[1]])
   return(res)
 }
 
@@ -35,7 +24,8 @@ analyze <- function(text, top_n = 1) {
 analyze_tbl <- function(text, top_n = 1) {
   res <- analyze(text, top_n = 1)
   res <- purrr::map(
-    res, ~ tibble(
+    res,
+    ~ tibble(
       morph = purrr::map_chr(.x, ~ .x[[1]]),
       tag = purrr::map_chr(.x, ~ .x[[2]]),
       start = purrr::map_int(.x, ~ .x[[3]]),
@@ -50,10 +40,8 @@ analyze_tbl <- function(text, top_n = 1) {
 #' @rdname analyze
 analyze_tidytext <- function(text, top_n = 1) {
   res <- analyze_tbl(text, top_n = 1)
-  res <- purrr::map(
-    res, ~
-    paste0(.x$morph, "/", .x$tag)
-  )
+  res <- purrr::map(res, ~
+                      paste0(.x$morph, "/", .x$tag))
   return(res)
 }
 

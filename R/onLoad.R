@@ -1,20 +1,29 @@
 .el <- new.env()
 
 #' @importFrom reticulate import
+#' @importFrom dplyr tibble
 .onLoad <- function(libname, pkgname) {
   envnm <- "r-Elbird"
   set_env()
-  pak <- reticulate::import("kiwipiepy")
-  el <- pak$Kiwi()
+  kiwi <- reticulate::import("kiwipiepy")
+  el <- kiwi$Kiwi()
+  dict_history <- list()
+  dict_history[["word"]] <-
+    dplyr::tibble(word = character(),
+                   pos = character(),
+                   score = integer())
+  dict_history[["path"]] <- c()
+  assign("kiwi", kiwi, envir = .el)
   assign("el", el, envir = .el)
+  assign("elp", 0, envir = .el)
+  assign("dict_history", dict_history, envir = .el)
 }
 
 #' @importFrom reticulate conda_install
 install_conda_packages <- function() {
   reticulate::conda_install("r-Elbird",
-    pip = TRUE,
-    packages = c("kiwipiepy==0.8.2")
-  )
+                            pip = TRUE,
+                            packages = c("kiwipiepy==0.8.2"))
   cat("\nInstallation complete.\n\n")
 }
 
@@ -26,7 +35,8 @@ check_env <- function() {
 #' @importFrom reticulate use_condaenv
 check_conda_set <- function() {
   envnm <- "r-Elbird"
-  chk <- try(reticulate::use_condaenv(envnm, required = TRUE), silent = T)
+  chk <-
+    try(reticulate::use_condaenv(envnm, required = TRUE), silent = T)
   if (class(chk) == "try-error") {
     res <- F
   } else {

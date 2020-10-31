@@ -4,9 +4,10 @@
 \name{Elbird-package}
 \alias{Elbird}
 \alias{Elbird-package}
-\title{Elbird: R wrapper package Kiwi(Korean Intelligent Word Identifier)}
+\title{Elbird: Blazing Fast Morphological Analyzer based on kiwi(Korean Intelligent Word Identifier)}
 \description{
-What the package does (one paragraph).
+This is the R wrapper package Kiwi(Korean Intelligent Word Identifier), a blazing fast speed morphological analyzer for Korean. 
+              It supports configuration of user dictionary and detection of unregistered nouns based on frequency.
 }
 \seealso{
 Useful links:

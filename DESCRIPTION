@@ -18,5 +18,6 @@ BugReports: https://github.com/mrchypark/Elbird/issues
 Imports: 
     reticulate,
     purrr,
+    dplyr,
     tibble,
-    uuid
+    readr
