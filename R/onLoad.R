@@ -3,24 +3,7 @@
 #' @importFrom reticulate import
 #' @importFrom dplyr tibble
 .onLoad <- function(libname, pkgname) {
-  envnm <- "r-Elbird"
   set_env()
-  if (check_env()) {
-    kiwi <- reticulate::import("kiwipiepy")
-  } else {
-    message('Please reinstall package remotes::install_github("mrchypark/Elbird")')
-  }
-  el <- kiwi$Kiwi()
-  dict_history <- list()
-  dict_history[["word"]] <-
-    dplyr::tibble(word = character(),
-                   pos = character(),
-                   score = integer())
-  dict_history[["path"]] <- c()
-  assign("kiwi", kiwi, envir = .el)
-  assign("el", el, envir = .el)
-  assign("elp", 0, envir = .el)
-  assign("dict_history", dict_history, envir = .el)
 }
 
 #' @importFrom reticulate conda_create
@@ -48,9 +31,8 @@ check_env <- function() {
 
 #' @importFrom reticulate use_condaenv
 check_conda_set <- function() {
-  envnm <- "r-Elbird"
   chk <-
-    try(reticulate::use_condaenv(envnm, required = TRUE), silent = T)
+    try(reticulate::use_condaenv("r-Elbird", required = TRUE), silent = T)
   if (class(chk) == "try-error") {
     res <- F
   } else {

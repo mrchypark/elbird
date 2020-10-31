@@ -7,6 +7,7 @@
 #' @importFrom purrr map
 #' @export
 analyze <- function(text, top_n = 1) {
+  if(init_chk_not()) init()
   el <- get("el", envir = .el)
   elp <- get("elp", envir = .el)
   if (elp == 0) {

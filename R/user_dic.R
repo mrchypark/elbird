@@ -6,6 +6,7 @@
 #'
 #' @export
 add_user_word <- function(word, pos, score) {
+  if(init_chk_not()) init()
   dict_history <- get("dict_history", envir = .el)
   dict_history[["word"]] <- dplyr::bind_rows(dict_history[["word"]],
                                         list(
@@ -23,6 +24,7 @@ add_user_word <- function(word, pos, score) {
 #'
 #' @export
 read_user_dict <- function(path) {
+  if(init_chk_not()) init()
   dict_history <- get("dict_history", envir = .el)
   dict_history[["path"]] <- c(dict_history[["path"]], path)
   assign("dict_history", dict_history, envir = .el)
@@ -36,6 +38,7 @@ read_user_dict <- function(path) {
 #' @importFrom readr write_tsv
 #' @export
 export_user_word_to_dictionary <- function(path) {
+  if(init_chk_not()) init()
   dict_history <- get("dict_history", envir = .el)
   readr::write_tsv(dict_history[["word"]], path)
 }
