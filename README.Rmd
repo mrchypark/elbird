@@ -125,4 +125,4 @@ httr::GET("https://github.com/bab2min/kiwipiepy/blob/master/README.md") %>%
 
 ### logo
 
-[@jhk0530](https://github.com/jhk0530) with [suggestion](https://github.com/mrchypark/Elbird/issues/6).
+[jhk0530](https://github.com/jhk0530) with [suggestion](https://github.com/mrchypark/Elbird/issues/6).
