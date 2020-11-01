@@ -21,7 +21,7 @@ jobs:
           install.packages("remotes")
           remotes::install_cran("reticulate")
           reticulate::install_miniconda()
-          remotes::install_local(".")
+        shell: Rscript {0}
       - name: Query dependencies
         run: |
           install.packages('remotes')
