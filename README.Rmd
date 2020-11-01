@@ -112,6 +112,10 @@ Tag list that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
 [tag table](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)
 
+```{r echo=FALSE, results='asis'}
+cat(paste0("* The table blow is fetched at ", Sys.time(),"."))
+```
+
 ```{r echo=FALSE}
 httr::GET("https://github.com/bab2min/kiwipiepy/blob/master/README.md") %>% 
   httr::content() %>% 
