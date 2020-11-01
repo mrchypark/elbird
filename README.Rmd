@@ -111,7 +111,7 @@ analyze_tbl("안녕하세요. 저는 박찬엽입니다.")
 [Tag list](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8) that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
 ```{r echo=FALSE, results='asis'}
-cat(paste0("* The table blow is fetched at ", Sys.time(),"."))
+cat(paste0("* The table below is fetched at ", Sys.time(),"."))
 ```
 
 ```{r echo=FALSE}
