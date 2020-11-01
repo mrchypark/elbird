@@ -94,7 +94,7 @@
 </div>
 <div id="cran-not-yet" class="section level3">
 <h3 class="hasAnchor">
-<a href="#cran-not-yet" class="anchor"></a>CRAN <br><span class="math display"> * <em>N</em><em>O</em><em>T</em><em>Y</em><em>E</em><em>T</em>*</span><br>
+<a href="#cran-not-yet" class="anchor"></a>CRAN <em>!NOT YET!</em>
 </h3>
 <p>You can install the released version of Elbird from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
@@ -129,12 +129,12 @@
 <span class="co">#&gt;  7 R          SL       20     1</span>
 <span class="co">#&gt;  8 wrapper    SL       22     7</span>
 <span class="co">#&gt;  9 이         VCP      29     1</span>
-<span class="co">#&gt; 10 ᆫ          ETM      30     0</span>
+<span class="co">#&gt; 10 ㄴ          ETM      30     0</span>
 <span class="co">#&gt; 11 Elbird     SL       31     6</span>
 <span class="co">#&gt; 12 를         JKO      37     1</span>
 <span class="co">#&gt; 13 소개       NNG      39     2</span>
 <span class="co">#&gt; 14 하         XSV      41     1</span>
-<span class="co">#&gt; 15 ᆸ니다      EF       42     2</span>
+<span class="co">#&gt; 15 ㅂ니다      EF       42     2</span>
 <span class="co">#&gt; 16 .          SF       44     1</span>
 <span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
@@ -145,10 +145,10 @@
 <span class="co">#&gt; 2 게     EC        2     1</span>
 <span class="co">#&gt; 3 작성   NNG       4     2</span>
 <span class="co">#&gt; 4 되     XSV       6     1</span>
-<span class="co">#&gt; 5 ᆫ      ETM       7     0</span>
+<span class="co">#&gt; 5 ㄴ      ETM       7     0</span>
 <span class="co">#&gt; 6 패키지 NNG       8     3</span>
 <span class="co">#&gt; 7 이     VCP      12     1</span>
-<span class="co">#&gt; 8 ᆸ니다  EF       13     2</span>
+<span class="co">#&gt; 8 ㅂ니다  EF       13     2</span>
 <span class="co">#&gt; 9 .      SF       15     1</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
@@ -172,12 +172,12 @@
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt;  [1] "안녕하세요/NNP" "kiwi/SL"        "형태소/NNG"     "분석/NNG"      </span>
 <span class="co">#&gt;  [5] "기/NNB"         "의/JKG"         "R/SL"           "wrapper/SL"    </span>
-<span class="co">#&gt;  [9] "이/VCP"         "ᆫ/ETM"           "Elbird/SL"      "를/JKO"        </span>
-<span class="co">#&gt; [13] "소개/NNG"       "하/XSV"         "ᆸ니다/EF"        "./SF"</span>
+<span class="co">#&gt;  [9] "이/VCP"         "ㄴ/ETM"         "Elbird/SL"      "를/JKO"        </span>
+<span class="co">#&gt; [13] "소개/NNG"       "하/XSV"         "ㅂ니다/EF"      "./SF"</span>
 <span class="fu"><a href="reference/analyze.html">analyze_tt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; [1] "새롭/VA"    "게/EC"      "작성/NNG"   "되/XSV"     "ᆫ/ETM"      </span>
-<span class="co">#&gt; [6] "패키지/NNG" "이/VCP"     "ᆸ니다/EF"    "./SF"      </span>
+<span class="co">#&gt; [1] "새롭/VA"    "게/EC"      "작성/NNG"   "되/XSV"     "ㄴ/ETM"    </span>
+<span class="co">#&gt; [6] "패키지/NNG" "이/VCP"     "ㅂ니다/EF"  "./SF"      </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
 <span class="co">#&gt;  [1] "tidytext/SL" "와/JKB"      "의/JKG"      "호환/NNG"    "을/JKO"     </span>
@@ -204,15 +204,15 @@
 <span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;                                                              </span>
 <span class="co">#&gt;  1         1 존경하는 국민 여러분!                                              </span>
 <span class="co">#&gt;  2         2 700만 해외동포 여러분!                                             </span>
-<span class="co">#&gt;  3         3 이 자리에 참석하신 노무현ㆍ김대중ㆍ김영삼ㆍ전두환 전 대통령, 그리고 이슬람 카리모프 우즈베키스탄 대통령, 엥흐바야르 남…</span>
-<span class="co">#&gt;  4         4 저는 오늘 국민 여러분의 부름을 받고 대한민국의 제17대 대통령에 취임합니다. 한없이 자랑스러운 나라, 한없이 위대한 …</span>
-<span class="co">#&gt;  5         5 저는 이 자리에서 국민 여러분께 약속드립니다. 국민을 섬겨 나라를 편안하게 하겠습니다. 경제를 발전시키고 사회를 통합하…</span>
-<span class="co">#&gt;  6         6 올해로 대한민국 건국 60주년을 맞이합니다. 우리는 잃었던 땅을 되찾아 나라를 세웠고, 그 나라를 지키려고 목숨을 걸었…</span>
-<span class="co">#&gt;  7         7 지구 상에서 가장 가난했던 나라가 세계 10위권의 경제 대국이 되었습니다. 도움을 받는 나라에서 베푸는 나라로 올라섰습…</span>
-<span class="co">#&gt;  8         8 그러나 우리는 알고 있습니다. 그것은 기적이 아니라 우리가 다 함께 흘린 피와 땀과 눈물의 결정입니다. 그것은 신화가 …</span>
-<span class="co">#&gt;  9         9 독립을 위해 목숨을 바친 선열들, 전선에서 산화한 장병들, 뙤약볕과 비바람 속에 땅을 일군 농민들, 밤낮없이 산업현장을…</span>
-<span class="co">#&gt; 10        10 장롱 속 금붙이를 들고나와 외환위기에 맞섰던 시민들, 겨울 바닷가에서 기름을 걷고 닦는 자원봉사자들, 그리고 사회 각 …</span>
-<span class="co">#&gt; # … with 52 more rows</span>
+<span class="co">#&gt;  3         3 이 자리에 참석하신 노무현ㆍ김대중ㆍ김영삼ㆍ전두환 전 대통령, 그리고 이슬람 카리모프 우즈베키스탄 대통령, 엥흐바야르 남~</span>
+<span class="co">#&gt;  4         4 저는 오늘 국민 여러분의 부름을 받고 대한민국의 제17대 대통령에 취임합니다. 한없이 자랑스러운 나라, 한없이 위대한 ~</span>
+<span class="co">#&gt;  5         5 저는 이 자리에서 국민 여러분께 약속드립니다. 국민을 섬겨 나라를 편안하게 하겠습니다. 경제를 발전시키고 사회를 통합하~</span>
+<span class="co">#&gt;  6         6 올해로 대한민국 건국 60주년을 맞이합니다. 우리는 잃었던 땅을 되찾아 나라를 세웠고, 그 나라를 지키려고 목숨을 걸었~</span>
+<span class="co">#&gt;  7         7 지구 상에서 가장 가난했던 나라가 세계 10위권의 경제 대국이 되었습니다. 도움을 받는 나라에서 베푸는 나라로 올라섰습~</span>
+<span class="co">#&gt;  8         8 그러나 우리는 알고 있습니다. 그것은 기적이 아니라 우리가 다 함께 흘린 피와 땀과 눈물의 결정입니다. 그것은 신화가 ~</span>
+<span class="co">#&gt;  9         9 독립을 위해 목숨을 바친 선열들, 전선에서 산화한 장병들, 뙤약볕과 비바람 속에 땅을 일군 농민들, 밤낮없이 산업현장을~</span>
+<span class="co">#&gt; 10        10 장롱 속 금붙이를 들고나와 외환위기에 맞섰던 시민들, 겨울 바닷가에서 기름을 걷고 닦는 자원봉사자들, 그리고 사회 각 ~</span>
+<span class="co">#&gt; # ... with 52 more rows</span>
 <span class="va">tar</span> <span class="op">%&gt;%</span> 
   <span class="fu">unnest_tokens</span><span class="op">(</span>
     input <span class="op">=</span> <span class="va">content</span>,
@@ -232,7 +232,7 @@
 <span class="co">#&gt;  8         2 만/nr    </span>
 <span class="co">#&gt;  9         2 해외/nng </span>
 <span class="co">#&gt; 10         2 동포/nng </span>
-<span class="co">#&gt; # … with 4,528 more rows</span></pre></div>
+<span class="co">#&gt; # ... with 4,528 more rows</span></pre></div>
 </div>
 </div>
 <div id="tag-set" class="section level2">
