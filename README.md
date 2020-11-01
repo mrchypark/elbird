@@ -220,3 +220,10 @@ package.
 
 [tag
 table](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)
+
+## Special Thanks to
+
+### logo
+
+\[@jhk0530\](<https://github.com/jhk0530>) with
+[suggestion](https://github.com/mrchypark/Elbird/issues/6).
