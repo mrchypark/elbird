@@ -184,21 +184,22 @@ tar %>%
 
 ``` r
 library(Elbird)
-analyze_tbl("안녕하세요. 저는 박찬엽입니다.")
+analyze_tbl("안녕하세요. 저는 박찬엽 입니다.")
 #> [[1]]
-#> # A tibble: 8 x 4
+#> # A tibble: 9 x 4
 #>   morph      tag   start   end
 #>   <chr>      <chr> <int> <int>
 #> 1 안녕하세요 NNP       0     5
 #> 2 .          SF        5     1
 #> 3 저         NP        7     1
 #> 4 는         JX        8     1
-#> 5 박찬엽     NNP      10     3
-#> 6 이         VCP      13     1
-#> 7 ᆸ니다      EF       14     2
-#> 8 .          SF       16     1
+#> 5 박찬       NNP      10     2
+#> 6 엽         NNG      12     1
+#> 7 이         VCP      14     1
+#> 8 ᆸ니다      EF       15     2
+#> 9 .          SF       17     1
 add_user_word("박찬엽","NNP",1)
-analyze_tbl("안녕하세요. 저는 박찬엽입니다.")
+analyze_tbl("안녕하세요. 저는 박찬엽 입니다.")
 #> [[1]]
 #> # A tibble: 8 x 4
 #>   morph      tag   start   end
@@ -208,9 +209,9 @@ analyze_tbl("안녕하세요. 저는 박찬엽입니다.")
 #> 3 저         NP        7     1
 #> 4 는         JX        8     1
 #> 5 박찬엽     NNP      10     3
-#> 6 이         VCP      13     1
-#> 7 ᆸ니다      EF       14     2
-#> 8 .          SF       16     1
+#> 6 이         VCP      14     1
+#> 7 ᆸ니다      EF       15     2
+#> 8 .          SF       17     1
 ```
 
 ## tag set
@@ -219,7 +220,7 @@ analyze_tbl("안녕하세요. 저는 박찬엽입니다.")
 list](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)
 that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
-  - The table below is fetched at 2020-11-01 14:51:13 UTC.
+  - The table below is fetched at 2020-11-01 15:33:43 UTC.
 
 <table class="kable_wrapper">
 
