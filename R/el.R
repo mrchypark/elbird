@@ -50,7 +50,6 @@ analyze_tidytext <- function(text, top_n = 1) {
 #' @rdname analyze
 analyze_tt <- analyze_tidytext
 
-
 #' @export
 #' @rdname analyze
 analyze_tidy <- analyze_tidytext
