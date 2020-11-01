@@ -114,8 +114,9 @@ Tag list that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
 ```{r echo=FALSE}
 httr::GET("https://github.com/bab2min/kiwipiepy/blob/master/README.md") %>% 
-    httr::content() %>% 
-    rvest::html_table()
+  httr::content() %>% 
+  rvest::html_table() %>% 
+  knitr::kable(format = "markdown")
 ```
 
 ## Special Thanks to
