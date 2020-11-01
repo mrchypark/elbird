@@ -18,7 +18,6 @@ jobs:
           install.packages("remotes")
           remotes::install_cran("rmarkdown")
           remotes::install_cran("dplyr")
-          remotes::install_cran("stringr")
           remotes::install_cran("tidytext")
           remotes::install_cran("reticulate")
           remotes::install_github("forkonlp/presidentSpeechKr")
