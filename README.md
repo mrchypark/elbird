@@ -219,7 +219,7 @@ analyze_tbl("안녕하세요. 저는 박찬엽입니다.")
 list](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)
 that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
-  - The table below is fetched at 2020-11-01 14:45:51 UTC.
+  - The table below is fetched at 2020-11-01 14:51:13 UTC.
 
 <table class="kable_wrapper">
 
@@ -291,5 +291,5 @@ that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
 ### logo
 
-\[@jhk0530\](<https://github.com/jhk0530>) with
+[jhk0530](https://github.com/jhk0530) with
 [suggestion](https://github.com/mrchypark/Elbird/issues/6).
