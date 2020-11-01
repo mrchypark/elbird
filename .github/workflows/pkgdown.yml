@@ -1,8 +1,8 @@
 on:
-  readme:
   push:
     branches:
       - main
+      - gh-pages
 
 name: pkgdown
 
