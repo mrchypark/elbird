@@ -1,4 +1,3 @@
-
 on:
   push:
     branches:
@@ -17,16 +16,18 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
 
       - uses: r-lib/actions/setup-pandoc@v1
-
+      - name: Install rmarkdown, remotes, and the local package
+        run: |
+          install.packages("remotes")
+          remotes::install_cran("reticulate")
+          reticulate::install_miniconda()
+          remotes::install_local(".")
       - name: Query dependencies
         run: |
           install.packages('remotes')
-          remotes::install_cran("reticulate")
-          reticulate::install_miniconda()
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
           writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
         shell: Rscript {0}
-
       - name: Cache R packages
         uses: actions/cache@v2
         with:
