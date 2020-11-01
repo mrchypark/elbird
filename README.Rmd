@@ -96,7 +96,7 @@ tar %>%
     )
 ```
 
-## tag
+## tag set
 
 Tag list that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
