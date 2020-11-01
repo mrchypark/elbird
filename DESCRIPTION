@@ -7,7 +7,7 @@ Authors@R: person(given = "Chanyub",
              email = "mrchypark@gmail.com",
              comment = c(ORCID = "0000-0001-6474-2570"))
 Description: This is the R wrapper package Kiwi(Korean Intelligent Word Identifier), a blazing fast speed morphological analyzer for Korean. 
-              It supports configuration of user dictionary and detection of unregistered nouns based on frequency.
+             It supports configuration of user dictionary and detection of unregistered nouns based on frequency.
 License: LGPL (>= 3)
 Encoding: UTF-8
 LazyData: true
