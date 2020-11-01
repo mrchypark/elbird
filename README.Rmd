@@ -100,9 +100,9 @@ tar %>%
 
 ```{r}
 library(Elbird)
-analyze_tbl("안녕하세요. 저는 박찬엽입니다.")
+analyze_tbl("안녕하세요. 저는 박찬엽 입니다.")
 add_user_word("박찬엽","NNP",1)
-analyze_tbl("안녕하세요. 저는 박찬엽입니다.")
+analyze_tbl("안녕하세요. 저는 박찬엽 입니다.")
 ```
 
 
