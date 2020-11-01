@@ -2,13 +2,13 @@
 % Please edit documentation in R/user_dic.R
 \name{read_user_dict}
 \alias{read_user_dict}
-\title{Read user dict data}
+\title{Read user dictionary data}
 \usage{
 read_user_dict(path)
 }
 \arguments{
-\item{path}{dictionary file path}
+\item{path}{dictionary file path.}
 }
 \description{
-Read user dict data
+Read user dictionary data
 }

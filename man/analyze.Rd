@@ -5,6 +5,7 @@
 \alias{analyze_tbl}
 \alias{analyze_tidytext}
 \alias{analyze_tt}
+\alias{analyze_tidy}
 \title{analyze}
 \usage{
 analyze(text, top_n = 1)
@@ -14,6 +15,8 @@ analyze_tbl(text, top_n = 1)
 analyze_tidytext(text, top_n = 1)
 
 analyze_tt(text, top_n = 1)
+
+analyze_tidy(text, top_n = 1)
 }
 \arguments{
 \item{text}{target text.}

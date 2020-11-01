@@ -7,7 +7,7 @@
 \title{Elbird: Blazing Fast Morphological Analyzer based on kiwi(Korean Intelligent Word Identifier)}
 \description{
 This is the R wrapper package Kiwi(Korean Intelligent Word Identifier), a blazing fast speed morphological analyzer for Korean. 
-              It supports configuration of user dictionary and detection of unregistered nouns based on frequency.
+             It supports configuration of user dictionary and detection of unregistered nouns based on frequency.
 }
 \seealso{
 Useful links:

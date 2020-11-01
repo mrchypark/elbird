@@ -2,17 +2,17 @@
 % Please edit documentation in R/user_dic.R
 \name{add_user_word}
 \alias{add_user_word}
-\title{Add user word dic}
+\title{Add user word to dictionary}
 \usage{
 add_user_word(word, pos, score)
 }
 \arguments{
-\item{word}{word}
+\item{word}{target word}
 
 \item{pos}{pos}
 
 \item{score}{score}
 }
 \description{
-Add user word dic
+Add user word to dictionary
 }

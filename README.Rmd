@@ -44,7 +44,7 @@ multilinguer::install_conda()
 ```
 
 
-### CRAN [*NOT YET*]
+### CRAN *!NOT YET!*
 You can install the released version of Elbird from [CRAN](https://CRAN.R-project.org) with:
 
 ```r
@@ -95,6 +95,16 @@ tar %>%
     token = analyze_tt
     )
 ```
+
+### add user dict
+
+```{r}
+library(Elbird)
+analyze_tbl("안녕하세요. 저는 박찬엽입니다.")
+add_user_word("박찬엽","NNP",1)
+analyze_tbl("안녕하세요. 저는 박찬엽입니다.")
+```
+
 
 ## tag set
 

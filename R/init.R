@@ -1,9 +1,10 @@
+#' @importFrom reticulate import
 init <- function(){
   kiwi <- reticulate::import("kiwipiepy")
   el <- kiwi$Kiwi()
   dict_history <- list()
   dict_history[["word"]] <-
-    dplyr::tibble(word = character(),
+    tibble::tibble(word = character(),
                   pos = character(),
                   score = integer())
   dict_history[["path"]] <- c()

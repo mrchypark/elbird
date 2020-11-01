@@ -1,6 +1,6 @@
-#' Add user word dic
+#' Add user word to dictionary
 #'
-#' @param word word
+#' @param word target word
 #' @param pos   pos
 #' @param score score
 #'
@@ -18,9 +18,9 @@ add_user_word <- function(word, pos, score) {
   latest_el()
 }
 
-#' Read user dict data
+#' Read user dictionary data
 #'
-#' @param path dictionary file path
+#' @param path dictionary file path.
 #'
 #' @export
 read_user_dict <- function(path) {

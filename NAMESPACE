@@ -3,6 +3,7 @@
 export(add_user_word)
 export(analyze)
 export(analyze_tbl)
+export(analyze_tidy)
 export(analyze_tidytext)
 export(analyze_tt)
 export(export_user_word_to_dictionary)
