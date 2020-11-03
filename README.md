@@ -1,3 +1,4 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # Elbird <img src="man/figures/logo.png" align="right" height=140/>
@@ -10,6 +11,8 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 status](https://www.r-pkg.org/badges/version/Elbird)](https://CRAN.R-project.org/package=Elbird)
 [![](https://cranlogs.r-pkg.org/badges/Elbird)](https://cran.r-project.org/package=Elbird)
 <!-- badges: end -->
+
+  - Please check [Korean reame](./README_kr.md)
 
 The goal of Elbird is to provide R Wrapper functions in
 [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
@@ -31,6 +34,15 @@ or
 install.packages("remotes")
 remotes::install_github("mrchypark/multilinguer")
 multilinguer::install_conda()
+```
+
+#### pre install check
+
+You can check install is success code below.
+
+``` r
+reticulate::conda_version()
+#> [1] "conda 4.9.1"
 ```
 
 ### CRAN *\!NOT YET\!*
@@ -183,21 +195,22 @@ tar %>%
 
 ``` r
 library(Elbird)
-analyze_tbl("안녕하세요. 저는 박찬엽입니다.")
+analyze_tbl("안녕하세요. 저는 박찬엽 입니다.")
 #> [[1]]
-#> # A tibble: 8 x 4
+#> # A tibble: 9 x 4
 #>   morph      tag   start   end
 #>   <chr>      <chr> <int> <int>
 #> 1 안녕하세요 NNP       0     5
 #> 2 .          SF        5     1
 #> 3 저         NP        7     1
 #> 4 는         JX        8     1
-#> 5 박찬엽     NNP      10     3
-#> 6 이         VCP      13     1
-#> 7 ᆸ니다      EF       14     2
-#> 8 .          SF       16     1
+#> 5 박찬       NNP      10     2
+#> 6 엽         NNG      12     1
+#> 7 이         VCP      14     1
+#> 8 ᆸ니다      EF       15     2
+#> 9 .          SF       17     1
 add_user_word("박찬엽","NNP",1)
-analyze_tbl("안녕하세요. 저는 박찬엽입니다.")
+analyze_tbl("안녕하세요. 저는 박찬엽 입니다.")
 #> [[1]]
 #> # A tibble: 8 x 4
 #>   morph      tag   start   end
@@ -207,9 +220,9 @@ analyze_tbl("안녕하세요. 저는 박찬엽입니다.")
 #> 3 저         NP        7     1
 #> 4 는         JX        8     1
 #> 5 박찬엽     NNP      10     3
-#> 6 이         VCP      13     1
-#> 7 ᆸ니다      EF       14     2
-#> 8 .          SF       16     1
+#> 6 이         VCP      14     1
+#> 7 ᆸ니다      EF       15     2
+#> 8 .          SF       17     1
 ```
 
 ## tag set
@@ -218,7 +231,7 @@ analyze_tbl("안녕하세요. 저는 박찬엽입니다.")
 list](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)
 that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
-  - The table below is fetched at 2020-11-01 14:51:13 UTC.
+  - The table below is fetched at 2020-11-03 07:52:48 UTC.
 
 <table class="kable_wrapper">
 
