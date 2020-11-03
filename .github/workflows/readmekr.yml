@@ -3,7 +3,7 @@ on:
     paths:
       - README_kr.Rmd
 
-name: readme
+name: readmekr
 
 jobs:
   render:
