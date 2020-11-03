@@ -83,6 +83,10 @@
 </h1></div>
 <!-- badges: start -->
 
+<ul>
+<li>Please check <a href="./README_kr.html">Korean reame</a>
+</li>
+</ul>
 <p>The goal of Elbird is to provide R Wrapper functions in <a href="https://github.com/bab2min/kiwipiepy">kiwipiepy</a> package.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -99,20 +103,28 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"mrchypark/multilinguer"</span><span class="op">)</span>
 <span class="fu">multilinguer</span><span class="fu">::</span><span class="fu">install_conda</span><span class="op">(</span><span class="op">)</span></pre></div>
+<div id="pre-install-check" class="section level4">
+<h4 class="hasAnchor">
+<a href="#pre-install-check" class="anchor"></a>pre install check</h4>
+<p>You can check install is success code below.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu">reticulate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/conda-tools.html">conda_version</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; [1] "conda 4.9.1"</span></pre></div>
+</div>
 </div>
 <div id="cran-not-yet" class="section level3">
 <h3 class="hasAnchor">
 <a href="#cran-not-yet" class="anchor"></a>CRAN <em>!NOT YET!</em>
 </h3>
 <p>You can install the released version of Elbird from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
+<div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"Elbird"</span><span class="op">)</span></pre></div>
 </div>
 <div id="github" class="section level3">
 <h3 class="hasAnchor">
 <a href="#github" class="anchor"></a>Github</h3>
 <p>You can install the development version of Elbird from <a href="https://github.com/mrchypark/Elbird">github</a> with:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
+<div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"mrchypark/Elbird"</span><span class="op">)</span></pre></div>
 </div>
@@ -121,7 +133,7 @@
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
+<div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrchypark/Elbird">Elbird</a></span><span class="op">)</span>
 <span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다."</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
@@ -194,7 +206,7 @@
 <div id="with-tidytext" class="section level3">
 <h3 class="hasAnchor">
 <a href="#with-tidytext" class="anchor"></a>With tidytext</h3>
-<div class="sourceCode" id="cb6"><pre class="downlit">
+<div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org">stringr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">tidytext</span><span class="op">)</span>
@@ -245,23 +257,24 @@
 <div id="add-user-dict" class="section level3">
 <h3 class="hasAnchor">
 <a href="#add-user-dict" class="anchor"></a>add user dict</h3>
-<div class="sourceCode" id="cb7"><pre class="downlit">
+<div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrchypark/Elbird">Elbird</a></span><span class="op">)</span>
-<span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="st">"안녕하세요. 저는 박찬엽입니다."</span><span class="op">)</span>
+<span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="st">"안녕하세요. 저는 박찬엽 입니다."</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; # A tibble: 8 x 4</span>
+<span class="co">#&gt; # A tibble: 9 x 4</span>
 <span class="co">#&gt;   morph      tag   start   end</span>
 <span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1 안녕하세요 NNP       0     5</span>
 <span class="co">#&gt; 2 .          SF        5     1</span>
 <span class="co">#&gt; 3 저         NP        7     1</span>
 <span class="co">#&gt; 4 는         JX        8     1</span>
-<span class="co">#&gt; 5 박찬엽     NNP      10     3</span>
-<span class="co">#&gt; 6 이         VCP      13     1</span>
-<span class="co">#&gt; 7 ᆸ니다      EF       14     2</span>
-<span class="co">#&gt; 8 .          SF       16     1</span>
+<span class="co">#&gt; 5 박찬       NNP      10     2</span>
+<span class="co">#&gt; 6 엽         NNG      12     1</span>
+<span class="co">#&gt; 7 이         VCP      14     1</span>
+<span class="co">#&gt; 8 ᆸ니다      EF       15     2</span>
+<span class="co">#&gt; 9 .          SF       17     1</span>
 <span class="fu"><a href="reference/add_user_word.html">add_user_word</a></span><span class="op">(</span><span class="st">"박찬엽"</span>,<span class="st">"NNP"</span>,<span class="fl">1</span><span class="op">)</span>
-<span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="st">"안녕하세요. 저는 박찬엽입니다."</span><span class="op">)</span>
+<span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="st">"안녕하세요. 저는 박찬엽 입니다."</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; # A tibble: 8 x 4</span>
 <span class="co">#&gt;   morph      tag   start   end</span>
@@ -271,9 +284,9 @@
 <span class="co">#&gt; 3 저         NP        7     1</span>
 <span class="co">#&gt; 4 는         JX        8     1</span>
 <span class="co">#&gt; 5 박찬엽     NNP      10     3</span>
-<span class="co">#&gt; 6 이         VCP      13     1</span>
-<span class="co">#&gt; 7 ᆸ니다      EF       14     2</span>
-<span class="co">#&gt; 8 .          SF       16     1</span></pre></div>
+<span class="co">#&gt; 6 이         VCP      14     1</span>
+<span class="co">#&gt; 7 ᆸ니다      EF       15     2</span>
+<span class="co">#&gt; 8 .          SF       17     1</span></pre></div>
 </div>
 </div>
 <div id="tag-set" class="section level2">
@@ -281,7 +294,7 @@
 <a href="#tag-set" class="anchor"></a>tag set</h2>
 <p><a href="https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8">Tag list</a> that used in <a href="https://github.com/bab2min/kiwipiepy">kiwipiepy</a> package.</p>
 <ul>
-<li>The table below is fetched at 2020-11-01 14:51:13 UTC.</li>
+<li>The table below is fetched at 2020-11-03 07:52:48 UTC.</li>
 </ul>
 <table class="table kable_wrapper"><tbody><tr>
 <td>
