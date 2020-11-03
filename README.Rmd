@@ -43,6 +43,14 @@ remotes::install_github("mrchypark/multilinguer")
 multilinguer::install_conda()
 ```
 
+#### pre install check
+
+You can check install is success code below.
+
+```{r}
+reticulate::conda_version()
+```
+
 
 ### CRAN *!NOT YET!*
 You can install the released version of Elbird from [CRAN](https://CRAN.R-project.org) with:
