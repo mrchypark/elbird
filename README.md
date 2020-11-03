@@ -12,7 +12,7 @@ status](https://www.r-pkg.org/badges/version/Elbird)](https://CRAN.R-project.org
 [![](https://cranlogs.r-pkg.org/badges/Elbird)](https://cran.r-project.org/package=Elbird)
 <!-- badges: end -->
 
-  - Please check [Korean reame](./README_kr.md)
+# Please check [Korean readme](./README_kr.md)
 
 The goal of Elbird is to provide R Wrapper functions in
 [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
@@ -231,7 +231,7 @@ analyze_tbl("안녕하세요. 저는 박찬엽 입니다.")
 list](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)
 that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
-  - The table below is fetched at 2020-11-03 07:52:48 UTC.
+  - The table below is fetched at 2020-11-03 08:01:06 UTC.
 
 <table class="kable_wrapper">
 
