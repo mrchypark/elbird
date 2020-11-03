@@ -22,6 +22,8 @@ options(crayon.enabled=NULL)
 [![](https://cranlogs.r-pkg.org/badges/Elbird)](https://cran.r-project.org/package=Elbird)
 <!-- badges: end -->
 
+* Please check [Korean reame](./README_kr.md)
+
 The goal of Elbird is to provide R Wrapper functions in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
 ## Installation
