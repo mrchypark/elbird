@@ -33,12 +33,7 @@ check_env <- function() {
 check_conda_set <- function() {
   chk <-
     try(reticulate::use_condaenv("r-Elbird", required = TRUE), silent = T)
-  if (class(chk) == "try-error") {
-    res <- F
-  } else {
-    res <- T
-  }
-  return(res)
+  return (if (class(chk) == "try-error") F else T)
 }
 
 
