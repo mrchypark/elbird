@@ -87,7 +87,7 @@ remotes::install_github("mrchypark/Elbird")
 
 ```{r}
 library(Elbird)
-analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")
+## analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")
 analyze_tbl("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")
 analyze_tidy("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")
 ```
@@ -95,7 +95,7 @@ analyze_tidy("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를
 여러 문장의 경우 `vector`나 `list`로 입력받아서 `list`로 출력합니다.
 
 ```{r}
-analyze(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
+## analyze(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
 analyze_tbl(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
 analyze_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
 ```

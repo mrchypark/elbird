@@ -24,7 +24,7 @@ options(crayon.enabled=NULL)
 
 # Please check [Korean readme](./README_kr.md)
 
-The ʻElbird` package is a morpheme analysis package packed with [kiwipiepy](https://github.com/bab2min/kiwipiepy).
+The `Elbird` package is a morpheme analysis package packed with [kiwipiepy](https://github.com/bab2min/kiwipiepy).
 It is based on cpp package `kiwi` and that has convenient functions such as faster performance compared to other analyzers, easy user dictionary addition, unregistered noun extraction (not implemented in `Elbird` yet).
 
 ## Installation
@@ -87,7 +87,7 @@ Basically, the `analyze` function that uses the output of the `analyze` function
 
 ```{r}
 library(Elbird)
-analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")
+## analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")
 analyze_tbl("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")
 analyze_tidy("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")
 ```
@@ -95,7 +95,7 @@ analyze_tidy("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를
 Multiple sentences are input as `vector` or `list` and output as `list`.
 
 ```{r}
-analyze(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
+## analyze(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
 analyze_tbl(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
 analyze_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
 ```
