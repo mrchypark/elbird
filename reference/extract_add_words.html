@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read user dictionary data — read_user_dict • Elbird</title>
+<title>Extract unregistered words from corpus provided user. — extract_add_words • Elbird</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Read user dictionary data — read_user_dict" />
-<meta property="og:description" content="Read user dictionary data" />
+<meta property="og:title" content="Extract unregistered words from corpus provided user. — extract_add_words" />
+<meta property="og:description" content="Extract unregistered words from corpus provided user." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -119,23 +119,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read user dictionary data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mrchypark/Elbird/blob/master/R/dict.R'><code>R/dict.R</code></a></small>
-    <div class="hidden name"><code>read_user_dict.Rd</code></div>
+    <h1>Extract unregistered words from corpus provided user.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mrchypark/Elbird/blob/master/R/extract.R'><code>R/extract.R</code></a></small>
+    <div class="hidden name"><code>extract_add_words.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Read user dictionary data</p>
+    <p>Extract unregistered words from corpus provided user.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_user_dict</span><span class='op'>(</span><span class='va'>path</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>extract_add_words</span><span class='op'>(</span>
+  <span class='va'>reader</span>,
+  min_cnt <span class='op'>=</span> <span class='fl'>10</span>,
+  max_word_len <span class='op'>=</span> <span class='fl'>10</span>,
+  min_score <span class='op'>=</span> <span class='fl'>0.25</span>,
+  pos_score <span class='op'>=</span> <span class='op'>-</span><span class='fl'>3</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>path</th>
-      <td><p>dictionary file path.</p></td>
+      <th>word</th>
+      <td><p>target word</p></td>
+    </tr>
+    <tr>
+      <th>pos</th>
+      <td><p>pos</p></td>
+    </tr>
+    <tr>
+      <th>score</th>
+      <td><p>score</p></td>
     </tr>
     </table>
 
