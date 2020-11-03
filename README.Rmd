@@ -24,20 +24,28 @@ options(crayon.enabled=NULL)
 
 # Please check [Korean readme](./README_kr.md)
 
-The goal of Elbird is to provide R Wrapper functions in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
+The ʻElbird` package is a morpheme analysis package packed with [kiwipiepy](https://github.com/bab2min/kiwipiepy).
+It is based on cpp package `kiwi` and that has convenient functions such as faster performance compared to other analyzers, easy user dictionary addition, unregistered noun extraction (not implemented in `Elbird` yet).
 
 ## Installation
 
 ### Pre required
 
-You need to install conda before installing Elbird.
+You need python before installing Elbird.
+
+#### mothod 1
+
+`Elbird` uses `conda` for python backend. Below is how to install `conda`.
 
 ``` r
 install.packages("reticulate")
 reticulate::install_miniconda()
 ```
 
-or 
+#### mothod 2
+
+If the above installation does not work, execute the command below.
+The two methods are not used together.
 
 ``` r
 install.packages("remotes")
@@ -71,19 +79,33 @@ remotes::install_github("mrchypark/Elbird")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+The examples below introduce the behavior of `Elbird`'s functions.
 
-```{r example}
+### analyze
+
+Basically, the `analyze` function that uses the output of the `analyze` function of the [kiwipiepy](https://github.com/bab2min/kiwipiepy) package as it is, and the `analyze_tbl` organized in tibble data type, and grammar compatibility with tidytext are supported provides an `analyze_tidy` function.
+
+```{r}
 library(Elbird)
+analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")
 analyze_tbl("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")
-analyze_tbl(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
-analyze_tidytext("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")
-analyze_tt(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
-
+analyze_tidy("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")
 ```
 
+Multiple sentences are input as `vector` or `list` and output as `list`.
+
+```{r}
+analyze(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
+analyze_tbl(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
+analyze_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
+```
 
 ### With tidytext
+
+The `analyze_tidy` function can also be used as `analyze_tt` and `analyze_tidytext`.
+Below is an example of using it with the `tidytext` package.
+
+The `tar` below is the target text for morpheme analysis.
 
 ```{r}
 suppressMessages(library(dplyr))
@@ -98,15 +120,26 @@ spidx %>%
   get_speech(paragraph = T) %>%
   select(paragraph, content) -> tar
 tar
+```
+
+This is an example of using `analyze_tidy` of `Elbird` as a tokenizer with `tar` as `unnest_tokens` which is a function of `tidytext` package.
+
+```{r}
 tar %>% 
   unnest_tokens(
     input = content,
     output = word,
-    token = analyze_tt
+    token = analyze_tidy
     )
 ```
 
-### add user dict
+### add user word
+
+`Elbird` connects and provides the add user word function of `kiwi`.
+
+The `add_user_word` function receives words, morpheme tags, and weights as inputs and adds a user dictionary to be used for analysis.
+
+The example below is an example of adding a user dictionary and modifying the result of `박찬` being divided and analyzed.
 
 ```{r}
 library(Elbird)
@@ -132,6 +165,10 @@ httr::GET("https://github.com/bab2min/kiwipiepy/blob/master/README.md") %>%
 ```
 
 ## Special Thanks to
+
+### kiwi package
+
+[bab2min](https://github.com/bab2min) with [kiwi package](https://github.com/bab2min/Kiwi) author.
 
 ### logo
 
