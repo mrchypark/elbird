@@ -12,7 +12,7 @@ status](https://www.r-pkg.org/badges/version/Elbird)](https://CRAN.R-project.org
 [![](https://cranlogs.r-pkg.org/badges/Elbird)](https://cran.r-project.org/package=Elbird)
 <!-- badges: end -->
 
-# Please check [Korean readme](./README_kr.md)
+# [한국어 리드미](./README_kr.md)는 [이곳](./README_kr.md)에서 확인하세요.
 
 The `Elbird` package is a morpheme analysis package packed with
 [kiwipiepy](https://github.com/bab2min/kiwipiepy). It is based on cpp
@@ -277,7 +277,7 @@ analyze_tbl("안녕하세요. 저는 박찬엽 입니다.")
 list](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)
 that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
-  - The table below is fetched at 2020-11-03 08:36:43 UTC.
+  - The table below is fetched at 2020-11-05 07:22:26 UTC.
 
 <table class="kable_wrapper">
 
