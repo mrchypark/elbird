@@ -22,7 +22,7 @@ options(crayon.enabled=NULL)
 [![](https://cranlogs.r-pkg.org/badges/Elbird)](https://cran.r-project.org/package=Elbird)
 <!-- badges: end -->
 
-# Please check [Korean readme](./README_kr.md)
+# [한국어 리드미](./README_kr.md)는 [이곳](./README_kr.md)에서 확인하세요.
 
 The `Elbird` package is a morpheme analysis package packed with [kiwipiepy](https://github.com/bab2min/kiwipiepy).
 It is based on cpp package `kiwi` and that has convenient functions such as faster performance compared to other analyzers, easy user dictionary addition, unregistered noun extraction (not implemented in `Elbird` yet).
