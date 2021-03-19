@@ -1,6 +1,7 @@
 ^Elbird\.Rproj$
 ^\.Rproj\.user$
-^README\.Rmd$
+^README*\.Rmd$
 ^LICENSE\.md$
-.github
+.github*
 R/.logo.R
+auto*

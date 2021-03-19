@@ -5,5 +5,6 @@
 # roxygen namespace tags. Modify with care!
 ## usethis namespace: start
 #' @importFrom tibble tibble
+#' @useDynLib Elbird, .registration = TRUE
 ## usethis namespace: end
 NULL
