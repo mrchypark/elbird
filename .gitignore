@@ -3,3 +3,5 @@
 .RData
 config.log
 config.status
+lib
+include

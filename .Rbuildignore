@@ -5,3 +5,5 @@
 .github*
 R/.logo.R
 auto*
+lib
+include
