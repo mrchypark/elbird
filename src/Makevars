@@ -1,2 +1,4 @@
-PKG_CFLAGS=-I/home/rstudio/elbird/include 
-PKG_LIBS=-L/home/rstudio/elbird/lib -lkiwi
+CXX_STD = CXX11
+
+PKG_CPPFLAGS=-I/home/rstudio/elbird/include 
+PKG_LIBS=-L/home/rstudio/elbird/lib 

@@ -1,2 +1,4 @@
-PKG_CFLAGS=@cflags@
+CXX_STD = CXX11
+
+PKG_CPPFLAGS=@cppflags@
 PKG_LIBS=@libs@

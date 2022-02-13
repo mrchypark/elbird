@@ -1,12 +1,13 @@
-#include "cpp11.hpp"
-#include <kiwi/Kiwi.h>
-#include <kiwi/capi.h>
+#include <Rcpp.h>
 
-using namespace cpp11;
+#include <kiwi/Kiwi.h>
 using namespace kiwi;
 
-[[cpp11::register]]
-String kiwi_version() {
-  String ver = kiwi_version();
-  return ver;
+RCPP_MODULE(kb_module){
+  using namespace Rcpp;
+
+  class_< Kiwi >("kiwi")
+    .constructor()
+    .method("getNumThreads", &Kiwi::getNumThreads)
+  ;
 }
