@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blazing Fast Morphological Analyzer based on kiwi(Korean Intelligent Word Identifier) • Elbird</title>
+<title>Blazing Fast Morphological Analyzer based on kiwi(Korean Intelligent Word Identifier) • elbird</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -27,6 +27,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,19 +40,13 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">Elbird</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <a class="navbar-link" href="index.html">elbird</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -60,8 +56,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/mrchypark/Elbird/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/mrchypark/elbird/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -78,77 +74,77 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div id="elbird-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#elbird-" class="anchor"></a>Elbird <img src="reference/figures/logo.png" align="right" height="140/">
+<div class="section level1">
+<div class="page-header"><h1 id="elbird-">Elbird <img src="reference/figures/logo.png" align="right" height="140/"><a class="anchor" aria-label="anchor" href="#elbird-"></a>
 </h1></div>
 <!-- badges: start -->
 
 </div>
-<div id="한국어-버전는-여기에서-확인하세요" class="section level1">
-<h1 class="hasAnchor">
-<a href="#%ED%95%9C%EA%B5%AD%EC%96%B4-%EB%B2%84%EC%A0%84%EB%8A%94-%EC%97%AC%EA%B8%B0%EC%97%90%EC%84%9C-%ED%99%95%EC%9D%B8%ED%95%98%EC%84%B8%EC%9A%94" class="anchor"></a><a href="./README_kr.html">한국어 버전</a>는 <a href="./README_kr.html">여기</a>에서 확인하세요.</h1>
-<p>The <code>Elbird</code> package is a morpheme analysis package packed with <a href="https://github.com/bab2min/kiwipiepy">kiwipiepy</a>. It is based on cpp package <code>kiwi</code> and that has convenient functions such as faster performance compared to other analyzers, easy user dictionary addition, unregistered noun extraction (not implemented in <code>Elbird</code> yet).</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<div id="pre-required" class="section level3">
-<h3 class="hasAnchor">
-<a href="#pre-required" class="anchor"></a>Pre required</h3>
+<div class="section level1">
+<h1 id="한국어-버전는-여기에서-확인하세요">
+<a href="./README_kr.html">한국어 버전</a>는 <a href="./README_kr.html">여기</a>에서 확인하세요.<a class="anchor" aria-label="anchor" href="#%ED%95%9C%EA%B5%AD%EC%96%B4-%EB%B2%84%EC%A0%84%EB%8A%94-%EC%97%AC%EA%B8%B0%EC%97%90%EC%84%9C-%ED%99%95%EC%9D%B8%ED%95%98%EC%84%B8%EC%9A%94"></a>
+</h1>
+<p>The <code>Elbird</code> package is a morpheme analysis package packed with <a href="https://github.com/bab2min/kiwipiepy" class="external-link">kiwipiepy</a>. It is based on cpp package <code>kiwi</code> and that has convenient functions such as faster performance compared to other analyzers, easy user dictionary addition, unregistered noun extraction (not implemented in <code>Elbird</code> yet).</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<div class="section level3">
+<h3 id="pre-required">Pre required<a class="anchor" aria-label="anchor" href="#pre-required"></a>
+</h3>
 <p>You need python before installing Elbird.</p>
-<div id="mothod-1" class="section level4">
-<h4 class="hasAnchor">
-<a href="#mothod-1" class="anchor"></a>mothod 1</h4>
+<div class="section level4">
+<h4 id="mothod-1">mothod 1<a class="anchor" aria-label="anchor" href="#mothod-1"></a>
+</h4>
 <p><code>Elbird</code> uses <code>conda</code> for python backend. Below is how to install <code>conda</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"reticulate"</span><span class="op">)</span>
-<span class="fu">reticulate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/install_miniconda.html">install_miniconda</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"reticulate"</span><span class="op">)</span>
+<span class="fu">reticulate</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/install_miniconda.html" class="external-link">install_miniconda</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="mothod-2" class="section level4">
-<h4 class="hasAnchor">
-<a href="#mothod-2" class="anchor"></a>mothod 2</h4>
+<div class="section level4">
+<h4 id="mothod-2">mothod 2<a class="anchor" aria-label="anchor" href="#mothod-2"></a>
+</h4>
 <p>If the above installation does not work, execute the command below. The two methods are not used together.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"mrchypark/multilinguer"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"mrchypark/multilinguer"</span><span class="op">)</span>
 <span class="fu">multilinguer</span><span class="fu">::</span><span class="fu">install_conda</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="pre-install-check" class="section level4">
-<h4 class="hasAnchor">
-<a href="#pre-install-check" class="anchor"></a>pre install check</h4>
+<div class="section level4">
+<h4 id="pre-install-check">pre install check<a class="anchor" aria-label="anchor" href="#pre-install-check"></a>
+</h4>
 <p>You can check install is success code below.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">reticulate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/conda-tools.html">conda_version</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">reticulate</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/conda-tools.html" class="external-link">conda_version</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] "conda 4.9.1"</span></code></pre></div>
 </div>
 </div>
-<div id="cran-not-yet" class="section level3">
-<h3 class="hasAnchor">
-<a href="#cran-not-yet" class="anchor"></a>CRAN <em>!NOT YET!</em>
+<div class="section level3">
+<h3 id="cran-not-yet">CRAN <em>!NOT YET!</em>
+<a class="anchor" aria-label="anchor" href="#cran-not-yet"></a>
 </h3>
-<p>You can install the released version of Elbird from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<p>You can install the released version of Elbird from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"Elbird"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"Elbird"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="github" class="section level3">
-<h3 class="hasAnchor">
-<a href="#github" class="anchor"></a>Github</h3>
-<p>You can install the development version of Elbird from <a href="https://github.com/mrchypark/Elbird">github</a> with:</p>
+<div class="section level3">
+<h3 id="github">Github<a class="anchor" aria-label="anchor" href="#github"></a>
+</h3>
+<p>You can install the development version of Elbird from <a href="https://github.com/mrchypark/Elbird" class="external-link">github</a> with:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"mrchypark/Elbird"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"mrchypark/Elbird"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div id="example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
 <p>The examples below introduce the behavior of <code>Elbird</code>’s functions.</p>
-<div id="analyze" class="section level3">
-<h3 class="hasAnchor">
-<a href="#analyze" class="anchor"></a>analyze</h3>
-<p>Basically, the <code>analyze</code> function that uses the output of the <code>analyze</code> function of the <a href="https://github.com/bab2min/kiwipiepy">kiwipiepy</a> package as it is, and the <code>analyze_tbl</code> organized in tibble data type, and grammar compatibility with tidytext are supported provides an <code>analyze_tidy</code> function.</p>
+<div class="section level3">
+<h3 id="analyze">analyze<a class="anchor" aria-label="anchor" href="#analyze"></a>
+</h3>
+<p>Basically, the <code>analyze</code> function that uses the output of the <code>analyze</code> function of the <a href="https://github.com/bab2min/kiwipiepy" class="external-link">kiwipiepy</a> package as it is, and the <code>analyze_tbl</code> organized in tibble data type, and grammar compatibility with tidytext are supported provides an <code>analyze_tidy</code> function.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrchypark/Elbird">Elbird</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">Elbird</span><span class="op">)</span>
 <span class="co">## analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")</span>
 <span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다."</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
@@ -180,7 +176,7 @@
 <p>Multiple sentences are input as <code>vector</code> or <code>list</code> and output as <code>list</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## analyze(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))</span>
-<span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; # A tibble: 9 x 4</span>
 <span class="co">#&gt;   morph  tag   start   end</span>
@@ -212,7 +208,7 @@
 <span class="co">#&gt; 11 었       EP       23     1</span>
 <span class="co">#&gt; 12 습니다   EF       24     3</span>
 <span class="co">#&gt; 13 .        SF       27     1</span>
-<span class="fu"><a href="reference/analyze.html">analyze_tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="reference/analyze.html">analyze_tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; [1] "새롭/VA"    "게/EC"      "작성/NNG"   "되/XSV"     "ᆫ/ETM"      </span>
 <span class="co">#&gt; [6] "패키지/NNG" "이/VCP"     "ᆸ니다/EF"    "./SF"      </span>
@@ -222,23 +218,23 @@
 <span class="co">#&gt;  [6] "염두/NNG"    "하/XSV"      "고/EC"       "작성/NNG"    "하/XSV"     </span>
 <span class="co">#&gt; [11] "었/EP"       "습니다/EF"   "./SF"</span></code></pre></div>
 </div>
-<div id="with-tidytext" class="section level3">
-<h3 class="hasAnchor">
-<a href="#with-tidytext" class="anchor"></a>With tidytext</h3>
+<div class="section level3">
+<h3 id="with-tidytext">With tidytext<a class="anchor" aria-label="anchor" href="#with-tidytext"></a>
+</h3>
 <p>The <code>analyze_tidy</code> function can also be used as <code>analyze_tt</code> and <code>analyze_tidytext</code>. Below is an example of using it with the <code>tidytext</code> package.</p>
 <p>The <code>tar</code> below is the target text for morpheme analysis.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org">stringr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">tidytext</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">presidentSpeechKr</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org" class="external-link">stringr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext" class="external-link">tidytext</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">presidentSpeechKr</span><span class="op">)</span>
 
-<span class="va">spidx</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">president</span> <span class="op">==</span> <span class="st">"이명박"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">title</span>, <span class="st">"취임사"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">link</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">get_speech</span><span class="op">(</span>paragraph <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">paragraph</span>, <span class="va">content</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">tar</span>
+<span class="va">spidx</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">president</span> <span class="op">==</span> <span class="st">"이명박"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect</a></span><span class="op">(</span><span class="va">title</span>, <span class="st">"취임사"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">link</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu">get_speech</span><span class="op">(</span>paragraph <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">paragraph</span>, <span class="va">content</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">tar</span>
 <span class="va">tar</span>
 <span class="co">#&gt; # A tibble: 62 x 2</span>
 <span class="co">#&gt;    paragraph content                                                            </span>
@@ -256,7 +252,7 @@
 <span class="co">#&gt; # … with 52 more rows</span></code></pre></div>
 <p>This is an example of using <code>analyze_tidy</code> of <code>Elbird</code> as a tokenizer with <code>tar</code> as <code>unnest_tokens</code> which is a function of <code>tidytext</code> package.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tar</span> <span class="op">%&gt;%</span> 
+<code class="sourceCode R"><span class="va">tar</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="fu">unnest_tokens</span><span class="op">(</span>
     input <span class="op">=</span> <span class="va">content</span>,
     output <span class="op">=</span> <span class="va">word</span>,
@@ -277,14 +273,14 @@
 <span class="co">#&gt; 10         2 동포/nng </span>
 <span class="co">#&gt; # … with 4,528 more rows</span></code></pre></div>
 </div>
-<div id="add-user-word" class="section level3">
-<h3 class="hasAnchor">
-<a href="#add-user-word" class="anchor"></a>add user word</h3>
+<div class="section level3">
+<h3 id="add-user-word">add user word<a class="anchor" aria-label="anchor" href="#add-user-word"></a>
+</h3>
 <p><code>Elbird</code> connects and provides the add user word function of <code>kiwi</code>.</p>
 <p>The <code>add_user_word</code> function receives words, morpheme tags, and weights as inputs and adds a user dictionary to be used for analysis.</p>
 <p>The example below is an example of adding a user dictionary and modifying the result of <code>박찬</code> being divided and analyzed.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrchypark/Elbird">Elbird</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">Elbird</span><span class="op">)</span>
 <span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="st">"안녕하세요. 저는 박찬엽 입니다."</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; # A tibble: 9 x 4</span>
@@ -315,10 +311,10 @@
 <span class="co">#&gt; 8 .          SF       17     1</span></code></pre></div>
 </div>
 </div>
-<div id="tag-set" class="section level2">
-<h2 class="hasAnchor">
-<a href="#tag-set" class="anchor"></a>tag set</h2>
-<p><a href="https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8">Tag list</a> that used in <a href="https://github.com/bab2min/kiwipiepy">kiwipiepy</a> package.</p>
+<div class="section level2">
+<h2 id="tag-set">tag set<a class="anchor" aria-label="anchor" href="#tag-set"></a>
+</h2>
+<p><a href="https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8" class="external-link">Tag list</a> that used in <a href="https://github.com/bab2min/kiwipiepy" class="external-link">kiwipiepy</a> package.</p>
 <ul>
 <li>The table below is fetched at 2020-11-05 07:33:38 UTC.</li>
 </ul>
@@ -509,7 +505,7 @@
 <tr class="even">
 <td align="left">부호, 외국어, 특수문자(S)</td>
 <td align="left">SS</td>
-<td align="left">인용 부호 및 괄호(’ " ( ) <br><span class="math display"></span><br> &lt; &gt; { } ― ‘ ’ “ ” ≪ ≫ 등)</td>
+<td align="left">인용 부호 및 괄호(’ " ( ) [ ] &lt; &gt; { } ― ‘ ’ “ ” ≪ ≫ 등)</td>
 </tr>
 <tr class="odd">
 <td align="left">부호, 외국어, 특수문자(S)</td>
@@ -571,18 +567,18 @@
 </td>
 </tr></tbody></table>
 </div>
-<div id="special-thanks-to" class="section level2">
-<h2 class="hasAnchor">
-<a href="#special-thanks-to" class="anchor"></a>Special Thanks to</h2>
-<div id="kiwi-package" class="section level3">
-<h3 class="hasAnchor">
-<a href="#kiwi-package" class="anchor"></a>kiwi package</h3>
-<p><a href="https://github.com/bab2min">bab2min</a> with <a href="https://github.com/bab2min/Kiwi">kiwi package</a> author.</p>
+<div class="section level2">
+<h2 id="special-thanks-to">Special Thanks to<a class="anchor" aria-label="anchor" href="#special-thanks-to"></a>
+</h2>
+<div class="section level3">
+<h3 id="kiwi-package">kiwi package<a class="anchor" aria-label="anchor" href="#kiwi-package"></a>
+</h3>
+<p><a href="https://github.com/bab2min" class="external-link">bab2min</a> with <a href="https://github.com/bab2min/Kiwi" class="external-link">kiwi package</a> author.</p>
 </div>
-<div id="logo" class="section level3">
-<h3 class="hasAnchor">
-<a href="#logo" class="anchor"></a>logo</h3>
-<p><a href="https://github.com/jhk0530">jhk0530</a> with <a href="https://github.com/mrchypark/Elbird/issues/6">suggestion</a>.</p>
+<div class="section level3">
+<h3 id="logo">logo<a class="anchor" aria-label="anchor" href="#logo"></a>
+</h3>
+<p><a href="https://github.com/jhk0530" class="external-link">jhk0530</a> with <a href="https://github.com/mrchypark/Elbird/issues/6" class="external-link">suggestion</a>.</p>
 </div>
 </div>
 </div>
@@ -591,46 +587,57 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/mrchypark/Elbird/">https://​github.com/​mrchypark/​Elbird/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/mrchypark/Elbird/issues">https://​github.com/​mrchypark/​Elbird/​issues</a>
-</li>
+<li><a href="https://github.com/mrchypark/elbird/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/mrchypark/elbird/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
 <li><small>LGPL (&gt;= 3)</small></li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>Chanyub Park <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-6474-2570" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing elbird</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
-<li><a href="https://CRAN.R-project.org/package=Elbird"><img src="https://www.r-pkg.org/badges/version/Elbird" alt="CRAN status"></a></li>
-<li><a href="https://cran.r-project.org/package=Elbird"><img src="https://cranlogs.r-pkg.org/badges/Elbird"></a></li>
+<li>Chanyub Park <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-6474-2570" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://CRAN.R-project.org/package=Elbird" class="external-link"><img src="https://www.r-pkg.org/badges/version/Elbird" alt="CRAN status"></a></li>
+<li><a href="https://cran.r-project.org/package=Elbird" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/Elbird"></a></li>
+</ul>
 </div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Chanyub Park.</p>
+  <p></p>
+<p>Developed by Chanyub Park.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -638,6 +645,8 @@
 
   
 
+
+  
 
   </body>
 </html>
