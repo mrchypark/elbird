@@ -7,7 +7,7 @@
 #' @importFrom purrr map
 #' @export
 analyze <- function(text, top_n = 1) {
-  if(init_chk_not()) init()
+  if (init_chk_not()) init()
   el <- get("el", envir = .el)
   elp <- get("elp", envir = .el)
   if (elp == 0) {
@@ -15,7 +15,7 @@ analyze <- function(text, top_n = 1) {
     assign("elp", 1, envir = .el)
   }
   top_n <- as.integer(top_n)
-  res <- purrr::map(text, ~ el$async_analyze(.x, top_n)()[[1]][[1]])
+  res <- purrr::map(text, ~ el$analyze(.x, top_n)()[[1]][[1]])
   return(res)
 }
 
