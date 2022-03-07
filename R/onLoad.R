@@ -9,7 +9,7 @@
 #' @importFrom reticulate conda_create
 set_env <- function() {
   if (!check_conda_set()) {
-    reticulate::conda_create("r-Elbird", packages = "python=3.7")
+    reticulate::conda_create("r-Elbird", packages = "python=3.10")
   }
   if (!check_env()) {
     install_conda_packages()
@@ -20,7 +20,7 @@ set_env <- function() {
 install_conda_packages <- function() {
   reticulate::conda_install("r-Elbird",
                             pip = TRUE,
-                            packages = c("kiwipiepy==0.8.2"))
+                            packages = c("kiwipiepy==0.10.3"))
   cat("\nInstallation complete.\n\n")
 }
 
@@ -33,7 +33,7 @@ check_env <- function() {
 check_conda_set <- function() {
   chk <-
     try(reticulate::use_condaenv("r-Elbird", required = TRUE), silent = T)
-  return (if (class(chk) == "try-error") F else T)
+  return(if (class(chk) == "try-error") F else T)
 }
 
 
