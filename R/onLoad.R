@@ -1,19 +1,24 @@
 .el <- new.env()
 
-#' @importFrom reticulate import
-#' @importFrom dplyr tibble
 .onLoad <- function(libname, pkgname) {
   set_env()
 }
 
-#' @importFrom reticulate conda_create
+#' @importFrom reticulate conda_create install_miniconda
 set_env <- function() {
-  if (!check_conda_set()) {
+  if (!check_conda())
+    reticulate::install_miniconda()
+  if (!check_conda_set())
     reticulate::conda_create("r-Elbird", packages = "python=3.10")
-  }
-  if (!check_env()) {
+  if (!check_env())
     install_conda_packages()
-  }
+}
+
+#' @importFrom reticulate conda_version
+check_conda <- function() {
+  chk <-
+    try(reticulate::conda_version(), silent = T)
+  return(if (class(chk) == "try-error") F else T)
 }
 
 #' @importFrom reticulate conda_install
