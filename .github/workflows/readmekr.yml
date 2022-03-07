@@ -20,7 +20,7 @@ jobs:
           remotes::install_cran("dplyr")
           remotes::install_cran("tidytext")
           remotes::install_cran("reticulate")
-          remotes::install_github("forkonlp/presidentSpeechKr")
+          remotes::install_github("forkonlp/presidentSpeech")
           reticulate::install_miniconda()
           remotes::install_local(".")
         shell: Rscript {0}
