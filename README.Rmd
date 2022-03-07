@@ -49,19 +49,15 @@ reticulate::conda_version()
 ```
 
 
-### CRAN *!NOT YET!*
+# CRAN *!NOT YET!*
 You can install the released version of elbird from [CRAN](https://CRAN.R-project.org) with:
 
 ```r
+# CRAN *!NOT YET!*
 install.packages("elbird")
-```
 
-### Github
-You can install the development version of elbird from [github](https://github.com/mrchypark/elbird) with:
-
-``` r
-install.packages("remotes")
-remotes::install_github("mrchypark/elbird")
+# Dev version
+install.packages("elbird", repos = 'https://mrchypark.r-universe.dev')
 ```
 
 ## Example

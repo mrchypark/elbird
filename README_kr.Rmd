@@ -51,16 +51,11 @@ reticulate::conda_version()
 안정화 버전의 `elbird`는 아래 명령어로 설치할 수 있습니다.(아직 안됬습니다!)
 
 ```r
+# CRAN *!NOT YET!*
 install.packages("elbird")
-```
 
-### Github
-
-개발 버전의 `elbird`는 아래 명령을 통해서 설치할 수 있습니다.
-
-``` r
-install.packages("remotes")
-remotes::install_github("mrchypark/elbird")
+# Dev version
+install.packages("elbird", repos = 'https://mrchypark.r-universe.dev')
 ```
 
 ## 사용예
