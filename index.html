@@ -75,7 +75,7 @@
   <div class="contents col-md-9">
 
 <div class="section level1">
-<div class="page-header"><h1 id="elbird-">Elbird <img src="reference/figures/logo.png" align="right" height="140/"><a class="anchor" aria-label="anchor" href="#elbird-"></a>
+<div class="page-header"><h1 id="elbird-">elbird <img src="reference/figures/logo.png" align="right" height="140/"><a class="anchor" aria-label="anchor" href="#elbird-"></a>
 </h1></div>
 <!-- badges: start -->
 
@@ -84,101 +84,70 @@
 <h1 id="한국어-버전는-여기에서-확인하세요">
 <a href="./README_kr.html">한국어 버전</a>는 <a href="./README_kr.html">여기</a>에서 확인하세요.<a class="anchor" aria-label="anchor" href="#%ED%95%9C%EA%B5%AD%EC%96%B4-%EB%B2%84%EC%A0%84%EB%8A%94-%EC%97%AC%EA%B8%B0%EC%97%90%EC%84%9C-%ED%99%95%EC%9D%B8%ED%95%98%EC%84%B8%EC%9A%94"></a>
 </h1>
-<p>The <code>Elbird</code> package is a morpheme analysis package packed with <a href="https://github.com/bab2min/kiwipiepy" class="external-link">kiwipiepy</a>. It is based on cpp package <code>kiwi</code> and that has convenient functions such as faster performance compared to other analyzers, easy user dictionary addition, unregistered noun extraction (not implemented in <code>Elbird</code> yet).</p>
+<p>The <code>elbird</code> package is a morpheme analysis package packed with <a href="https://github.com/bab2min/kiwipiepy" class="external-link">kiwipiepy</a>. It is based on cpp package <code>kiwi</code> and that has convenient functions such as faster performance compared to other analyzers, easy user dictionary addition, unregistered noun extraction (not implemented in <code>elbird</code> yet).</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <div class="section level3">
-<h3 id="pre-required">Pre required<a class="anchor" aria-label="anchor" href="#pre-required"></a>
-</h3>
-<p>You need python before installing Elbird.</p>
-<div class="section level4">
-<h4 id="mothod-1">mothod 1<a class="anchor" aria-label="anchor" href="#mothod-1"></a>
-</h4>
-<p><code>Elbird</code> uses <code>conda</code> for python backend. Below is how to install <code>conda</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"reticulate"</span><span class="op">)</span>
-<span class="fu">reticulate</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/install_miniconda.html" class="external-link">install_miniconda</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-</div>
-<div class="section level4">
-<h4 id="mothod-2">mothod 2<a class="anchor" aria-label="anchor" href="#mothod-2"></a>
-</h4>
-<p>If the above installation does not work, execute the command below. The two methods are not used together.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"mrchypark/multilinguer"</span><span class="op">)</span>
-<span class="fu">multilinguer</span><span class="fu">::</span><span class="fu">install_conda</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-</div>
-<div class="section level4">
-<h4 id="pre-install-check">pre install check<a class="anchor" aria-label="anchor" href="#pre-install-check"></a>
-</h4>
-<p>You can check install is success code below.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">reticulate</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/conda-tools.html" class="external-link">conda_version</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] "conda 4.9.1"</span></code></pre></div>
-</div>
-</div>
-<div class="section level3">
 <h3 id="cran-not-yet">CRAN <em>!NOT YET!</em>
 <a class="anchor" aria-label="anchor" href="#cran-not-yet"></a>
 </h3>
-<p>You can install the released version of Elbird from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"Elbird"</span><span class="op">)</span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="github">Github<a class="anchor" aria-label="anchor" href="#github"></a>
-</h3>
-<p>You can install the development version of Elbird from <a href="https://github.com/mrchypark/Elbird" class="external-link">github</a> with:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"mrchypark/Elbird"</span><span class="op">)</span></code></pre></div>
+<p>You can install the released version of elbird from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># CRAN *!NOT YET!*</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"elbird"</span><span class="op">)</span>
+
+<span class="co"># Dev version</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"elbird"</span>, repos <span class="op">=</span> <span class="st">'https://mrchypark.r-universe.dev'</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>The examples below introduce the behavior of <code>Elbird</code>’s functions.</p>
+<p>The examples below introduce the behavior of <code>elbird</code>’s functions.</p>
 <div class="section level3">
 <h3 id="analyze">analyze<a class="anchor" aria-label="anchor" href="#analyze"></a>
 </h3>
 <p>Basically, the <code>analyze</code> function that uses the output of the <code>analyze</code> function of the <a href="https://github.com/bab2min/kiwipiepy" class="external-link">kiwipiepy</a> package as it is, and the <code>analyze_tbl</code> organized in tibble data type, and grammar compatibility with tidytext are supported provides an <code>analyze_tidy</code> function.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">Elbird</span><span class="op">)</span>
-<span class="co">## analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")</span>
-<span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다."</span><span class="op">)</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrchypark/elbird/" class="external-link">elbird</a></span><span class="op">)</span>
+<span class="co">## analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")</span>
+<span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; # A tibble: 16 x 4</span>
-<span class="co">#&gt;    morph      tag   start   end</span>
-<span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
-<span class="co">#&gt;  1 안녕하세요 NNP       0     5</span>
-<span class="co">#&gt;  2 kiwi       SL        6     4</span>
-<span class="co">#&gt;  3 형태소     NNG      11     3</span>
-<span class="co">#&gt;  4 분석       NNG      15     2</span>
-<span class="co">#&gt;  5 기         NNB      17     1</span>
-<span class="co">#&gt;  6 의         JKG      18     1</span>
-<span class="co">#&gt;  7 R          SL       20     1</span>
-<span class="co">#&gt;  8 wrapper    SL       22     7</span>
-<span class="co">#&gt;  9 이         VCP      29     1</span>
-<span class="co">#&gt; 10 ᆫ          ETM      30     0</span>
-<span class="co">#&gt; 11 Elbird     SL       31     6</span>
-<span class="co">#&gt; 12 를         JKO      37     1</span>
-<span class="co">#&gt; 13 소개       NNG      39     2</span>
-<span class="co">#&gt; 14 하         XSV      41     1</span>
-<span class="co">#&gt; 15 ᆸ니다      EF       42     2</span>
-<span class="co">#&gt; 16 .          SF       44     1</span>
-<span class="fu"><a href="reference/analyze.html">analyze_tidy</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다."</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 19 × 4</span>
+<span class="co">#&gt;    morph   tag   start   end</span>
+<span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
+<span class="co">#&gt;  1 안녕    NNG       0     2</span>
+<span class="co">#&gt;  2 하      XSA       2     1</span>
+<span class="co">#&gt;  3 시      EP        4     1</span>
+<span class="co">#&gt;  4 어요    EC        3     2</span>
+<span class="co">#&gt;  5 kiwi    SL        6     4</span>
+<span class="co">#&gt;  6 형태소  NNG      11     3</span>
+<span class="co">#&gt;  7 분석    NNG      15     2</span>
+<span class="co">#&gt;  8 기      NNB      17     1</span>
+<span class="co">#&gt;  9 의      JKG      18     1</span>
+<span class="co">#&gt; 10 R       SL       20     1</span>
+<span class="co">#&gt; 11 wrapper SL       22     7</span>
+<span class="co">#&gt; 12 이      VCP      29     1</span>
+<span class="co">#&gt; 13 ᆫ       ETM      30     0</span>
+<span class="co">#&gt; 14 elbird  SL       31     6</span>
+<span class="co">#&gt; 15 를      JKO      37     1</span>
+<span class="co">#&gt; 16 소개    NNG      39     2</span>
+<span class="co">#&gt; 17 하      XSV      41     1</span>
+<span class="co">#&gt; 18 ᆸ니다   EF       42     2</span>
+<span class="co">#&gt; 19 .       SF       44     1</span>
+<span class="fu"><a href="reference/analyze.html">analyze_tidy</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt;  [1] "안녕하세요/NNP" "kiwi/SL"        "형태소/NNG"     "분석/NNG"      </span>
-<span class="co">#&gt;  [5] "기/NNB"         "의/JKG"         "R/SL"           "wrapper/SL"    </span>
-<span class="co">#&gt;  [9] "이/VCP"         "ᆫ/ETM"           "Elbird/SL"      "를/JKO"        </span>
-<span class="co">#&gt; [13] "소개/NNG"       "하/XSV"         "ᆸ니다/EF"        "./SF"</span></code></pre></div>
+<span class="co">#&gt;  [1] "안녕/NNG"   "하/XSA"     "시/EP"      "어요/EC"    "kiwi/SL"   </span>
+<span class="co">#&gt;  [6] "형태소/NNG" "분석/NNG"   "기/NNB"     "의/JKG"     "R/SL"      </span>
+<span class="co">#&gt; [11] "wrapper/SL" "이/VCP"     "ᆫ/ETM"       "elbird/SL"  "를/JKO"    </span>
+<span class="co">#&gt; [16] "소개/NNG"   "하/XSV"     "ᆸ니다/EF"    "./SF"</span></code></pre></div>
 <p>Multiple sentences are input as <code>vector</code> or <code>list</code> and output as <code>list</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## analyze(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))</span>
 <span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; # A tibble: 9 x 4</span>
+<span class="co">#&gt; # A tibble: 9 × 4</span>
 <span class="co">#&gt;   morph  tag   start   end</span>
 <span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1 새롭   VA        0     2</span>
@@ -192,7 +161,7 @@
 <span class="co">#&gt; 9 .      SF       15     1</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; # A tibble: 13 x 4</span>
+<span class="co">#&gt; # A tibble: 13 × 4</span>
 <span class="co">#&gt;    morph    tag   start   end</span>
 <span class="co">#&gt;    &lt;chr&gt;    &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
 <span class="co">#&gt;  1 tidytext SL        0     8</span>
@@ -223,11 +192,11 @@
 </h3>
 <p>The <code>analyze_tidy</code> function can also be used as <code>analyze_tt</code> and <code>analyze_tidytext</code>. Below is an example of using it with the <code>tidytext</code> package.</p>
 <p>The <code>tar</code> below is the target text for morpheme analysis.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org" class="external-link">stringr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext" class="external-link">tidytext</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">presidentSpeechKr</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">presidentSpeech</span><span class="op">)</span>
 
 <span class="va">spidx</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">president</span> <span class="op">==</span> <span class="st">"이명박"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
@@ -236,29 +205,29 @@
   <span class="fu">get_speech</span><span class="op">(</span>paragraph <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">paragraph</span>, <span class="va">content</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">tar</span>
 <span class="va">tar</span>
-<span class="co">#&gt; # A tibble: 62 x 2</span>
+<span class="co">#&gt; # A tibble: 62 × 2</span>
 <span class="co">#&gt;    paragraph content                                                            </span>
 <span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;                                                              </span>
 <span class="co">#&gt;  1         1 존경하는 국민 여러분!                                              </span>
 <span class="co">#&gt;  2         2 700만 해외동포 여러분!                                             </span>
-<span class="co">#&gt;  3         3 이 자리에 참석하신 노무현ㆍ김대중ㆍ김영삼ㆍ전두환 전 대통령, 그리고 이슬람 카리모프 우즈베키스탄 대통령, 엥흐바야르 남…</span>
-<span class="co">#&gt;  4         4 저는 오늘 국민 여러분의 부름을 받고 대한민국의 제17대 대통령에 취임합니다. 한없이 자랑스러운 나라, 한없이 위대한 …</span>
-<span class="co">#&gt;  5         5 저는 이 자리에서 국민 여러분께 약속드립니다. 국민을 섬겨 나라를 편안하게 하겠습니다. 경제를 발전시키고 사회를 통합하…</span>
-<span class="co">#&gt;  6         6 올해로 대한민국 건국 60주년을 맞이합니다. 우리는 잃었던 땅을 되찾아 나라를 세웠고, 그 나라를 지키려고 목숨을 걸었…</span>
-<span class="co">#&gt;  7         7 지구 상에서 가장 가난했던 나라가 세계 10위권의 경제 대국이 되었습니다. 도움을 받는 나라에서 베푸는 나라로 올라섰습…</span>
-<span class="co">#&gt;  8         8 그러나 우리는 알고 있습니다. 그것은 기적이 아니라 우리가 다 함께 흘린 피와 땀과 눈물의 결정입니다. 그것은 신화가 …</span>
-<span class="co">#&gt;  9         9 독립을 위해 목숨을 바친 선열들, 전선에서 산화한 장병들, 뙤약볕과 비바람 속에 땅을 일군 농민들, 밤낮없이 산업현장을…</span>
-<span class="co">#&gt; 10        10 장롱 속 금붙이를 들고나와 외환위기에 맞섰던 시민들, 겨울 바닷가에서 기름을 걷고 닦는 자원봉사자들, 그리고 사회 각 …</span>
+<span class="co">#&gt;  3         3 이 자리에 참석하신 노무현ㆍ김대중ㆍ김영삼ㆍ전두환 전 대통령, 그리… </span>
+<span class="co">#&gt;  4         4 저는 오늘 국민 여러분의 부름을 받고 대한민국의 제17대 대통령에 취… </span>
+<span class="co">#&gt;  5         5 저는 이 자리에서 국민 여러분께 약속드립니다. 국민을 섬겨 나라를 편…</span>
+<span class="co">#&gt;  6         6 올해로 대한민국 건국 60주년을 맞이합니다. 우리는 잃었던 땅을 되찾… </span>
+<span class="co">#&gt;  7         7 지구 상에서 가장 가난했던 나라가 세계 10위권의 경제 대국이 되었습… </span>
+<span class="co">#&gt;  8         8 그러나 우리는 알고 있습니다. 그것은 기적이 아니라 우리가 다 함께 … </span>
+<span class="co">#&gt;  9         9 독립을 위해 목숨을 바친 선열들, 전선에서 산화한 장병들, 뙤약볕과 … </span>
+<span class="co">#&gt; 10        10 장롱 속 금붙이를 들고나와 외환위기에 맞섰던 시민들, 겨울 바닷가에… </span>
 <span class="co">#&gt; # … with 52 more rows</span></code></pre></div>
-<p>This is an example of using <code>analyze_tidy</code> of <code>Elbird</code> as a tokenizer with <code>tar</code> as <code>unnest_tokens</code> which is a function of <code>tidytext</code> package.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<p>This is an example of using <code>analyze_tidy</code> of <code>elbird</code> as a tokenizer with <code>tar</code> as <code>unnest_tokens</code> which is a function of <code>tidytext</code> package.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tar</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="fu">unnest_tokens</span><span class="op">(</span>
     input <span class="op">=</span> <span class="va">content</span>,
     output <span class="op">=</span> <span class="va">word</span>,
     token <span class="op">=</span> <span class="va">analyze_tidy</span>
     <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 4,538 x 2</span>
+<span class="co">#&gt; # A tibble: 4,563 × 2</span>
 <span class="co">#&gt;    paragraph word     </span>
 <span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;    </span>
 <span class="co">#&gt;  1         1 존경/nng </span>
@@ -271,44 +240,55 @@
 <span class="co">#&gt;  8         2 만/nr    </span>
 <span class="co">#&gt;  9         2 해외/nng </span>
 <span class="co">#&gt; 10         2 동포/nng </span>
-<span class="co">#&gt; # … with 4,528 more rows</span></code></pre></div>
+<span class="co">#&gt; # … with 4,553 more rows</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="add-user-word">add user word<a class="anchor" aria-label="anchor" href="#add-user-word"></a>
 </h3>
-<p><code>Elbird</code> connects and provides the add user word function of <code>kiwi</code>.</p>
+<p><code>elbird</code> connects and provides the add user word function of <code>kiwi</code>.</p>
 <p>The <code>add_user_word</code> function receives words, morpheme tags, and weights as inputs and adds a user dictionary to be used for analysis.</p>
 <p>The example below is an example of adding a user dictionary and modifying the result of <code>박찬</code> being divided and analyzed.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">Elbird</span><span class="op">)</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrchypark/elbird/" class="external-link">elbird</a></span><span class="op">)</span>
 <span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="st">"안녕하세요. 저는 박찬엽 입니다."</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; # A tibble: 9 x 4</span>
-<span class="co">#&gt;   morph      tag   start   end</span>
-<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
-<span class="co">#&gt; 1 안녕하세요 NNP       0     5</span>
-<span class="co">#&gt; 2 .          SF        5     1</span>
-<span class="co">#&gt; 3 저         NP        7     1</span>
-<span class="co">#&gt; 4 는         JX        8     1</span>
-<span class="co">#&gt; 5 박찬       NNP      10     2</span>
-<span class="co">#&gt; 6 엽         NNG      12     1</span>
-<span class="co">#&gt; 7 이         VCP      14     1</span>
-<span class="co">#&gt; 8 ᆸ니다      EF       15     2</span>
-<span class="co">#&gt; 9 .          SF       17     1</span>
+<span class="co">#&gt; # A tibble: 14 × 4</span>
+<span class="co">#&gt;    morph tag   start   end</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
+<span class="co">#&gt;  1 안녕  NNG       0     2</span>
+<span class="co">#&gt;  2 하    XSA       2     1</span>
+<span class="co">#&gt;  3 시    EP        4     1</span>
+<span class="co">#&gt;  4 어요  EF        3     2</span>
+<span class="co">#&gt;  5 .     SF        5     1</span>
+<span class="co">#&gt;  6 저    NP        7     1</span>
+<span class="co">#&gt;  7 는    JX        8     1</span>
+<span class="co">#&gt;  8 박찬  NNP      10     2</span>
+<span class="co">#&gt;  9 이    VCP      12     1</span>
+<span class="co">#&gt; 10 어    EC       12     1</span>
+<span class="co">#&gt; 11 ᆸ     NNG      13     0</span>
+<span class="co">#&gt; 12 이    VCP      14     1</span>
+<span class="co">#&gt; 13 ᆸ니다 EF       15     2</span>
+<span class="co">#&gt; 14 .     SF       17     1</span>
 <span class="fu"><a href="reference/add_user_word.html">add_user_word</a></span><span class="op">(</span><span class="st">"박찬엽"</span>,<span class="st">"NNP"</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="st">"안녕하세요. 저는 박찬엽 입니다."</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; # A tibble: 8 x 4</span>
-<span class="co">#&gt;   morph      tag   start   end</span>
-<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
-<span class="co">#&gt; 1 안녕하세요 NNP       0     5</span>
-<span class="co">#&gt; 2 .          SF        5     1</span>
-<span class="co">#&gt; 3 저         NP        7     1</span>
-<span class="co">#&gt; 4 는         JX        8     1</span>
-<span class="co">#&gt; 5 박찬엽     NNP      10     3</span>
-<span class="co">#&gt; 6 이         VCP      14     1</span>
-<span class="co">#&gt; 7 ᆸ니다      EF       15     2</span>
-<span class="co">#&gt; 8 .          SF       17     1</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 14 × 4</span>
+<span class="co">#&gt;    morph tag   start   end</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
+<span class="co">#&gt;  1 안녕  NNG       0     2</span>
+<span class="co">#&gt;  2 하    XSA       2     1</span>
+<span class="co">#&gt;  3 시    EP        4     1</span>
+<span class="co">#&gt;  4 어요  EF        3     2</span>
+<span class="co">#&gt;  5 .     SF        5     1</span>
+<span class="co">#&gt;  6 저    NP        7     1</span>
+<span class="co">#&gt;  7 는    JX        8     1</span>
+<span class="co">#&gt;  8 박찬  NNP      10     2</span>
+<span class="co">#&gt;  9 이    VCP      12     1</span>
+<span class="co">#&gt; 10 어    EC       12     1</span>
+<span class="co">#&gt; 11 ᆸ     NNG      13     0</span>
+<span class="co">#&gt; 12 이    VCP      14     1</span>
+<span class="co">#&gt; 13 ᆸ니다 EF       15     2</span>
+<span class="co">#&gt; 14 .     SF       17     1</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -316,7 +296,7 @@
 </h2>
 <p><a href="https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8" class="external-link">Tag list</a> that used in <a href="https://github.com/bab2min/kiwipiepy" class="external-link">kiwipiepy</a> package.</p>
 <ul>
-<li>The table below is fetched at 2020-11-05 07:33:38 UTC.</li>
+<li>The table below is fetched at 2022-03-08 17:22:54 UTC.</li>
 </ul>
 <table class="table kable_wrapper"><tbody><tr>
 <td>
@@ -578,7 +558,7 @@
 <div class="section level3">
 <h3 id="logo">logo<a class="anchor" aria-label="anchor" href="#logo"></a>
 </h3>
-<p><a href="https://github.com/jhk0530" class="external-link">jhk0530</a> with <a href="https://github.com/mrchypark/Elbird/issues/6" class="external-link">suggestion</a>.</p>
+<p><a href="https://github.com/jhk0530" class="external-link">jhk0530</a> with <a href="https://github.com/mrchypark/elbird/issues/6" class="external-link">suggestion</a>.</p>
 </div>
 </div>
 </div>
@@ -621,8 +601,8 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
-<li><a href="https://CRAN.R-project.org/package=Elbird" class="external-link"><img src="https://www.r-pkg.org/badges/version/Elbird" alt="CRAN status"></a></li>
-<li><a href="https://cran.r-project.org/package=Elbird" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/Elbird"></a></li>
+<li><a href="https://CRAN.R-project.org/package=elbird" class="external-link"><img src="https://www.r-pkg.org/badges/version/elbird" alt="CRAN status"></a></li>
+<li><a href="https://cran.r-project.org/package=elbird" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/elbird"></a></li>
 </ul>
 </div>
 
