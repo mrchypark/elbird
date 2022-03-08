@@ -19,13 +19,13 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/Elbird-package.html</loc>
-  </url>
-  <url>
     <loc>/reference/add_user_word.html</loc>
   </url>
   <url>
     <loc>/reference/analyze.html</loc>
+  </url>
+  <url>
+    <loc>/reference/elbird-package.html</loc>
   </url>
   <url>
     <loc>/reference/export_user_word_to_dictionary.html</loc>
