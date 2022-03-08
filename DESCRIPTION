@@ -1,6 +1,6 @@
 Package: elbird
 Title: Blazing Fast Morphological Analyzer based on kiwi(Korean Intelligent Word Identifier)
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: person(given = "Chanyub",
              family = "Park",
              role = c("aut","cre"),
@@ -18,6 +18,5 @@ BugReports: https://github.com/mrchypark/elbird/issues
 Imports: 
     reticulate,
     purrr,
-    dplyr,
     tibble,
     readr

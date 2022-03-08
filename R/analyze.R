@@ -5,17 +5,21 @@
 #'
 #' @name analyze
 #' @importFrom purrr map
+#' @importFrom tibble tibble
+#' @importFrom reticulate iter_next
 #' @export
 analyze <- function(text, top_n = 1) {
   if (init_chk_not()) init()
   el <- get("el", envir = .el)
-  elp <- get("elp", envir = .el)
-  if (elp == 0) {
-    el$prepare()
-    assign("elp", 1, envir = .el)
-  }
   top_n <- as.integer(top_n)
-  res <- purrr::map(text, ~ el$analyze(.x, top_n)()[[1]][[1]])
+  iter <- el$analyze(text, top_n)
+  res <- c()
+  while (TRUE) {
+    item <- reticulate::iter_next(iter, completed = NA)
+    if (is.na(item))
+      break
+    res <- c(res, list(item[[1]][[1]]))
+  }
   return(res)
 }
 
@@ -26,11 +30,11 @@ analyze_tbl <- function(text, top_n = 1) {
   res <- analyze(text, top_n = 1)
   res <- purrr::map(
     res,
-    ~ tibble(
-      morph = purrr::map_chr(.x, ~ .x[[1]]),
-      tag = purrr::map_chr(.x, ~ .x[[2]]),
-      start = purrr::map_int(.x, ~ .x[[3]]),
-      end = purrr::map_int(.x, ~ .x[[4]]),
+    ~ tibble::tibble(
+      morph = purrr::map_chr(.x, ~ .x[0]),
+      tag = purrr::map_chr(.x, ~ .x[1]),
+      start = purrr::map_int(.x, ~ .x[2]),
+      end = purrr::map_int(.x, ~ .x[3]),
     )
   )
   return(res)
