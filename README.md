@@ -251,7 +251,7 @@ analyze_tbl("안녕하세요. 저는 박찬엽 입니다.")
 list](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)
 that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
-  - The table below is fetched at 2022-03-08 17:35:21 UTC.
+  - The table below is fetched at 2022-03-08 17:43:58 UTC.
 
 <table class="kable_wrapper">
 

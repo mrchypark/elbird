@@ -13,6 +13,7 @@ status](https://www.r-pkg.org/badges/version/elbird)](https://CRAN.R-project.org
 <!-- badges: end -->
 
 `elbird` 패키지는 [kiwipiepy](https://github.com/bab2min/kiwipiepy) 를
+<<<<<<< HEAD
 wrapping한 형태소 분석기 패키지입니다. `cpp` 기반의 `kiwi`를 베이스로
 하고 있으며 다른 분석기에 비해 빠른 성능과 쉬운 사용자 사전 추가, 미등록
 명사 추출(아직 elbird에는 미구현) 등 편의 기능이 있습니다.
@@ -23,6 +24,16 @@ wrapping한 형태소 분석기 패키지입니다. `cpp` 기반의 `kiwi`를 �
 
 안정화 버전의 `elbird`는 아래 명령어로 설치할 수 있습니다.(아직
 안됬습니다!)
+=======
+wrapping한 형태소 분석기 패키지입니다. `cpp` 기반의 `kiwi`를 베이스로 하고 있으며 다른 분석기에 비해 빠른
+성능과 쉬운 사용자 사전 추가, 미등록 명사 추출(아직 elbird에는 미구현) 등 편의 기능이 있습니다.
+
+## 설치
+
+### CRAN *\!아직 적용 전입니다\!*
+
+안정화 버전의 `elbird`는 아래 명령어로 설치할 수 있습니다.(아직 안됬습니다\!)
+>>>>>>> 07e227b19dc16e69ea1cc18e626360e603d0099d
 
 ``` r
 # CRAN *!NOT YET!*
@@ -45,6 +56,7 @@ install.packages("elbird", repos = 'https://mrchypark.r-universe.dev')
 
 ``` r
 library(elbird)
+<<<<<<< HEAD
 tokenize("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
 #> [[1]]
 #> [[1]][[1]]
@@ -104,6 +116,10 @@ tokenize("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소
 #> [[1]][[19]]
 #> Token(form='.', tag='SF', start=44, len=1)
 tokenize_tbl("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
+=======
+## analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
+analyze_tbl("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
+>>>>>>> 07e227b19dc16e69ea1cc18e626360e603d0099d
 #> [[1]]
 #> # A tibble: 19 × 4
 #>    morph   tag   start   end
@@ -127,7 +143,11 @@ tokenize_tbl("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를
 #> 17 하      XSV      41     1
 #> 18 ᆸ니다   EF       42     2
 #> 19 .       SF       44     1
+<<<<<<< HEAD
 tokenize_tidy("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
+=======
+analyze_tidy("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
+>>>>>>> 07e227b19dc16e69ea1cc18e626360e603d0099d
 #> [[1]]
 #>  [1] "안녕/NNG"   "하/XSA"     "시/EP"      "어요/EC"    "kiwi/SL"   
 #>  [6] "형태소/NNG" "분석/NNG"   "기/NNB"     "의/JKG"     "R/SL"      
@@ -286,8 +306,13 @@ tar
 #> # … with 52 more rows
 ```
 
+<<<<<<< HEAD
 `tar`를 `tidytext` 패키지의 함수인 `unnest_tokens`로 `elbird`의
 `tokenize_tidy`를 tokenizer로 사용하는 예시입니다.
+=======
+`tar`를 `tidytext` 패키지의 함수인 `unnest_tokens`로 `elbird`의 `analyze_tidy`를
+tokenizer로 사용하는 예시입니다.
+>>>>>>> 07e227b19dc16e69ea1cc18e626360e603d0099d
 
 ``` r
 tar %>% 
@@ -312,13 +337,23 @@ tar %>%
 #> # … with 4,553 more rows
 ```
 
+<<<<<<< HEAD
 ### analyze 함수
+=======
+### 사용자 사전 추가
+
+`elbird`는 `kiwi`의 사용자 사전 추가 기능을 연결하여 제공합니다.
+
+`add_user_word` 함수는 단어, 형태소 태그, 가중치를 입력으로 받아 사용자 사전을 추가하여 분석에 사용하도록
+동작합니다.
+>>>>>>> 07e227b19dc16e69ea1cc18e626360e603d0099d
 
 추가로 [kiwipiepy](https://github.com/bab2min/kiwipiepy) 패키지의
 `analyze` 함수의 출력을 그대로 사용하는 `analyze` 함수를 제공합니다.
 
 ``` r
 library(elbird)
+<<<<<<< HEAD
 analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
 #> [[1]]
 #> [[1]][[1]]
@@ -870,6 +905,47 @@ analyze(c("안녕하세요","kiwi 형태소 분석기의 R wrapper인 elbird를 
 #> 
 #> [[4]][[2]]
 #> [1] -84.71187
+=======
+analyze_tbl("안녕하세요. 저는 박찬엽 입니다.")
+#> [[1]]
+#> # A tibble: 14 × 4
+#>    morph tag   start   end
+#>    <chr> <chr> <int> <int>
+#>  1 안녕  NNG       0     2
+#>  2 하    XSA       2     1
+#>  3 시    EP        4     1
+#>  4 어요  EF        3     2
+#>  5 .     SF        5     1
+#>  6 저    NP        7     1
+#>  7 는    JX        8     1
+#>  8 박찬  NNP      10     2
+#>  9 이    VCP      12     1
+#> 10 어    EC       12     1
+#> 11 ᆸ     NNG      13     0
+#> 12 이    VCP      14     1
+#> 13 ᆸ니다 EF       15     2
+#> 14 .     SF       17     1
+add_user_word("박찬엽","NNP",1)
+analyze_tbl("안녕하세요. 저는 박찬엽 입니다.")
+#> [[1]]
+#> # A tibble: 14 × 4
+#>    morph tag   start   end
+#>    <chr> <chr> <int> <int>
+#>  1 안녕  NNG       0     2
+#>  2 하    XSA       2     1
+#>  3 시    EP        4     1
+#>  4 어요  EF        3     2
+#>  5 .     SF        5     1
+#>  6 저    NP        7     1
+#>  7 는    JX        8     1
+#>  8 박찬  NNP      10     2
+#>  9 이    VCP      12     1
+#> 10 어    EC       12     1
+#> 11 ᆸ     NNG      13     0
+#> 12 이    VCP      14     1
+#> 13 ᆸ니다 EF       15     2
+#> 14 .     SF       17     1
+>>>>>>> 07e227b19dc16e69ea1cc18e626360e603d0099d
 ```
 
 ### 사용자 사전 가중치
@@ -882,6 +958,7 @@ analyze(c("안녕하세요","kiwi 형태소 분석기의 R wrapper인 elbird를 
 태그](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)는
 아래와 같습니다.
 
+<<<<<<< HEAD
 -   The table below is fetched at 2022-03-08 18:32:30 Etc/UTC.
 
 | 대분류                    | 태그      | 설명                                                        |
@@ -933,6 +1010,75 @@ analyze(c("안녕하세요","kiwi 형태소 분석기의 R wrapper인 elbird를 
 | 웹(W)                     | W_EMAIL   | 이메일 주소\*                                               |
 | 웹(W)                     | W_HASHTAG | 해시태그(#abcd)\*                                           |
 | 웹(W)                     | W_MENTION | 멘션(@abcd)\*                                               |
+=======
+  - The table below is fetched at 2022-03-08 17:44:17 UTC.
+
+<table class="kable_wrapper">
+
+<tbody>
+
+<tr>
+
+<td>
+
+| 대분류              | 태그         | 설명                                                  |
+| :--------------- | :--------- | :-------------------------------------------------- |
+| 체언(N)            | NNG        | 일반 명사                                               |
+| 체언(N)            | NNP        | 고유 명사                                               |
+| 체언(N)            | NNB        | 의존 명사                                               |
+| 체언(N)            | NR         | 수사                                                  |
+| 체언(N)            | NP         | 대명사                                                 |
+| 용언(V)            | VV         | 동사                                                  |
+| 용언(V)            | VA         | 형용사                                                 |
+| 용언(V)            | VX         | 보조 용언                                               |
+| 용언(V)            | VCP        | 긍정 지시사(이다)                                          |
+| 용언(V)            | VCN        | 부정 지시사(아니다)                                         |
+| 관형사              | MM         | 관형사                                                 |
+| 부사(MA)           | MAG        | 일반 부사                                               |
+| 부사(MA)           | MAJ        | 접속 부사                                               |
+| 감탄사              | IC         | 감탄사                                                 |
+| 조사(J)            | JKS        | 주격 조사                                               |
+| 조사(J)            | JKC        | 보격 조사                                               |
+| 조사(J)            | JKG        | 관형격 조사                                              |
+| 조사(J)            | JKO        | 목적격 조사                                              |
+| 조사(J)            | JKB        | 부사격 조사                                              |
+| 조사(J)            | JKV        | 호격 조사                                               |
+| 조사(J)            | JKQ        | 인용격 조사                                              |
+| 조사(J)            | JX         | 보조사                                                 |
+| 조사(J)            | JC         | 접속 조사                                               |
+| 어미(E)            | EP         | 선어말 어미                                              |
+| 어미(E)            | EF         | 종결 어미                                               |
+| 어미(E)            | EC         | 연결 어미                                               |
+| 어미(E)            | ETN        | 명사형 전성 어미                                           |
+| 어미(E)            | ETM        | 관형형 전성 어미                                           |
+| 접두사              | XPN        | 체언 접두사                                              |
+| 접미사(XS)          | XSN        | 명사 파생 접미사                                           |
+| 접미사(XS)          | XSV        | 동사 파생 접미사                                           |
+| 접미사(XS)          | XSA        | 형용사 파생 접미사                                          |
+| 어근               | XR         | 어근                                                  |
+| 부호, 외국어, 특수문자(S) | SF         | 종결 부호(. \! ?)                                       |
+| 부호, 외국어, 특수문자(S) | SP         | 구분 부호(, / : ;)                                      |
+| 부호, 외국어, 특수문자(S) | SS         | 인용 부호 및 괄호(’ " ( ) \[ \] \< \> { } ― ‘ ’ “ ” ≪ ≫ 등) |
+| 부호, 외국어, 특수문자(S) | SE         | 줄임표(…)                                              |
+| 부호, 외국어, 특수문자(S) | SO         | 붙임표(- \~)                                           |
+| 부호, 외국어, 특수문자(S) | SW         | 기타 특수 문자                                            |
+| 부호, 외국어, 특수문자(S) | SL         | 알파벳(A-Z a-z)                                        |
+| 부호, 외국어, 특수문자(S) | SH         | 한자                                                  |
+| 부호, 외국어, 특수문자(S) | SN         | 숫자(0-9)                                             |
+| 분석 불능            | UN         | 분석 불능\*                                             |
+| 웹(W)             | W\_URL     | URL 주소\*                                            |
+| 웹(W)             | W\_EMAIL   | 이메일 주소\*                                            |
+| 웹(W)             | W\_HASHTAG | 해시태그(\#abcd)\*                                      |
+| 웹(W)             | W\_MENTION | 멘션(@abcd)\*                                         |
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+>>>>>>> 07e227b19dc16e69ea1cc18e626360e603d0099d
 
 ## 특별히 감사
 
