@@ -26,7 +26,7 @@ options(crayon.enabled = NULL)
 # [한국어 버전](./README_kr.md)는 [여기](./README_kr.md)에서 확인하세요.
 
 The `elbird` package is a morpheme analysis package packed with [kiwipiepy](https://github.com/bab2min/kiwipiepy).
-It is based on cpp package `kiwi` and that has convenient functions such as faster performance compared to other analyzers, easy user dictionary addition, unregistered noun extraction (not implemented in `elbird` yet).
+It is based on cpp package `kiwi` and that has convenient functions such as faster performance compared to other tokenizers, easy user dictionary addition, unregistered noun extraction (not implemented in `elbird` yet).
 
 ## Installation
 
@@ -45,28 +45,28 @@ install.packages("elbird", repos = 'https://mrchypark.r-universe.dev')
 
 The examples below introduce the behavior of `elbird`'s functions.
 
-### analyze
+### tokenize
 
-Basically, the `analyze` function that uses the output of the `analyze` function of the [kiwipiepy](https://github.com/bab2min/kiwipiepy) package as it is, and the `analyze_tbl` organized in tibble data type, and grammar compatibility with tidytext are supported provides an `analyze_tidy` function.
+Basically, the `tokenize` function that uses the output of the `tokenize` function of the [kiwipiepy](https://github.com/bab2min/kiwipiepy) package as it is, and the `tokenize_tbl` organized in tibble data type, and grammar compatibility with tidytext are supported provides an `tokenize_tidy` function.
 
 ```{r}
 library(elbird)
-## analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
-analyze_tbl("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
-analyze_tidy("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
+tokenize("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
+tokenize_tbl("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
+tokenize_tidy("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
 ```
 
 Multiple sentences are input as `vector` or `list` and output as `list`.
 
 ```{r}
-## analyze(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
-analyze_tbl(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
-analyze_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
+tokenize(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
+tokenize_tbl(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
+tokenize_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
 ```
 
 ### With tidytext
 
-The `analyze_tidy` function can also be used as `analyze_tt` and `analyze_tidytext`.
+The `tokenize_tidy` function can also be used as `tokenize_tt` and `tokenize_tidytext`.
 Below is an example of using it with the `tidytext` package.
 
 The `tar` below is the target text for morpheme analysis.
@@ -86,16 +86,28 @@ spidx %>%
 tar
 ```
 
-This is an example of using `analyze_tidy` of `elbird` as a tokenizer with `tar` as `unnest_tokens` which is a function of `tidytext` package.
+This is an example of using `tokenize_tidy` of `elbird` as a tokenizer with `tar` as `unnest_tokens` which is a function of `tidytext` package.
 
 ```{r}
 tar %>% 
   unnest_tokens(
     input = content,
     output = word,
-    token = analyze_tidy
+    token = tokenize_tidy
     )
 ```
+
+### analyze
+
+In addition, an `analyze` function is provided that uses the output of the `analyze` function of the [kiwipiepy](https://github.com/bab2min/kiwipiepy) package as it is.
+
+```{r}
+library(elbird)
+analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
+analyze(c("안녕하세요","kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."))
+analyze(c("안녕하세요","kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."), top_n = 2)
+```
+
 
 ### add user word
 
@@ -103,13 +115,13 @@ tar %>%
 
 The `add_user_word` function receives words, morpheme tags, and weights as inputs and adds a user dictionary to be used for analysis.
 
-The example below is an example of adding a user dictionary and modifying the result of `박찬` being divided and analyzed.
+The example below is an example of adding a user dictionary and modifying the result of `박찬` being divided and tokenized.
 
 ```{r}
 library(elbird)
-analyze_tbl("안녕하세요. 저는 박찬엽 입니다.")
+tokenize_tbl("안녕하세요. 저는 박찬엽 입니다.")
 add_user_word("박찬엽","NNP",1)
-analyze_tbl("안녕하세요. 저는 박찬엽 입니다.")
+tokenize_tbl("안녕하세요. 저는 박찬엽 입니다.")
 ```
 
 

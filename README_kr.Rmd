@@ -43,28 +43,28 @@ install.packages("elbird", repos = 'https://mrchypark.r-universe.dev')
 
 아래 예시들은 elbird의 함수의 동작을 소개합니다.
 
-### analyze 함수
+### tokenize 함수
 
-기본적으로 [kiwipiepy](https://github.com/bab2min/kiwipiepy) 패키지의 `analyze` 함수의 출력을 그대로 사용하는 `analyze` 함수와 tibble 자료형으로 정리한 `analyze_tbl`, tidytext와의 문법호환을 지원하는 `analyze_tidy` 함수를 제공합니다.
+기본적으로 [kiwipiepy](https://github.com/bab2min/kiwipiepy) 패키지의 `tokenize` 함수의 출력을 그대로 사용하는 `tokenize` 함수와 tibble 자료형으로 정리한 `tokenize_tbl`, tidytext와의 문법호환을 지원하는 `tokenize_tidy` 함수를 제공합니다.
 
 ```{r}
 library(elbird)
-## analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
-analyze_tbl("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
-analyze_tidy("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
+tokenize("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
+tokenize_tbl("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
+tokenize_tidy("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
 ```
 
 여러 문장의 경우 `vector`나 `list`로 입력받아서 `list`로 출력합니다.
 
 ```{r}
-## analyze(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
-analyze_tbl(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
-analyze_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
+tokenize(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
+tokenize_tbl(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
+tokenize_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
 ```
 
 ### With tidytext
 
-`analyze_tidy` 함수는 `analyze_tt`, `analyze_tidytext` 로도 사용할 수 있습니다.
+`tokenize_tidy` 함수는 `tokenize_tt`, `tokenize_tidytext` 로도 사용할 수 있습니다.
 아래는 `tidytext` 패키지와 함께 사용하는 예시 입니다.
 
 아래 `tar`는 형태소 분석을 위한 타겟 텍스트입니다.
@@ -84,30 +84,26 @@ spidx %>%
 tar
 ```
 
-`tar`를 `tidytext` 패키지의 함수인 `unnest_tokens`로 `elbird`의 `analyze_tidy`를 tokenizer로 사용하는 예시입니다.
+`tar`를 `tidytext` 패키지의 함수인 `unnest_tokens`로 `elbird`의 `tokenize_tidy`를 tokenizer로 사용하는 예시입니다.
 
 ```{r}
 tar %>% 
   unnest_tokens(
     input = content,
     output = word,
-    token = analyze_tidy
+    token = tokenize_tidy
     )
 ```
 
-### 사용자 사전 추가
+### analyze 함수
 
-`elbird`는 `kiwi`의 사용자 사전 추가 기능을 연결하여 제공합니다.
-
-`add_user_word` 함수는 단어, 형태소 태그, 가중치를 입력으로 받아 사용자 사전을 추가하여 분석에 사용하도록 동작합니다.
-
-아래 예시는 `박찬엽`이 나뉘어 분석되고 있던 결과를 사용자 사전을 추가하여 수정한 예시 입니다.
+추가로 [kiwipiepy](https://github.com/bab2min/kiwipiepy) 패키지의 `analyze` 함수의 출력을 그대로 사용하는 `analyze` 함수를 제공합니다.
 
 ```{r}
 library(elbird)
-analyze_tbl("안녕하세요. 저는 박찬엽 입니다.")
-add_user_word("박찬엽","NNP",1)
-analyze_tbl("안녕하세요. 저는 박찬엽 입니다.")
+analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
+analyze(c("안녕하세요","kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."))
+analyze(c("안녕하세요","kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."), top_n = 2)
 ```
 
 
@@ -115,6 +111,7 @@ analyze_tbl("안녕하세요. 저는 박찬엽 입니다.")
 
 `kiwi` 패키지 제작자의 설명을 보면 가중치는 어떤 실수(`double`)라도 가능합니다.
 사용하시면서 감각을 찾으면 좋을 것 같습니다.
+
 ## 형태소 태그
 
 [kiwipiepy](https://github.com/bab2min/kiwipiepy)패키지에서 사용하는 [형태소 태그](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)는 아래와 같습니다.
