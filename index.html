@@ -112,7 +112,7 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrchypark/elbird/" class="external-link">elbird</a></span><span class="op">)</span>
 <span class="co">## analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")</span>
-<span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>
+<span class="fu">analyze_tbl</span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; # A tibble: 19 × 4</span>
 <span class="co">#&gt;    morph   tag   start   end</span>
@@ -136,7 +136,7 @@
 <span class="co">#&gt; 17 하      XSV      41     1</span>
 <span class="co">#&gt; 18 ᆸ니다   EF       42     2</span>
 <span class="co">#&gt; 19 .       SF       44     1</span>
-<span class="fu"><a href="reference/analyze.html">analyze_tidy</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>
+<span class="fu">analyze_tidy</span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt;  [1] "안녕/NNG"   "하/XSA"     "시/EP"      "어요/EC"    "kiwi/SL"   </span>
 <span class="co">#&gt;  [6] "형태소/NNG" "분석/NNG"   "기/NNB"     "의/JKG"     "R/SL"      </span>
@@ -145,7 +145,7 @@
 <p>Multiple sentences are input as <code>vector</code> or <code>list</code> and output as <code>list</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## analyze(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))</span>
-<span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">analyze_tbl</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; # A tibble: 9 × 4</span>
 <span class="co">#&gt;   morph  tag   start   end</span>
@@ -177,7 +177,7 @@
 <span class="co">#&gt; 11 었       EP       23     1</span>
 <span class="co">#&gt; 12 습니다   EF       24     3</span>
 <span class="co">#&gt; 13 .        SF       27     1</span>
-<span class="fu"><a href="reference/analyze.html">analyze_tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">analyze_tidy</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; [1] "새롭/VA"    "게/EC"      "작성/NNG"   "되/XSV"     "ᆫ/ETM"      </span>
 <span class="co">#&gt; [6] "패키지/NNG" "이/VCP"     "ᆸ니다/EF"    "./SF"      </span>
@@ -250,7 +250,7 @@
 <p>The example below is an example of adding a user dictionary and modifying the result of <code>박찬</code> being divided and analyzed.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrchypark/elbird/" class="external-link">elbird</a></span><span class="op">)</span>
-<span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="st">"안녕하세요. 저는 박찬엽 입니다."</span><span class="op">)</span>
+<span class="fu">analyze_tbl</span><span class="op">(</span><span class="st">"안녕하세요. 저는 박찬엽 입니다."</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; # A tibble: 14 × 4</span>
 <span class="co">#&gt;    morph tag   start   end</span>
@@ -270,7 +270,7 @@
 <span class="co">#&gt; 13 ᆸ니다 EF       15     2</span>
 <span class="co">#&gt; 14 .     SF       17     1</span>
 <span class="fu"><a href="reference/add_user_word.html">add_user_word</a></span><span class="op">(</span><span class="st">"박찬엽"</span>,<span class="st">"NNP"</span>,<span class="fl">1</span><span class="op">)</span>
-<span class="fu"><a href="reference/analyze.html">analyze_tbl</a></span><span class="op">(</span><span class="st">"안녕하세요. 저는 박찬엽 입니다."</span><span class="op">)</span>
+<span class="fu">analyze_tbl</span><span class="op">(</span><span class="st">"안녕하세요. 저는 박찬엽 입니다."</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; # A tibble: 14 × 4</span>
 <span class="co">#&gt;    morph tag   start   end</span>
@@ -296,7 +296,7 @@
 </h2>
 <p><a href="https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8" class="external-link">Tag list</a> that used in <a href="https://github.com/bab2min/kiwipiepy" class="external-link">kiwipiepy</a> package.</p>
 <ul>
-<li>The table below is fetched at 2022-03-08 17:35:21 UTC.</li>
+<li>The table below is fetched at 2022-03-08 17:43:58 UTC.</li>
 </ul>
 <table class="table kable_wrapper"><tbody><tr>
 <td>
