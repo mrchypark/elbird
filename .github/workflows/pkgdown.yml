@@ -3,6 +3,10 @@ on:
     branches:
       - main
       - 'gh-pages'
+  workflow_run:
+    workflows: ["readme"]
+    types:
+      - completed
 
 name: pkgdown
 
