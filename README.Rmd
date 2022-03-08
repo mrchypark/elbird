@@ -68,7 +68,6 @@ tokenize_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호�
 
 The `tokenize_tidy` function can also be used as `tokenize_tt` and `tokenize_tidytext`.
 Below is an example of using it with the `tidytext` package.
-
 The `tar` below is the target text for morpheme analysis.
 
 ```{r}

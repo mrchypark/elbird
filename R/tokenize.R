@@ -18,27 +18,28 @@ tokenize <- function(text) {
 #' @rdname tokenize
 #' @return a [tibble][tibble::tibble-package]
 tokenize_tbl <- function(text) {
+  res <- tokenize_raw(text)
+  return(dplyr::bind_rows(res, .id = "unique"))
+}
+
+#' @export
+#' @rdname tokenize
+tokenize_tidytext <- function(text) {
+  res <- tokenize_raw(text)
+  purrr::map(res, ~paste0(.x$form, "/", .x$tag))
+}
+
+tokenize_raw <- function(text) {
   res <- tokenize(text)
-  res <- purrr::map(
+  purrr::map(
     res,
     ~ tibble::tibble(
-      morph = purrr::map_chr(.x, ~ .x[0]),
+      form = purrr::map_chr(.x, ~ .x[0]),
       tag = purrr::map_chr(.x, ~ .x[1]),
       start = purrr::map_int(.x, ~ .x[2]),
       end = purrr::map_int(.x, ~ .x[3]),
     )
   )
-  return(dplyr::bind_rows(res, .id = "unique"))
-}
-
-
-#' @export
-#' @rdname tokenize
-tokenize_tidytext <- function(text) {
-  res <- tokenize_tbl(text)
-  res <- purrr::map(res, ~
-                      paste0(.x$morph, "/", .x$tag))
-  return(res)
 }
 
 #' @export
