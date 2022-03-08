@@ -62,7 +62,6 @@ analyze_tbl(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환
 analyze_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
 ```
 
-
 ### With tidytext
 
 `analyze_tidy` 함수는 `analyze_tt`, `analyze_tidytext` 로도 사용할 수 있습니다.
