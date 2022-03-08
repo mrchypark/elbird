@@ -74,7 +74,7 @@ analyze_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호�
 suppressMessages(library(dplyr))
 library(stringr)
 library(tidytext)
-library(presidentSpeechKr)
+library(presidentSpeech)
 
 spidx %>% 
   filter(president == "이명박") %>% 
