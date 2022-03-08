@@ -50,21 +50,13 @@
 
 <!-- badges: start -->
 <p><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a> <a href="https://CRAN.R-project.org/package=elbird" class="external-link"><img src="https://www.r-pkg.org/badges/version/elbird" alt="CRAN status"></a> <a href="https://cran.r-project.org/package=elbird" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/elbird"></a> <!-- badges: end --></p>
-<p><code>elbird</code> 패키지는 <a href="https://github.com/bab2min/kiwipiepy" class="external-link">kiwipiepy</a> 를 &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD wrapping한 형태소 분석기 패키지입니다. <code>cpp</code> 기반의 <code>kiwi</code>를 베이스로 하고 있으며 다른 분석기에 비해 빠른 성능과 쉬운 사용자 사전 추가, 미등록 명사 추출(아직 elbird에는 미구현) 등 편의 기능이 있습니다.</p>
+<p><code>elbird</code> 패키지는 <a href="https://github.com/bab2min/kiwipiepy" class="external-link">kiwipiepy</a> 를 wrapping한 형태소 분석기 패키지입니다. <code>cpp</code> 기반의 <code>kiwi</code>를 베이스로 하고 있으며 다른 분석기에 비해 빠른 성능과 쉬운 사용자 사전 추가, 미등록 명사 추출(아직 elbird에는 미구현) 등 편의 기능이 있습니다.</p>
 <div class="section level2">
 <h2 id="설치">설치<a class="anchor" aria-label="anchor" href="#%EC%84%A4%EC%B9%98"></a></h2>
 <div class="section level3">
 <h3 id="cran-아직-적용-전입니다">CRAN <em>!아직 적용 전입니다!</em>
 <a class="anchor" aria-label="anchor" href="#cran-%EC%95%84%EC%A7%81-%EC%A0%81%EC%9A%A9-%EC%A0%84%EC%9E%85%EB%8B%88%EB%8B%A4"></a></h3>
-<p>안정화 버전의 <code>elbird</code>는 아래 명령어로 설치할 수 있습니다.(아직 안됬습니다!) ======= wrapping한 형태소 분석기 패키지입니다. <code>cpp</code> 기반의 <code>kiwi</code>를 베이스로 하고 있으며 다른 분석기에 비해 빠른 성능과 쉬운 사용자 사전 추가, 미등록 명사 추출(아직 elbird에는 미구현) 등 편의 기능이 있습니다.</p>
-</div>
-</div>
-<div class="section level2">
-<h2 id="설치-1">설치<a class="anchor" aria-label="anchor" href="#%EC%84%A4%EC%B9%98-1"></a></h2>
-<div class="section level3">
-<h3 id="cran-아직-적용-전입니다-1">CRAN <em>!아직 적용 전입니다!</em>
-<a class="anchor" aria-label="anchor" href="#cran-%EC%95%84%EC%A7%81-%EC%A0%81%EC%9A%A9-%EC%A0%84%EC%9E%85%EB%8B%88%EB%8B%A4-1"></a></h3>
-<p>안정화 버전의 <code>elbird</code>는 아래 명령어로 설치할 수 있습니다.(아직 안됬습니다!) &gt;&gt;&gt;&gt;&gt;&gt;&gt; 07e227b19dc16e69ea1cc18e626360e603d0099d</p>
+<p>안정화 버전의 <code>elbird</code>는 아래 명령어로 설치할 수 있습니다.(아직 안됬습니다!)</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># CRAN *!NOT YET!*</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"elbird"</span><span class="op">)</span>
@@ -79,104 +71,95 @@
 <div class="section level3">
 <h3 id="tokenize-함수">tokenize 함수<a class="anchor" aria-label="anchor" href="#tokenize-%ED%95%A8%EC%88%98"></a></h3>
 <p>기본적으로 <a href="https://github.com/bab2min/kiwipiepy" class="external-link">kiwipiepy</a> 패키지의 <code>tokenize</code> 함수의 출력을 그대로 사용하는 <code>tokenize</code> 함수와 tibble 자료형으로 정리한 <code>tokenize_tbl</code>, tidytext와의 문법호환을 지원하는 <code>tokenize_tidy</code> 함수를 제공합니다.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(elbird)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="op">&lt;</span><span class="er">&lt;&lt;&lt;&lt;&lt;&lt;</span><span class="st"> </span>HEAD</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">tokenize</span>(<span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span>)</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; [[1]][[1]]</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt; </span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt; [[1]][[2]]</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#&gt; </span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#&gt; [[1]][[3]]</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#&gt; Token(form='시', tag='EP', start=4, len=1)</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#&gt; </span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co">#&gt; [[1]][[4]]</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#&gt; Token(form='어요', tag='EC', start=3, len=2)</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#&gt; </span></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#&gt; [[1]][[5]]</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="co">#&gt; Token(form='kiwi', tag='SL', start=6, len=4)</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a><span class="co">#&gt; </span></span>
-<span id="cb2-20"><a href="#cb2-20"></a><span class="co">#&gt; [[1]][[6]]</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="co">#&gt; Token(form='형태소', tag='NNG', start=11, len=3)</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a><span class="co">#&gt; </span></span>
-<span id="cb2-23"><a href="#cb2-23"></a><span class="co">#&gt; [[1]][[7]]</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="co">#&gt; Token(form='분석', tag='NNG', start=15, len=2)</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a><span class="co">#&gt; </span></span>
-<span id="cb2-26"><a href="#cb2-26"></a><span class="co">#&gt; [[1]][[8]]</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a><span class="co">#&gt; Token(form='기', tag='NNB', start=17, len=1)</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a><span class="co">#&gt; </span></span>
-<span id="cb2-29"><a href="#cb2-29"></a><span class="co">#&gt; [[1]][[9]]</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a><span class="co">#&gt; Token(form='의', tag='JKG', start=18, len=1)</span></span>
-<span id="cb2-31"><a href="#cb2-31"></a><span class="co">#&gt; </span></span>
-<span id="cb2-32"><a href="#cb2-32"></a><span class="co">#&gt; [[1]][[10]]</span></span>
-<span id="cb2-33"><a href="#cb2-33"></a><span class="co">#&gt; Token(form='R', tag='SL', start=20, len=1)</span></span>
-<span id="cb2-34"><a href="#cb2-34"></a><span class="co">#&gt; </span></span>
-<span id="cb2-35"><a href="#cb2-35"></a><span class="co">#&gt; [[1]][[11]]</span></span>
-<span id="cb2-36"><a href="#cb2-36"></a><span class="co">#&gt; Token(form='wrapper', tag='SL', start=22, len=7)</span></span>
-<span id="cb2-37"><a href="#cb2-37"></a><span class="co">#&gt; </span></span>
-<span id="cb2-38"><a href="#cb2-38"></a><span class="co">#&gt; [[1]][[12]]</span></span>
-<span id="cb2-39"><a href="#cb2-39"></a><span class="co">#&gt; Token(form='이', tag='VCP', start=29, len=1)</span></span>
-<span id="cb2-40"><a href="#cb2-40"></a><span class="co">#&gt; </span></span>
-<span id="cb2-41"><a href="#cb2-41"></a><span class="co">#&gt; [[1]][[13]]</span></span>
-<span id="cb2-42"><a href="#cb2-42"></a><span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=30, len=0)</span></span>
-<span id="cb2-43"><a href="#cb2-43"></a><span class="co">#&gt; </span></span>
-<span id="cb2-44"><a href="#cb2-44"></a><span class="co">#&gt; [[1]][[14]]</span></span>
-<span id="cb2-45"><a href="#cb2-45"></a><span class="co">#&gt; Token(form='elbird', tag='SL', start=31, len=6)</span></span>
-<span id="cb2-46"><a href="#cb2-46"></a><span class="co">#&gt; </span></span>
-<span id="cb2-47"><a href="#cb2-47"></a><span class="co">#&gt; [[1]][[15]]</span></span>
-<span id="cb2-48"><a href="#cb2-48"></a><span class="co">#&gt; Token(form='를', tag='JKO', start=37, len=1)</span></span>
-<span id="cb2-49"><a href="#cb2-49"></a><span class="co">#&gt; </span></span>
-<span id="cb2-50"><a href="#cb2-50"></a><span class="co">#&gt; [[1]][[16]]</span></span>
-<span id="cb2-51"><a href="#cb2-51"></a><span class="co">#&gt; Token(form='소개', tag='NNG', start=39, len=2)</span></span>
-<span id="cb2-52"><a href="#cb2-52"></a><span class="co">#&gt; </span></span>
-<span id="cb2-53"><a href="#cb2-53"></a><span class="co">#&gt; [[1]][[17]]</span></span>
-<span id="cb2-54"><a href="#cb2-54"></a><span class="co">#&gt; Token(form='하', tag='XSV', start=41, len=1)</span></span>
-<span id="cb2-55"><a href="#cb2-55"></a><span class="co">#&gt; </span></span>
-<span id="cb2-56"><a href="#cb2-56"></a><span class="co">#&gt; [[1]][[18]]</span></span>
-<span id="cb2-57"><a href="#cb2-57"></a><span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=42, len=2)</span></span>
-<span id="cb2-58"><a href="#cb2-58"></a><span class="co">#&gt; </span></span>
-<span id="cb2-59"><a href="#cb2-59"></a><span class="co">#&gt; [[1]][[19]]</span></span>
-<span id="cb2-60"><a href="#cb2-60"></a><span class="co">#&gt; Token(form='.', tag='SF', start=44, len=1)</span></span>
-<span id="cb2-61"><a href="#cb2-61"></a><span class="kw">tokenize_tbl</span>(<span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span>)</span>
-<span id="cb2-62"><a href="#cb2-62"></a><span class="op">==</span><span class="er">=====</span></span>
-<span id="cb2-63"><a href="#cb2-63"></a><span class="co">## analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")</span></span>
-<span id="cb2-64"><a href="#cb2-64"></a><span class="kw">analyze_tbl</span>(<span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span>)</span>
-<span id="cb2-65"><a href="#cb2-65"></a><span class="op">&gt;</span><span class="er">&gt;&gt;&gt;&gt;&gt;&gt;</span><span class="st"> </span><span class="fl">07e227</span>b19dc16e69ea1cc18e626360e603d0099d</span>
-<span id="cb2-66"><a href="#cb2-66"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb2-67"><a href="#cb2-67"></a><span class="co">#&gt; # A tibble: 19 × 4</span></span>
-<span id="cb2-68"><a href="#cb2-68"></a><span class="co">#&gt;    morph   tag   start   end</span></span>
-<span id="cb2-69"><a href="#cb2-69"></a><span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span></span>
-<span id="cb2-70"><a href="#cb2-70"></a><span class="co">#&gt;  1 안녕    NNG       0     2</span></span>
-<span id="cb2-71"><a href="#cb2-71"></a><span class="co">#&gt;  2 하      XSA       2     1</span></span>
-<span id="cb2-72"><a href="#cb2-72"></a><span class="co">#&gt;  3 시      EP        4     1</span></span>
-<span id="cb2-73"><a href="#cb2-73"></a><span class="co">#&gt;  4 어요    EC        3     2</span></span>
-<span id="cb2-74"><a href="#cb2-74"></a><span class="co">#&gt;  5 kiwi    SL        6     4</span></span>
-<span id="cb2-75"><a href="#cb2-75"></a><span class="co">#&gt;  6 형태소  NNG      11     3</span></span>
-<span id="cb2-76"><a href="#cb2-76"></a><span class="co">#&gt;  7 분석    NNG      15     2</span></span>
-<span id="cb2-77"><a href="#cb2-77"></a><span class="co">#&gt;  8 기      NNB      17     1</span></span>
-<span id="cb2-78"><a href="#cb2-78"></a><span class="co">#&gt;  9 의      JKG      18     1</span></span>
-<span id="cb2-79"><a href="#cb2-79"></a><span class="co">#&gt; 10 R       SL       20     1</span></span>
-<span id="cb2-80"><a href="#cb2-80"></a><span class="co">#&gt; 11 wrapper SL       22     7</span></span>
-<span id="cb2-81"><a href="#cb2-81"></a><span class="co">#&gt; 12 이      VCP      29     1</span></span>
-<span id="cb2-82"><a href="#cb2-82"></a><span class="co">#&gt; 13 ᆫ       ETM      30     0</span></span>
-<span id="cb2-83"><a href="#cb2-83"></a><span class="co">#&gt; 14 elbird  SL       31     6</span></span>
-<span id="cb2-84"><a href="#cb2-84"></a><span class="co">#&gt; 15 를      JKO      37     1</span></span>
-<span id="cb2-85"><a href="#cb2-85"></a><span class="co">#&gt; 16 소개    NNG      39     2</span></span>
-<span id="cb2-86"><a href="#cb2-86"></a><span class="co">#&gt; 17 하      XSV      41     1</span></span>
-<span id="cb2-87"><a href="#cb2-87"></a><span class="co">#&gt; 18 ᆸ니다   EF       42     2</span></span>
-<span id="cb2-88"><a href="#cb2-88"></a><span class="co">#&gt; 19 .       SF       44     1</span></span>
-<span id="cb2-89"><a href="#cb2-89"></a><span class="op">&lt;</span><span class="er">&lt;&lt;&lt;&lt;&lt;&lt;</span><span class="st"> </span>HEAD</span>
-<span id="cb2-90"><a href="#cb2-90"></a><span class="kw">tokenize_tidy</span>(<span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span>)</span>
-<span id="cb2-91"><a href="#cb2-91"></a><span class="op">==</span><span class="er">=====</span></span>
-<span id="cb2-92"><a href="#cb2-92"></a><span class="kw">analyze_tidy</span>(<span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span>)</span>
-<span id="cb2-93"><a href="#cb2-93"></a><span class="op">&gt;</span><span class="er">&gt;&gt;&gt;&gt;&gt;&gt;</span><span class="st"> </span><span class="fl">07e227</span>b19dc16e69ea1cc18e626360e603d0099d</span>
-<span id="cb2-94"><a href="#cb2-94"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb2-95"><a href="#cb2-95"></a><span class="co">#&gt;  [1] "안녕/NNG"   "하/XSA"     "시/EP"      "어요/EC"    "kiwi/SL"   </span></span>
-<span id="cb2-96"><a href="#cb2-96"></a><span class="co">#&gt;  [6] "형태소/NNG" "분석/NNG"   "기/NNB"     "의/JKG"     "R/SL"      </span></span>
-<span id="cb2-97"><a href="#cb2-97"></a><span class="co">#&gt; [11] "wrapper/SL" "이/VCP"     "ᆫ/ETM"       "elbird/SL"  "를/JKO"    </span></span>
-<span id="cb2-98"><a href="#cb2-98"></a><span class="co">#&gt; [16] "소개/NNG"   "하/XSV"     "ᆸ니다/EF"    "./SF"</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrchypark/elbird/" class="external-link">elbird</a></span><span class="op">)</span>
+<span class="fu"><a href="reference/tokenize.html">tokenize</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [[1]][[1]]</span>
+<span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[2]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[3]]</span>
+<span class="co">#&gt; Token(form='시', tag='EP', start=4, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[4]]</span>
+<span class="co">#&gt; Token(form='어요', tag='EC', start=3, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[5]]</span>
+<span class="co">#&gt; Token(form='kiwi', tag='SL', start=6, len=4)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[6]]</span>
+<span class="co">#&gt; Token(form='형태소', tag='NNG', start=11, len=3)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[7]]</span>
+<span class="co">#&gt; Token(form='분석', tag='NNG', start=15, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[8]]</span>
+<span class="co">#&gt; Token(form='기', tag='NNB', start=17, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[9]]</span>
+<span class="co">#&gt; Token(form='의', tag='JKG', start=18, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[10]]</span>
+<span class="co">#&gt; Token(form='R', tag='SL', start=20, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[11]]</span>
+<span class="co">#&gt; Token(form='wrapper', tag='SL', start=22, len=7)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[12]]</span>
+<span class="co">#&gt; Token(form='이', tag='VCP', start=29, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[13]]</span>
+<span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=30, len=0)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[14]]</span>
+<span class="co">#&gt; Token(form='elbird', tag='SL', start=31, len=6)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[15]]</span>
+<span class="co">#&gt; Token(form='를', tag='JKO', start=37, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[16]]</span>
+<span class="co">#&gt; Token(form='소개', tag='NNG', start=39, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[17]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSV', start=41, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[18]]</span>
+<span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=42, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[19]]</span>
+<span class="co">#&gt; Token(form='.', tag='SF', start=44, len=1)</span>
+<span class="fu"><a href="reference/tokenize.html">tokenize_tbl</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 19 × 5</span>
+<span class="co">#&gt;    unique form    tag   start   end</span>
+<span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
+<span class="co">#&gt;  1 1      안녕    NNG       0     2</span>
+<span class="co">#&gt;  2 1      하      XSA       2     1</span>
+<span class="co">#&gt;  3 1      시      EP        4     1</span>
+<span class="co">#&gt;  4 1      어요    EC        3     2</span>
+<span class="co">#&gt;  5 1      kiwi    SL        6     4</span>
+<span class="co">#&gt;  6 1      형태소  NNG      11     3</span>
+<span class="co">#&gt;  7 1      분석    NNG      15     2</span>
+<span class="co">#&gt;  8 1      기      NNB      17     1</span>
+<span class="co">#&gt;  9 1      의      JKG      18     1</span>
+<span class="co">#&gt; 10 1      R       SL       20     1</span>
+<span class="co">#&gt; 11 1      wrapper SL       22     7</span>
+<span class="co">#&gt; 12 1      이      VCP      29     1</span>
+<span class="co">#&gt; 13 1      ᆫ       ETM      30     0</span>
+<span class="co">#&gt; 14 1      elbird  SL       31     6</span>
+<span class="co">#&gt; 15 1      를      JKO      37     1</span>
+<span class="co">#&gt; 16 1      소개    NNG      39     2</span>
+<span class="co">#&gt; 17 1      하      XSV      41     1</span>
+<span class="co">#&gt; 18 1      ᆸ니다   EF       42     2</span>
+<span class="co">#&gt; 19 1      .       SF       44     1</span>
+<span class="fu"><a href="reference/tokenize.html">tokenize_tidy</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt;  [1] "안녕/NNG"   "하/XSA"     "시/EP"      "어요/EC"    "kiwi/SL"   </span>
+<span class="co">#&gt;  [6] "형태소/NNG" "분석/NNG"   "기/NNB"     "의/JKG"     "R/SL"      </span>
+<span class="co">#&gt; [11] "wrapper/SL" "이/VCP"     "ᆫ/ETM"       "elbird/SL"  "를/JKO"    </span>
+<span class="co">#&gt; [16] "소개/NNG"   "하/XSV"     "ᆸ니다/EF"    "./SF"</span></code></pre></div>
 <p>여러 문장의 경우 <code>vector</code>나 <code>list</code>로 입력받아서 <code>list</code>로 출력합니다.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/tokenize.html">tokenize</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
@@ -249,37 +232,20 @@
 <span class="co">#&gt; [[2]][[13]]</span>
 <span class="co">#&gt; Token(form='.', tag='SF', start=27, len=1)</span>
 <span class="fu"><a href="reference/tokenize.html">tokenize_tbl</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; # A tibble: 9 × 4</span>
-<span class="co">#&gt;   morph  tag   start   end</span>
-<span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
-<span class="co">#&gt; 1 새롭   VA        0     2</span>
-<span class="co">#&gt; 2 게     EC        2     1</span>
-<span class="co">#&gt; 3 작성   NNG       4     2</span>
-<span class="co">#&gt; 4 되     XSV       6     1</span>
-<span class="co">#&gt; 5 ᆫ      ETM       7     0</span>
-<span class="co">#&gt; 6 패키지 NNG       8     3</span>
-<span class="co">#&gt; 7 이     VCP      12     1</span>
-<span class="co">#&gt; 8 ᆸ니다  EF       13     2</span>
-<span class="co">#&gt; 9 .      SF       15     1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; # A tibble: 13 × 4</span>
-<span class="co">#&gt;    morph    tag   start   end</span>
-<span class="co">#&gt;    &lt;chr&gt;    &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
-<span class="co">#&gt;  1 tidytext SL        0     8</span>
-<span class="co">#&gt;  2 와       JKB       8     1</span>
-<span class="co">#&gt;  3 의       JKG       9     1</span>
-<span class="co">#&gt;  4 호환     NNG      11     2</span>
-<span class="co">#&gt;  5 을       JKO      13     1</span>
-<span class="co">#&gt;  6 염두     NNG      15     2</span>
-<span class="co">#&gt;  7 하       XSV      17     1</span>
-<span class="co">#&gt;  8 고       EC       18     1</span>
-<span class="co">#&gt;  9 작성     NNG      20     2</span>
-<span class="co">#&gt; 10 하       XSV      24     0</span>
-<span class="co">#&gt; 11 었       EP       23     1</span>
-<span class="co">#&gt; 12 습니다   EF       24     3</span>
-<span class="co">#&gt; 13 .        SF       27     1</span>
+<span class="co">#&gt; # A tibble: 22 × 5</span>
+<span class="co">#&gt;    unique form     tag   start   end</span>
+<span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
+<span class="co">#&gt;  1 1      새롭     VA        0     2</span>
+<span class="co">#&gt;  2 1      게       EC        2     1</span>
+<span class="co">#&gt;  3 1      작성     NNG       4     2</span>
+<span class="co">#&gt;  4 1      되       XSV       6     1</span>
+<span class="co">#&gt;  5 1      ᆫ        ETM       7     0</span>
+<span class="co">#&gt;  6 1      패키지   NNG       8     3</span>
+<span class="co">#&gt;  7 1      이       VCP      12     1</span>
+<span class="co">#&gt;  8 1      ᆸ니다    EF       13     2</span>
+<span class="co">#&gt;  9 1      .        SF       15     1</span>
+<span class="co">#&gt; 10 2      tidytext SL        0     8</span>
+<span class="co">#&gt; # … with 12 more rows</span>
 <span class="fu"><a href="reference/tokenize.html">tokenize_tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; [1] "새롭/VA"    "게/EC"      "작성/NNG"   "되/XSV"     "ᆫ/ETM"      </span>
@@ -292,8 +258,7 @@
 </div>
 <div class="section level3">
 <h3 id="with-tidytext">With tidytext<a class="anchor" aria-label="anchor" href="#with-tidytext"></a></h3>
-<p><code>tokenize_tidy</code> 함수는 <code>tokenize_tt</code>, <code>tokenize_tidytext</code> 로도 사용할 수 있습니다. 아래는 <code>tidytext</code> 패키지와 함께 사용하는 예시 입니다.</p>
-<p>아래 <code>tar</code>는 형태소 분석을 위한 타겟 텍스트입니다.</p>
+<p><code>tokenize_tidy</code> 함수는 <code>tokenize_tt</code>, <code>tokenize_tidytext</code> 로도 사용할 수 있습니다. 아래는 <code>tidytext</code> 패키지와 함께 사용하는 예시 입니다. 아래 <code>tar</code>는 형태소 분석을 위한 타겟 텍스트입니다.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org" class="external-link">stringr</a></span><span class="op">)</span>
@@ -321,7 +286,7 @@
 <span class="co">#&gt;  9         9 독립을 위해 목숨을 바친 선열들, 전선에서 산화한 장병들, 뙤약볕과 … </span>
 <span class="co">#&gt; 10        10 장롱 속 금붙이를 들고나와 외환위기에 맞섰던 시민들, 겨울 바닷가에… </span>
 <span class="co">#&gt; # … with 52 more rows</span></code></pre></div>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD <code>tar</code>를 <code>tidytext</code> 패키지의 함수인 <code>unnest_tokens</code>로 <code>elbird</code>의 <code>tokenize_tidy</code>를 tokenizer로 사용하는 예시입니다. ======= <code>tar</code>를 <code>tidytext</code> 패키지의 함수인 <code>unnest_tokens</code>로 <code>elbird</code>의 <code>analyze_tidy</code>를 tokenizer로 사용하는 예시입니다. &gt;&gt;&gt;&gt;&gt;&gt;&gt; 07e227b19dc16e69ea1cc18e626360e603d0099d</p>
+<p><code>tar</code>를 <code>tidytext</code> 패키지의 함수인 <code>unnest_tokens</code>로 <code>elbird</code>의 <code>tokenize_tidy</code>를 tokenizer로 사용하는 예시입니다.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tar</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="fu">unnest_tokens</span><span class="op">(</span>
@@ -343,756 +308,574 @@
 <span class="co">#&gt;  9         2 해외/nng </span>
 <span class="co">#&gt; 10         2 동포/nng </span>
 <span class="co">#&gt; # … with 4,553 more rows</span></code></pre></div>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD ### analyze 함수 ======= ### 사용자 사전 추가</p>
-<p><code>elbird</code>는 <code>kiwi</code>의 사용자 사전 추가 기능을 연결하여 제공합니다.</p>
-<p><code>add_user_word</code> 함수는 단어, 형태소 태그, 가중치를 입력으로 받아 사용자 사전을 추가하여 분석에 사용하도록 동작합니다. &gt;&gt;&gt;&gt;&gt;&gt;&gt; 07e227b19dc16e69ea1cc18e626360e603d0099d</p>
+</div>
+<div class="section level3">
+<h3 id="analyze-함수">analyze 함수<a class="anchor" aria-label="anchor" href="#analyze-%ED%95%A8%EC%88%98"></a></h3>
 <p>추가로 <a href="https://github.com/bab2min/kiwipiepy" class="external-link">kiwipiepy</a> 패키지의 <code>analyze</code> 함수의 출력을 그대로 사용하는 <code>analyze</code> 함수를 제공합니다.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">library</span>(elbird)</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="op">&lt;</span><span class="er">&lt;&lt;&lt;&lt;&lt;&lt;</span><span class="st"> </span>HEAD</span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="kw">analyze</span>(<span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span>)</span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt; [[1]][[1]]</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt; [[1]][[1]][[1]]</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt; </span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt; [[1]][[1]][[2]]</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt; </span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt; [[1]][[1]][[3]]</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt; Token(form='시', tag='EP', start=4, len=1)</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt; </span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt; [[1]][[1]][[4]]</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt; Token(form='어요', tag='EC', start=3, len=2)</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; </span></span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt; [[1]][[1]][[5]]</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="co">#&gt; Token(form='kiwi', tag='SL', start=6, len=4)</span></span>
-<span id="cb6-20"><a href="#cb6-20"></a><span class="co">#&gt; </span></span>
-<span id="cb6-21"><a href="#cb6-21"></a><span class="co">#&gt; [[1]][[1]][[6]]</span></span>
-<span id="cb6-22"><a href="#cb6-22"></a><span class="co">#&gt; Token(form='형태소', tag='NNG', start=11, len=3)</span></span>
-<span id="cb6-23"><a href="#cb6-23"></a><span class="co">#&gt; </span></span>
-<span id="cb6-24"><a href="#cb6-24"></a><span class="co">#&gt; [[1]][[1]][[7]]</span></span>
-<span id="cb6-25"><a href="#cb6-25"></a><span class="co">#&gt; Token(form='분석', tag='NNG', start=15, len=2)</span></span>
-<span id="cb6-26"><a href="#cb6-26"></a><span class="co">#&gt; </span></span>
-<span id="cb6-27"><a href="#cb6-27"></a><span class="co">#&gt; [[1]][[1]][[8]]</span></span>
-<span id="cb6-28"><a href="#cb6-28"></a><span class="co">#&gt; Token(form='기', tag='NNB', start=17, len=1)</span></span>
-<span id="cb6-29"><a href="#cb6-29"></a><span class="co">#&gt; </span></span>
-<span id="cb6-30"><a href="#cb6-30"></a><span class="co">#&gt; [[1]][[1]][[9]]</span></span>
-<span id="cb6-31"><a href="#cb6-31"></a><span class="co">#&gt; Token(form='의', tag='JKG', start=18, len=1)</span></span>
-<span id="cb6-32"><a href="#cb6-32"></a><span class="co">#&gt; </span></span>
-<span id="cb6-33"><a href="#cb6-33"></a><span class="co">#&gt; [[1]][[1]][[10]]</span></span>
-<span id="cb6-34"><a href="#cb6-34"></a><span class="co">#&gt; Token(form='R', tag='SL', start=20, len=1)</span></span>
-<span id="cb6-35"><a href="#cb6-35"></a><span class="co">#&gt; </span></span>
-<span id="cb6-36"><a href="#cb6-36"></a><span class="co">#&gt; [[1]][[1]][[11]]</span></span>
-<span id="cb6-37"><a href="#cb6-37"></a><span class="co">#&gt; Token(form='wrapper', tag='SL', start=22, len=7)</span></span>
-<span id="cb6-38"><a href="#cb6-38"></a><span class="co">#&gt; </span></span>
-<span id="cb6-39"><a href="#cb6-39"></a><span class="co">#&gt; [[1]][[1]][[12]]</span></span>
-<span id="cb6-40"><a href="#cb6-40"></a><span class="co">#&gt; Token(form='이', tag='VCP', start=29, len=1)</span></span>
-<span id="cb6-41"><a href="#cb6-41"></a><span class="co">#&gt; </span></span>
-<span id="cb6-42"><a href="#cb6-42"></a><span class="co">#&gt; [[1]][[1]][[13]]</span></span>
-<span id="cb6-43"><a href="#cb6-43"></a><span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=30, len=0)</span></span>
-<span id="cb6-44"><a href="#cb6-44"></a><span class="co">#&gt; </span></span>
-<span id="cb6-45"><a href="#cb6-45"></a><span class="co">#&gt; [[1]][[1]][[14]]</span></span>
-<span id="cb6-46"><a href="#cb6-46"></a><span class="co">#&gt; Token(form='elbird', tag='SL', start=31, len=6)</span></span>
-<span id="cb6-47"><a href="#cb6-47"></a><span class="co">#&gt; </span></span>
-<span id="cb6-48"><a href="#cb6-48"></a><span class="co">#&gt; [[1]][[1]][[15]]</span></span>
-<span id="cb6-49"><a href="#cb6-49"></a><span class="co">#&gt; Token(form='를', tag='JKO', start=37, len=1)</span></span>
-<span id="cb6-50"><a href="#cb6-50"></a><span class="co">#&gt; </span></span>
-<span id="cb6-51"><a href="#cb6-51"></a><span class="co">#&gt; [[1]][[1]][[16]]</span></span>
-<span id="cb6-52"><a href="#cb6-52"></a><span class="co">#&gt; Token(form='소개', tag='NNG', start=39, len=2)</span></span>
-<span id="cb6-53"><a href="#cb6-53"></a><span class="co">#&gt; </span></span>
-<span id="cb6-54"><a href="#cb6-54"></a><span class="co">#&gt; [[1]][[1]][[17]]</span></span>
-<span id="cb6-55"><a href="#cb6-55"></a><span class="co">#&gt; Token(form='하', tag='XSV', start=41, len=1)</span></span>
-<span id="cb6-56"><a href="#cb6-56"></a><span class="co">#&gt; </span></span>
-<span id="cb6-57"><a href="#cb6-57"></a><span class="co">#&gt; [[1]][[1]][[18]]</span></span>
-<span id="cb6-58"><a href="#cb6-58"></a><span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=42, len=2)</span></span>
-<span id="cb6-59"><a href="#cb6-59"></a><span class="co">#&gt; </span></span>
-<span id="cb6-60"><a href="#cb6-60"></a><span class="co">#&gt; [[1]][[1]][[19]]</span></span>
-<span id="cb6-61"><a href="#cb6-61"></a><span class="co">#&gt; Token(form='.', tag='SF', start=44, len=1)</span></span>
-<span id="cb6-62"><a href="#cb6-62"></a><span class="co">#&gt; </span></span>
-<span id="cb6-63"><a href="#cb6-63"></a><span class="co">#&gt; </span></span>
-<span id="cb6-64"><a href="#cb6-64"></a><span class="co">#&gt; [[1]][[2]]</span></span>
-<span id="cb6-65"><a href="#cb6-65"></a><span class="co">#&gt; [1] -97.36888</span></span>
-<span id="cb6-66"><a href="#cb6-66"></a><span class="co">#&gt; </span></span>
-<span id="cb6-67"><a href="#cb6-67"></a><span class="co">#&gt; </span></span>
-<span id="cb6-68"><a href="#cb6-68"></a><span class="co">#&gt; [[2]]</span></span>
-<span id="cb6-69"><a href="#cb6-69"></a><span class="co">#&gt; [[2]][[1]]</span></span>
-<span id="cb6-70"><a href="#cb6-70"></a><span class="co">#&gt; [[2]][[1]][[1]]</span></span>
-<span id="cb6-71"><a href="#cb6-71"></a><span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span></span>
-<span id="cb6-72"><a href="#cb6-72"></a><span class="co">#&gt; </span></span>
-<span id="cb6-73"><a href="#cb6-73"></a><span class="co">#&gt; [[2]][[1]][[2]]</span></span>
-<span id="cb6-74"><a href="#cb6-74"></a><span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span></span>
-<span id="cb6-75"><a href="#cb6-75"></a><span class="co">#&gt; </span></span>
-<span id="cb6-76"><a href="#cb6-76"></a><span class="co">#&gt; [[2]][[1]][[3]]</span></span>
-<span id="cb6-77"><a href="#cb6-77"></a><span class="co">#&gt; Token(form='시', tag='EP', start=4, len=1)</span></span>
-<span id="cb6-78"><a href="#cb6-78"></a><span class="co">#&gt; </span></span>
-<span id="cb6-79"><a href="#cb6-79"></a><span class="co">#&gt; [[2]][[1]][[4]]</span></span>
-<span id="cb6-80"><a href="#cb6-80"></a><span class="co">#&gt; Token(form='어요', tag='EC', start=3, len=2)</span></span>
-<span id="cb6-81"><a href="#cb6-81"></a><span class="co">#&gt; </span></span>
-<span id="cb6-82"><a href="#cb6-82"></a><span class="co">#&gt; [[2]][[1]][[5]]</span></span>
-<span id="cb6-83"><a href="#cb6-83"></a><span class="co">#&gt; Token(form='kiwi', tag='SL', start=6, len=4)</span></span>
-<span id="cb6-84"><a href="#cb6-84"></a><span class="co">#&gt; </span></span>
-<span id="cb6-85"><a href="#cb6-85"></a><span class="co">#&gt; [[2]][[1]][[6]]</span></span>
-<span id="cb6-86"><a href="#cb6-86"></a><span class="co">#&gt; Token(form='형태소', tag='NNG', start=11, len=3)</span></span>
-<span id="cb6-87"><a href="#cb6-87"></a><span class="co">#&gt; </span></span>
-<span id="cb6-88"><a href="#cb6-88"></a><span class="co">#&gt; [[2]][[1]][[7]]</span></span>
-<span id="cb6-89"><a href="#cb6-89"></a><span class="co">#&gt; Token(form='분석', tag='NNG', start=15, len=2)</span></span>
-<span id="cb6-90"><a href="#cb6-90"></a><span class="co">#&gt; </span></span>
-<span id="cb6-91"><a href="#cb6-91"></a><span class="co">#&gt; [[2]][[1]][[8]]</span></span>
-<span id="cb6-92"><a href="#cb6-92"></a><span class="co">#&gt; Token(form='기', tag='NNG', start=17, len=1)</span></span>
-<span id="cb6-93"><a href="#cb6-93"></a><span class="co">#&gt; </span></span>
-<span id="cb6-94"><a href="#cb6-94"></a><span class="co">#&gt; [[2]][[1]][[9]]</span></span>
-<span id="cb6-95"><a href="#cb6-95"></a><span class="co">#&gt; Token(form='의', tag='JKG', start=18, len=1)</span></span>
-<span id="cb6-96"><a href="#cb6-96"></a><span class="co">#&gt; </span></span>
-<span id="cb6-97"><a href="#cb6-97"></a><span class="co">#&gt; [[2]][[1]][[10]]</span></span>
-<span id="cb6-98"><a href="#cb6-98"></a><span class="co">#&gt; Token(form='R', tag='SL', start=20, len=1)</span></span>
-<span id="cb6-99"><a href="#cb6-99"></a><span class="co">#&gt; </span></span>
-<span id="cb6-100"><a href="#cb6-100"></a><span class="co">#&gt; [[2]][[1]][[11]]</span></span>
-<span id="cb6-101"><a href="#cb6-101"></a><span class="co">#&gt; Token(form='wrapper', tag='SL', start=22, len=7)</span></span>
-<span id="cb6-102"><a href="#cb6-102"></a><span class="co">#&gt; </span></span>
-<span id="cb6-103"><a href="#cb6-103"></a><span class="co">#&gt; [[2]][[1]][[12]]</span></span>
-<span id="cb6-104"><a href="#cb6-104"></a><span class="co">#&gt; Token(form='이', tag='VCP', start=29, len=1)</span></span>
-<span id="cb6-105"><a href="#cb6-105"></a><span class="co">#&gt; </span></span>
-<span id="cb6-106"><a href="#cb6-106"></a><span class="co">#&gt; [[2]][[1]][[13]]</span></span>
-<span id="cb6-107"><a href="#cb6-107"></a><span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=30, len=0)</span></span>
-<span id="cb6-108"><a href="#cb6-108"></a><span class="co">#&gt; </span></span>
-<span id="cb6-109"><a href="#cb6-109"></a><span class="co">#&gt; [[2]][[1]][[14]]</span></span>
-<span id="cb6-110"><a href="#cb6-110"></a><span class="co">#&gt; Token(form='elbird', tag='SL', start=31, len=6)</span></span>
-<span id="cb6-111"><a href="#cb6-111"></a><span class="co">#&gt; </span></span>
-<span id="cb6-112"><a href="#cb6-112"></a><span class="co">#&gt; [[2]][[1]][[15]]</span></span>
-<span id="cb6-113"><a href="#cb6-113"></a><span class="co">#&gt; Token(form='를', tag='JKO', start=37, len=1)</span></span>
-<span id="cb6-114"><a href="#cb6-114"></a><span class="co">#&gt; </span></span>
-<span id="cb6-115"><a href="#cb6-115"></a><span class="co">#&gt; [[2]][[1]][[16]]</span></span>
-<span id="cb6-116"><a href="#cb6-116"></a><span class="co">#&gt; Token(form='소개', tag='NNG', start=39, len=2)</span></span>
-<span id="cb6-117"><a href="#cb6-117"></a><span class="co">#&gt; </span></span>
-<span id="cb6-118"><a href="#cb6-118"></a><span class="co">#&gt; [[2]][[1]][[17]]</span></span>
-<span id="cb6-119"><a href="#cb6-119"></a><span class="co">#&gt; Token(form='하', tag='XSV', start=41, len=1)</span></span>
-<span id="cb6-120"><a href="#cb6-120"></a><span class="co">#&gt; </span></span>
-<span id="cb6-121"><a href="#cb6-121"></a><span class="co">#&gt; [[2]][[1]][[18]]</span></span>
-<span id="cb6-122"><a href="#cb6-122"></a><span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=42, len=2)</span></span>
-<span id="cb6-123"><a href="#cb6-123"></a><span class="co">#&gt; </span></span>
-<span id="cb6-124"><a href="#cb6-124"></a><span class="co">#&gt; [[2]][[1]][[19]]</span></span>
-<span id="cb6-125"><a href="#cb6-125"></a><span class="co">#&gt; Token(form='.', tag='SF', start=44, len=1)</span></span>
-<span id="cb6-126"><a href="#cb6-126"></a><span class="co">#&gt; </span></span>
-<span id="cb6-127"><a href="#cb6-127"></a><span class="co">#&gt; </span></span>
-<span id="cb6-128"><a href="#cb6-128"></a><span class="co">#&gt; [[2]][[2]]</span></span>
-<span id="cb6-129"><a href="#cb6-129"></a><span class="co">#&gt; [1] -97.94218</span></span>
-<span id="cb6-130"><a href="#cb6-130"></a><span class="co">#&gt; </span></span>
-<span id="cb6-131"><a href="#cb6-131"></a><span class="co">#&gt; </span></span>
-<span id="cb6-132"><a href="#cb6-132"></a><span class="co">#&gt; [[3]]</span></span>
-<span id="cb6-133"><a href="#cb6-133"></a><span class="co">#&gt; [[3]][[1]]</span></span>
-<span id="cb6-134"><a href="#cb6-134"></a><span class="co">#&gt; [[3]][[1]][[1]]</span></span>
-<span id="cb6-135"><a href="#cb6-135"></a><span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span></span>
-<span id="cb6-136"><a href="#cb6-136"></a><span class="co">#&gt; </span></span>
-<span id="cb6-137"><a href="#cb6-137"></a><span class="co">#&gt; [[3]][[1]][[2]]</span></span>
-<span id="cb6-138"><a href="#cb6-138"></a><span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span></span>
-<span id="cb6-139"><a href="#cb6-139"></a><span class="co">#&gt; </span></span>
-<span id="cb6-140"><a href="#cb6-140"></a><span class="co">#&gt; [[3]][[1]][[3]]</span></span>
-<span id="cb6-141"><a href="#cb6-141"></a><span class="co">#&gt; Token(form='시', tag='EP', start=4, len=1)</span></span>
-<span id="cb6-142"><a href="#cb6-142"></a><span class="co">#&gt; </span></span>
-<span id="cb6-143"><a href="#cb6-143"></a><span class="co">#&gt; [[3]][[1]][[4]]</span></span>
-<span id="cb6-144"><a href="#cb6-144"></a><span class="co">#&gt; Token(form='어요', tag='EC', start=3, len=2)</span></span>
-<span id="cb6-145"><a href="#cb6-145"></a><span class="co">#&gt; </span></span>
-<span id="cb6-146"><a href="#cb6-146"></a><span class="co">#&gt; [[3]][[1]][[5]]</span></span>
-<span id="cb6-147"><a href="#cb6-147"></a><span class="co">#&gt; Token(form='kiwi', tag='SL', start=6, len=4)</span></span>
-<span id="cb6-148"><a href="#cb6-148"></a><span class="co">#&gt; </span></span>
-<span id="cb6-149"><a href="#cb6-149"></a><span class="co">#&gt; [[3]][[1]][[6]]</span></span>
-<span id="cb6-150"><a href="#cb6-150"></a><span class="co">#&gt; Token(form='형태소', tag='NNG', start=11, len=3)</span></span>
-<span id="cb6-151"><a href="#cb6-151"></a><span class="co">#&gt; </span></span>
-<span id="cb6-152"><a href="#cb6-152"></a><span class="co">#&gt; [[3]][[1]][[7]]</span></span>
-<span id="cb6-153"><a href="#cb6-153"></a><span class="co">#&gt; Token(form='분석', tag='NNG', start=15, len=2)</span></span>
-<span id="cb6-154"><a href="#cb6-154"></a><span class="co">#&gt; </span></span>
-<span id="cb6-155"><a href="#cb6-155"></a><span class="co">#&gt; [[3]][[1]][[8]]</span></span>
-<span id="cb6-156"><a href="#cb6-156"></a><span class="co">#&gt; Token(form='기', tag='ETN', start=17, len=1)</span></span>
-<span id="cb6-157"><a href="#cb6-157"></a><span class="co">#&gt; </span></span>
-<span id="cb6-158"><a href="#cb6-158"></a><span class="co">#&gt; [[3]][[1]][[9]]</span></span>
-<span id="cb6-159"><a href="#cb6-159"></a><span class="co">#&gt; Token(form='의', tag='JKG', start=18, len=1)</span></span>
-<span id="cb6-160"><a href="#cb6-160"></a><span class="co">#&gt; </span></span>
-<span id="cb6-161"><a href="#cb6-161"></a><span class="co">#&gt; [[3]][[1]][[10]]</span></span>
-<span id="cb6-162"><a href="#cb6-162"></a><span class="co">#&gt; Token(form='R', tag='SL', start=20, len=1)</span></span>
-<span id="cb6-163"><a href="#cb6-163"></a><span class="co">#&gt; </span></span>
-<span id="cb6-164"><a href="#cb6-164"></a><span class="co">#&gt; [[3]][[1]][[11]]</span></span>
-<span id="cb6-165"><a href="#cb6-165"></a><span class="co">#&gt; Token(form='wrapper', tag='SL', start=22, len=7)</span></span>
-<span id="cb6-166"><a href="#cb6-166"></a><span class="co">#&gt; </span></span>
-<span id="cb6-167"><a href="#cb6-167"></a><span class="co">#&gt; [[3]][[1]][[12]]</span></span>
-<span id="cb6-168"><a href="#cb6-168"></a><span class="co">#&gt; Token(form='이', tag='VCP', start=29, len=1)</span></span>
-<span id="cb6-169"><a href="#cb6-169"></a><span class="co">#&gt; </span></span>
-<span id="cb6-170"><a href="#cb6-170"></a><span class="co">#&gt; [[3]][[1]][[13]]</span></span>
-<span id="cb6-171"><a href="#cb6-171"></a><span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=30, len=0)</span></span>
-<span id="cb6-172"><a href="#cb6-172"></a><span class="co">#&gt; </span></span>
-<span id="cb6-173"><a href="#cb6-173"></a><span class="co">#&gt; [[3]][[1]][[14]]</span></span>
-<span id="cb6-174"><a href="#cb6-174"></a><span class="co">#&gt; Token(form='elbird', tag='SL', start=31, len=6)</span></span>
-<span id="cb6-175"><a href="#cb6-175"></a><span class="co">#&gt; </span></span>
-<span id="cb6-176"><a href="#cb6-176"></a><span class="co">#&gt; [[3]][[1]][[15]]</span></span>
-<span id="cb6-177"><a href="#cb6-177"></a><span class="co">#&gt; Token(form='를', tag='JKO', start=37, len=1)</span></span>
-<span id="cb6-178"><a href="#cb6-178"></a><span class="co">#&gt; </span></span>
-<span id="cb6-179"><a href="#cb6-179"></a><span class="co">#&gt; [[3]][[1]][[16]]</span></span>
-<span id="cb6-180"><a href="#cb6-180"></a><span class="co">#&gt; Token(form='소개', tag='NNG', start=39, len=2)</span></span>
-<span id="cb6-181"><a href="#cb6-181"></a><span class="co">#&gt; </span></span>
-<span id="cb6-182"><a href="#cb6-182"></a><span class="co">#&gt; [[3]][[1]][[17]]</span></span>
-<span id="cb6-183"><a href="#cb6-183"></a><span class="co">#&gt; Token(form='하', tag='XSV', start=41, len=1)</span></span>
-<span id="cb6-184"><a href="#cb6-184"></a><span class="co">#&gt; </span></span>
-<span id="cb6-185"><a href="#cb6-185"></a><span class="co">#&gt; [[3]][[1]][[18]]</span></span>
-<span id="cb6-186"><a href="#cb6-186"></a><span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=42, len=2)</span></span>
-<span id="cb6-187"><a href="#cb6-187"></a><span class="co">#&gt; </span></span>
-<span id="cb6-188"><a href="#cb6-188"></a><span class="co">#&gt; [[3]][[1]][[19]]</span></span>
-<span id="cb6-189"><a href="#cb6-189"></a><span class="co">#&gt; Token(form='.', tag='SF', start=44, len=1)</span></span>
-<span id="cb6-190"><a href="#cb6-190"></a><span class="co">#&gt; </span></span>
-<span id="cb6-191"><a href="#cb6-191"></a><span class="co">#&gt; </span></span>
-<span id="cb6-192"><a href="#cb6-192"></a><span class="co">#&gt; [[3]][[2]]</span></span>
-<span id="cb6-193"><a href="#cb6-193"></a><span class="co">#&gt; [1] -98.88614</span></span>
-<span id="cb6-194"><a href="#cb6-194"></a><span class="kw">analyze</span>(<span class="kw">c</span>(<span class="st">"안녕하세요"</span>,<span class="st">"kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span>))</span>
-<span id="cb6-195"><a href="#cb6-195"></a><span class="co">#&gt; Warning in if (is.na(item)) break: the condition has length &gt; 1 and only the</span></span>
-<span id="cb6-196"><a href="#cb6-196"></a><span class="co">#&gt; first element will be used</span></span>
-<span id="cb6-197"><a href="#cb6-197"></a></span>
-<span id="cb6-198"><a href="#cb6-198"></a><span class="co">#&gt; Warning in if (is.na(item)) break: the condition has length &gt; 1 and only the</span></span>
-<span id="cb6-199"><a href="#cb6-199"></a><span class="co">#&gt; first element will be used</span></span>
-<span id="cb6-200"><a href="#cb6-200"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb6-201"><a href="#cb6-201"></a><span class="co">#&gt; [[1]][[1]]</span></span>
-<span id="cb6-202"><a href="#cb6-202"></a><span class="co">#&gt; [[1]][[1]][[1]]</span></span>
-<span id="cb6-203"><a href="#cb6-203"></a><span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span></span>
-<span id="cb6-204"><a href="#cb6-204"></a><span class="co">#&gt; </span></span>
-<span id="cb6-205"><a href="#cb6-205"></a><span class="co">#&gt; [[1]][[1]][[2]]</span></span>
-<span id="cb6-206"><a href="#cb6-206"></a><span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span></span>
-<span id="cb6-207"><a href="#cb6-207"></a><span class="co">#&gt; </span></span>
-<span id="cb6-208"><a href="#cb6-208"></a><span class="co">#&gt; [[1]][[1]][[3]]</span></span>
-<span id="cb6-209"><a href="#cb6-209"></a><span class="co">#&gt; Token(form='시', tag='EP', start=4, len=1)</span></span>
-<span id="cb6-210"><a href="#cb6-210"></a><span class="co">#&gt; </span></span>
-<span id="cb6-211"><a href="#cb6-211"></a><span class="co">#&gt; [[1]][[1]][[4]]</span></span>
-<span id="cb6-212"><a href="#cb6-212"></a><span class="co">#&gt; Token(form='어요', tag='EC', start=3, len=2)</span></span>
-<span id="cb6-213"><a href="#cb6-213"></a><span class="co">#&gt; </span></span>
-<span id="cb6-214"><a href="#cb6-214"></a><span class="co">#&gt; </span></span>
-<span id="cb6-215"><a href="#cb6-215"></a><span class="co">#&gt; [[1]][[2]]</span></span>
-<span id="cb6-216"><a href="#cb6-216"></a><span class="co">#&gt; [1] -18.16951</span></span>
-<span id="cb6-217"><a href="#cb6-217"></a><span class="co">#&gt; </span></span>
-<span id="cb6-218"><a href="#cb6-218"></a><span class="co">#&gt; </span></span>
-<span id="cb6-219"><a href="#cb6-219"></a><span class="co">#&gt; [[2]]</span></span>
-<span id="cb6-220"><a href="#cb6-220"></a><span class="co">#&gt; [[2]][[1]]</span></span>
-<span id="cb6-221"><a href="#cb6-221"></a><span class="co">#&gt; [[2]][[1]][[1]]</span></span>
-<span id="cb6-222"><a href="#cb6-222"></a><span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span></span>
-<span id="cb6-223"><a href="#cb6-223"></a><span class="co">#&gt; </span></span>
-<span id="cb6-224"><a href="#cb6-224"></a><span class="co">#&gt; [[2]][[1]][[2]]</span></span>
-<span id="cb6-225"><a href="#cb6-225"></a><span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span></span>
-<span id="cb6-226"><a href="#cb6-226"></a><span class="co">#&gt; </span></span>
-<span id="cb6-227"><a href="#cb6-227"></a><span class="co">#&gt; [[2]][[1]][[3]]</span></span>
-<span id="cb6-228"><a href="#cb6-228"></a><span class="co">#&gt; Token(form='시', tag='EP', start=4, len=1)</span></span>
-<span id="cb6-229"><a href="#cb6-229"></a><span class="co">#&gt; </span></span>
-<span id="cb6-230"><a href="#cb6-230"></a><span class="co">#&gt; [[2]][[1]][[4]]</span></span>
-<span id="cb6-231"><a href="#cb6-231"></a><span class="co">#&gt; Token(form='어요', tag='EF', start=3, len=2)</span></span>
-<span id="cb6-232"><a href="#cb6-232"></a><span class="co">#&gt; </span></span>
-<span id="cb6-233"><a href="#cb6-233"></a><span class="co">#&gt; </span></span>
-<span id="cb6-234"><a href="#cb6-234"></a><span class="co">#&gt; [[2]][[2]]</span></span>
-<span id="cb6-235"><a href="#cb6-235"></a><span class="co">#&gt; [1] -22.45279</span></span>
-<span id="cb6-236"><a href="#cb6-236"></a><span class="co">#&gt; </span></span>
-<span id="cb6-237"><a href="#cb6-237"></a><span class="co">#&gt; </span></span>
-<span id="cb6-238"><a href="#cb6-238"></a><span class="co">#&gt; [[3]]</span></span>
-<span id="cb6-239"><a href="#cb6-239"></a><span class="co">#&gt; [[3]][[1]]</span></span>
-<span id="cb6-240"><a href="#cb6-240"></a><span class="co">#&gt; [[3]][[1]][[1]]</span></span>
-<span id="cb6-241"><a href="#cb6-241"></a><span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span></span>
-<span id="cb6-242"><a href="#cb6-242"></a><span class="co">#&gt; </span></span>
-<span id="cb6-243"><a href="#cb6-243"></a><span class="co">#&gt; [[3]][[1]][[2]]</span></span>
-<span id="cb6-244"><a href="#cb6-244"></a><span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span></span>
-<span id="cb6-245"><a href="#cb6-245"></a><span class="co">#&gt; </span></span>
-<span id="cb6-246"><a href="#cb6-246"></a><span class="co">#&gt; [[3]][[1]][[3]]</span></span>
-<span id="cb6-247"><a href="#cb6-247"></a><span class="co">#&gt; Token(form='세요', tag='EF', start=3, len=2)</span></span>
-<span id="cb6-248"><a href="#cb6-248"></a><span class="co">#&gt; </span></span>
-<span id="cb6-249"><a href="#cb6-249"></a><span class="co">#&gt; </span></span>
-<span id="cb6-250"><a href="#cb6-250"></a><span class="co">#&gt; [[3]][[2]]</span></span>
-<span id="cb6-251"><a href="#cb6-251"></a><span class="co">#&gt; [1] -28.44329</span></span>
-<span id="cb6-252"><a href="#cb6-252"></a><span class="co">#&gt; </span></span>
-<span id="cb6-253"><a href="#cb6-253"></a><span class="co">#&gt; </span></span>
-<span id="cb6-254"><a href="#cb6-254"></a><span class="co">#&gt; [[4]]</span></span>
-<span id="cb6-255"><a href="#cb6-255"></a><span class="co">#&gt; [[4]][[1]]</span></span>
-<span id="cb6-256"><a href="#cb6-256"></a><span class="co">#&gt; [[4]][[1]][[1]]</span></span>
-<span id="cb6-257"><a href="#cb6-257"></a><span class="co">#&gt; Token(form='kiwi', tag='SL', start=0, len=4)</span></span>
-<span id="cb6-258"><a href="#cb6-258"></a><span class="co">#&gt; </span></span>
-<span id="cb6-259"><a href="#cb6-259"></a><span class="co">#&gt; [[4]][[1]][[2]]</span></span>
-<span id="cb6-260"><a href="#cb6-260"></a><span class="co">#&gt; Token(form='형태소', tag='NNG', start=5, len=3)</span></span>
-<span id="cb6-261"><a href="#cb6-261"></a><span class="co">#&gt; </span></span>
-<span id="cb6-262"><a href="#cb6-262"></a><span class="co">#&gt; [[4]][[1]][[3]]</span></span>
-<span id="cb6-263"><a href="#cb6-263"></a><span class="co">#&gt; Token(form='분석', tag='NNG', start=9, len=2)</span></span>
-<span id="cb6-264"><a href="#cb6-264"></a><span class="co">#&gt; </span></span>
-<span id="cb6-265"><a href="#cb6-265"></a><span class="co">#&gt; [[4]][[1]][[4]]</span></span>
-<span id="cb6-266"><a href="#cb6-266"></a><span class="co">#&gt; Token(form='기', tag='NNB', start=11, len=1)</span></span>
-<span id="cb6-267"><a href="#cb6-267"></a><span class="co">#&gt; </span></span>
-<span id="cb6-268"><a href="#cb6-268"></a><span class="co">#&gt; [[4]][[1]][[5]]</span></span>
-<span id="cb6-269"><a href="#cb6-269"></a><span class="co">#&gt; Token(form='의', tag='JKG', start=12, len=1)</span></span>
-<span id="cb6-270"><a href="#cb6-270"></a><span class="co">#&gt; </span></span>
-<span id="cb6-271"><a href="#cb6-271"></a><span class="co">#&gt; [[4]][[1]][[6]]</span></span>
-<span id="cb6-272"><a href="#cb6-272"></a><span class="co">#&gt; Token(form='R', tag='SL', start=14, len=1)</span></span>
-<span id="cb6-273"><a href="#cb6-273"></a><span class="co">#&gt; </span></span>
-<span id="cb6-274"><a href="#cb6-274"></a><span class="co">#&gt; [[4]][[1]][[7]]</span></span>
-<span id="cb6-275"><a href="#cb6-275"></a><span class="co">#&gt; Token(form='wrapper', tag='SL', start=16, len=7)</span></span>
-<span id="cb6-276"><a href="#cb6-276"></a><span class="co">#&gt; </span></span>
-<span id="cb6-277"><a href="#cb6-277"></a><span class="co">#&gt; [[4]][[1]][[8]]</span></span>
-<span id="cb6-278"><a href="#cb6-278"></a><span class="co">#&gt; Token(form='이', tag='VCP', start=23, len=1)</span></span>
-<span id="cb6-279"><a href="#cb6-279"></a><span class="co">#&gt; </span></span>
-<span id="cb6-280"><a href="#cb6-280"></a><span class="co">#&gt; [[4]][[1]][[9]]</span></span>
-<span id="cb6-281"><a href="#cb6-281"></a><span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=24, len=0)</span></span>
-<span id="cb6-282"><a href="#cb6-282"></a><span class="co">#&gt; </span></span>
-<span id="cb6-283"><a href="#cb6-283"></a><span class="co">#&gt; [[4]][[1]][[10]]</span></span>
-<span id="cb6-284"><a href="#cb6-284"></a><span class="co">#&gt; Token(form='elbird', tag='SL', start=25, len=6)</span></span>
-<span id="cb6-285"><a href="#cb6-285"></a><span class="co">#&gt; </span></span>
-<span id="cb6-286"><a href="#cb6-286"></a><span class="co">#&gt; [[4]][[1]][[11]]</span></span>
-<span id="cb6-287"><a href="#cb6-287"></a><span class="co">#&gt; Token(form='를', tag='JKO', start=31, len=1)</span></span>
-<span id="cb6-288"><a href="#cb6-288"></a><span class="co">#&gt; </span></span>
-<span id="cb6-289"><a href="#cb6-289"></a><span class="co">#&gt; [[4]][[1]][[12]]</span></span>
-<span id="cb6-290"><a href="#cb6-290"></a><span class="co">#&gt; Token(form='소개', tag='NNG', start=33, len=2)</span></span>
-<span id="cb6-291"><a href="#cb6-291"></a><span class="co">#&gt; </span></span>
-<span id="cb6-292"><a href="#cb6-292"></a><span class="co">#&gt; [[4]][[1]][[13]]</span></span>
-<span id="cb6-293"><a href="#cb6-293"></a><span class="co">#&gt; Token(form='하', tag='XSV', start=35, len=1)</span></span>
-<span id="cb6-294"><a href="#cb6-294"></a><span class="co">#&gt; </span></span>
-<span id="cb6-295"><a href="#cb6-295"></a><span class="co">#&gt; [[4]][[1]][[14]]</span></span>
-<span id="cb6-296"><a href="#cb6-296"></a><span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=36, len=2)</span></span>
-<span id="cb6-297"><a href="#cb6-297"></a><span class="co">#&gt; </span></span>
-<span id="cb6-298"><a href="#cb6-298"></a><span class="co">#&gt; [[4]][[1]][[15]]</span></span>
-<span id="cb6-299"><a href="#cb6-299"></a><span class="co">#&gt; Token(form='.', tag='SF', start=38, len=1)</span></span>
-<span id="cb6-300"><a href="#cb6-300"></a><span class="co">#&gt; </span></span>
-<span id="cb6-301"><a href="#cb6-301"></a><span class="co">#&gt; </span></span>
-<span id="cb6-302"><a href="#cb6-302"></a><span class="co">#&gt; [[4]][[2]]</span></span>
-<span id="cb6-303"><a href="#cb6-303"></a><span class="co">#&gt; [1] -84.13857</span></span>
-<span id="cb6-304"><a href="#cb6-304"></a><span class="co">#&gt; </span></span>
-<span id="cb6-305"><a href="#cb6-305"></a><span class="co">#&gt; </span></span>
-<span id="cb6-306"><a href="#cb6-306"></a><span class="co">#&gt; [[5]]</span></span>
-<span id="cb6-307"><a href="#cb6-307"></a><span class="co">#&gt; [[5]][[1]]</span></span>
-<span id="cb6-308"><a href="#cb6-308"></a><span class="co">#&gt; [[5]][[1]][[1]]</span></span>
-<span id="cb6-309"><a href="#cb6-309"></a><span class="co">#&gt; Token(form='kiwi', tag='SL', start=0, len=4)</span></span>
-<span id="cb6-310"><a href="#cb6-310"></a><span class="co">#&gt; </span></span>
-<span id="cb6-311"><a href="#cb6-311"></a><span class="co">#&gt; [[5]][[1]][[2]]</span></span>
-<span id="cb6-312"><a href="#cb6-312"></a><span class="co">#&gt; Token(form='형태소', tag='NNG', start=5, len=3)</span></span>
-<span id="cb6-313"><a href="#cb6-313"></a><span class="co">#&gt; </span></span>
-<span id="cb6-314"><a href="#cb6-314"></a><span class="co">#&gt; [[5]][[1]][[3]]</span></span>
-<span id="cb6-315"><a href="#cb6-315"></a><span class="co">#&gt; Token(form='분석', tag='NNG', start=9, len=2)</span></span>
-<span id="cb6-316"><a href="#cb6-316"></a><span class="co">#&gt; </span></span>
-<span id="cb6-317"><a href="#cb6-317"></a><span class="co">#&gt; [[5]][[1]][[4]]</span></span>
-<span id="cb6-318"><a href="#cb6-318"></a><span class="co">#&gt; Token(form='기', tag='NNG', start=11, len=1)</span></span>
-<span id="cb6-319"><a href="#cb6-319"></a><span class="co">#&gt; </span></span>
-<span id="cb6-320"><a href="#cb6-320"></a><span class="co">#&gt; [[5]][[1]][[5]]</span></span>
-<span id="cb6-321"><a href="#cb6-321"></a><span class="co">#&gt; Token(form='의', tag='JKG', start=12, len=1)</span></span>
-<span id="cb6-322"><a href="#cb6-322"></a><span class="co">#&gt; </span></span>
-<span id="cb6-323"><a href="#cb6-323"></a><span class="co">#&gt; [[5]][[1]][[6]]</span></span>
-<span id="cb6-324"><a href="#cb6-324"></a><span class="co">#&gt; Token(form='R', tag='SL', start=14, len=1)</span></span>
-<span id="cb6-325"><a href="#cb6-325"></a><span class="co">#&gt; </span></span>
-<span id="cb6-326"><a href="#cb6-326"></a><span class="co">#&gt; [[5]][[1]][[7]]</span></span>
-<span id="cb6-327"><a href="#cb6-327"></a><span class="co">#&gt; Token(form='wrapper', tag='SL', start=16, len=7)</span></span>
-<span id="cb6-328"><a href="#cb6-328"></a><span class="co">#&gt; </span></span>
-<span id="cb6-329"><a href="#cb6-329"></a><span class="co">#&gt; [[5]][[1]][[8]]</span></span>
-<span id="cb6-330"><a href="#cb6-330"></a><span class="co">#&gt; Token(form='이', tag='VCP', start=23, len=1)</span></span>
-<span id="cb6-331"><a href="#cb6-331"></a><span class="co">#&gt; </span></span>
-<span id="cb6-332"><a href="#cb6-332"></a><span class="co">#&gt; [[5]][[1]][[9]]</span></span>
-<span id="cb6-333"><a href="#cb6-333"></a><span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=24, len=0)</span></span>
-<span id="cb6-334"><a href="#cb6-334"></a><span class="co">#&gt; </span></span>
-<span id="cb6-335"><a href="#cb6-335"></a><span class="co">#&gt; [[5]][[1]][[10]]</span></span>
-<span id="cb6-336"><a href="#cb6-336"></a><span class="co">#&gt; Token(form='elbird', tag='SL', start=25, len=6)</span></span>
-<span id="cb6-337"><a href="#cb6-337"></a><span class="co">#&gt; </span></span>
-<span id="cb6-338"><a href="#cb6-338"></a><span class="co">#&gt; [[5]][[1]][[11]]</span></span>
-<span id="cb6-339"><a href="#cb6-339"></a><span class="co">#&gt; Token(form='를', tag='JKO', start=31, len=1)</span></span>
-<span id="cb6-340"><a href="#cb6-340"></a><span class="co">#&gt; </span></span>
-<span id="cb6-341"><a href="#cb6-341"></a><span class="co">#&gt; [[5]][[1]][[12]]</span></span>
-<span id="cb6-342"><a href="#cb6-342"></a><span class="co">#&gt; Token(form='소개', tag='NNG', start=33, len=2)</span></span>
-<span id="cb6-343"><a href="#cb6-343"></a><span class="co">#&gt; </span></span>
-<span id="cb6-344"><a href="#cb6-344"></a><span class="co">#&gt; [[5]][[1]][[13]]</span></span>
-<span id="cb6-345"><a href="#cb6-345"></a><span class="co">#&gt; Token(form='하', tag='XSV', start=35, len=1)</span></span>
-<span id="cb6-346"><a href="#cb6-346"></a><span class="co">#&gt; </span></span>
-<span id="cb6-347"><a href="#cb6-347"></a><span class="co">#&gt; [[5]][[1]][[14]]</span></span>
-<span id="cb6-348"><a href="#cb6-348"></a><span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=36, len=2)</span></span>
-<span id="cb6-349"><a href="#cb6-349"></a><span class="co">#&gt; </span></span>
-<span id="cb6-350"><a href="#cb6-350"></a><span class="co">#&gt; [[5]][[1]][[15]]</span></span>
-<span id="cb6-351"><a href="#cb6-351"></a><span class="co">#&gt; Token(form='.', tag='SF', start=38, len=1)</span></span>
-<span id="cb6-352"><a href="#cb6-352"></a><span class="co">#&gt; </span></span>
-<span id="cb6-353"><a href="#cb6-353"></a><span class="co">#&gt; </span></span>
-<span id="cb6-354"><a href="#cb6-354"></a><span class="co">#&gt; [[5]][[2]]</span></span>
-<span id="cb6-355"><a href="#cb6-355"></a><span class="co">#&gt; [1] -84.71187</span></span>
-<span id="cb6-356"><a href="#cb6-356"></a><span class="co">#&gt; </span></span>
-<span id="cb6-357"><a href="#cb6-357"></a><span class="co">#&gt; </span></span>
-<span id="cb6-358"><a href="#cb6-358"></a><span class="co">#&gt; [[6]]</span></span>
-<span id="cb6-359"><a href="#cb6-359"></a><span class="co">#&gt; [[6]][[1]]</span></span>
-<span id="cb6-360"><a href="#cb6-360"></a><span class="co">#&gt; [[6]][[1]][[1]]</span></span>
-<span id="cb6-361"><a href="#cb6-361"></a><span class="co">#&gt; Token(form='kiwi', tag='SL', start=0, len=4)</span></span>
-<span id="cb6-362"><a href="#cb6-362"></a><span class="co">#&gt; </span></span>
-<span id="cb6-363"><a href="#cb6-363"></a><span class="co">#&gt; [[6]][[1]][[2]]</span></span>
-<span id="cb6-364"><a href="#cb6-364"></a><span class="co">#&gt; Token(form='형태소', tag='NNG', start=5, len=3)</span></span>
-<span id="cb6-365"><a href="#cb6-365"></a><span class="co">#&gt; </span></span>
-<span id="cb6-366"><a href="#cb6-366"></a><span class="co">#&gt; [[6]][[1]][[3]]</span></span>
-<span id="cb6-367"><a href="#cb6-367"></a><span class="co">#&gt; Token(form='분석', tag='NNG', start=9, len=2)</span></span>
-<span id="cb6-368"><a href="#cb6-368"></a><span class="co">#&gt; </span></span>
-<span id="cb6-369"><a href="#cb6-369"></a><span class="co">#&gt; [[6]][[1]][[4]]</span></span>
-<span id="cb6-370"><a href="#cb6-370"></a><span class="co">#&gt; Token(form='기', tag='ETN', start=11, len=1)</span></span>
-<span id="cb6-371"><a href="#cb6-371"></a><span class="co">#&gt; </span></span>
-<span id="cb6-372"><a href="#cb6-372"></a><span class="co">#&gt; [[6]][[1]][[5]]</span></span>
-<span id="cb6-373"><a href="#cb6-373"></a><span class="co">#&gt; Token(form='의', tag='JKG', start=12, len=1)</span></span>
-<span id="cb6-374"><a href="#cb6-374"></a><span class="co">#&gt; </span></span>
-<span id="cb6-375"><a href="#cb6-375"></a><span class="co">#&gt; [[6]][[1]][[6]]</span></span>
-<span id="cb6-376"><a href="#cb6-376"></a><span class="co">#&gt; Token(form='R', tag='SL', start=14, len=1)</span></span>
-<span id="cb6-377"><a href="#cb6-377"></a><span class="co">#&gt; </span></span>
-<span id="cb6-378"><a href="#cb6-378"></a><span class="co">#&gt; [[6]][[1]][[7]]</span></span>
-<span id="cb6-379"><a href="#cb6-379"></a><span class="co">#&gt; Token(form='wrapper', tag='SL', start=16, len=7)</span></span>
-<span id="cb6-380"><a href="#cb6-380"></a><span class="co">#&gt; </span></span>
-<span id="cb6-381"><a href="#cb6-381"></a><span class="co">#&gt; [[6]][[1]][[8]]</span></span>
-<span id="cb6-382"><a href="#cb6-382"></a><span class="co">#&gt; Token(form='이', tag='VCP', start=23, len=1)</span></span>
-<span id="cb6-383"><a href="#cb6-383"></a><span class="co">#&gt; </span></span>
-<span id="cb6-384"><a href="#cb6-384"></a><span class="co">#&gt; [[6]][[1]][[9]]</span></span>
-<span id="cb6-385"><a href="#cb6-385"></a><span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=24, len=0)</span></span>
-<span id="cb6-386"><a href="#cb6-386"></a><span class="co">#&gt; </span></span>
-<span id="cb6-387"><a href="#cb6-387"></a><span class="co">#&gt; [[6]][[1]][[10]]</span></span>
-<span id="cb6-388"><a href="#cb6-388"></a><span class="co">#&gt; Token(form='elbird', tag='SL', start=25, len=6)</span></span>
-<span id="cb6-389"><a href="#cb6-389"></a><span class="co">#&gt; </span></span>
-<span id="cb6-390"><a href="#cb6-390"></a><span class="co">#&gt; [[6]][[1]][[11]]</span></span>
-<span id="cb6-391"><a href="#cb6-391"></a><span class="co">#&gt; Token(form='를', tag='JKO', start=31, len=1)</span></span>
-<span id="cb6-392"><a href="#cb6-392"></a><span class="co">#&gt; </span></span>
-<span id="cb6-393"><a href="#cb6-393"></a><span class="co">#&gt; [[6]][[1]][[12]]</span></span>
-<span id="cb6-394"><a href="#cb6-394"></a><span class="co">#&gt; Token(form='소개', tag='NNG', start=33, len=2)</span></span>
-<span id="cb6-395"><a href="#cb6-395"></a><span class="co">#&gt; </span></span>
-<span id="cb6-396"><a href="#cb6-396"></a><span class="co">#&gt; [[6]][[1]][[13]]</span></span>
-<span id="cb6-397"><a href="#cb6-397"></a><span class="co">#&gt; Token(form='하', tag='XSV', start=35, len=1)</span></span>
-<span id="cb6-398"><a href="#cb6-398"></a><span class="co">#&gt; </span></span>
-<span id="cb6-399"><a href="#cb6-399"></a><span class="co">#&gt; [[6]][[1]][[14]]</span></span>
-<span id="cb6-400"><a href="#cb6-400"></a><span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=36, len=2)</span></span>
-<span id="cb6-401"><a href="#cb6-401"></a><span class="co">#&gt; </span></span>
-<span id="cb6-402"><a href="#cb6-402"></a><span class="co">#&gt; [[6]][[1]][[15]]</span></span>
-<span id="cb6-403"><a href="#cb6-403"></a><span class="co">#&gt; Token(form='.', tag='SF', start=38, len=1)</span></span>
-<span id="cb6-404"><a href="#cb6-404"></a><span class="co">#&gt; </span></span>
-<span id="cb6-405"><a href="#cb6-405"></a><span class="co">#&gt; </span></span>
-<span id="cb6-406"><a href="#cb6-406"></a><span class="co">#&gt; [[6]][[2]]</span></span>
-<span id="cb6-407"><a href="#cb6-407"></a><span class="co">#&gt; [1] -85.65583</span></span>
-<span id="cb6-408"><a href="#cb6-408"></a><span class="kw">analyze</span>(<span class="kw">c</span>(<span class="st">"안녕하세요"</span>,<span class="st">"kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span>), <span class="dt">top_n =</span> <span class="dv">2</span>)</span>
-<span id="cb6-409"><a href="#cb6-409"></a><span class="co">#&gt; Warning in if (is.na(item)) break: the condition has length &gt; 1 and only the</span></span>
-<span id="cb6-410"><a href="#cb6-410"></a><span class="co">#&gt; first element will be used</span></span>
-<span id="cb6-411"><a href="#cb6-411"></a></span>
-<span id="cb6-412"><a href="#cb6-412"></a><span class="co">#&gt; Warning in if (is.na(item)) break: the condition has length &gt; 1 and only the</span></span>
-<span id="cb6-413"><a href="#cb6-413"></a><span class="co">#&gt; first element will be used</span></span>
-<span id="cb6-414"><a href="#cb6-414"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb6-415"><a href="#cb6-415"></a><span class="co">#&gt; [[1]][[1]]</span></span>
-<span id="cb6-416"><a href="#cb6-416"></a><span class="co">#&gt; [[1]][[1]][[1]]</span></span>
-<span id="cb6-417"><a href="#cb6-417"></a><span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span></span>
-<span id="cb6-418"><a href="#cb6-418"></a><span class="co">#&gt; </span></span>
-<span id="cb6-419"><a href="#cb6-419"></a><span class="co">#&gt; [[1]][[1]][[2]]</span></span>
-<span id="cb6-420"><a href="#cb6-420"></a><span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span></span>
-<span id="cb6-421"><a href="#cb6-421"></a><span class="co">#&gt; </span></span>
-<span id="cb6-422"><a href="#cb6-422"></a><span class="co">#&gt; [[1]][[1]][[3]]</span></span>
-<span id="cb6-423"><a href="#cb6-423"></a><span class="co">#&gt; Token(form='시', tag='EP', start=4, len=1)</span></span>
-<span id="cb6-424"><a href="#cb6-424"></a><span class="co">#&gt; </span></span>
-<span id="cb6-425"><a href="#cb6-425"></a><span class="co">#&gt; [[1]][[1]][[4]]</span></span>
-<span id="cb6-426"><a href="#cb6-426"></a><span class="co">#&gt; Token(form='어요', tag='EC', start=3, len=2)</span></span>
-<span id="cb6-427"><a href="#cb6-427"></a><span class="co">#&gt; </span></span>
-<span id="cb6-428"><a href="#cb6-428"></a><span class="co">#&gt; </span></span>
-<span id="cb6-429"><a href="#cb6-429"></a><span class="co">#&gt; [[1]][[2]]</span></span>
-<span id="cb6-430"><a href="#cb6-430"></a><span class="co">#&gt; [1] -18.16951</span></span>
-<span id="cb6-431"><a href="#cb6-431"></a><span class="co">#&gt; </span></span>
-<span id="cb6-432"><a href="#cb6-432"></a><span class="co">#&gt; </span></span>
-<span id="cb6-433"><a href="#cb6-433"></a><span class="co">#&gt; [[2]]</span></span>
-<span id="cb6-434"><a href="#cb6-434"></a><span class="co">#&gt; [[2]][[1]]</span></span>
-<span id="cb6-435"><a href="#cb6-435"></a><span class="co">#&gt; [[2]][[1]][[1]]</span></span>
-<span id="cb6-436"><a href="#cb6-436"></a><span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span></span>
-<span id="cb6-437"><a href="#cb6-437"></a><span class="co">#&gt; </span></span>
-<span id="cb6-438"><a href="#cb6-438"></a><span class="co">#&gt; [[2]][[1]][[2]]</span></span>
-<span id="cb6-439"><a href="#cb6-439"></a><span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span></span>
-<span id="cb6-440"><a href="#cb6-440"></a><span class="co">#&gt; </span></span>
-<span id="cb6-441"><a href="#cb6-441"></a><span class="co">#&gt; [[2]][[1]][[3]]</span></span>
-<span id="cb6-442"><a href="#cb6-442"></a><span class="co">#&gt; Token(form='시', tag='EP', start=4, len=1)</span></span>
-<span id="cb6-443"><a href="#cb6-443"></a><span class="co">#&gt; </span></span>
-<span id="cb6-444"><a href="#cb6-444"></a><span class="co">#&gt; [[2]][[1]][[4]]</span></span>
-<span id="cb6-445"><a href="#cb6-445"></a><span class="co">#&gt; Token(form='어요', tag='EF', start=3, len=2)</span></span>
-<span id="cb6-446"><a href="#cb6-446"></a><span class="co">#&gt; </span></span>
-<span id="cb6-447"><a href="#cb6-447"></a><span class="co">#&gt; </span></span>
-<span id="cb6-448"><a href="#cb6-448"></a><span class="co">#&gt; [[2]][[2]]</span></span>
-<span id="cb6-449"><a href="#cb6-449"></a><span class="co">#&gt; [1] -22.45279</span></span>
-<span id="cb6-450"><a href="#cb6-450"></a><span class="co">#&gt; </span></span>
-<span id="cb6-451"><a href="#cb6-451"></a><span class="co">#&gt; </span></span>
-<span id="cb6-452"><a href="#cb6-452"></a><span class="co">#&gt; [[3]]</span></span>
-<span id="cb6-453"><a href="#cb6-453"></a><span class="co">#&gt; [[3]][[1]]</span></span>
-<span id="cb6-454"><a href="#cb6-454"></a><span class="co">#&gt; [[3]][[1]][[1]]</span></span>
-<span id="cb6-455"><a href="#cb6-455"></a><span class="co">#&gt; Token(form='kiwi', tag='SL', start=0, len=4)</span></span>
-<span id="cb6-456"><a href="#cb6-456"></a><span class="co">#&gt; </span></span>
-<span id="cb6-457"><a href="#cb6-457"></a><span class="co">#&gt; [[3]][[1]][[2]]</span></span>
-<span id="cb6-458"><a href="#cb6-458"></a><span class="co">#&gt; Token(form='형태소', tag='NNG', start=5, len=3)</span></span>
-<span id="cb6-459"><a href="#cb6-459"></a><span class="co">#&gt; </span></span>
-<span id="cb6-460"><a href="#cb6-460"></a><span class="co">#&gt; [[3]][[1]][[3]]</span></span>
-<span id="cb6-461"><a href="#cb6-461"></a><span class="co">#&gt; Token(form='분석', tag='NNG', start=9, len=2)</span></span>
-<span id="cb6-462"><a href="#cb6-462"></a><span class="co">#&gt; </span></span>
-<span id="cb6-463"><a href="#cb6-463"></a><span class="co">#&gt; [[3]][[1]][[4]]</span></span>
-<span id="cb6-464"><a href="#cb6-464"></a><span class="co">#&gt; Token(form='기', tag='NNB', start=11, len=1)</span></span>
-<span id="cb6-465"><a href="#cb6-465"></a><span class="co">#&gt; </span></span>
-<span id="cb6-466"><a href="#cb6-466"></a><span class="co">#&gt; [[3]][[1]][[5]]</span></span>
-<span id="cb6-467"><a href="#cb6-467"></a><span class="co">#&gt; Token(form='의', tag='JKG', start=12, len=1)</span></span>
-<span id="cb6-468"><a href="#cb6-468"></a><span class="co">#&gt; </span></span>
-<span id="cb6-469"><a href="#cb6-469"></a><span class="co">#&gt; [[3]][[1]][[6]]</span></span>
-<span id="cb6-470"><a href="#cb6-470"></a><span class="co">#&gt; Token(form='R', tag='SL', start=14, len=1)</span></span>
-<span id="cb6-471"><a href="#cb6-471"></a><span class="co">#&gt; </span></span>
-<span id="cb6-472"><a href="#cb6-472"></a><span class="co">#&gt; [[3]][[1]][[7]]</span></span>
-<span id="cb6-473"><a href="#cb6-473"></a><span class="co">#&gt; Token(form='wrapper', tag='SL', start=16, len=7)</span></span>
-<span id="cb6-474"><a href="#cb6-474"></a><span class="co">#&gt; </span></span>
-<span id="cb6-475"><a href="#cb6-475"></a><span class="co">#&gt; [[3]][[1]][[8]]</span></span>
-<span id="cb6-476"><a href="#cb6-476"></a><span class="co">#&gt; Token(form='이', tag='VCP', start=23, len=1)</span></span>
-<span id="cb6-477"><a href="#cb6-477"></a><span class="co">#&gt; </span></span>
-<span id="cb6-478"><a href="#cb6-478"></a><span class="co">#&gt; [[3]][[1]][[9]]</span></span>
-<span id="cb6-479"><a href="#cb6-479"></a><span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=24, len=0)</span></span>
-<span id="cb6-480"><a href="#cb6-480"></a><span class="co">#&gt; </span></span>
-<span id="cb6-481"><a href="#cb6-481"></a><span class="co">#&gt; [[3]][[1]][[10]]</span></span>
-<span id="cb6-482"><a href="#cb6-482"></a><span class="co">#&gt; Token(form='elbird', tag='SL', start=25, len=6)</span></span>
-<span id="cb6-483"><a href="#cb6-483"></a><span class="co">#&gt; </span></span>
-<span id="cb6-484"><a href="#cb6-484"></a><span class="co">#&gt; [[3]][[1]][[11]]</span></span>
-<span id="cb6-485"><a href="#cb6-485"></a><span class="co">#&gt; Token(form='를', tag='JKO', start=31, len=1)</span></span>
-<span id="cb6-486"><a href="#cb6-486"></a><span class="co">#&gt; </span></span>
-<span id="cb6-487"><a href="#cb6-487"></a><span class="co">#&gt; [[3]][[1]][[12]]</span></span>
-<span id="cb6-488"><a href="#cb6-488"></a><span class="co">#&gt; Token(form='소개', tag='NNG', start=33, len=2)</span></span>
-<span id="cb6-489"><a href="#cb6-489"></a><span class="co">#&gt; </span></span>
-<span id="cb6-490"><a href="#cb6-490"></a><span class="co">#&gt; [[3]][[1]][[13]]</span></span>
-<span id="cb6-491"><a href="#cb6-491"></a><span class="co">#&gt; Token(form='하', tag='XSV', start=35, len=1)</span></span>
-<span id="cb6-492"><a href="#cb6-492"></a><span class="co">#&gt; </span></span>
-<span id="cb6-493"><a href="#cb6-493"></a><span class="co">#&gt; [[3]][[1]][[14]]</span></span>
-<span id="cb6-494"><a href="#cb6-494"></a><span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=36, len=2)</span></span>
-<span id="cb6-495"><a href="#cb6-495"></a><span class="co">#&gt; </span></span>
-<span id="cb6-496"><a href="#cb6-496"></a><span class="co">#&gt; [[3]][[1]][[15]]</span></span>
-<span id="cb6-497"><a href="#cb6-497"></a><span class="co">#&gt; Token(form='.', tag='SF', start=38, len=1)</span></span>
-<span id="cb6-498"><a href="#cb6-498"></a><span class="co">#&gt; </span></span>
-<span id="cb6-499"><a href="#cb6-499"></a><span class="co">#&gt; </span></span>
-<span id="cb6-500"><a href="#cb6-500"></a><span class="co">#&gt; [[3]][[2]]</span></span>
-<span id="cb6-501"><a href="#cb6-501"></a><span class="co">#&gt; [1] -84.13857</span></span>
-<span id="cb6-502"><a href="#cb6-502"></a><span class="co">#&gt; </span></span>
-<span id="cb6-503"><a href="#cb6-503"></a><span class="co">#&gt; </span></span>
-<span id="cb6-504"><a href="#cb6-504"></a><span class="co">#&gt; [[4]]</span></span>
-<span id="cb6-505"><a href="#cb6-505"></a><span class="co">#&gt; [[4]][[1]]</span></span>
-<span id="cb6-506"><a href="#cb6-506"></a><span class="co">#&gt; [[4]][[1]][[1]]</span></span>
-<span id="cb6-507"><a href="#cb6-507"></a><span class="co">#&gt; Token(form='kiwi', tag='SL', start=0, len=4)</span></span>
-<span id="cb6-508"><a href="#cb6-508"></a><span class="co">#&gt; </span></span>
-<span id="cb6-509"><a href="#cb6-509"></a><span class="co">#&gt; [[4]][[1]][[2]]</span></span>
-<span id="cb6-510"><a href="#cb6-510"></a><span class="co">#&gt; Token(form='형태소', tag='NNG', start=5, len=3)</span></span>
-<span id="cb6-511"><a href="#cb6-511"></a><span class="co">#&gt; </span></span>
-<span id="cb6-512"><a href="#cb6-512"></a><span class="co">#&gt; [[4]][[1]][[3]]</span></span>
-<span id="cb6-513"><a href="#cb6-513"></a><span class="co">#&gt; Token(form='분석', tag='NNG', start=9, len=2)</span></span>
-<span id="cb6-514"><a href="#cb6-514"></a><span class="co">#&gt; </span></span>
-<span id="cb6-515"><a href="#cb6-515"></a><span class="co">#&gt; [[4]][[1]][[4]]</span></span>
-<span id="cb6-516"><a href="#cb6-516"></a><span class="co">#&gt; Token(form='기', tag='NNG', start=11, len=1)</span></span>
-<span id="cb6-517"><a href="#cb6-517"></a><span class="co">#&gt; </span></span>
-<span id="cb6-518"><a href="#cb6-518"></a><span class="co">#&gt; [[4]][[1]][[5]]</span></span>
-<span id="cb6-519"><a href="#cb6-519"></a><span class="co">#&gt; Token(form='의', tag='JKG', start=12, len=1)</span></span>
-<span id="cb6-520"><a href="#cb6-520"></a><span class="co">#&gt; </span></span>
-<span id="cb6-521"><a href="#cb6-521"></a><span class="co">#&gt; [[4]][[1]][[6]]</span></span>
-<span id="cb6-522"><a href="#cb6-522"></a><span class="co">#&gt; Token(form='R', tag='SL', start=14, len=1)</span></span>
-<span id="cb6-523"><a href="#cb6-523"></a><span class="co">#&gt; </span></span>
-<span id="cb6-524"><a href="#cb6-524"></a><span class="co">#&gt; [[4]][[1]][[7]]</span></span>
-<span id="cb6-525"><a href="#cb6-525"></a><span class="co">#&gt; Token(form='wrapper', tag='SL', start=16, len=7)</span></span>
-<span id="cb6-526"><a href="#cb6-526"></a><span class="co">#&gt; </span></span>
-<span id="cb6-527"><a href="#cb6-527"></a><span class="co">#&gt; [[4]][[1]][[8]]</span></span>
-<span id="cb6-528"><a href="#cb6-528"></a><span class="co">#&gt; Token(form='이', tag='VCP', start=23, len=1)</span></span>
-<span id="cb6-529"><a href="#cb6-529"></a><span class="co">#&gt; </span></span>
-<span id="cb6-530"><a href="#cb6-530"></a><span class="co">#&gt; [[4]][[1]][[9]]</span></span>
-<span id="cb6-531"><a href="#cb6-531"></a><span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=24, len=0)</span></span>
-<span id="cb6-532"><a href="#cb6-532"></a><span class="co">#&gt; </span></span>
-<span id="cb6-533"><a href="#cb6-533"></a><span class="co">#&gt; [[4]][[1]][[10]]</span></span>
-<span id="cb6-534"><a href="#cb6-534"></a><span class="co">#&gt; Token(form='elbird', tag='SL', start=25, len=6)</span></span>
-<span id="cb6-535"><a href="#cb6-535"></a><span class="co">#&gt; </span></span>
-<span id="cb6-536"><a href="#cb6-536"></a><span class="co">#&gt; [[4]][[1]][[11]]</span></span>
-<span id="cb6-537"><a href="#cb6-537"></a><span class="co">#&gt; Token(form='를', tag='JKO', start=31, len=1)</span></span>
-<span id="cb6-538"><a href="#cb6-538"></a><span class="co">#&gt; </span></span>
-<span id="cb6-539"><a href="#cb6-539"></a><span class="co">#&gt; [[4]][[1]][[12]]</span></span>
-<span id="cb6-540"><a href="#cb6-540"></a><span class="co">#&gt; Token(form='소개', tag='NNG', start=33, len=2)</span></span>
-<span id="cb6-541"><a href="#cb6-541"></a><span class="co">#&gt; </span></span>
-<span id="cb6-542"><a href="#cb6-542"></a><span class="co">#&gt; [[4]][[1]][[13]]</span></span>
-<span id="cb6-543"><a href="#cb6-543"></a><span class="co">#&gt; Token(form='하', tag='XSV', start=35, len=1)</span></span>
-<span id="cb6-544"><a href="#cb6-544"></a><span class="co">#&gt; </span></span>
-<span id="cb6-545"><a href="#cb6-545"></a><span class="co">#&gt; [[4]][[1]][[14]]</span></span>
-<span id="cb6-546"><a href="#cb6-546"></a><span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=36, len=2)</span></span>
-<span id="cb6-547"><a href="#cb6-547"></a><span class="co">#&gt; </span></span>
-<span id="cb6-548"><a href="#cb6-548"></a><span class="co">#&gt; [[4]][[1]][[15]]</span></span>
-<span id="cb6-549"><a href="#cb6-549"></a><span class="co">#&gt; Token(form='.', tag='SF', start=38, len=1)</span></span>
-<span id="cb6-550"><a href="#cb6-550"></a><span class="co">#&gt; </span></span>
-<span id="cb6-551"><a href="#cb6-551"></a><span class="co">#&gt; </span></span>
-<span id="cb6-552"><a href="#cb6-552"></a><span class="co">#&gt; [[4]][[2]]</span></span>
-<span id="cb6-553"><a href="#cb6-553"></a><span class="co">#&gt; [1] -84.71187</span></span>
-<span id="cb6-554"><a href="#cb6-554"></a><span class="op">==</span><span class="er">=====</span></span>
-<span id="cb6-555"><a href="#cb6-555"></a><span class="kw">analyze_tbl</span>(<span class="st">"안녕하세요. 저는 박찬엽 입니다."</span>)</span>
-<span id="cb6-556"><a href="#cb6-556"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb6-557"><a href="#cb6-557"></a><span class="co">#&gt; # A tibble: 14 × 4</span></span>
-<span id="cb6-558"><a href="#cb6-558"></a><span class="co">#&gt;    morph tag   start   end</span></span>
-<span id="cb6-559"><a href="#cb6-559"></a><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span></span>
-<span id="cb6-560"><a href="#cb6-560"></a><span class="co">#&gt;  1 안녕  NNG       0     2</span></span>
-<span id="cb6-561"><a href="#cb6-561"></a><span class="co">#&gt;  2 하    XSA       2     1</span></span>
-<span id="cb6-562"><a href="#cb6-562"></a><span class="co">#&gt;  3 시    EP        4     1</span></span>
-<span id="cb6-563"><a href="#cb6-563"></a><span class="co">#&gt;  4 어요  EF        3     2</span></span>
-<span id="cb6-564"><a href="#cb6-564"></a><span class="co">#&gt;  5 .     SF        5     1</span></span>
-<span id="cb6-565"><a href="#cb6-565"></a><span class="co">#&gt;  6 저    NP        7     1</span></span>
-<span id="cb6-566"><a href="#cb6-566"></a><span class="co">#&gt;  7 는    JX        8     1</span></span>
-<span id="cb6-567"><a href="#cb6-567"></a><span class="co">#&gt;  8 박찬  NNP      10     2</span></span>
-<span id="cb6-568"><a href="#cb6-568"></a><span class="co">#&gt;  9 이    VCP      12     1</span></span>
-<span id="cb6-569"><a href="#cb6-569"></a><span class="co">#&gt; 10 어    EC       12     1</span></span>
-<span id="cb6-570"><a href="#cb6-570"></a><span class="co">#&gt; 11 ᆸ     NNG      13     0</span></span>
-<span id="cb6-571"><a href="#cb6-571"></a><span class="co">#&gt; 12 이    VCP      14     1</span></span>
-<span id="cb6-572"><a href="#cb6-572"></a><span class="co">#&gt; 13 ᆸ니다 EF       15     2</span></span>
-<span id="cb6-573"><a href="#cb6-573"></a><span class="co">#&gt; 14 .     SF       17     1</span></span>
-<span id="cb6-574"><a href="#cb6-574"></a><span class="kw">add_user_word</span>(<span class="st">"박찬엽"</span>,<span class="st">"NNP"</span>,<span class="dv">1</span>)</span>
-<span id="cb6-575"><a href="#cb6-575"></a><span class="kw">analyze_tbl</span>(<span class="st">"안녕하세요. 저는 박찬엽 입니다."</span>)</span>
-<span id="cb6-576"><a href="#cb6-576"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb6-577"><a href="#cb6-577"></a><span class="co">#&gt; # A tibble: 14 × 4</span></span>
-<span id="cb6-578"><a href="#cb6-578"></a><span class="co">#&gt;    morph tag   start   end</span></span>
-<span id="cb6-579"><a href="#cb6-579"></a><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span></span>
-<span id="cb6-580"><a href="#cb6-580"></a><span class="co">#&gt;  1 안녕  NNG       0     2</span></span>
-<span id="cb6-581"><a href="#cb6-581"></a><span class="co">#&gt;  2 하    XSA       2     1</span></span>
-<span id="cb6-582"><a href="#cb6-582"></a><span class="co">#&gt;  3 시    EP        4     1</span></span>
-<span id="cb6-583"><a href="#cb6-583"></a><span class="co">#&gt;  4 어요  EF        3     2</span></span>
-<span id="cb6-584"><a href="#cb6-584"></a><span class="co">#&gt;  5 .     SF        5     1</span></span>
-<span id="cb6-585"><a href="#cb6-585"></a><span class="co">#&gt;  6 저    NP        7     1</span></span>
-<span id="cb6-586"><a href="#cb6-586"></a><span class="co">#&gt;  7 는    JX        8     1</span></span>
-<span id="cb6-587"><a href="#cb6-587"></a><span class="co">#&gt;  8 박찬  NNP      10     2</span></span>
-<span id="cb6-588"><a href="#cb6-588"></a><span class="co">#&gt;  9 이    VCP      12     1</span></span>
-<span id="cb6-589"><a href="#cb6-589"></a><span class="co">#&gt; 10 어    EC       12     1</span></span>
-<span id="cb6-590"><a href="#cb6-590"></a><span class="co">#&gt; 11 ᆸ     NNG      13     0</span></span>
-<span id="cb6-591"><a href="#cb6-591"></a><span class="co">#&gt; 12 이    VCP      14     1</span></span>
-<span id="cb6-592"><a href="#cb6-592"></a><span class="co">#&gt; 13 ᆸ니다 EF       15     2</span></span>
-<span id="cb6-593"><a href="#cb6-593"></a><span class="co">#&gt; 14 .     SF       17     1</span></span>
-<span id="cb6-594"><a href="#cb6-594"></a><span class="op">&gt;</span><span class="er">&gt;&gt;&gt;&gt;&gt;&gt;</span><span class="st"> </span><span class="fl">07e227</span>b19dc16e69ea1cc18e626360e603d0099d</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrchypark/elbird/" class="external-link">elbird</a></span><span class="op">)</span>
+<span class="fu"><a href="reference/analyze.html">analyze</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [[1]][[1]]</span>
+<span class="co">#&gt; [[1]][[1]][[1]]</span>
+<span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[2]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[3]]</span>
+<span class="co">#&gt; Token(form='시', tag='EP', start=4, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[4]]</span>
+<span class="co">#&gt; Token(form='어요', tag='EC', start=3, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[5]]</span>
+<span class="co">#&gt; Token(form='kiwi', tag='SL', start=6, len=4)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[6]]</span>
+<span class="co">#&gt; Token(form='형태소', tag='NNG', start=11, len=3)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[7]]</span>
+<span class="co">#&gt; Token(form='분석', tag='NNG', start=15, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[8]]</span>
+<span class="co">#&gt; Token(form='기', tag='NNB', start=17, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[9]]</span>
+<span class="co">#&gt; Token(form='의', tag='JKG', start=18, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[10]]</span>
+<span class="co">#&gt; Token(form='R', tag='SL', start=20, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[11]]</span>
+<span class="co">#&gt; Token(form='wrapper', tag='SL', start=22, len=7)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[12]]</span>
+<span class="co">#&gt; Token(form='이', tag='VCP', start=29, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[13]]</span>
+<span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=30, len=0)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[14]]</span>
+<span class="co">#&gt; Token(form='elbird', tag='SL', start=31, len=6)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[15]]</span>
+<span class="co">#&gt; Token(form='를', tag='JKO', start=37, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[16]]</span>
+<span class="co">#&gt; Token(form='소개', tag='NNG', start=39, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[17]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSV', start=41, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[18]]</span>
+<span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=42, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[19]]</span>
+<span class="co">#&gt; Token(form='.', tag='SF', start=44, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[2]]</span>
+<span class="co">#&gt; [1] -97.36888</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [[2]][[1]]</span>
+<span class="co">#&gt; [[2]][[1]][[1]]</span>
+<span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[2]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[3]]</span>
+<span class="co">#&gt; Token(form='시', tag='EP', start=4, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[4]]</span>
+<span class="co">#&gt; Token(form='어요', tag='EC', start=3, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[5]]</span>
+<span class="co">#&gt; Token(form='kiwi', tag='SL', start=6, len=4)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[6]]</span>
+<span class="co">#&gt; Token(form='형태소', tag='NNG', start=11, len=3)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[7]]</span>
+<span class="co">#&gt; Token(form='분석', tag='NNG', start=15, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[8]]</span>
+<span class="co">#&gt; Token(form='기', tag='NNG', start=17, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[9]]</span>
+<span class="co">#&gt; Token(form='의', tag='JKG', start=18, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[10]]</span>
+<span class="co">#&gt; Token(form='R', tag='SL', start=20, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[11]]</span>
+<span class="co">#&gt; Token(form='wrapper', tag='SL', start=22, len=7)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[12]]</span>
+<span class="co">#&gt; Token(form='이', tag='VCP', start=29, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[13]]</span>
+<span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=30, len=0)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[14]]</span>
+<span class="co">#&gt; Token(form='elbird', tag='SL', start=31, len=6)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[15]]</span>
+<span class="co">#&gt; Token(form='를', tag='JKO', start=37, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[16]]</span>
+<span class="co">#&gt; Token(form='소개', tag='NNG', start=39, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[17]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSV', start=41, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[18]]</span>
+<span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=42, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[19]]</span>
+<span class="co">#&gt; Token(form='.', tag='SF', start=44, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[2]]</span>
+<span class="co">#&gt; [1] -97.94218</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [[3]][[1]]</span>
+<span class="co">#&gt; [[3]][[1]][[1]]</span>
+<span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[2]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[3]]</span>
+<span class="co">#&gt; Token(form='시', tag='EP', start=4, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[4]]</span>
+<span class="co">#&gt; Token(form='어요', tag='EC', start=3, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[5]]</span>
+<span class="co">#&gt; Token(form='kiwi', tag='SL', start=6, len=4)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[6]]</span>
+<span class="co">#&gt; Token(form='형태소', tag='NNG', start=11, len=3)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[7]]</span>
+<span class="co">#&gt; Token(form='분석', tag='NNG', start=15, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[8]]</span>
+<span class="co">#&gt; Token(form='기', tag='ETN', start=17, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[9]]</span>
+<span class="co">#&gt; Token(form='의', tag='JKG', start=18, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[10]]</span>
+<span class="co">#&gt; Token(form='R', tag='SL', start=20, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[11]]</span>
+<span class="co">#&gt; Token(form='wrapper', tag='SL', start=22, len=7)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[12]]</span>
+<span class="co">#&gt; Token(form='이', tag='VCP', start=29, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[13]]</span>
+<span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=30, len=0)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[14]]</span>
+<span class="co">#&gt; Token(form='elbird', tag='SL', start=31, len=6)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[15]]</span>
+<span class="co">#&gt; Token(form='를', tag='JKO', start=37, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[16]]</span>
+<span class="co">#&gt; Token(form='소개', tag='NNG', start=39, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[17]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSV', start=41, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[18]]</span>
+<span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=42, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[19]]</span>
+<span class="co">#&gt; Token(form='.', tag='SF', start=44, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[2]]</span>
+<span class="co">#&gt; [1] -98.88614</span>
+<span class="fu"><a href="reference/analyze.html">analyze</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"안녕하세요"</span>,<span class="st">"kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; Warning in if (is.na(item)) break: the condition has length &gt; 1 and only the</span>
+<span class="co">#&gt; first element will be used</span>
+
+<span class="co">#&gt; Warning in if (is.na(item)) break: the condition has length &gt; 1 and only the</span>
+<span class="co">#&gt; first element will be used</span>
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [[1]][[1]]</span>
+<span class="co">#&gt; [[1]][[1]][[1]]</span>
+<span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[2]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[3]]</span>
+<span class="co">#&gt; Token(form='시', tag='EP', start=4, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[4]]</span>
+<span class="co">#&gt; Token(form='어요', tag='EC', start=3, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[2]]</span>
+<span class="co">#&gt; [1] -18.16951</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [[2]][[1]]</span>
+<span class="co">#&gt; [[2]][[1]][[1]]</span>
+<span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[2]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[3]]</span>
+<span class="co">#&gt; Token(form='시', tag='EP', start=4, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[4]]</span>
+<span class="co">#&gt; Token(form='어요', tag='EF', start=3, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[2]]</span>
+<span class="co">#&gt; [1] -22.45279</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [[3]][[1]]</span>
+<span class="co">#&gt; [[3]][[1]][[1]]</span>
+<span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[2]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[3]]</span>
+<span class="co">#&gt; Token(form='세요', tag='EF', start=3, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[2]]</span>
+<span class="co">#&gt; [1] -28.44329</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]]</span>
+<span class="co">#&gt; [[4]][[1]]</span>
+<span class="co">#&gt; [[4]][[1]][[1]]</span>
+<span class="co">#&gt; Token(form='kiwi', tag='SL', start=0, len=4)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[2]]</span>
+<span class="co">#&gt; Token(form='형태소', tag='NNG', start=5, len=3)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[3]]</span>
+<span class="co">#&gt; Token(form='분석', tag='NNG', start=9, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[4]]</span>
+<span class="co">#&gt; Token(form='기', tag='NNB', start=11, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[5]]</span>
+<span class="co">#&gt; Token(form='의', tag='JKG', start=12, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[6]]</span>
+<span class="co">#&gt; Token(form='R', tag='SL', start=14, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[7]]</span>
+<span class="co">#&gt; Token(form='wrapper', tag='SL', start=16, len=7)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[8]]</span>
+<span class="co">#&gt; Token(form='이', tag='VCP', start=23, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[9]]</span>
+<span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=24, len=0)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[10]]</span>
+<span class="co">#&gt; Token(form='elbird', tag='SL', start=25, len=6)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[11]]</span>
+<span class="co">#&gt; Token(form='를', tag='JKO', start=31, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[12]]</span>
+<span class="co">#&gt; Token(form='소개', tag='NNG', start=33, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[13]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSV', start=35, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[14]]</span>
+<span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=36, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[15]]</span>
+<span class="co">#&gt; Token(form='.', tag='SF', start=38, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[2]]</span>
+<span class="co">#&gt; [1] -84.13857</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]]</span>
+<span class="co">#&gt; [[5]][[1]]</span>
+<span class="co">#&gt; [[5]][[1]][[1]]</span>
+<span class="co">#&gt; Token(form='kiwi', tag='SL', start=0, len=4)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]][[1]][[2]]</span>
+<span class="co">#&gt; Token(form='형태소', tag='NNG', start=5, len=3)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]][[1]][[3]]</span>
+<span class="co">#&gt; Token(form='분석', tag='NNG', start=9, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]][[1]][[4]]</span>
+<span class="co">#&gt; Token(form='기', tag='NNG', start=11, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]][[1]][[5]]</span>
+<span class="co">#&gt; Token(form='의', tag='JKG', start=12, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]][[1]][[6]]</span>
+<span class="co">#&gt; Token(form='R', tag='SL', start=14, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]][[1]][[7]]</span>
+<span class="co">#&gt; Token(form='wrapper', tag='SL', start=16, len=7)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]][[1]][[8]]</span>
+<span class="co">#&gt; Token(form='이', tag='VCP', start=23, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]][[1]][[9]]</span>
+<span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=24, len=0)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]][[1]][[10]]</span>
+<span class="co">#&gt; Token(form='elbird', tag='SL', start=25, len=6)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]][[1]][[11]]</span>
+<span class="co">#&gt; Token(form='를', tag='JKO', start=31, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]][[1]][[12]]</span>
+<span class="co">#&gt; Token(form='소개', tag='NNG', start=33, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]][[1]][[13]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSV', start=35, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]][[1]][[14]]</span>
+<span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=36, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]][[1]][[15]]</span>
+<span class="co">#&gt; Token(form='.', tag='SF', start=38, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]][[2]]</span>
+<span class="co">#&gt; [1] -84.71187</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]]</span>
+<span class="co">#&gt; [[6]][[1]]</span>
+<span class="co">#&gt; [[6]][[1]][[1]]</span>
+<span class="co">#&gt; Token(form='kiwi', tag='SL', start=0, len=4)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]][[1]][[2]]</span>
+<span class="co">#&gt; Token(form='형태소', tag='NNG', start=5, len=3)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]][[1]][[3]]</span>
+<span class="co">#&gt; Token(form='분석', tag='NNG', start=9, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]][[1]][[4]]</span>
+<span class="co">#&gt; Token(form='기', tag='ETN', start=11, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]][[1]][[5]]</span>
+<span class="co">#&gt; Token(form='의', tag='JKG', start=12, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]][[1]][[6]]</span>
+<span class="co">#&gt; Token(form='R', tag='SL', start=14, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]][[1]][[7]]</span>
+<span class="co">#&gt; Token(form='wrapper', tag='SL', start=16, len=7)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]][[1]][[8]]</span>
+<span class="co">#&gt; Token(form='이', tag='VCP', start=23, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]][[1]][[9]]</span>
+<span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=24, len=0)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]][[1]][[10]]</span>
+<span class="co">#&gt; Token(form='elbird', tag='SL', start=25, len=6)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]][[1]][[11]]</span>
+<span class="co">#&gt; Token(form='를', tag='JKO', start=31, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]][[1]][[12]]</span>
+<span class="co">#&gt; Token(form='소개', tag='NNG', start=33, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]][[1]][[13]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSV', start=35, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]][[1]][[14]]</span>
+<span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=36, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]][[1]][[15]]</span>
+<span class="co">#&gt; Token(form='.', tag='SF', start=38, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]][[2]]</span>
+<span class="co">#&gt; [1] -85.65583</span>
+<span class="fu"><a href="reference/analyze.html">analyze</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"안녕하세요"</span>,<span class="st">"kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>, top_n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="co">#&gt; Warning in if (is.na(item)) break: the condition has length &gt; 1 and only the</span>
+<span class="co">#&gt; first element will be used</span>
+
+<span class="co">#&gt; Warning in if (is.na(item)) break: the condition has length &gt; 1 and only the</span>
+<span class="co">#&gt; first element will be used</span>
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [[1]][[1]]</span>
+<span class="co">#&gt; [[1]][[1]][[1]]</span>
+<span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[2]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[3]]</span>
+<span class="co">#&gt; Token(form='시', tag='EP', start=4, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[1]][[4]]</span>
+<span class="co">#&gt; Token(form='어요', tag='EC', start=3, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]][[2]]</span>
+<span class="co">#&gt; [1] -18.16951</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [[2]][[1]]</span>
+<span class="co">#&gt; [[2]][[1]][[1]]</span>
+<span class="co">#&gt; Token(form='안녕', tag='NNG', start=0, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[2]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSA', start=2, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[3]]</span>
+<span class="co">#&gt; Token(form='시', tag='EP', start=4, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[1]][[4]]</span>
+<span class="co">#&gt; Token(form='어요', tag='EF', start=3, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]][[2]]</span>
+<span class="co">#&gt; [1] -22.45279</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [[3]][[1]]</span>
+<span class="co">#&gt; [[3]][[1]][[1]]</span>
+<span class="co">#&gt; Token(form='kiwi', tag='SL', start=0, len=4)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[2]]</span>
+<span class="co">#&gt; Token(form='형태소', tag='NNG', start=5, len=3)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[3]]</span>
+<span class="co">#&gt; Token(form='분석', tag='NNG', start=9, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[4]]</span>
+<span class="co">#&gt; Token(form='기', tag='NNB', start=11, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[5]]</span>
+<span class="co">#&gt; Token(form='의', tag='JKG', start=12, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[6]]</span>
+<span class="co">#&gt; Token(form='R', tag='SL', start=14, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[7]]</span>
+<span class="co">#&gt; Token(form='wrapper', tag='SL', start=16, len=7)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[8]]</span>
+<span class="co">#&gt; Token(form='이', tag='VCP', start=23, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[9]]</span>
+<span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=24, len=0)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[10]]</span>
+<span class="co">#&gt; Token(form='elbird', tag='SL', start=25, len=6)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[11]]</span>
+<span class="co">#&gt; Token(form='를', tag='JKO', start=31, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[12]]</span>
+<span class="co">#&gt; Token(form='소개', tag='NNG', start=33, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[13]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSV', start=35, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[14]]</span>
+<span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=36, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[1]][[15]]</span>
+<span class="co">#&gt; Token(form='.', tag='SF', start=38, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]][[2]]</span>
+<span class="co">#&gt; [1] -84.13857</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]]</span>
+<span class="co">#&gt; [[4]][[1]]</span>
+<span class="co">#&gt; [[4]][[1]][[1]]</span>
+<span class="co">#&gt; Token(form='kiwi', tag='SL', start=0, len=4)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[2]]</span>
+<span class="co">#&gt; Token(form='형태소', tag='NNG', start=5, len=3)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[3]]</span>
+<span class="co">#&gt; Token(form='분석', tag='NNG', start=9, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[4]]</span>
+<span class="co">#&gt; Token(form='기', tag='NNG', start=11, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[5]]</span>
+<span class="co">#&gt; Token(form='의', tag='JKG', start=12, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[6]]</span>
+<span class="co">#&gt; Token(form='R', tag='SL', start=14, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[7]]</span>
+<span class="co">#&gt; Token(form='wrapper', tag='SL', start=16, len=7)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[8]]</span>
+<span class="co">#&gt; Token(form='이', tag='VCP', start=23, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[9]]</span>
+<span class="co">#&gt; Token(form='ᆫ', tag='ETM', start=24, len=0)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[10]]</span>
+<span class="co">#&gt; Token(form='elbird', tag='SL', start=25, len=6)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[11]]</span>
+<span class="co">#&gt; Token(form='를', tag='JKO', start=31, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[12]]</span>
+<span class="co">#&gt; Token(form='소개', tag='NNG', start=33, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[13]]</span>
+<span class="co">#&gt; Token(form='하', tag='XSV', start=35, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[14]]</span>
+<span class="co">#&gt; Token(form='ᆸ니다', tag='EF', start=36, len=2)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[1]][[15]]</span>
+<span class="co">#&gt; Token(form='.', tag='SF', start=38, len=1)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]][[2]]</span>
+<span class="co">#&gt; [1] -84.71187</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="사용자-사전-가중치">사용자 사전 가중치<a class="anchor" aria-label="anchor" href="#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%82%AC%EC%A0%84-%EA%B0%80%EC%A4%91%EC%B9%98"></a></h3>
-<p><code>kiwi</code> 패키지 제작자의 설명을 보면 가중치는 어떤 실수(<code>double</code>)라도 가능합니다. 사용하시면서 감각을 찾으면 좋을 것 같습니다. ## 형태소 태그</p>
+<p><code>kiwi</code> 패키지 제작자의 설명을 보면 가중치는 어떤 실수(<code>double</code>)라도 가능합니다. 사용하시면서 감각을 찾으면 좋을 것 같습니다.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="형태소-태그">형태소 태그<a class="anchor" aria-label="anchor" href="#%ED%98%95%ED%83%9C%EC%86%8C-%ED%83%9C%EA%B7%B8"></a></h2>
 <p><a href="https://github.com/bab2min/kiwipiepy" class="external-link">kiwipiepy</a>패키지에서 사용하는 <a href="https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8" class="external-link">형태소 태그</a>는 아래와 같습니다.</p>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD - The table below is fetched at 2022-03-08 18:32:30 Etc/UTC.</p>
-<table class="table"><thead><tr class="header"><th align="left">대분류</th>
-<th align="left">태그</th>
-<th align="left">설명</th>
-</tr></thead><tbody><tr class="odd"><td align="left">체언(N)</td>
-<td align="left">NNG</td>
-<td align="left">일반 명사</td>
-</tr><tr class="even"><td align="left">체언(N)</td>
-<td align="left">NNP</td>
-<td align="left">고유 명사</td>
-</tr><tr class="odd"><td align="left">체언(N)</td>
-<td align="left">NNB</td>
-<td align="left">의존 명사</td>
-</tr><tr class="even"><td align="left">체언(N)</td>
-<td align="left">NR</td>
-<td align="left">수사</td>
-</tr><tr class="odd"><td align="left">체언(N)</td>
-<td align="left">NP</td>
-<td align="left">대명사</td>
-</tr><tr class="even"><td align="left">용언(V)</td>
-<td align="left">VV</td>
-<td align="left">동사</td>
-</tr><tr class="odd"><td align="left">용언(V)</td>
-<td align="left">VA</td>
-<td align="left">형용사</td>
-</tr><tr class="even"><td align="left">용언(V)</td>
-<td align="left">VX</td>
-<td align="left">보조 용언</td>
-</tr><tr class="odd"><td align="left">용언(V)</td>
-<td align="left">VCP</td>
-<td align="left">긍정 지시사(이다)</td>
-</tr><tr class="even"><td align="left">용언(V)</td>
-<td align="left">VCN</td>
-<td align="left">부정 지시사(아니다)</td>
-</tr><tr class="odd"><td align="left">관형사</td>
-<td align="left">MM</td>
-<td align="left">관형사</td>
-</tr><tr class="even"><td align="left">부사(MA)</td>
-<td align="left">MAG</td>
-<td align="left">일반 부사</td>
-</tr><tr class="odd"><td align="left">부사(MA)</td>
-<td align="left">MAJ</td>
-<td align="left">접속 부사</td>
-</tr><tr class="even"><td align="left">감탄사</td>
-<td align="left">IC</td>
-<td align="left">감탄사</td>
-</tr><tr class="odd"><td align="left">조사(J)</td>
-<td align="left">JKS</td>
-<td align="left">주격 조사</td>
-</tr><tr class="even"><td align="left">조사(J)</td>
-<td align="left">JKC</td>
-<td align="left">보격 조사</td>
-</tr><tr class="odd"><td align="left">조사(J)</td>
-<td align="left">JKG</td>
-<td align="left">관형격 조사</td>
-</tr><tr class="even"><td align="left">조사(J)</td>
-<td align="left">JKO</td>
-<td align="left">목적격 조사</td>
-</tr><tr class="odd"><td align="left">조사(J)</td>
-<td align="left">JKB</td>
-<td align="left">부사격 조사</td>
-</tr><tr class="even"><td align="left">조사(J)</td>
-<td align="left">JKV</td>
-<td align="left">호격 조사</td>
-</tr><tr class="odd"><td align="left">조사(J)</td>
-<td align="left">JKQ</td>
-<td align="left">인용격 조사</td>
-</tr><tr class="even"><td align="left">조사(J)</td>
-<td align="left">JX</td>
-<td align="left">보조사</td>
-</tr><tr class="odd"><td align="left">조사(J)</td>
-<td align="left">JC</td>
-<td align="left">접속 조사</td>
-</tr><tr class="even"><td align="left">어미(E)</td>
-<td align="left">EP</td>
-<td align="left">선어말 어미</td>
-</tr><tr class="odd"><td align="left">어미(E)</td>
-<td align="left">EF</td>
-<td align="left">종결 어미</td>
-</tr><tr class="even"><td align="left">어미(E)</td>
-<td align="left">EC</td>
-<td align="left">연결 어미</td>
-</tr><tr class="odd"><td align="left">어미(E)</td>
-<td align="left">ETN</td>
-<td align="left">명사형 전성 어미</td>
-</tr><tr class="even"><td align="left">어미(E)</td>
-<td align="left">ETM</td>
-<td align="left">관형형 전성 어미</td>
-</tr><tr class="odd"><td align="left">접두사</td>
-<td align="left">XPN</td>
-<td align="left">체언 접두사</td>
-</tr><tr class="even"><td align="left">접미사(XS)</td>
-<td align="left">XSN</td>
-<td align="left">명사 파생 접미사</td>
-</tr><tr class="odd"><td align="left">접미사(XS)</td>
-<td align="left">XSV</td>
-<td align="left">동사 파생 접미사</td>
-</tr><tr class="even"><td align="left">접미사(XS)</td>
-<td align="left">XSA</td>
-<td align="left">형용사 파생 접미사</td>
-</tr><tr class="odd"><td align="left">어근</td>
-<td align="left">XR</td>
-<td align="left">어근</td>
-</tr><tr class="even"><td align="left">부호, 외국어, 특수문자(S)</td>
-<td align="left">SF</td>
-<td align="left">종결 부호(. ! ?)</td>
-</tr><tr class="odd"><td align="left">부호, 외국어, 특수문자(S)</td>
-<td align="left">SP</td>
-<td align="left">구분 부호(, / : ;)</td>
-</tr><tr class="even"><td align="left">부호, 외국어, 특수문자(S)</td>
-<td align="left">SS</td>
-<td align="left">인용 부호 및 괄호(’ ” ( ) [ ] &lt; &gt; { } ― ‘ ’ “ ” ≪ ≫ 등)</td>
-</tr><tr class="odd"><td align="left">부호, 외국어, 특수문자(S)</td>
-<td align="left">SE</td>
-<td align="left">줄임표(…)</td>
-</tr><tr class="even"><td align="left">부호, 외국어, 특수문자(S)</td>
-<td align="left">SO</td>
-<td align="left">붙임표(- ~)</td>
-</tr><tr class="odd"><td align="left">부호, 외국어, 특수문자(S)</td>
-<td align="left">SW</td>
-<td align="left">기타 특수 문자</td>
-</tr><tr class="even"><td align="left">부호, 외국어, 특수문자(S)</td>
-<td align="left">SL</td>
-<td align="left">알파벳(A-Z a-z)</td>
-</tr><tr class="odd"><td align="left">부호, 외국어, 특수문자(S)</td>
-<td align="left">SH</td>
-<td align="left">한자</td>
-</tr><tr class="even"><td align="left">부호, 외국어, 특수문자(S)</td>
-<td align="left">SN</td>
-<td align="left">숫자(0-9)</td>
-</tr><tr class="odd"><td align="left">분석 불능</td>
-<td align="left">UN</td>
-<td align="left">분석 불능*</td>
-</tr><tr class="even"><td align="left">웹(W)</td>
-<td align="left">W_URL</td>
-<td align="left">URL 주소*</td>
-</tr><tr class="odd"><td align="left">웹(W)</td>
-<td align="left">W_EMAIL</td>
-<td align="left">이메일 주소*</td>
-</tr><tr class="even"><td align="left">웹(W)</td>
-<td align="left">W_HASHTAG</td>
-<td align="left">해시태그(#abcd)*</td>
-</tr><tr class="odd"><td align="left">웹(W)</td>
-<td align="left">W_MENTION</td>
-<td align="left">멘션(@abcd)*</td>
-</tr></tbody></table><p>======= - The table below is fetched at 2022-03-08 17:44:17 UTC.</p>
-<table class="table kable_wrapper"><tbody><tr><td>
+<ul><li>The table below is fetched at 2022-03-08 19:37:21 UTC.</li>
+</ul><table class="table kable_wrapper"><tbody><tr><td>
 <table class="table"><thead><tr class="header"><th align="left">대분류</th>
 <th align="left">태그</th>
 <th align="left">설명</th>
@@ -1238,23 +1021,7 @@
 <td align="left">W_MENTION</td>
 <td align="left">멘션(@abcd)*</td>
 </tr></tbody></table></td>
-</tr></tbody></table><blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>07e227b19dc16e69ea1cc18e626360e603d0099d</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</div>
-</div>
+</tr></tbody></table></div>
 <div class="section level2">
 <h2 id="특별히-감사">특별히 감사<a class="anchor" aria-label="anchor" href="#%ED%8A%B9%EB%B3%84%ED%9E%88-%EA%B0%90%EC%82%AC"></a></h2>
 <div class="section level3">
