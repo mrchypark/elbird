@@ -13,12 +13,16 @@ analyze <- function(text, top_n = 1) {
   el <- get("el", envir = .el)
   top_n <- as.integer(top_n)
   iter <- el$analyze(text, top_n)
-  res <- c()
-  while (TRUE) {
-    item <- reticulate::iter_next(iter, completed = NA)
-    if (is.na(item))
-      break
-    res <- c(res, list(item[[1]][[1]]))
+  if (is.list(iter)){
+    res <- list(iter[[1]][[1]])
+  } else {
+    res <- c()
+    while (TRUE) {
+      item <- reticulate::iter_next(iter, completed = NA)
+      if (is.na(item))
+        break
+      res <- c(res, list(item[[1]][[1]]))
+    }
   }
   return(res)
 }

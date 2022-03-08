@@ -4,6 +4,7 @@
 #' @param pos   pos
 #' @param score score
 #'
+#' @importFrom dplyr bind_rows
 #' @export
 add_user_word <- function(word, pos, score) {
   if (init_chk_not())

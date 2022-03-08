@@ -30,27 +30,7 @@ It is based on cpp package `kiwi` and that has convenient functions such as fast
 
 ## Installation
 
-### Pre required
-
-You need python before installing elbird.
-
-`elbird` uses `conda` for python backend. Below is how to install `conda`.
-
-``` r
-install.packages("reticulate")
-reticulate::install_miniconda()
-```
-
-#### pre install check
-
-You can check install is success code below.
-
-```{r}
-reticulate::conda_version()
-```
-
-
-# CRAN *!NOT YET!*
+### CRAN *!NOT YET!*
 You can install the released version of elbird from [CRAN](https://CRAN.R-project.org) with:
 
 ```r

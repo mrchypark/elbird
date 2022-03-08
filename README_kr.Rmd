@@ -16,7 +16,6 @@ options(crayon.enabled = NULL)
 
 # elbird <img src="man/figures/logo.png" align="right" height=140/>
 
-
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN status](https://www.r-pkg.org/badges/version/elbird)](https://CRAN.R-project.org/package=elbird)
@@ -27,25 +26,6 @@ options(crayon.enabled = NULL)
 `cpp` 기반의 `kiwi`를 베이스로 하고 있으며 다른 분석기에 비해 빠른 성능과 쉬운 사용자 사전 추가, 미등록 명사 추출(아직 elbird에는 미구현) 등 편의 기능이 있습니다.
 
 ## 설치
-
-### 사전 설치
-
-`elbird`는 [kiwipiepy](https://github.com/bab2min/kiwipiepy)를 사용하기 때문에 python이 설치되어 있어야 합니다. 
-
-`elbird`는 `conda`를 베이스로 사용하고 있습니다. 아래는 `conda` 를 설치하는 방법 입니다.
-
-``` r
-install.packages("reticulate")
-reticulate::install_miniconda()
-```
-
-#### 사전 설치 완료 확인 방법
-
-아래 명령어를 통해 설치가 잘 진행됬는지 확인할 수 있습니다.
-
-```{r}
-reticulate::conda_version()
-```
 
 ### CRAN *!아직 적용 전입니다!*
 
