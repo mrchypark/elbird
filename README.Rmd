@@ -49,7 +49,6 @@ You can check install is success code below.
 reticulate::conda_version()
 ```
 
-
 # CRAN *!NOT YET!*
 You can install the released version of elbird from [CRAN](https://CRAN.R-project.org) with:
 

@@ -1,6 +1,6 @@
 #' @importFrom reticulate import
 init <- function(){
-  kiwi <- reticulate::import("kiwipiepy", convert = TRUE)
+  kiwi <- reticulate::import("kiwipiepy")
   el <- kiwi$Kiwi()
   dict_history <- list()
   dict_history[["word"]] <-
