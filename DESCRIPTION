@@ -19,4 +19,6 @@ LinkingTo:
     Rcpp
 SystemRequirements: C++11, 'git', 'wget', 'cmake'
 Imports: 
-    Rcpp
+    Rcpp,
+    tibble,
+    methods

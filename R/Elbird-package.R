@@ -6,6 +6,7 @@
 ## usethis namespace: start
 #' @importFrom Rcpp sourceCpp
 #' @importFrom tibble tibble
+#' @import methods Rcpp
 #' @useDynLib Elbird, .registration = TRUE
 ## usethis namespace: end
 NULL
