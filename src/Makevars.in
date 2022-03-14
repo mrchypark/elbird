@@ -1,4 +1,4 @@
-CXX_STD = CXX11
+CXX_STD=CXX11
 
-PKG_CPPFLAGS=@cppflags@
+PKG_CPPFLAGS=-I../inst/include @cppflags@
 PKG_LIBS=@libs@

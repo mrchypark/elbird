@@ -1,4 +1,4 @@
-CXX_STD = CXX11
+CXX_STD=CXX11
 
-PKG_CPPFLAGS=-I/home/mrchypark/elbird/include 
-PKG_LIBS=-L/home/mrchypark/elbird/lib 
+PKG_CPPFLAGS=-I../inst/include -I/home/mrchypark/elbird/inst/include 
+PKG_LIBS=-L/home/mrchypark/elbird/inst/lib -lkiwi
