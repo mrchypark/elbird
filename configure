@@ -3,7 +3,7 @@
 # Library settings
 PKG_TEST_HEADER="<kiwi/Kiwi.h>"
 PKG_LIBS="-lkiwi"
-PKG_CPPFLAGS=""
+PKG_CPPFLAGS="-pthread"
 LIB_VER="0.10.3"
 
 # Check for custom locations
@@ -12,7 +12,7 @@ if [ "$INCLUDE_DIR" ] || [ "$LIB_DIR" ]; then
   PKG_CPPFLAGS="-I$INCLUDE_DIR $PKG_CPPFLAGS"
   PKG_LIBS="-L$LIB_DIR $PKG_LIBS"
 
-elif [ -d "`pwd`/include/kiwi" ]; then
+elif [ -d "`pwd`/inst/include" ]; then
   echo "Found libkiwi on pwd installation..."
   PKG_CPPFLAGS="-I`pwd`/inst/include $PKG_CPPFLAGS"
   PKG_LIBS="-L`pwd`/inst/lib $PKG_LIBS"
@@ -34,8 +34,6 @@ else
   make
   cd ../..
   mkdir inst/lib
-  # mv -f Kiwi/build/libkiwi* inst/lib
-  # mv -f Kiwi/build/libkiwi.so.0.10.2 inst/lib/libkiwi.so
   mv -f Kiwi/build/libkiwi_static.a inst/lib/libkiwi.a
   mv -f Kiwi/include inst/include
   rm -rf Kiwi
@@ -52,7 +50,7 @@ CXX11=`${R_HOME}/bin/R CMD config CXX11`
 CFLAGS=`${R_HOME}/bin/R CMD config CFLAGS`
 
 # Test for libkiwi
-echo "#include $PKG_TEST_HEADER" | ${CXX11} ${PKG_CPPFLAGS} ${CFLAGS} -E -xc++ - >/dev/null 2>configure.log
+echo "#include $PKG_TEST_HEADER" | ${CXX11} ${PKG_CPPFLAGS} ${CFLAGS} -E -xc++ - >/dev/null 2>&1
 
 if [ $? -ne 0 ]; then
   if [ "$SYS_LIB" -ne 1 ]; then
@@ -80,15 +78,13 @@ if [ $? -ne 0 ]; then
     make
     cd ../..
     mkdir inst/lib
-    # mv -f Kiwi/build/libkiwi* inst/lib
-    # mv -f Kiwi/build/libkiwi.so.0.10.2 inst/lib/libkiwi.so
     mv -f Kiwi/build/libkiwi_static.a inst/lib/libkiwi.a
     mv -f Kiwi/include inst/include
     rm -rf Kiwi
     PKG_CPPFLAGS="-I`pwd`/inst/include $PKG_CPPFLAGS"
     PKG_LIBS="-L`pwd`/inst/lib $PKG_LIBS"
     # Test for libkiwi
-    echo "#include $PKG_TEST_HEADER" | ${CXX11} ${PKG_CPPFLAGS} ${CFLAGS} -E -xc++ - >/dev/null 2>configure.log
+    echo "#include $PKG_TEST_HEADER" | ${CXX11} ${PKG_CPPFLAGS} ${CFLAGS} -E -xc++ - >/dev/null 2>&1
     if [ $? -ne 0 ]; then
     echo "------------------------------[ ELBIRD ]------------------------------"
     echo "Configuration failed because 'libkiwi' was not found."
