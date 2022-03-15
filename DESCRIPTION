@@ -16,6 +16,8 @@ URL: https://github.com/mrchypark/elbird/
 BugReports: https://github.com/mrchypark/elbird/issues
 SystemRequirements: c("C++11", "git", "wget", "cmake")
 Imports: 
-    methods
+    methods,
+    Rcpp
 LinkingTo: 
+    Rcpp,
     cpp11
