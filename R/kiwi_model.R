@@ -14,10 +14,12 @@ kiwi_model_path <- function() {
   model_path()
 }
 
-check_model <- function() {
-  if (!dir.exists(install_path())) {
+model_exists <- function() {
+  if (!dir.exists(file.path(model_path(), "ModelGenerator")))
     return(FALSE)
-  }
+
+  if (!length(list.files(file.path(model_path(), "ModelGenerator"))) > 0)
+    return(FALSE)
 
   return(TRUE)
 }
@@ -25,10 +27,22 @@ check_model <- function() {
 #' Verifies if model exist
 #'
 #' @export
-model_exist <- function() {
+model_is_set <- function() {
   check_model()
 }
 
-get_model_file <-function() {
+#' @importFrom utils untar download.file
+get_model_file <-function(version = "v0.10.3", path = model_path(), force = FALSE) {
 
+  if (force)
+    unlink(path, recursive = TRUE)
+
+  tarurl <- paste0("https://github.com/bab2min/Kiwi/releases/download/",version,"/kiwi_model_",version,".tgz")
+
+  if (getRversion() < "3.3.0") setInternet2()
+
+  utils::download.file(tarurl, destfile = "kiwi-model.tgz", quiet = TRUE)
+  dir.create(path, showWarnings = FALSE)
+  utils::untar("kiwi-model.tgz", exdir = path)
+  unlink("kiwi-model.tgz")
 }

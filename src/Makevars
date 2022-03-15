@@ -1,4 +1,4 @@
 CXX_STD=CXX11
 
-PKG_CPPFLAGS=-I../inst/include -I/home/mrchypark/elbird/inst/include 
-PKG_LIBS=-L/home/mrchypark/elbird/inst/lib -lkiwi
+PKG_CPPFLAGS=-I../inst/include -pthread -I/home/rstudio/elbird/inst/include -pthread
+PKG_LIBS=-pthread -L/home/rstudio/elbird/inst/lib -lkiwi
