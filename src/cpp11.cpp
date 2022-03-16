@@ -5,108 +5,100 @@
 #include "cpp11/declarations.hpp"
 #include <R_ext/Visibility.h>
 
-// KiwiBuilder.cpp
-SEXP kiwi_builder(std::string modelPath);
-extern "C" SEXP _elbird_kiwi_builder(SEXP modelPath) {
+// Kiwi.cpp
+bool Kiwi_ready(SEXP kw);
+extern "C" SEXP _elbird_Kiwi_ready(SEXP kw) {
   BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_builder(cpp11::as_cpp<cpp11::decay_t<std::string>>(modelPath)));
+    return cpp11::as_sexp(Kiwi_ready(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kw)));
   END_CPP11
 }
-// KiwiBuilder.cpp
-bool kiwi_builder_ready(SEXP kbe);
-extern "C" SEXP _elbird_kiwi_builder_ready(SEXP kbe) {
+// Kiwi.cpp
+std::string Kiwi_archType(SEXP kw);
+extern "C" SEXP _elbird_Kiwi_archType(SEXP kw) {
   BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_builder_ready(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kbe)));
+    return cpp11::as_sexp(Kiwi_archType(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kw)));
   END_CPP11
 }
-// KiwiBuilder.cpp
-SEXP kiwi_builder_build(SEXP kbe);
-extern "C" SEXP _elbird_kiwi_builder_build(SEXP kbe) {
+// Kiwi.cpp
+int Kiwi_getNumThreads(SEXP kw);
+extern "C" SEXP _elbird_Kiwi_getNumThreads(SEXP kw) {
   BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_builder_build(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kbe)));
+    return cpp11::as_sexp(Kiwi_getNumThreads(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kw)));
   END_CPP11
 }
-// KiwiBuilder.cpp
-bool kiwi_builder_addWord(SEXP kbe, const std::u16string& form, kiwi::POSTag tag, float score);
-extern "C" SEXP _elbird_kiwi_builder_addWord(SEXP kbe, SEXP form, SEXP tag, SEXP score) {
+// Kiwi.cpp
+double Kiwi_getCutOffThreshold(SEXP kw);
+extern "C" SEXP _elbird_Kiwi_getCutOffThreshold(SEXP kw) {
   BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_builder_addWord(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kbe), cpp11::as_cpp<cpp11::decay_t<const std::u16string&>>(form), cpp11::as_cpp<cpp11::decay_t<kiwi::POSTag>>(tag), cpp11::as_cpp<cpp11::decay_t<float>>(score)));
+    return cpp11::as_sexp(Kiwi_getCutOffThreshold(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kw)));
   END_CPP11
 }
-// KiwiBuilder.cpp
-void kiwi_builder_saveModel(SEXP kbe, const std::string& modelPath);
-extern "C" SEXP _elbird_kiwi_builder_saveModel(SEXP kbe, SEXP modelPath) {
+// Kiwi.cpp
+void Kiwi_setCutOffThreshold(SEXP kw, float v);
+extern "C" SEXP _elbird_Kiwi_setCutOffThreshold(SEXP kw, SEXP v) {
   BEGIN_CPP11
-    kiwi_builder_saveModel(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kbe), cpp11::as_cpp<cpp11::decay_t<const std::string&>>(modelPath));
+    Kiwi_setCutOffThreshold(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kw), cpp11::as_cpp<cpp11::decay_t<float>>(v));
+    return R_NilValue;
+  END_CPP11
+}
+// Kiwi.cpp
+bool Kiwi_getIntegrateAllomorph(SEXP kw);
+extern "C" SEXP _elbird_Kiwi_getIntegrateAllomorph(SEXP kw) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(Kiwi_getIntegrateAllomorph(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kw)));
+  END_CPP11
+}
+// Kiwi.cpp
+void Kiwi_setIntegrateAllomorph(SEXP kw, bool v);
+extern "C" SEXP _elbird_Kiwi_setIntegrateAllomorph(SEXP kw, SEXP v) {
+  BEGIN_CPP11
+    Kiwi_setIntegrateAllomorph(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kw), cpp11::as_cpp<cpp11::decay_t<bool>>(v));
     return R_NilValue;
   END_CPP11
 }
 // KiwiBuilder.cpp
-bool kiwi_ready(SEXP kw);
-extern "C" SEXP _elbird_kiwi_ready(SEXP kw) {
+SEXP Kiwi_Builder(const std::string& modelPath);
+extern "C" SEXP _elbird_Kiwi_Builder(SEXP modelPath) {
   BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_ready(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kw)));
+    return cpp11::as_sexp(Kiwi_Builder(cpp11::as_cpp<cpp11::decay_t<const std::string&>>(modelPath)));
   END_CPP11
 }
 // KiwiBuilder.cpp
-std::string kiwi_archType(SEXP kw);
-extern "C" SEXP _elbird_kiwi_archType(SEXP kw) {
+SEXP Kiwi_Builder_build(SEXP kbe);
+extern "C" SEXP _elbird_Kiwi_Builder_build(SEXP kbe) {
   BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_archType(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kw)));
+    return cpp11::as_sexp(Kiwi_Builder_build(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kbe)));
   END_CPP11
 }
 // KiwiBuilder.cpp
-int kiwi_getNumThreads(SEXP kw);
-extern "C" SEXP _elbird_kiwi_getNumThreads(SEXP kw) {
+bool Kiwi_Builder_ready(SEXP kbe);
+extern "C" SEXP _elbird_Kiwi_Builder_ready(SEXP kbe) {
   BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_getNumThreads(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kw)));
+    return cpp11::as_sexp(Kiwi_Builder_ready(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kbe)));
   END_CPP11
 }
 // KiwiBuilder.cpp
-double kiwi_getCutOffThreshold(SEXP kw);
-extern "C" SEXP _elbird_kiwi_getCutOffThreshold(SEXP kw) {
+void Kiwi_Builder_saveModel(SEXP kbe, const std::string& modelPath);
+extern "C" SEXP _elbird_Kiwi_Builder_saveModel(SEXP kbe, SEXP modelPath) {
   BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_getCutOffThreshold(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kw)));
-  END_CPP11
-}
-// KiwiBuilder.cpp
-void setCutOffThreshold(SEXP kw, float v);
-extern "C" SEXP _elbird_setCutOffThreshold(SEXP kw, SEXP v) {
-  BEGIN_CPP11
-    setCutOffThreshold(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kw), cpp11::as_cpp<cpp11::decay_t<float>>(v));
-    return R_NilValue;
-  END_CPP11
-}
-// KiwiBuilder.cpp
-bool getIntegrateAllomorph(SEXP kw);
-extern "C" SEXP _elbird_getIntegrateAllomorph(SEXP kw) {
-  BEGIN_CPP11
-    return cpp11::as_sexp(getIntegrateAllomorph(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kw)));
-  END_CPP11
-}
-// KiwiBuilder.cpp
-void setIntegrateAllomorph(SEXP kw, bool v);
-extern "C" SEXP _elbird_setIntegrateAllomorph(SEXP kw, SEXP v) {
-  BEGIN_CPP11
-    setIntegrateAllomorph(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kw), cpp11::as_cpp<cpp11::decay_t<bool>>(v));
+    Kiwi_Builder_saveModel(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kbe), cpp11::as_cpp<cpp11::decay_t<const std::string&>>(modelPath));
     return R_NilValue;
   END_CPP11
 }
 
 extern "C" {
 static const R_CallMethodDef CallEntries[] = {
-    {"_elbird_getIntegrateAllomorph",   (DL_FUNC) &_elbird_getIntegrateAllomorph,   1},
-    {"_elbird_kiwi_archType",           (DL_FUNC) &_elbird_kiwi_archType,           1},
-    {"_elbird_kiwi_builder",            (DL_FUNC) &_elbird_kiwi_builder,            1},
-    {"_elbird_kiwi_builder_addWord",    (DL_FUNC) &_elbird_kiwi_builder_addWord,    4},
-    {"_elbird_kiwi_builder_build",      (DL_FUNC) &_elbird_kiwi_builder_build,      1},
-    {"_elbird_kiwi_builder_ready",      (DL_FUNC) &_elbird_kiwi_builder_ready,      1},
-    {"_elbird_kiwi_builder_saveModel",  (DL_FUNC) &_elbird_kiwi_builder_saveModel,  2},
-    {"_elbird_kiwi_getCutOffThreshold", (DL_FUNC) &_elbird_kiwi_getCutOffThreshold, 1},
-    {"_elbird_kiwi_getNumThreads",      (DL_FUNC) &_elbird_kiwi_getNumThreads,      1},
-    {"_elbird_kiwi_ready",              (DL_FUNC) &_elbird_kiwi_ready,              1},
-    {"_elbird_setCutOffThreshold",      (DL_FUNC) &_elbird_setCutOffThreshold,      2},
-    {"_elbird_setIntegrateAllomorph",   (DL_FUNC) &_elbird_setIntegrateAllomorph,   2},
+    {"_elbird_Kiwi_Builder",               (DL_FUNC) &_elbird_Kiwi_Builder,               1},
+    {"_elbird_Kiwi_Builder_build",         (DL_FUNC) &_elbird_Kiwi_Builder_build,         1},
+    {"_elbird_Kiwi_Builder_ready",         (DL_FUNC) &_elbird_Kiwi_Builder_ready,         1},
+    {"_elbird_Kiwi_Builder_saveModel",     (DL_FUNC) &_elbird_Kiwi_Builder_saveModel,     2},
+    {"_elbird_Kiwi_archType",              (DL_FUNC) &_elbird_Kiwi_archType,              1},
+    {"_elbird_Kiwi_getCutOffThreshold",    (DL_FUNC) &_elbird_Kiwi_getCutOffThreshold,    1},
+    {"_elbird_Kiwi_getIntegrateAllomorph", (DL_FUNC) &_elbird_Kiwi_getIntegrateAllomorph, 1},
+    {"_elbird_Kiwi_getNumThreads",         (DL_FUNC) &_elbird_Kiwi_getNumThreads,         1},
+    {"_elbird_Kiwi_ready",                 (DL_FUNC) &_elbird_Kiwi_ready,                 1},
+    {"_elbird_Kiwi_setCutOffThreshold",    (DL_FUNC) &_elbird_Kiwi_setCutOffThreshold,    2},
+    {"_elbird_Kiwi_setIntegrateAllomorph", (DL_FUNC) &_elbird_Kiwi_setIntegrateAllomorph, 2},
     {NULL, NULL, 0}
 };
 }
