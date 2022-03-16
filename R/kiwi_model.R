@@ -14,11 +14,15 @@ kiwi_model_path <- function() {
   model_path()
 }
 
+model_path_full <- function() {
+  file.path(model_path(), "ModelGenerator")
+}
+
 model_exists <- function() {
-  if (!dir.exists(file.path(model_path(), "ModelGenerator")))
+  if (!dir.exists(model_path_full()))
     return(FALSE)
 
-  if (!length(list.files(file.path(model_path(), "ModelGenerator"))) > 0)
+  if (!length(list.files(model_path_full())) > 0)
     return(FALSE)
 
   return(TRUE)

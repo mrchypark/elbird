@@ -86,10 +86,10 @@ The examples below introduce the behavior of `Elbird`'s functions.
 Basically, the `analyze` function that uses the output of the `analyze` function of the [kiwipiepy](https://github.com/bab2min/kiwipiepy) package as it is, and the `analyze_tbl` organized in tibble data type, and grammar compatibility with tidytext are supported provides an `analyze_tidy` function.
 
 ```{r}
-library(Elbird)
-## analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")
-analyze_tbl("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")
-analyze_tidy("안녕하세요 kiwi 형태소 분석기의 R wrapper인 Elbird를 소개합니다.")
+library(elbird)
+tem <- kiwi_builder(model_path_full())
+kw <- kiwi_builder_build(tem)
+kiwi_ready(wk)
 ```
 
 Multiple sentences are input as `vector` or `list` and output as `list`.
