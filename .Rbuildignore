@@ -7,3 +7,4 @@ R/.logo.R
 auto*
 lib
 include
+^data-raw$

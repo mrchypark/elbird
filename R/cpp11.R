@@ -43,3 +43,11 @@ Kiwi_Builder_ready <- function(kbe) {
 Kiwi_Builder_saveModel <- function(kbe, modelPath) {
   invisible(.Call(`_elbird_Kiwi_Builder_saveModel`, kbe, modelPath))
 }
+
+Kiwi_Builder_loadDictionary <- function(kbe, dictPath) {
+  .Call(`_elbird_Kiwi_Builder_loadDictionary`, kbe, dictPath)
+}
+
+Kiwi_Builder_addWord <- function(kbe, form) {
+  .Call(`_elbird_Kiwi_Builder_addWord`, kbe, form)
+}

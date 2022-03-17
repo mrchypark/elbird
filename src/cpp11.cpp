@@ -85,20 +85,36 @@ extern "C" SEXP _elbird_Kiwi_Builder_saveModel(SEXP kbe, SEXP modelPath) {
     return R_NilValue;
   END_CPP11
 }
+// KiwiBuilder.cpp
+size_t Kiwi_Builder_loadDictionary(SEXP kbe, const std::string& dictPath);
+extern "C" SEXP _elbird_Kiwi_Builder_loadDictionary(SEXP kbe, SEXP dictPath) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(Kiwi_Builder_loadDictionary(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kbe), cpp11::as_cpp<cpp11::decay_t<const std::string&>>(dictPath)));
+  END_CPP11
+}
+// KiwiBuilder.cpp
+bool Kiwi_Builder_addWord(SEXP kbe, const std::u16string& form);
+extern "C" SEXP _elbird_Kiwi_Builder_addWord(SEXP kbe, SEXP form) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(Kiwi_Builder_addWord(cpp11::as_cpp<cpp11::decay_t<SEXP>>(kbe), cpp11::as_cpp<cpp11::decay_t<const std::u16string&>>(form)));
+  END_CPP11
+}
 
 extern "C" {
 static const R_CallMethodDef CallEntries[] = {
-    {"_elbird_Kiwi_Builder",               (DL_FUNC) &_elbird_Kiwi_Builder,               1},
-    {"_elbird_Kiwi_Builder_build",         (DL_FUNC) &_elbird_Kiwi_Builder_build,         1},
-    {"_elbird_Kiwi_Builder_ready",         (DL_FUNC) &_elbird_Kiwi_Builder_ready,         1},
-    {"_elbird_Kiwi_Builder_saveModel",     (DL_FUNC) &_elbird_Kiwi_Builder_saveModel,     2},
-    {"_elbird_Kiwi_archType",              (DL_FUNC) &_elbird_Kiwi_archType,              1},
-    {"_elbird_Kiwi_getCutOffThreshold",    (DL_FUNC) &_elbird_Kiwi_getCutOffThreshold,    1},
-    {"_elbird_Kiwi_getIntegrateAllomorph", (DL_FUNC) &_elbird_Kiwi_getIntegrateAllomorph, 1},
-    {"_elbird_Kiwi_getNumThreads",         (DL_FUNC) &_elbird_Kiwi_getNumThreads,         1},
-    {"_elbird_Kiwi_ready",                 (DL_FUNC) &_elbird_Kiwi_ready,                 1},
-    {"_elbird_Kiwi_setCutOffThreshold",    (DL_FUNC) &_elbird_Kiwi_setCutOffThreshold,    2},
-    {"_elbird_Kiwi_setIntegrateAllomorph", (DL_FUNC) &_elbird_Kiwi_setIntegrateAllomorph, 2},
+    {"_elbird_Kiwi_Builder",                (DL_FUNC) &_elbird_Kiwi_Builder,                1},
+    {"_elbird_Kiwi_Builder_addWord",        (DL_FUNC) &_elbird_Kiwi_Builder_addWord,        2},
+    {"_elbird_Kiwi_Builder_build",          (DL_FUNC) &_elbird_Kiwi_Builder_build,          1},
+    {"_elbird_Kiwi_Builder_loadDictionary", (DL_FUNC) &_elbird_Kiwi_Builder_loadDictionary, 2},
+    {"_elbird_Kiwi_Builder_ready",          (DL_FUNC) &_elbird_Kiwi_Builder_ready,          1},
+    {"_elbird_Kiwi_Builder_saveModel",      (DL_FUNC) &_elbird_Kiwi_Builder_saveModel,      2},
+    {"_elbird_Kiwi_archType",               (DL_FUNC) &_elbird_Kiwi_archType,               1},
+    {"_elbird_Kiwi_getCutOffThreshold",     (DL_FUNC) &_elbird_Kiwi_getCutOffThreshold,     1},
+    {"_elbird_Kiwi_getIntegrateAllomorph",  (DL_FUNC) &_elbird_Kiwi_getIntegrateAllomorph,  1},
+    {"_elbird_Kiwi_getNumThreads",          (DL_FUNC) &_elbird_Kiwi_getNumThreads,          1},
+    {"_elbird_Kiwi_ready",                  (DL_FUNC) &_elbird_Kiwi_ready,                  1},
+    {"_elbird_Kiwi_setCutOffThreshold",     (DL_FUNC) &_elbird_Kiwi_setCutOffThreshold,     2},
+    {"_elbird_Kiwi_setIntegrateAllomorph",  (DL_FUNC) &_elbird_Kiwi_setIntegrateAllomorph,  2},
     {NULL, NULL, 0}
 };
 }
