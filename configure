@@ -3,7 +3,7 @@
 # Library settings
 PKG_TEST_HEADER="<kiwi/Kiwi.h>"
 PKG_LIBS="-lkiwi"
-PKG_CPPFLAGS="-pthread"
+PKG_CPPFLAGS=""
 LIB_VER="0.10.3"
 
 # Check for custom locations

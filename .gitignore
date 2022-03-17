@@ -5,5 +5,5 @@ config.log
 config.status
 lib
 include
-configure.log
 Kiwi*
+src/Makevars

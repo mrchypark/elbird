@@ -6,7 +6,6 @@
 #' @name analyze
 #' @importFrom purrr map
 #' @importFrom tibble tibble
-#' @importFrom reticulate iter_next
 #' @export
 analyze <- function(text, top_n = 3) {
   if (init_chk_not()) init()
