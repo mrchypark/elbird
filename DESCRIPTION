@@ -17,3 +17,6 @@ BugReports: https://github.com/mrchypark/elbird/issues
 SystemRequirements: c("C++11", "git", "wget", "cmake")
 LinkingTo: 
     cpp11
+Depends: 
+    R (>= 2.10)
+LazyData: true
