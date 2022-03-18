@@ -1,4 +1,0 @@
-CXX_STD=CXX11
-
-PKG_CPPFLAGS=-I../inst/include -pthread -I/home/rstudio/elbird/inst/include 
-PKG_LIBS=-pthread -L/home/rstudio/elbird/inst/lib -lkiwi

@@ -20,7 +20,7 @@ elif [ -d "`pwd`/inst/lib/" ]; then
 else
   echo "Prior system libkiwi installation not found"
   echo "Preparing to download and build library from source..."
-  git clone -b v$LIB_VER --no-checkout --filter=blob:limit=5m https://github.com/bab2min/Kiwi
+  git clone -b v$LIB_VER --filter=blob:limit=5m https://github.com/bab2min/Kiwi
   cd Kiwi
   git submodule update --init --recursive
   cd third_party/googletest && git checkout v1.8.x && cd ../../
@@ -65,7 +65,7 @@ if [ $? -ne 0 ]; then
   else
     echo "Attempt to use system libkiwi failed"
     echo "Preparing to download and build library from source..."
-    git clone -b v$LIB_VER --no-checkout --filter=blob:limit=5m https://github.com/bab2min/Kiwi
+    git clone -b v$LIB_VER --filter=blob:limit=5m https://github.com/bab2min/Kiwi
     cd Kiwi
     git submodule update --init --recursive
     cd third_party/googletest && git checkout v1.8.x && cd ../../
