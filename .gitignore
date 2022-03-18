@@ -3,8 +3,7 @@
 .RData
 config.log
 config.status
-lib
-include
 Kiwi*
 src/Makevars
 inst/ModelGenerator*
+inst/*
