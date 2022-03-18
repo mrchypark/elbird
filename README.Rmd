@@ -87,9 +87,8 @@ Basically, the `analyze` function that uses the output of the `analyze` function
 
 ```{r}
 library(elbird)
-tem <- kiwi_builder(model_path_full())
-kw <- kiwi_builder_build(tem)
-kiwi_ready(wk)
+tem <- elbird:::kiwi_init(elbird:::model_path_full(), 0, 1)
+elbird:::kiwi_analyze(tem, "안녕하세요 테스트합니다.", 1, 1)
 ```
 
 Multiple sentences are input as `vector` or `list` and output as `list`.

@@ -7,3 +7,4 @@ lib
 include
 Kiwi*
 src/Makevars
+inst/ModelGenerator*

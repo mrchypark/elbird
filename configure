@@ -48,10 +48,10 @@ echo "Using PKG_LIBS=$PKG_LIBS"
 
 # Find compiler
 CXX11=`${R_HOME}/bin/R CMD config CXX11`
-CFLAGS=`${R_HOME}/bin/R CMD config CFLAGS`
+CXXFLAGS="`${R_HOME}/bin/R CMD config CXXFLAGS` -Wreorder -Wpedantic"
 
 # Test for libkiwi
-echo "#include $PKG_TEST_HEADER" | ${CXX11} ${PKG_CPPFLAGS} ${CFLAGS} -E -xc++ - >/dev/null 2>&1
+echo "#include $PKG_TEST_HEADER" | ${CXX11} ${PKG_CPPFLAGS} ${CXXFLAGS} -E -xc++ - >/dev/null 2>&1
 
 if [ $? -ne 0 ]; then
   if [ "$SYS_LIB" -ne 1 ]; then
@@ -85,7 +85,7 @@ if [ $? -ne 0 ]; then
     PKG_CPPFLAGS="-I`pwd`/inst/include $PKG_CPPFLAGS"
     PKG_LIBS="-L`pwd`/inst/lib $PKG_LIBS"
     # Test for libkiwi
-    echo "#include $PKG_TEST_HEADER" | ${CXX11} ${PKG_CPPFLAGS} ${CFLAGS} -E -xc++ - >/dev/null 2>&1
+    echo "#include $PKG_TEST_HEADER" | ${CXX11} ${PKG_CPPFLAGS} ${CXXFLAGS} -E -xc++ - >/dev/null 2>&1
     if [ $? -ne 0 ]; then
     echo "------------------------------[ ELBIRD ]------------------------------"
     echo "Configuration failed because 'libkiwi' was not found."
@@ -99,7 +99,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Write to Makevars
-sed -e "s|@cppflags@|$PKG_CPPFLAGS|" -e "s|@libs@|$PKG_LIBS|" src/Makevars.in > src/Makevars
+sed -e "s|@cppflags@|$PKG_CPPFLAGS|" -e "s|@libs@|$PKG_LIBS|" -e "s|@cxxflags@|$CXXFLAGS|" src/Makevars.in > src/Makevars
 
 # Success
 exit 0
