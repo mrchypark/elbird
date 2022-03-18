@@ -62,6 +62,7 @@ SEXP kiwi_init_(SEXP model_path, SEXP num_threads, SEXP options) {
 
 // https://stackoverflow.com/questions/30279053/how-to-construct-a-named-list-a-sexp-to-be-returned-from-the-c-function-called
 // https://stackoverflow.com/questions/7032617/storing-c-objects-in-r
+// https://stackoverflow.com/a/38340103
 SEXP kiwi_analyze_(SEXP handle, SEXP text, SEXP top_n, SEXP match_options) {
 
   kiwi_h hd = (kiwi_h)R_ExternalPtrAddr(handle);
@@ -75,17 +76,31 @@ SEXP kiwi_analyze_(SEXP handle, SEXP text, SEXP top_n, SEXP match_options) {
     SEXP tokens = PROTECT(allocVector(VECSXP, wlen));
 
     for (int j = 0; j < wlen; j++) {
-      // const char *names[] = {"Positions", "POSType","Form"};
-      SEXP TokenInfo = PROTECT(allocVector(VECSXP, 3));
-      SET_VECTOR_ELT(TokenInfo, 0, ScalarInteger(kiwi_res_position(resh, i, j)));
-      SET_VECTOR_ELT(TokenInfo, 1, mkString(kiwi_res_tag(resh, i, j)));
-      SET_VECTOR_ELT(TokenInfo, 2, mkString(kiwi_res_form(resh, i, j)));
-      SET_VECTOR_ELT(tokens, j, TokenInfo);
-      UNPROTECT(1);
-    }
+      SEXP TokenInfo = PROTECT(allocVector(VECSXP, 4));
+      SEXP tinms = PROTECT(allocVector(STRSXP, 4));
 
-    // const char *names[] = {"Tokens", "Score"};
+      SET_STRING_ELT(tinms, 0, mkChar("form"));
+      SET_STRING_ELT(tinms, 1, mkChar("tag"));
+      SET_STRING_ELT(tinms, 2, mkChar("start"));
+      SET_STRING_ELT(tinms, 3, mkChar("len"));
+
+      setAttrib(TokenInfo, R_NamesSymbol, tinms);
+
+      SET_VECTOR_ELT(TokenInfo, 0, mkString(kiwi_res_form(resh, i, j)));
+      SET_VECTOR_ELT(TokenInfo, 1, mkString(kiwi_res_tag(resh, i, j)));
+      SET_VECTOR_ELT(TokenInfo, 2, ScalarInteger(kiwi_res_position(resh, i, j)+1));
+      SET_VECTOR_ELT(TokenInfo, 3, ScalarInteger(kiwi_res_length(resh, i, j)));
+      SET_VECTOR_ELT(tokens, j, TokenInfo);
+      UNPROTECT(2);
+    }
+    UNPROTECT(1);
+
     SEXP TokenResult = PROTECT(allocVector(VECSXP, 2));
+    SEXP nms = PROTECT(allocVector(STRSXP, 2));
+    SET_STRING_ELT(nms, 0, mkChar("Token"));
+    SET_STRING_ELT(nms, 1, mkChar("Score"));
+    setAttrib(TokenResult, R_NamesSymbol, nms);
+
     SET_VECTOR_ELT(TokenResult, 0, tokens);
     SET_VECTOR_ELT(TokenResult, 1, ScalarReal(kiwi_res_prob(resh, i)));
     SET_VECTOR_ELT(res, i, TokenResult);
