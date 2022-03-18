@@ -34,7 +34,7 @@ else
   make
   cd ../..
 
-  mkdir inst/lib
+  mkdir -p inst/lib
   mv -f Kiwi/build/libkiwi_static.a inst/lib/libkiwi.a
   mv -f Kiwi/include inst/include
   rm -rf Kiwi
@@ -78,7 +78,7 @@ if [ $? -ne 0 ]; then
     cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
     make
     cd ../..
-    mkdir inst/lib
+    mkdir -p inst/lib
     mv -f Kiwi/build/libkiwi_static.a inst/lib/libkiwi.a
     mv -f Kiwi/include inst/include
     rm -rf Kiwi
