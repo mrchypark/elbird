@@ -18,3 +18,7 @@ SystemRequirements: c("C++11", "git", "wget", "cmake")
 Depends: 
     R (>= 2.10)
 LazyData: true
+Imports: 
+    dplyr,
+    purrr,
+    tibble
