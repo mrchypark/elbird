@@ -1,10 +1,8 @@
 init_chk_not <- function() {
-  length(ls(envir=.el)) != 2
+  length(ls(envir=.el)) != 1
 }
 
 init <- function() {
-  kb <- Kiwi_Builder(model_path_full())
-  el <- Kiwi_Builder_build(kb)
+  kb <- kiwi_init(model_path_full())
   assign("kb", kb, envir = .el)
-  assign("el", el, envir = .el)
 }
