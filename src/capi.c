@@ -9,6 +9,11 @@ typedef struct kiwi_ws* kiwi_ws_h;
 typedef struct kiwi_ss* kiwi_ss_h;
 typedef unsigned short kchar16_t;
 
+typedef int(*kiwi_reader_t)(int, char*, void*);
+typedef int(*kiwi_reader_w_t)(int, kchar16_t*, void*);
+
+
+typedef int(*kiwi_receiver_t)(int, kiwi_res_h, void*);
 
 SEXP kiwi_version_() {
   return mkString(kiwi_version());
@@ -22,11 +27,27 @@ void kiwi_clear_error_() {
   kiwi_clear_error();
 }
 
-static void _finalizer(SEXP ext){
+static void _finalizer_kiwi_builder_h(SEXP ext){
+  if (NULL == R_ExternalPtrAddr(ext))
+    return;
+  kiwi_builder_h ptr = (kiwi_builder_h) R_ExternalPtrAddr(ext);
+  kiwi_builder_close(ptr);
+  R_ClearExternalPtr(ext);
+}
+
+SEXP kiwi_builder_init_(SEXP model_path, SEXP num_threads, SEXP options) {
+  kiwi_builder_h kb = kiwi_builder_init(CHAR(asChar(model_path)), asInteger(num_threads), asInteger(options));
+  SEXP res = PROTECT(R_MakeExternalPtr(kb, R_NilValue, R_NilValue));
+  R_RegisterCFinalizerEx(res, _finalizer_kiwi_builder_h, TRUE);
+  UNPROTECT(1);
+  return res;
+}
+
+static void _finalizer_kiwi_h(SEXP ext){
   if (NULL == R_ExternalPtrAddr(ext))
     return;
   kiwi_h ptr = (kiwi_h) R_ExternalPtrAddr(ext);
-  Free(ptr);
+  kiwi_close(ptr);
   R_ClearExternalPtr(ext);
 }
 
@@ -34,16 +55,16 @@ static void _finalizer(SEXP ext){
 SEXP kiwi_init_(SEXP model_path, SEXP num_threads, SEXP options) {
   kiwi_h kb = kiwi_init(CHAR(asChar(model_path)), asInteger(num_threads), asInteger(options));
   SEXP res = PROTECT(R_MakeExternalPtr(kb, R_NilValue, R_NilValue));
-  R_RegisterCFinalizerEx(res, _finalizer, TRUE);
+  R_RegisterCFinalizerEx(res, _finalizer_kiwi_h, TRUE);
   UNPROTECT(1);
   return res;
 }
 
 // https://stackoverflow.com/questions/30279053/how-to-construct-a-named-list-a-sexp-to-be-returned-from-the-c-function-called
 // https://stackoverflow.com/questions/7032617/storing-c-objects-in-r
-SEXP kiwi_analyze_(SEXP xptr, SEXP text, SEXP top_n, SEXP match_options) {
+SEXP kiwi_analyze_(SEXP handle, SEXP text, SEXP top_n, SEXP match_options) {
 
-  kiwi_h hd = (kiwi_h)R_ExternalPtrAddr(xptr);
+  kiwi_h hd = (kiwi_h)R_ExternalPtrAddr(handle);
   kiwi_res_h resh = kiwi_analyze(hd, CHAR(asChar(text)), asInteger(top_n), asInteger(match_options));
 
   int resSize = kiwi_res_size(resh);
