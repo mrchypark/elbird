@@ -1,2 +1,3 @@
 #!/bin/sh
+
 rm -rf src/Makevars inst/include inst/lib Kiwi
