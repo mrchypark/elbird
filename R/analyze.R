@@ -7,6 +7,5 @@
 analyze <- function(text, top_n = 3) {
   if (init_chk_not()) init()
   kb <- get("kb", envir = .el)
-  top_n <- as.integer(top_n)
   return(kiwi_analyze(kb, text, top_n, 1))
 }
