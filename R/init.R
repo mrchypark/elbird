@@ -3,6 +3,6 @@ init_chk_not <- function() {
 }
 
 init <- function() {
-  kb <- kiwi_init(model_path_full())
+  kb <- kiwi_init(model_path_full(), 0, 0)
   assign("kb", kb, envir = .el)
 }
