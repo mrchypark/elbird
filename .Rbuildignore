@@ -8,3 +8,4 @@ auto*
 lib
 include
 ^data-raw$
+inst/ModelGenerator*
