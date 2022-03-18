@@ -32,7 +32,7 @@ model_exists <- function() {
 #'
 #' @export
 model_is_set <- function() {
-  check_model()
+  model_exists()
 }
 
 #' @importFrom utils untar download.file
@@ -42,9 +42,6 @@ get_model_file <-function(version = "v0.10.3", path = model_path(), force = FALS
     unlink(path, recursive = TRUE)
 
   tarurl <- paste0("https://github.com/bab2min/Kiwi/releases/download/",version,"/kiwi_model_",version,".tgz")
-
-  if (getRversion() < "3.3.0") setInternet2()
-
   utils::download.file(tarurl, destfile = "kiwi-model.tgz", quiet = TRUE)
   dir.create(path, showWarnings = FALSE)
   utils::untar("kiwi-model.tgz", exdir = path)
