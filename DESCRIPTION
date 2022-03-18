@@ -16,10 +16,17 @@ URL: https://github.com/mrchypark/elbird/
 BugReports: https://github.com/mrchypark/elbird/issues
 SystemRequirements: c("C++11", "git", "wget", "cmake")
 Depends: 
+<<<<<<< HEAD
     R (>= 3.3)
+=======
+    R (>= 2.10)
+>>>>>>> 2e81f38c6f59b7a66f20ff38165c83ff4d28270f
 LazyData: true
 Imports: 
     dplyr,
     purrr,
+<<<<<<< HEAD
     methods,
+=======
+>>>>>>> 2e81f38c6f59b7a66f20ff38165c83ff4d28270f
     tibble
