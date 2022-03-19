@@ -17,4 +17,3 @@ init <- function() {
 
   assign("kb", kb, envir = .el)
 }
-
