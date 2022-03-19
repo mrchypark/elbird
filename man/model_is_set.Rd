@@ -6,6 +6,9 @@
 \usage{
 model_is_set()
 }
+\value{
+bool
+}
 \description{
 Verifies if model exist
 }

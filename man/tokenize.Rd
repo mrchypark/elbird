@@ -25,6 +25,8 @@ tokenize_tidy(text)
 \item{text}{target text.}
 }
 \value{
+a list type resault.
+
 a \link[tibble:tibble-package]{tibble}
 }
 \description{

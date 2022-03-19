@@ -7,6 +7,9 @@ Returns the kiwi model path.}
 \usage{
 kiwi_model_path()
 }
+\value{
+path char.
+}
 \description{
 A simple exported version of model_path
 Returns the kiwi model path.

@@ -11,9 +11,11 @@ model_path <- function() {
 
 #' A simple exported version of model_path
 #' Returns the kiwi model path.
+#'
+#' @return path char.
 #' @export
 kiwi_model_path <- function() {
-  model_path()
+  model_path_full()
 }
 
 model_path_full <- function() {
@@ -32,6 +34,7 @@ model_exists <- function() {
 
 #' Verifies if model exist
 #'
+#' @return bool
 #' @export
 model_is_set <- function() {
   model_exists()

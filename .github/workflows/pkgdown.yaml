@@ -23,6 +23,16 @@ jobs:
         with:
           use-public-rspm: true
 
+      - name: Install dependencies
+        run: |
+          install.packages('remotes')
+          remotes::install_deps(dependencies = TRUE)
+          install.packages("pkgdown", type = "binary")
+          packageVersion("pkgdown")
+          remotes::install_github("amirmasoudabdol/preferably", type = "source")
+          packageVersion("preferably")
+        shell: Rscript {0}
+
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
           extra-packages: pkgdown
@@ -33,3 +43,4 @@ jobs:
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
           Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'
+

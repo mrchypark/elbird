@@ -3,6 +3,7 @@
 #' @param text target text.
 #' @name tokenize
 #' @importFrom purrr map
+#' @return a list type resault.
 #' @export
 tokenize <- function(text) {
   if (init_chk_not())
