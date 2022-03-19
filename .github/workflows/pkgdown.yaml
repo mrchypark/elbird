@@ -19,6 +19,11 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v1
 
+      - name: Install rmarkdown, remotes, and the local package
+        run: |
+          install.packages("remotes")
+          remotes::install_cran("readr")
+
       - uses: r-lib/actions/setup-r@v1
         with:
           use-public-rspm: true
