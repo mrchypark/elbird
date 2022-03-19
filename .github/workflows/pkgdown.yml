@@ -3,6 +3,10 @@ on:
     branches:
       - main
       - 'gh-pages'
+  workflow_run:
+    workflows: ["readme"]
+    types:
+      - completed
 
 name: pkgdown
 
@@ -20,8 +24,10 @@ jobs:
       - name: Install rmarkdown, remotes, and the local package
         run: |
           install.packages("remotes")
-          remotes::install_cran("reticulate")
-          reticulate::install_miniconda()
+          remotes::install_cran("methods")
+          remotes::install_cran("tibble")
+          remotes::install_cran("dplyr")
+          remotes::install_cran("purrr")
         shell: Rscript {0}
       - name: Query dependencies
         run: |

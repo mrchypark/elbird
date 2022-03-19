@@ -2,6 +2,7 @@ on:
   push:
     paths:
       - README.Rmd
+      - README_kr.Rmd
 
 name: readme
 
@@ -17,18 +18,24 @@ jobs:
         run: |
           install.packages("remotes")
           remotes::install_cran("rmarkdown")
-          remotes::install_cran("dplyr")
           remotes::install_cran("tidytext")
-          remotes::install_cran("reticulate")
-          remotes::install_github("forkonlp/presidentSpeechKr")
-          reticulate::install_miniconda()
+          remotes::install_cran("methods")
+          remotes::install_cran("tibble")
+          remotes::install_cran("dplyr")
+          remotes::install_cran("purrr")
+          remotes::install_cran("rvest")
+          remotes::install_cran("httr")
+          install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev")
           remotes::install_local(".")
         shell: Rscript {0}
       - name: Render README
-        run: Rscript -e 'rmarkdown::render("README.Rmd")'
+        run: |
+          Rscript -e 'rmarkdown::render("README.Rmd")'
+          Rscript -e 'rmarkdown::render("README_kr.Rmd")'
       - name: Commit results
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git commit README.md -m 'Re-build README.Rmd' || echo "No changes to commit"
+          git commit README_kr.md -m 'Re-build README_kr.Rmd' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
