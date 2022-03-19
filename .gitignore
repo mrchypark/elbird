@@ -1,3 +1,9 @@
 .Rproj.user
 .Rhistory
 .RData
+config.log
+config.status
+Kiwi*
+src/Makevars
+inst/ModelGenerator*
+inst/*

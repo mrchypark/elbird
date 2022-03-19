@@ -1,46 +1,36 @@
-#' tokenize
+#' Simple version of tokenizer function.
 #'
 #' @param text target text.
-#'
 #' @name tokenize
 #' @importFrom purrr map
-#' @importFrom tibble tibble
-#' @importFrom reticulate iter_next
 #' @export
 tokenize <- function(text) {
   if (init_chk_not()) init()
-  el <- get("el", envir = .el)
-  res <- purrr::map(text, ~ el$tokenize(.x))
-  return(res)
+  kb <- get("kb", envir = .el)
+  return(purrr::map(text, ~ kiwi_analyze(kb, .x, 1, 1)[[1]][1]))
 }
 
 #' @export
+#' @importFrom dplyr bind_rows
 #' @rdname tokenize
 #' @return a [tibble][tibble::tibble-package]
-tokenize_tbl <- function(text) {
+tokenize_tibble <- function(text) {
   res <- tokenize_raw(text)
   return(dplyr::bind_rows(res, .id = "unique"))
 }
 
 #' @export
+#' @importFrom purrr map
 #' @rdname tokenize
 tokenize_tidytext <- function(text) {
   res <- tokenize_raw(text)
   purrr::map(res, ~paste0(.x$form, "/", .x$tag))
 }
 
-tokenize_raw <- function(text) {
-  res <- tokenize(text)
-  purrr::map(
-    res,
-    ~ tibble::tibble(
-      form = purrr::map_chr(.x, ~ .x[0]),
-      tag = purrr::map_chr(.x, ~ .x[1]),
-      start = purrr::map_int(.x, ~ .x[2]),
-      end = purrr::map_int(.x, ~ .x[3]),
-    )
-  )
-}
+
+#' @export
+#' @rdname tokenize
+tokenize_tbl <- tokenize_tibble
 
 #' @export
 #' @rdname tokenize
@@ -50,3 +40,16 @@ tokenize_tt <- tokenize_tidytext
 #' @rdname tokenize
 tokenize_tidy <- tokenize_tidytext
 
+#' @importFrom purrr map_chr map_int
+tokenize_raw <- function(text) {
+  res <- tokenize(text)
+  purrr::map(
+    res,
+    ~ tibble::tibble(
+      form = purrr::map_chr(.x$Token, ~ .x$form),
+      tag = purrr::map_chr(.x$Token, ~ .x$tag),
+      start = purrr::map_int(.x$Token, ~ .x$start),
+      len = purrr::map_int(.x$Token, ~ .x$len),
+    )
+  )
+}

@@ -2,17 +2,20 @@
 % Please edit documentation in R/tokenize.R
 \name{tokenize}
 \alias{tokenize}
-\alias{tokenize_tbl}
+\alias{tokenize_tibble}
 \alias{tokenize_tidytext}
+\alias{tokenize_tbl}
 \alias{tokenize_tt}
 \alias{tokenize_tidy}
-\title{tokenize}
+\title{Simple version of tokenizer function.}
 \usage{
 tokenize(text)
 
-tokenize_tbl(text)
+tokenize_tibble(text)
 
 tokenize_tidytext(text)
+
+tokenize_tbl(text)
 
 tokenize_tt(text)
 
@@ -25,5 +28,5 @@ tokenize_tidy(text)
 a \link[tibble:tibble-package]{tibble}
 }
 \description{
-tokenize
+Simple version of tokenizer function.
 }

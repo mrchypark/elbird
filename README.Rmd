@@ -107,23 +107,6 @@ analyze(c("안녕하세요","kiwi 형태소 분석기의 R wrapper인 elbird를 
 analyze(c("안녕하세요","kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."), top_n = 2)
 ```
 
-
-### add user word
-
-`elbird` connects and provides the add user word function of `kiwi`.
-
-The `add_user_word` function receives words, morpheme tags, and weights as inputs and adds a user dictionary to be used for analysis.
-
-The example below is an example of adding a user dictionary and modifying the result of `박찬` being divided and tokenized.
-
-```{r}
-library(elbird)
-tokenize_tbl("안녕하세요. 저는 박찬엽 입니다.")
-add_user_word("박찬엽","NNP",1)
-tokenize_tbl("안녕하세요. 저는 박찬엽 입니다.")
-```
-
-
 ## tag set
 
 [Tag list](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8) that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.

@@ -22,7 +22,7 @@ unregistered noun extraction (not implemented in `elbird` yet).
 
 ## Installation
 
-### CRAN *\!NOT YET\!*
+### CRAN *!NOT YET!*
 
 You can install the released version of elbird from
 [CRAN](https://CRAN.R-project.org) with:
@@ -52,85 +52,294 @@ function.
 library(elbird)
 tokenize("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
 #> [[1]]
-#> [[1]][[1]]
-#> Token(form='안녕', tag='NNG', start=0, len=2)
+#> [[1]]$Token
+#> [[1]]$Token[[1]]
+#> [[1]]$Token[[1]]$form
+#> [1] "안녕"
 #> 
-#> [[1]][[2]]
-#> Token(form='하', tag='XSA', start=2, len=1)
+#> [[1]]$Token[[1]]$tag
+#> [1] "NNG"
 #> 
-#> [[1]][[3]]
-#> Token(form='시', tag='EP', start=4, len=1)
+#> [[1]]$Token[[1]]$start
+#> [1] 1
 #> 
-#> [[1]][[4]]
-#> Token(form='어요', tag='EC', start=3, len=2)
+#> [[1]]$Token[[1]]$len
+#> [1] 2
 #> 
-#> [[1]][[5]]
-#> Token(form='kiwi', tag='SL', start=6, len=4)
 #> 
-#> [[1]][[6]]
-#> Token(form='형태소', tag='NNG', start=11, len=3)
+#> [[1]]$Token[[2]]
+#> [[1]]$Token[[2]]$form
+#> [1] "하"
 #> 
-#> [[1]][[7]]
-#> Token(form='분석', tag='NNG', start=15, len=2)
+#> [[1]]$Token[[2]]$tag
+#> [1] "XSA"
 #> 
-#> [[1]][[8]]
-#> Token(form='기', tag='NNB', start=17, len=1)
+#> [[1]]$Token[[2]]$start
+#> [1] 3
 #> 
-#> [[1]][[9]]
-#> Token(form='의', tag='JKG', start=18, len=1)
+#> [[1]]$Token[[2]]$len
+#> [1] 1
 #> 
-#> [[1]][[10]]
-#> Token(form='R', tag='SL', start=20, len=1)
 #> 
-#> [[1]][[11]]
-#> Token(form='wrapper', tag='SL', start=22, len=7)
+#> [[1]]$Token[[3]]
+#> [[1]]$Token[[3]]$form
+#> [1] "시"
 #> 
-#> [[1]][[12]]
-#> Token(form='이', tag='VCP', start=29, len=1)
+#> [[1]]$Token[[3]]$tag
+#> [1] "EP"
 #> 
-#> [[1]][[13]]
-#> Token(form='ᆫ', tag='ETM', start=30, len=0)
+#> [[1]]$Token[[3]]$start
+#> [1] 5
 #> 
-#> [[1]][[14]]
-#> Token(form='elbird', tag='SL', start=31, len=6)
+#> [[1]]$Token[[3]]$len
+#> [1] 1
 #> 
-#> [[1]][[15]]
-#> Token(form='를', tag='JKO', start=37, len=1)
 #> 
-#> [[1]][[16]]
-#> Token(form='소개', tag='NNG', start=39, len=2)
+#> [[1]]$Token[[4]]
+#> [[1]]$Token[[4]]$form
+#> [1] "어요"
 #> 
-#> [[1]][[17]]
-#> Token(form='하', tag='XSV', start=41, len=1)
+#> [[1]]$Token[[4]]$tag
+#> [1] "EC"
 #> 
-#> [[1]][[18]]
-#> Token(form='ᆸ니다', tag='EF', start=42, len=2)
+#> [[1]]$Token[[4]]$start
+#> [1] 4
 #> 
-#> [[1]][[19]]
-#> Token(form='.', tag='SF', start=44, len=1)
+#> [[1]]$Token[[4]]$len
+#> [1] 2
+#> 
+#> 
+#> [[1]]$Token[[5]]
+#> [[1]]$Token[[5]]$form
+#> [1] "kiwi"
+#> 
+#> [[1]]$Token[[5]]$tag
+#> [1] "SL"
+#> 
+#> [[1]]$Token[[5]]$start
+#> [1] 7
+#> 
+#> [[1]]$Token[[5]]$len
+#> [1] 4
+#> 
+#> 
+#> [[1]]$Token[[6]]
+#> [[1]]$Token[[6]]$form
+#> [1] "형태소"
+#> 
+#> [[1]]$Token[[6]]$tag
+#> [1] "NNG"
+#> 
+#> [[1]]$Token[[6]]$start
+#> [1] 12
+#> 
+#> [[1]]$Token[[6]]$len
+#> [1] 3
+#> 
+#> 
+#> [[1]]$Token[[7]]
+#> [[1]]$Token[[7]]$form
+#> [1] "분석"
+#> 
+#> [[1]]$Token[[7]]$tag
+#> [1] "NNG"
+#> 
+#> [[1]]$Token[[7]]$start
+#> [1] 16
+#> 
+#> [[1]]$Token[[7]]$len
+#> [1] 2
+#> 
+#> 
+#> [[1]]$Token[[8]]
+#> [[1]]$Token[[8]]$form
+#> [1] "기"
+#> 
+#> [[1]]$Token[[8]]$tag
+#> [1] "NNB"
+#> 
+#> [[1]]$Token[[8]]$start
+#> [1] 18
+#> 
+#> [[1]]$Token[[8]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[9]]
+#> [[1]]$Token[[9]]$form
+#> [1] "의"
+#> 
+#> [[1]]$Token[[9]]$tag
+#> [1] "JKG"
+#> 
+#> [[1]]$Token[[9]]$start
+#> [1] 19
+#> 
+#> [[1]]$Token[[9]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[10]]
+#> [[1]]$Token[[10]]$form
+#> [1] "R"
+#> 
+#> [[1]]$Token[[10]]$tag
+#> [1] "SL"
+#> 
+#> [[1]]$Token[[10]]$start
+#> [1] 21
+#> 
+#> [[1]]$Token[[10]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[11]]
+#> [[1]]$Token[[11]]$form
+#> [1] "wrapper"
+#> 
+#> [[1]]$Token[[11]]$tag
+#> [1] "SL"
+#> 
+#> [[1]]$Token[[11]]$start
+#> [1] 23
+#> 
+#> [[1]]$Token[[11]]$len
+#> [1] 7
+#> 
+#> 
+#> [[1]]$Token[[12]]
+#> [[1]]$Token[[12]]$form
+#> [1] "이"
+#> 
+#> [[1]]$Token[[12]]$tag
+#> [1] "VCP"
+#> 
+#> [[1]]$Token[[12]]$start
+#> [1] 30
+#> 
+#> [[1]]$Token[[12]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[13]]
+#> [[1]]$Token[[13]]$form
+#> [1] "ᆫ"
+#> 
+#> [[1]]$Token[[13]]$tag
+#> [1] "ETM"
+#> 
+#> [[1]]$Token[[13]]$start
+#> [1] 31
+#> 
+#> [[1]]$Token[[13]]$len
+#> [1] 0
+#> 
+#> 
+#> [[1]]$Token[[14]]
+#> [[1]]$Token[[14]]$form
+#> [1] "elbird"
+#> 
+#> [[1]]$Token[[14]]$tag
+#> [1] "SL"
+#> 
+#> [[1]]$Token[[14]]$start
+#> [1] 32
+#> 
+#> [[1]]$Token[[14]]$len
+#> [1] 6
+#> 
+#> 
+#> [[1]]$Token[[15]]
+#> [[1]]$Token[[15]]$form
+#> [1] "를"
+#> 
+#> [[1]]$Token[[15]]$tag
+#> [1] "JKO"
+#> 
+#> [[1]]$Token[[15]]$start
+#> [1] 38
+#> 
+#> [[1]]$Token[[15]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[16]]
+#> [[1]]$Token[[16]]$form
+#> [1] "소개"
+#> 
+#> [[1]]$Token[[16]]$tag
+#> [1] "NNG"
+#> 
+#> [[1]]$Token[[16]]$start
+#> [1] 40
+#> 
+#> [[1]]$Token[[16]]$len
+#> [1] 2
+#> 
+#> 
+#> [[1]]$Token[[17]]
+#> [[1]]$Token[[17]]$form
+#> [1] "하"
+#> 
+#> [[1]]$Token[[17]]$tag
+#> [1] "XSV"
+#> 
+#> [[1]]$Token[[17]]$start
+#> [1] 42
+#> 
+#> [[1]]$Token[[17]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[18]]
+#> [[1]]$Token[[18]]$form
+#> [1] "ᆸ니다"
+#> 
+#> [[1]]$Token[[18]]$tag
+#> [1] "EF"
+#> 
+#> [[1]]$Token[[18]]$start
+#> [1] 43
+#> 
+#> [[1]]$Token[[18]]$len
+#> [1] 2
+#> 
+#> 
+#> [[1]]$Token[[19]]
+#> [[1]]$Token[[19]]$form
+#> [1] "."
+#> 
+#> [[1]]$Token[[19]]$tag
+#> [1] "SF"
+#> 
+#> [[1]]$Token[[19]]$start
+#> [1] 45
+#> 
+#> [[1]]$Token[[19]]$len
+#> [1] 1
 tokenize_tbl("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
 #> # A tibble: 19 × 5
-#>    unique form    tag   start   end
+#>    unique form    tag   start   len
 #>    <chr>  <chr>   <chr> <int> <int>
-#>  1 1      안녕    NNG       0     2
-#>  2 1      하      XSA       2     1
-#>  3 1      시      EP        4     1
-#>  4 1      어요    EC        3     2
-#>  5 1      kiwi    SL        6     4
-#>  6 1      형태소  NNG      11     3
-#>  7 1      분석    NNG      15     2
-#>  8 1      기      NNB      17     1
-#>  9 1      의      JKG      18     1
-#> 10 1      R       SL       20     1
-#> 11 1      wrapper SL       22     7
-#> 12 1      이      VCP      29     1
-#> 13 1      ᆫ       ETM      30     0
-#> 14 1      elbird  SL       31     6
-#> 15 1      를      JKO      37     1
-#> 16 1      소개    NNG      39     2
-#> 17 1      하      XSV      41     1
-#> 18 1      ᆸ니다   EF       42     2
-#> 19 1      .       SF       44     1
+#>  1 1      안녕    NNG       1     2
+#>  2 1      하      XSA       3     1
+#>  3 1      시      EP        5     1
+#>  4 1      어요    EC        4     2
+#>  5 1      kiwi    SL        7     4
+#>  6 1      형태소  NNG      12     3
+#>  7 1      분석    NNG      16     2
+#>  8 1      기      NNB      18     1
+#>  9 1      의      JKG      19     1
+#> 10 1      R       SL       21     1
+#> 11 1      wrapper SL       23     7
+#> 12 1      이      VCP      30     1
+#> 13 1      ᆫ       ETM      31     0
+#> 14 1      elbird  SL       32     6
+#> 15 1      를      JKO      38     1
+#> 16 1      소개    NNG      40     2
+#> 17 1      하      XSV      42     1
+#> 18 1      ᆸ니다   EF       43     2
+#> 19 1      .       SF       45     1
 tokenize_tidy("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
 #> [[1]]
 #>  [1] "안녕/NNG"   "하/XSA"     "시/EP"      "어요/EC"    "kiwi/SL"   
@@ -144,87 +353,331 @@ Multiple sentences are input as `vector` or `list` and output as `list`.
 ``` r
 tokenize(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
 #> [[1]]
-#> [[1]][[1]]
-#> Token(form='새롭', tag='VA', start=0, len=2)
+#> [[1]]$Token
+#> [[1]]$Token[[1]]
+#> [[1]]$Token[[1]]$form
+#> [1] "새롭"
 #> 
-#> [[1]][[2]]
-#> Token(form='게', tag='EC', start=2, len=1)
+#> [[1]]$Token[[1]]$tag
+#> [1] "VA"
 #> 
-#> [[1]][[3]]
-#> Token(form='작성', tag='NNG', start=4, len=2)
+#> [[1]]$Token[[1]]$start
+#> [1] 1
 #> 
-#> [[1]][[4]]
-#> Token(form='되', tag='XSV', start=6, len=1)
+#> [[1]]$Token[[1]]$len
+#> [1] 2
 #> 
-#> [[1]][[5]]
-#> Token(form='ᆫ', tag='ETM', start=7, len=0)
 #> 
-#> [[1]][[6]]
-#> Token(form='패키지', tag='NNG', start=8, len=3)
+#> [[1]]$Token[[2]]
+#> [[1]]$Token[[2]]$form
+#> [1] "게"
 #> 
-#> [[1]][[7]]
-#> Token(form='이', tag='VCP', start=12, len=1)
+#> [[1]]$Token[[2]]$tag
+#> [1] "EC"
 #> 
-#> [[1]][[8]]
-#> Token(form='ᆸ니다', tag='EF', start=13, len=2)
+#> [[1]]$Token[[2]]$start
+#> [1] 3
 #> 
-#> [[1]][[9]]
-#> Token(form='.', tag='SF', start=15, len=1)
+#> [[1]]$Token[[2]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[3]]
+#> [[1]]$Token[[3]]$form
+#> [1] "작성"
+#> 
+#> [[1]]$Token[[3]]$tag
+#> [1] "NNG"
+#> 
+#> [[1]]$Token[[3]]$start
+#> [1] 5
+#> 
+#> [[1]]$Token[[3]]$len
+#> [1] 2
+#> 
+#> 
+#> [[1]]$Token[[4]]
+#> [[1]]$Token[[4]]$form
+#> [1] "되"
+#> 
+#> [[1]]$Token[[4]]$tag
+#> [1] "XSV"
+#> 
+#> [[1]]$Token[[4]]$start
+#> [1] 7
+#> 
+#> [[1]]$Token[[4]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[5]]
+#> [[1]]$Token[[5]]$form
+#> [1] "ᆫ"
+#> 
+#> [[1]]$Token[[5]]$tag
+#> [1] "ETM"
+#> 
+#> [[1]]$Token[[5]]$start
+#> [1] 8
+#> 
+#> [[1]]$Token[[5]]$len
+#> [1] 0
+#> 
+#> 
+#> [[1]]$Token[[6]]
+#> [[1]]$Token[[6]]$form
+#> [1] "패키지"
+#> 
+#> [[1]]$Token[[6]]$tag
+#> [1] "NNG"
+#> 
+#> [[1]]$Token[[6]]$start
+#> [1] 9
+#> 
+#> [[1]]$Token[[6]]$len
+#> [1] 3
+#> 
+#> 
+#> [[1]]$Token[[7]]
+#> [[1]]$Token[[7]]$form
+#> [1] "이"
+#> 
+#> [[1]]$Token[[7]]$tag
+#> [1] "VCP"
+#> 
+#> [[1]]$Token[[7]]$start
+#> [1] 13
+#> 
+#> [[1]]$Token[[7]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[8]]
+#> [[1]]$Token[[8]]$form
+#> [1] "ᆸ니다"
+#> 
+#> [[1]]$Token[[8]]$tag
+#> [1] "EF"
+#> 
+#> [[1]]$Token[[8]]$start
+#> [1] 14
+#> 
+#> [[1]]$Token[[8]]$len
+#> [1] 2
+#> 
+#> 
+#> [[1]]$Token[[9]]
+#> [[1]]$Token[[9]]$form
+#> [1] "."
+#> 
+#> [[1]]$Token[[9]]$tag
+#> [1] "SF"
+#> 
+#> [[1]]$Token[[9]]$start
+#> [1] 16
+#> 
+#> [[1]]$Token[[9]]$len
+#> [1] 1
+#> 
+#> 
 #> 
 #> 
 #> [[2]]
-#> [[2]][[1]]
-#> Token(form='tidytext', tag='SL', start=0, len=8)
+#> [[2]]$Token
+#> [[2]]$Token[[1]]
+#> [[2]]$Token[[1]]$form
+#> [1] "tidytext"
 #> 
-#> [[2]][[2]]
-#> Token(form='와', tag='JKB', start=8, len=1)
+#> [[2]]$Token[[1]]$tag
+#> [1] "SL"
 #> 
-#> [[2]][[3]]
-#> Token(form='의', tag='JKG', start=9, len=1)
+#> [[2]]$Token[[1]]$start
+#> [1] 1
 #> 
-#> [[2]][[4]]
-#> Token(form='호환', tag='NNG', start=11, len=2)
+#> [[2]]$Token[[1]]$len
+#> [1] 8
 #> 
-#> [[2]][[5]]
-#> Token(form='을', tag='JKO', start=13, len=1)
 #> 
-#> [[2]][[6]]
-#> Token(form='염두', tag='NNG', start=15, len=2)
+#> [[2]]$Token[[2]]
+#> [[2]]$Token[[2]]$form
+#> [1] "와"
 #> 
-#> [[2]][[7]]
-#> Token(form='하', tag='XSV', start=17, len=1)
+#> [[2]]$Token[[2]]$tag
+#> [1] "JKB"
 #> 
-#> [[2]][[8]]
-#> Token(form='고', tag='EC', start=18, len=1)
+#> [[2]]$Token[[2]]$start
+#> [1] 9
 #> 
-#> [[2]][[9]]
-#> Token(form='작성', tag='NNG', start=20, len=2)
+#> [[2]]$Token[[2]]$len
+#> [1] 1
 #> 
-#> [[2]][[10]]
-#> Token(form='하', tag='XSV', start=24, len=0)
 #> 
-#> [[2]][[11]]
-#> Token(form='었', tag='EP', start=23, len=1)
+#> [[2]]$Token[[3]]
+#> [[2]]$Token[[3]]$form
+#> [1] "의"
 #> 
-#> [[2]][[12]]
-#> Token(form='습니다', tag='EF', start=24, len=3)
+#> [[2]]$Token[[3]]$tag
+#> [1] "JKG"
 #> 
-#> [[2]][[13]]
-#> Token(form='.', tag='SF', start=27, len=1)
+#> [[2]]$Token[[3]]$start
+#> [1] 10
+#> 
+#> [[2]]$Token[[3]]$len
+#> [1] 1
+#> 
+#> 
+#> [[2]]$Token[[4]]
+#> [[2]]$Token[[4]]$form
+#> [1] "호환"
+#> 
+#> [[2]]$Token[[4]]$tag
+#> [1] "NNG"
+#> 
+#> [[2]]$Token[[4]]$start
+#> [1] 12
+#> 
+#> [[2]]$Token[[4]]$len
+#> [1] 2
+#> 
+#> 
+#> [[2]]$Token[[5]]
+#> [[2]]$Token[[5]]$form
+#> [1] "을"
+#> 
+#> [[2]]$Token[[5]]$tag
+#> [1] "JKO"
+#> 
+#> [[2]]$Token[[5]]$start
+#> [1] 14
+#> 
+#> [[2]]$Token[[5]]$len
+#> [1] 1
+#> 
+#> 
+#> [[2]]$Token[[6]]
+#> [[2]]$Token[[6]]$form
+#> [1] "염두"
+#> 
+#> [[2]]$Token[[6]]$tag
+#> [1] "NNG"
+#> 
+#> [[2]]$Token[[6]]$start
+#> [1] 16
+#> 
+#> [[2]]$Token[[6]]$len
+#> [1] 2
+#> 
+#> 
+#> [[2]]$Token[[7]]
+#> [[2]]$Token[[7]]$form
+#> [1] "하"
+#> 
+#> [[2]]$Token[[7]]$tag
+#> [1] "XSV"
+#> 
+#> [[2]]$Token[[7]]$start
+#> [1] 18
+#> 
+#> [[2]]$Token[[7]]$len
+#> [1] 1
+#> 
+#> 
+#> [[2]]$Token[[8]]
+#> [[2]]$Token[[8]]$form
+#> [1] "고"
+#> 
+#> [[2]]$Token[[8]]$tag
+#> [1] "EC"
+#> 
+#> [[2]]$Token[[8]]$start
+#> [1] 19
+#> 
+#> [[2]]$Token[[8]]$len
+#> [1] 1
+#> 
+#> 
+#> [[2]]$Token[[9]]
+#> [[2]]$Token[[9]]$form
+#> [1] "작성"
+#> 
+#> [[2]]$Token[[9]]$tag
+#> [1] "NNG"
+#> 
+#> [[2]]$Token[[9]]$start
+#> [1] 21
+#> 
+#> [[2]]$Token[[9]]$len
+#> [1] 2
+#> 
+#> 
+#> [[2]]$Token[[10]]
+#> [[2]]$Token[[10]]$form
+#> [1] "하"
+#> 
+#> [[2]]$Token[[10]]$tag
+#> [1] "XSV"
+#> 
+#> [[2]]$Token[[10]]$start
+#> [1] 25
+#> 
+#> [[2]]$Token[[10]]$len
+#> [1] 0
+#> 
+#> 
+#> [[2]]$Token[[11]]
+#> [[2]]$Token[[11]]$form
+#> [1] "였"
+#> 
+#> [[2]]$Token[[11]]$tag
+#> [1] "EP"
+#> 
+#> [[2]]$Token[[11]]$start
+#> [1] 24
+#> 
+#> [[2]]$Token[[11]]$len
+#> [1] 1
+#> 
+#> 
+#> [[2]]$Token[[12]]
+#> [[2]]$Token[[12]]$form
+#> [1] "습니다"
+#> 
+#> [[2]]$Token[[12]]$tag
+#> [1] "EF"
+#> 
+#> [[2]]$Token[[12]]$start
+#> [1] 25
+#> 
+#> [[2]]$Token[[12]]$len
+#> [1] 3
+#> 
+#> 
+#> [[2]]$Token[[13]]
+#> [[2]]$Token[[13]]$form
+#> [1] "."
+#> 
+#> [[2]]$Token[[13]]$tag
+#> [1] "SF"
+#> 
+#> [[2]]$Token[[13]]$start
+#> [1] 28
+#> 
+#> [[2]]$Token[[13]]$len
+#> [1] 1
 tokenize_tbl(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
 #> # A tibble: 22 × 5
-#>    unique form     tag   start   end
+#>    unique form     tag   start   len
 #>    <chr>  <chr>    <chr> <int> <int>
-#>  1 1      새롭     VA        0     2
-#>  2 1      게       EC        2     1
-#>  3 1      작성     NNG       4     2
-#>  4 1      되       XSV       6     1
-#>  5 1      ᆫ        ETM       7     0
-#>  6 1      패키지   NNG       8     3
-#>  7 1      이       VCP      12     1
-#>  8 1      ᆸ니다    EF       13     2
-#>  9 1      .        SF       15     1
-#> 10 2      tidytext SL        0     8
+#>  1 1      새롭     VA        1     2
+#>  2 1      게       EC        3     1
+#>  3 1      작성     NNG       5     2
+#>  4 1      되       XSV       7     1
+#>  5 1      ᆫ        ETM       8     0
+#>  6 1      패키지   NNG       9     3
+#>  7 1      이       VCP      13     1
+#>  8 1      ᆸ니다    EF       14     2
+#>  9 1      .        SF       16     1
+#> 10 2      tidytext SL        1     8
 #> # … with 12 more rows
 tokenize_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
 #> [[1]]
@@ -234,7 +687,7 @@ tokenize_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호�
 #> [[2]]
 #>  [1] "tidytext/SL" "와/JKB"      "의/JKG"      "호환/NNG"    "을/JKO"     
 #>  [6] "염두/NNG"    "하/XSV"      "고/EC"       "작성/NNG"    "하/XSV"     
-#> [11] "었/EP"       "습니다/EF"   "./SF"
+#> [11] "였/EP"       "습니다/EF"   "./SF"
 ```
 
 ### With tidytext
@@ -282,7 +735,7 @@ tar %>%
     output = word,
     token = tokenize_tidy
     )
-#> # A tibble: 4,563 × 2
+#> # A tibble: 4,569 × 2
 #>    paragraph word     
 #>        <int> <chr>    
 #>  1         1 존경/nng 
@@ -295,7 +748,7 @@ tar %>%
 #>  8         2 만/nr    
 #>  9         2 해외/nng 
 #> 10         2 동포/nng 
-#> # … with 4,553 more rows
+#> # … with 4,559 more rows
 ```
 
 ### analyze
@@ -308,606 +761,1121 @@ the `analyze` function of the
 library(elbird)
 analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
 #> [[1]]
-#> [[1]][[1]]
-#> [[1]][[1]][[1]]
-#> Token(form='안녕', tag='NNG', start=0, len=2)
+#> [[1]]$Token
+#> [[1]]$Token[[1]]
+#> [[1]]$Token[[1]]$form
+#> [1] "안녕"
 #> 
-#> [[1]][[1]][[2]]
-#> Token(form='하', tag='XSA', start=2, len=1)
+#> [[1]]$Token[[1]]$tag
+#> [1] "NNG"
 #> 
-#> [[1]][[1]][[3]]
-#> Token(form='시', tag='EP', start=4, len=1)
+#> [[1]]$Token[[1]]$start
+#> [1] 1
 #> 
-#> [[1]][[1]][[4]]
-#> Token(form='어요', tag='EC', start=3, len=2)
-#> 
-#> [[1]][[1]][[5]]
-#> Token(form='kiwi', tag='SL', start=6, len=4)
-#> 
-#> [[1]][[1]][[6]]
-#> Token(form='형태소', tag='NNG', start=11, len=3)
-#> 
-#> [[1]][[1]][[7]]
-#> Token(form='분석', tag='NNG', start=15, len=2)
-#> 
-#> [[1]][[1]][[8]]
-#> Token(form='기', tag='NNB', start=17, len=1)
-#> 
-#> [[1]][[1]][[9]]
-#> Token(form='의', tag='JKG', start=18, len=1)
-#> 
-#> [[1]][[1]][[10]]
-#> Token(form='R', tag='SL', start=20, len=1)
-#> 
-#> [[1]][[1]][[11]]
-#> Token(form='wrapper', tag='SL', start=22, len=7)
-#> 
-#> [[1]][[1]][[12]]
-#> Token(form='이', tag='VCP', start=29, len=1)
-#> 
-#> [[1]][[1]][[13]]
-#> Token(form='ᆫ', tag='ETM', start=30, len=0)
-#> 
-#> [[1]][[1]][[14]]
-#> Token(form='elbird', tag='SL', start=31, len=6)
-#> 
-#> [[1]][[1]][[15]]
-#> Token(form='를', tag='JKO', start=37, len=1)
-#> 
-#> [[1]][[1]][[16]]
-#> Token(form='소개', tag='NNG', start=39, len=2)
-#> 
-#> [[1]][[1]][[17]]
-#> Token(form='하', tag='XSV', start=41, len=1)
-#> 
-#> [[1]][[1]][[18]]
-#> Token(form='ᆸ니다', tag='EF', start=42, len=2)
-#> 
-#> [[1]][[1]][[19]]
-#> Token(form='.', tag='SF', start=44, len=1)
+#> [[1]]$Token[[1]]$len
+#> [1] 2
 #> 
 #> 
-#> [[1]][[2]]
+#> [[1]]$Token[[2]]
+#> [[1]]$Token[[2]]$form
+#> [1] "하"
+#> 
+#> [[1]]$Token[[2]]$tag
+#> [1] "XSA"
+#> 
+#> [[1]]$Token[[2]]$start
+#> [1] 3
+#> 
+#> [[1]]$Token[[2]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[3]]
+#> [[1]]$Token[[3]]$form
+#> [1] "시"
+#> 
+#> [[1]]$Token[[3]]$tag
+#> [1] "EP"
+#> 
+#> [[1]]$Token[[3]]$start
+#> [1] 5
+#> 
+#> [[1]]$Token[[3]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[4]]
+#> [[1]]$Token[[4]]$form
+#> [1] "어요"
+#> 
+#> [[1]]$Token[[4]]$tag
+#> [1] "EC"
+#> 
+#> [[1]]$Token[[4]]$start
+#> [1] 4
+#> 
+#> [[1]]$Token[[4]]$len
+#> [1] 2
+#> 
+#> 
+#> [[1]]$Token[[5]]
+#> [[1]]$Token[[5]]$form
+#> [1] "kiwi"
+#> 
+#> [[1]]$Token[[5]]$tag
+#> [1] "SL"
+#> 
+#> [[1]]$Token[[5]]$start
+#> [1] 7
+#> 
+#> [[1]]$Token[[5]]$len
+#> [1] 4
+#> 
+#> 
+#> [[1]]$Token[[6]]
+#> [[1]]$Token[[6]]$form
+#> [1] "형태소"
+#> 
+#> [[1]]$Token[[6]]$tag
+#> [1] "NNG"
+#> 
+#> [[1]]$Token[[6]]$start
+#> [1] 12
+#> 
+#> [[1]]$Token[[6]]$len
+#> [1] 3
+#> 
+#> 
+#> [[1]]$Token[[7]]
+#> [[1]]$Token[[7]]$form
+#> [1] "분석"
+#> 
+#> [[1]]$Token[[7]]$tag
+#> [1] "NNG"
+#> 
+#> [[1]]$Token[[7]]$start
+#> [1] 16
+#> 
+#> [[1]]$Token[[7]]$len
+#> [1] 2
+#> 
+#> 
+#> [[1]]$Token[[8]]
+#> [[1]]$Token[[8]]$form
+#> [1] "기"
+#> 
+#> [[1]]$Token[[8]]$tag
+#> [1] "NNB"
+#> 
+#> [[1]]$Token[[8]]$start
+#> [1] 18
+#> 
+#> [[1]]$Token[[8]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[9]]
+#> [[1]]$Token[[9]]$form
+#> [1] "의"
+#> 
+#> [[1]]$Token[[9]]$tag
+#> [1] "JKG"
+#> 
+#> [[1]]$Token[[9]]$start
+#> [1] 19
+#> 
+#> [[1]]$Token[[9]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[10]]
+#> [[1]]$Token[[10]]$form
+#> [1] "R"
+#> 
+#> [[1]]$Token[[10]]$tag
+#> [1] "SL"
+#> 
+#> [[1]]$Token[[10]]$start
+#> [1] 21
+#> 
+#> [[1]]$Token[[10]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[11]]
+#> [[1]]$Token[[11]]$form
+#> [1] "wrapper"
+#> 
+#> [[1]]$Token[[11]]$tag
+#> [1] "SL"
+#> 
+#> [[1]]$Token[[11]]$start
+#> [1] 23
+#> 
+#> [[1]]$Token[[11]]$len
+#> [1] 7
+#> 
+#> 
+#> [[1]]$Token[[12]]
+#> [[1]]$Token[[12]]$form
+#> [1] "이"
+#> 
+#> [[1]]$Token[[12]]$tag
+#> [1] "VCP"
+#> 
+#> [[1]]$Token[[12]]$start
+#> [1] 30
+#> 
+#> [[1]]$Token[[12]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[13]]
+#> [[1]]$Token[[13]]$form
+#> [1] "ᆫ"
+#> 
+#> [[1]]$Token[[13]]$tag
+#> [1] "ETM"
+#> 
+#> [[1]]$Token[[13]]$start
+#> [1] 31
+#> 
+#> [[1]]$Token[[13]]$len
+#> [1] 0
+#> 
+#> 
+#> [[1]]$Token[[14]]
+#> [[1]]$Token[[14]]$form
+#> [1] "elbird"
+#> 
+#> [[1]]$Token[[14]]$tag
+#> [1] "SL"
+#> 
+#> [[1]]$Token[[14]]$start
+#> [1] 32
+#> 
+#> [[1]]$Token[[14]]$len
+#> [1] 6
+#> 
+#> 
+#> [[1]]$Token[[15]]
+#> [[1]]$Token[[15]]$form
+#> [1] "를"
+#> 
+#> [[1]]$Token[[15]]$tag
+#> [1] "JKO"
+#> 
+#> [[1]]$Token[[15]]$start
+#> [1] 38
+#> 
+#> [[1]]$Token[[15]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[16]]
+#> [[1]]$Token[[16]]$form
+#> [1] "소개"
+#> 
+#> [[1]]$Token[[16]]$tag
+#> [1] "NNG"
+#> 
+#> [[1]]$Token[[16]]$start
+#> [1] 40
+#> 
+#> [[1]]$Token[[16]]$len
+#> [1] 2
+#> 
+#> 
+#> [[1]]$Token[[17]]
+#> [[1]]$Token[[17]]$form
+#> [1] "하"
+#> 
+#> [[1]]$Token[[17]]$tag
+#> [1] "XSV"
+#> 
+#> [[1]]$Token[[17]]$start
+#> [1] 42
+#> 
+#> [[1]]$Token[[17]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[18]]
+#> [[1]]$Token[[18]]$form
+#> [1] "ᆸ니다"
+#> 
+#> [[1]]$Token[[18]]$tag
+#> [1] "EF"
+#> 
+#> [[1]]$Token[[18]]$start
+#> [1] 43
+#> 
+#> [[1]]$Token[[18]]$len
+#> [1] 2
+#> 
+#> 
+#> [[1]]$Token[[19]]
+#> [[1]]$Token[[19]]$form
+#> [1] "."
+#> 
+#> [[1]]$Token[[19]]$tag
+#> [1] "SF"
+#> 
+#> [[1]]$Token[[19]]$start
+#> [1] 45
+#> 
+#> [[1]]$Token[[19]]$len
+#> [1] 1
+#> 
+#> 
+#> 
+#> [[1]]$Score
 #> [1] -97.36888
 #> 
 #> 
 #> [[2]]
-#> [[2]][[1]]
-#> [[2]][[1]][[1]]
-#> Token(form='안녕', tag='NNG', start=0, len=2)
+#> [[2]]$Token
+#> [[2]]$Token[[1]]
+#> [[2]]$Token[[1]]$form
+#> [1] "안녕"
 #> 
-#> [[2]][[1]][[2]]
-#> Token(form='하', tag='XSA', start=2, len=1)
+#> [[2]]$Token[[1]]$tag
+#> [1] "NNG"
 #> 
-#> [[2]][[1]][[3]]
-#> Token(form='시', tag='EP', start=4, len=1)
+#> [[2]]$Token[[1]]$start
+#> [1] 1
 #> 
-#> [[2]][[1]][[4]]
-#> Token(form='어요', tag='EC', start=3, len=2)
-#> 
-#> [[2]][[1]][[5]]
-#> Token(form='kiwi', tag='SL', start=6, len=4)
-#> 
-#> [[2]][[1]][[6]]
-#> Token(form='형태소', tag='NNG', start=11, len=3)
-#> 
-#> [[2]][[1]][[7]]
-#> Token(form='분석', tag='NNG', start=15, len=2)
-#> 
-#> [[2]][[1]][[8]]
-#> Token(form='기', tag='NNG', start=17, len=1)
-#> 
-#> [[2]][[1]][[9]]
-#> Token(form='의', tag='JKG', start=18, len=1)
-#> 
-#> [[2]][[1]][[10]]
-#> Token(form='R', tag='SL', start=20, len=1)
-#> 
-#> [[2]][[1]][[11]]
-#> Token(form='wrapper', tag='SL', start=22, len=7)
-#> 
-#> [[2]][[1]][[12]]
-#> Token(form='이', tag='VCP', start=29, len=1)
-#> 
-#> [[2]][[1]][[13]]
-#> Token(form='ᆫ', tag='ETM', start=30, len=0)
-#> 
-#> [[2]][[1]][[14]]
-#> Token(form='elbird', tag='SL', start=31, len=6)
-#> 
-#> [[2]][[1]][[15]]
-#> Token(form='를', tag='JKO', start=37, len=1)
-#> 
-#> [[2]][[1]][[16]]
-#> Token(form='소개', tag='NNG', start=39, len=2)
-#> 
-#> [[2]][[1]][[17]]
-#> Token(form='하', tag='XSV', start=41, len=1)
-#> 
-#> [[2]][[1]][[18]]
-#> Token(form='ᆸ니다', tag='EF', start=42, len=2)
-#> 
-#> [[2]][[1]][[19]]
-#> Token(form='.', tag='SF', start=44, len=1)
+#> [[2]]$Token[[1]]$len
+#> [1] 2
 #> 
 #> 
-#> [[2]][[2]]
+#> [[2]]$Token[[2]]
+#> [[2]]$Token[[2]]$form
+#> [1] "하"
+#> 
+#> [[2]]$Token[[2]]$tag
+#> [1] "XSA"
+#> 
+#> [[2]]$Token[[2]]$start
+#> [1] 3
+#> 
+#> [[2]]$Token[[2]]$len
+#> [1] 1
+#> 
+#> 
+#> [[2]]$Token[[3]]
+#> [[2]]$Token[[3]]$form
+#> [1] "시"
+#> 
+#> [[2]]$Token[[3]]$tag
+#> [1] "EP"
+#> 
+#> [[2]]$Token[[3]]$start
+#> [1] 5
+#> 
+#> [[2]]$Token[[3]]$len
+#> [1] 1
+#> 
+#> 
+#> [[2]]$Token[[4]]
+#> [[2]]$Token[[4]]$form
+#> [1] "어요"
+#> 
+#> [[2]]$Token[[4]]$tag
+#> [1] "EC"
+#> 
+#> [[2]]$Token[[4]]$start
+#> [1] 4
+#> 
+#> [[2]]$Token[[4]]$len
+#> [1] 2
+#> 
+#> 
+#> [[2]]$Token[[5]]
+#> [[2]]$Token[[5]]$form
+#> [1] "kiwi"
+#> 
+#> [[2]]$Token[[5]]$tag
+#> [1] "SL"
+#> 
+#> [[2]]$Token[[5]]$start
+#> [1] 7
+#> 
+#> [[2]]$Token[[5]]$len
+#> [1] 4
+#> 
+#> 
+#> [[2]]$Token[[6]]
+#> [[2]]$Token[[6]]$form
+#> [1] "형태소"
+#> 
+#> [[2]]$Token[[6]]$tag
+#> [1] "NNG"
+#> 
+#> [[2]]$Token[[6]]$start
+#> [1] 12
+#> 
+#> [[2]]$Token[[6]]$len
+#> [1] 3
+#> 
+#> 
+#> [[2]]$Token[[7]]
+#> [[2]]$Token[[7]]$form
+#> [1] "분석"
+#> 
+#> [[2]]$Token[[7]]$tag
+#> [1] "NNG"
+#> 
+#> [[2]]$Token[[7]]$start
+#> [1] 16
+#> 
+#> [[2]]$Token[[7]]$len
+#> [1] 2
+#> 
+#> 
+#> [[2]]$Token[[8]]
+#> [[2]]$Token[[8]]$form
+#> [1] "기"
+#> 
+#> [[2]]$Token[[8]]$tag
+#> [1] "NNG"
+#> 
+#> [[2]]$Token[[8]]$start
+#> [1] 18
+#> 
+#> [[2]]$Token[[8]]$len
+#> [1] 1
+#> 
+#> 
+#> [[2]]$Token[[9]]
+#> [[2]]$Token[[9]]$form
+#> [1] "의"
+#> 
+#> [[2]]$Token[[9]]$tag
+#> [1] "JKG"
+#> 
+#> [[2]]$Token[[9]]$start
+#> [1] 19
+#> 
+#> [[2]]$Token[[9]]$len
+#> [1] 1
+#> 
+#> 
+#> [[2]]$Token[[10]]
+#> [[2]]$Token[[10]]$form
+#> [1] "R"
+#> 
+#> [[2]]$Token[[10]]$tag
+#> [1] "SL"
+#> 
+#> [[2]]$Token[[10]]$start
+#> [1] 21
+#> 
+#> [[2]]$Token[[10]]$len
+#> [1] 1
+#> 
+#> 
+#> [[2]]$Token[[11]]
+#> [[2]]$Token[[11]]$form
+#> [1] "wrapper"
+#> 
+#> [[2]]$Token[[11]]$tag
+#> [1] "SL"
+#> 
+#> [[2]]$Token[[11]]$start
+#> [1] 23
+#> 
+#> [[2]]$Token[[11]]$len
+#> [1] 7
+#> 
+#> 
+#> [[2]]$Token[[12]]
+#> [[2]]$Token[[12]]$form
+#> [1] "이"
+#> 
+#> [[2]]$Token[[12]]$tag
+#> [1] "VCP"
+#> 
+#> [[2]]$Token[[12]]$start
+#> [1] 30
+#> 
+#> [[2]]$Token[[12]]$len
+#> [1] 1
+#> 
+#> 
+#> [[2]]$Token[[13]]
+#> [[2]]$Token[[13]]$form
+#> [1] "ᆫ"
+#> 
+#> [[2]]$Token[[13]]$tag
+#> [1] "ETM"
+#> 
+#> [[2]]$Token[[13]]$start
+#> [1] 31
+#> 
+#> [[2]]$Token[[13]]$len
+#> [1] 0
+#> 
+#> 
+#> [[2]]$Token[[14]]
+#> [[2]]$Token[[14]]$form
+#> [1] "elbird"
+#> 
+#> [[2]]$Token[[14]]$tag
+#> [1] "SL"
+#> 
+#> [[2]]$Token[[14]]$start
+#> [1] 32
+#> 
+#> [[2]]$Token[[14]]$len
+#> [1] 6
+#> 
+#> 
+#> [[2]]$Token[[15]]
+#> [[2]]$Token[[15]]$form
+#> [1] "를"
+#> 
+#> [[2]]$Token[[15]]$tag
+#> [1] "JKO"
+#> 
+#> [[2]]$Token[[15]]$start
+#> [1] 38
+#> 
+#> [[2]]$Token[[15]]$len
+#> [1] 1
+#> 
+#> 
+#> [[2]]$Token[[16]]
+#> [[2]]$Token[[16]]$form
+#> [1] "소개"
+#> 
+#> [[2]]$Token[[16]]$tag
+#> [1] "NNG"
+#> 
+#> [[2]]$Token[[16]]$start
+#> [1] 40
+#> 
+#> [[2]]$Token[[16]]$len
+#> [1] 2
+#> 
+#> 
+#> [[2]]$Token[[17]]
+#> [[2]]$Token[[17]]$form
+#> [1] "하"
+#> 
+#> [[2]]$Token[[17]]$tag
+#> [1] "XSV"
+#> 
+#> [[2]]$Token[[17]]$start
+#> [1] 42
+#> 
+#> [[2]]$Token[[17]]$len
+#> [1] 1
+#> 
+#> 
+#> [[2]]$Token[[18]]
+#> [[2]]$Token[[18]]$form
+#> [1] "ᆸ니다"
+#> 
+#> [[2]]$Token[[18]]$tag
+#> [1] "EF"
+#> 
+#> [[2]]$Token[[18]]$start
+#> [1] 43
+#> 
+#> [[2]]$Token[[18]]$len
+#> [1] 2
+#> 
+#> 
+#> [[2]]$Token[[19]]
+#> [[2]]$Token[[19]]$form
+#> [1] "."
+#> 
+#> [[2]]$Token[[19]]$tag
+#> [1] "SF"
+#> 
+#> [[2]]$Token[[19]]$start
+#> [1] 45
+#> 
+#> [[2]]$Token[[19]]$len
+#> [1] 1
+#> 
+#> 
+#> 
+#> [[2]]$Score
 #> [1] -97.94218
 #> 
 #> 
 #> [[3]]
-#> [[3]][[1]]
-#> [[3]][[1]][[1]]
-#> Token(form='안녕', tag='NNG', start=0, len=2)
+#> [[3]]$Token
+#> [[3]]$Token[[1]]
+#> [[3]]$Token[[1]]$form
+#> [1] "안녕"
 #> 
-#> [[3]][[1]][[2]]
-#> Token(form='하', tag='XSA', start=2, len=1)
+#> [[3]]$Token[[1]]$tag
+#> [1] "NNG"
 #> 
-#> [[3]][[1]][[3]]
-#> Token(form='시', tag='EP', start=4, len=1)
+#> [[3]]$Token[[1]]$start
+#> [1] 1
 #> 
-#> [[3]][[1]][[4]]
-#> Token(form='어요', tag='EC', start=3, len=2)
-#> 
-#> [[3]][[1]][[5]]
-#> Token(form='kiwi', tag='SL', start=6, len=4)
-#> 
-#> [[3]][[1]][[6]]
-#> Token(form='형태소', tag='NNG', start=11, len=3)
-#> 
-#> [[3]][[1]][[7]]
-#> Token(form='분석', tag='NNG', start=15, len=2)
-#> 
-#> [[3]][[1]][[8]]
-#> Token(form='기', tag='ETN', start=17, len=1)
-#> 
-#> [[3]][[1]][[9]]
-#> Token(form='의', tag='JKG', start=18, len=1)
-#> 
-#> [[3]][[1]][[10]]
-#> Token(form='R', tag='SL', start=20, len=1)
-#> 
-#> [[3]][[1]][[11]]
-#> Token(form='wrapper', tag='SL', start=22, len=7)
-#> 
-#> [[3]][[1]][[12]]
-#> Token(form='이', tag='VCP', start=29, len=1)
-#> 
-#> [[3]][[1]][[13]]
-#> Token(form='ᆫ', tag='ETM', start=30, len=0)
-#> 
-#> [[3]][[1]][[14]]
-#> Token(form='elbird', tag='SL', start=31, len=6)
-#> 
-#> [[3]][[1]][[15]]
-#> Token(form='를', tag='JKO', start=37, len=1)
-#> 
-#> [[3]][[1]][[16]]
-#> Token(form='소개', tag='NNG', start=39, len=2)
-#> 
-#> [[3]][[1]][[17]]
-#> Token(form='하', tag='XSV', start=41, len=1)
-#> 
-#> [[3]][[1]][[18]]
-#> Token(form='ᆸ니다', tag='EF', start=42, len=2)
-#> 
-#> [[3]][[1]][[19]]
-#> Token(form='.', tag='SF', start=44, len=1)
+#> [[3]]$Token[[1]]$len
+#> [1] 2
 #> 
 #> 
-#> [[3]][[2]]
+#> [[3]]$Token[[2]]
+#> [[3]]$Token[[2]]$form
+#> [1] "하"
+#> 
+#> [[3]]$Token[[2]]$tag
+#> [1] "XSA"
+#> 
+#> [[3]]$Token[[2]]$start
+#> [1] 3
+#> 
+#> [[3]]$Token[[2]]$len
+#> [1] 1
+#> 
+#> 
+#> [[3]]$Token[[3]]
+#> [[3]]$Token[[3]]$form
+#> [1] "시"
+#> 
+#> [[3]]$Token[[3]]$tag
+#> [1] "EP"
+#> 
+#> [[3]]$Token[[3]]$start
+#> [1] 5
+#> 
+#> [[3]]$Token[[3]]$len
+#> [1] 1
+#> 
+#> 
+#> [[3]]$Token[[4]]
+#> [[3]]$Token[[4]]$form
+#> [1] "어요"
+#> 
+#> [[3]]$Token[[4]]$tag
+#> [1] "EC"
+#> 
+#> [[3]]$Token[[4]]$start
+#> [1] 4
+#> 
+#> [[3]]$Token[[4]]$len
+#> [1] 2
+#> 
+#> 
+#> [[3]]$Token[[5]]
+#> [[3]]$Token[[5]]$form
+#> [1] "kiwi"
+#> 
+#> [[3]]$Token[[5]]$tag
+#> [1] "SL"
+#> 
+#> [[3]]$Token[[5]]$start
+#> [1] 7
+#> 
+#> [[3]]$Token[[5]]$len
+#> [1] 4
+#> 
+#> 
+#> [[3]]$Token[[6]]
+#> [[3]]$Token[[6]]$form
+#> [1] "형태소"
+#> 
+#> [[3]]$Token[[6]]$tag
+#> [1] "NNG"
+#> 
+#> [[3]]$Token[[6]]$start
+#> [1] 12
+#> 
+#> [[3]]$Token[[6]]$len
+#> [1] 3
+#> 
+#> 
+#> [[3]]$Token[[7]]
+#> [[3]]$Token[[7]]$form
+#> [1] "분석"
+#> 
+#> [[3]]$Token[[7]]$tag
+#> [1] "NNG"
+#> 
+#> [[3]]$Token[[7]]$start
+#> [1] 16
+#> 
+#> [[3]]$Token[[7]]$len
+#> [1] 2
+#> 
+#> 
+#> [[3]]$Token[[8]]
+#> [[3]]$Token[[8]]$form
+#> [1] "기"
+#> 
+#> [[3]]$Token[[8]]$tag
+#> [1] "ETN"
+#> 
+#> [[3]]$Token[[8]]$start
+#> [1] 18
+#> 
+#> [[3]]$Token[[8]]$len
+#> [1] 1
+#> 
+#> 
+#> [[3]]$Token[[9]]
+#> [[3]]$Token[[9]]$form
+#> [1] "의"
+#> 
+#> [[3]]$Token[[9]]$tag
+#> [1] "JKG"
+#> 
+#> [[3]]$Token[[9]]$start
+#> [1] 19
+#> 
+#> [[3]]$Token[[9]]$len
+#> [1] 1
+#> 
+#> 
+#> [[3]]$Token[[10]]
+#> [[3]]$Token[[10]]$form
+#> [1] "R"
+#> 
+#> [[3]]$Token[[10]]$tag
+#> [1] "SL"
+#> 
+#> [[3]]$Token[[10]]$start
+#> [1] 21
+#> 
+#> [[3]]$Token[[10]]$len
+#> [1] 1
+#> 
+#> 
+#> [[3]]$Token[[11]]
+#> [[3]]$Token[[11]]$form
+#> [1] "wrapper"
+#> 
+#> [[3]]$Token[[11]]$tag
+#> [1] "SL"
+#> 
+#> [[3]]$Token[[11]]$start
+#> [1] 23
+#> 
+#> [[3]]$Token[[11]]$len
+#> [1] 7
+#> 
+#> 
+#> [[3]]$Token[[12]]
+#> [[3]]$Token[[12]]$form
+#> [1] "이"
+#> 
+#> [[3]]$Token[[12]]$tag
+#> [1] "VCP"
+#> 
+#> [[3]]$Token[[12]]$start
+#> [1] 30
+#> 
+#> [[3]]$Token[[12]]$len
+#> [1] 1
+#> 
+#> 
+#> [[3]]$Token[[13]]
+#> [[3]]$Token[[13]]$form
+#> [1] "ᆫ"
+#> 
+#> [[3]]$Token[[13]]$tag
+#> [1] "ETM"
+#> 
+#> [[3]]$Token[[13]]$start
+#> [1] 31
+#> 
+#> [[3]]$Token[[13]]$len
+#> [1] 0
+#> 
+#> 
+#> [[3]]$Token[[14]]
+#> [[3]]$Token[[14]]$form
+#> [1] "elbird"
+#> 
+#> [[3]]$Token[[14]]$tag
+#> [1] "SL"
+#> 
+#> [[3]]$Token[[14]]$start
+#> [1] 32
+#> 
+#> [[3]]$Token[[14]]$len
+#> [1] 6
+#> 
+#> 
+#> [[3]]$Token[[15]]
+#> [[3]]$Token[[15]]$form
+#> [1] "를"
+#> 
+#> [[3]]$Token[[15]]$tag
+#> [1] "JKO"
+#> 
+#> [[3]]$Token[[15]]$start
+#> [1] 38
+#> 
+#> [[3]]$Token[[15]]$len
+#> [1] 1
+#> 
+#> 
+#> [[3]]$Token[[16]]
+#> [[3]]$Token[[16]]$form
+#> [1] "소개"
+#> 
+#> [[3]]$Token[[16]]$tag
+#> [1] "NNG"
+#> 
+#> [[3]]$Token[[16]]$start
+#> [1] 40
+#> 
+#> [[3]]$Token[[16]]$len
+#> [1] 2
+#> 
+#> 
+#> [[3]]$Token[[17]]
+#> [[3]]$Token[[17]]$form
+#> [1] "하"
+#> 
+#> [[3]]$Token[[17]]$tag
+#> [1] "XSV"
+#> 
+#> [[3]]$Token[[17]]$start
+#> [1] 42
+#> 
+#> [[3]]$Token[[17]]$len
+#> [1] 1
+#> 
+#> 
+#> [[3]]$Token[[18]]
+#> [[3]]$Token[[18]]$form
+#> [1] "ᆸ니다"
+#> 
+#> [[3]]$Token[[18]]$tag
+#> [1] "EF"
+#> 
+#> [[3]]$Token[[18]]$start
+#> [1] 43
+#> 
+#> [[3]]$Token[[18]]$len
+#> [1] 2
+#> 
+#> 
+#> [[3]]$Token[[19]]
+#> [[3]]$Token[[19]]$form
+#> [1] "."
+#> 
+#> [[3]]$Token[[19]]$tag
+#> [1] "SF"
+#> 
+#> [[3]]$Token[[19]]$start
+#> [1] 45
+#> 
+#> [[3]]$Token[[19]]$len
+#> [1] 1
+#> 
+#> 
+#> 
+#> [[3]]$Score
 #> [1] -98.88614
 analyze(c("안녕하세요","kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."))
-#> Warning in if (is.na(item)) break: the condition has length > 1 and only the
-#> first element will be used
-
-#> Warning in if (is.na(item)) break: the condition has length > 1 and only the
-#> first element will be used
 #> [[1]]
-#> [[1]][[1]]
-#> [[1]][[1]][[1]]
-#> Token(form='안녕', tag='NNG', start=0, len=2)
+#> [[1]]$Token
+#> [[1]]$Token[[1]]
+#> [[1]]$Token[[1]]$form
+#> [1] "안녕"
 #> 
-#> [[1]][[1]][[2]]
-#> Token(form='하', tag='XSA', start=2, len=1)
+#> [[1]]$Token[[1]]$tag
+#> [1] "NNG"
 #> 
-#> [[1]][[1]][[3]]
-#> Token(form='시', tag='EP', start=4, len=1)
+#> [[1]]$Token[[1]]$start
+#> [1] 1
 #> 
-#> [[1]][[1]][[4]]
-#> Token(form='어요', tag='EC', start=3, len=2)
+#> [[1]]$Token[[1]]$len
+#> [1] 2
 #> 
 #> 
-#> [[1]][[2]]
+#> [[1]]$Token[[2]]
+#> [[1]]$Token[[2]]$form
+#> [1] "하"
+#> 
+#> [[1]]$Token[[2]]$tag
+#> [1] "XSA"
+#> 
+#> [[1]]$Token[[2]]$start
+#> [1] 3
+#> 
+#> [[1]]$Token[[2]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[3]]
+#> [[1]]$Token[[3]]$form
+#> [1] "시"
+#> 
+#> [[1]]$Token[[3]]$tag
+#> [1] "EP"
+#> 
+#> [[1]]$Token[[3]]$start
+#> [1] 5
+#> 
+#> [[1]]$Token[[3]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[4]]
+#> [[1]]$Token[[4]]$form
+#> [1] "어요"
+#> 
+#> [[1]]$Token[[4]]$tag
+#> [1] "EC"
+#> 
+#> [[1]]$Token[[4]]$start
+#> [1] 4
+#> 
+#> [[1]]$Token[[4]]$len
+#> [1] 2
+#> 
+#> 
+#> 
+#> [[1]]$Score
 #> [1] -18.16951
 #> 
 #> 
 #> [[2]]
-#> [[2]][[1]]
-#> [[2]][[1]][[1]]
-#> Token(form='안녕', tag='NNG', start=0, len=2)
+#> [[2]]$Token
+#> [[2]]$Token[[1]]
+#> [[2]]$Token[[1]]$form
+#> [1] "안녕"
 #> 
-#> [[2]][[1]][[2]]
-#> Token(form='하', tag='XSA', start=2, len=1)
+#> [[2]]$Token[[1]]$tag
+#> [1] "NNG"
 #> 
-#> [[2]][[1]][[3]]
-#> Token(form='시', tag='EP', start=4, len=1)
+#> [[2]]$Token[[1]]$start
+#> [1] 1
 #> 
-#> [[2]][[1]][[4]]
-#> Token(form='어요', tag='EF', start=3, len=2)
+#> [[2]]$Token[[1]]$len
+#> [1] 2
 #> 
 #> 
-#> [[2]][[2]]
+#> [[2]]$Token[[2]]
+#> [[2]]$Token[[2]]$form
+#> [1] "하"
+#> 
+#> [[2]]$Token[[2]]$tag
+#> [1] "XSA"
+#> 
+#> [[2]]$Token[[2]]$start
+#> [1] 3
+#> 
+#> [[2]]$Token[[2]]$len
+#> [1] 1
+#> 
+#> 
+#> [[2]]$Token[[3]]
+#> [[2]]$Token[[3]]$form
+#> [1] "시"
+#> 
+#> [[2]]$Token[[3]]$tag
+#> [1] "EP"
+#> 
+#> [[2]]$Token[[3]]$start
+#> [1] 5
+#> 
+#> [[2]]$Token[[3]]$len
+#> [1] 1
+#> 
+#> 
+#> [[2]]$Token[[4]]
+#> [[2]]$Token[[4]]$form
+#> [1] "어요"
+#> 
+#> [[2]]$Token[[4]]$tag
+#> [1] "EF"
+#> 
+#> [[2]]$Token[[4]]$start
+#> [1] 4
+#> 
+#> [[2]]$Token[[4]]$len
+#> [1] 2
+#> 
+#> 
+#> 
+#> [[2]]$Score
 #> [1] -22.45279
 #> 
 #> 
 #> [[3]]
-#> [[3]][[1]]
-#> [[3]][[1]][[1]]
-#> Token(form='안녕', tag='NNG', start=0, len=2)
+#> [[3]]$Token
+#> [[3]]$Token[[1]]
+#> [[3]]$Token[[1]]$form
+#> [1] "안녕"
 #> 
-#> [[3]][[1]][[2]]
-#> Token(form='하', tag='XSA', start=2, len=1)
+#> [[3]]$Token[[1]]$tag
+#> [1] "NNG"
 #> 
-#> [[3]][[1]][[3]]
-#> Token(form='세요', tag='EF', start=3, len=2)
+#> [[3]]$Token[[1]]$start
+#> [1] 1
+#> 
+#> [[3]]$Token[[1]]$len
+#> [1] 2
 #> 
 #> 
-#> [[3]][[2]]
+#> [[3]]$Token[[2]]
+#> [[3]]$Token[[2]]$form
+#> [1] "하"
+#> 
+#> [[3]]$Token[[2]]$tag
+#> [1] "XSA"
+#> 
+#> [[3]]$Token[[2]]$start
+#> [1] 3
+#> 
+#> [[3]]$Token[[2]]$len
+#> [1] 1
+#> 
+#> 
+#> [[3]]$Token[[3]]
+#> [[3]]$Token[[3]]$form
+#> [1] "세요"
+#> 
+#> [[3]]$Token[[3]]$tag
+#> [1] "EF"
+#> 
+#> [[3]]$Token[[3]]$start
+#> [1] 4
+#> 
+#> [[3]]$Token[[3]]$len
+#> [1] 2
+#> 
+#> 
+#> 
+#> [[3]]$Score
 #> [1] -28.44329
-#> 
-#> 
-#> [[4]]
-#> [[4]][[1]]
-#> [[4]][[1]][[1]]
-#> Token(form='kiwi', tag='SL', start=0, len=4)
-#> 
-#> [[4]][[1]][[2]]
-#> Token(form='형태소', tag='NNG', start=5, len=3)
-#> 
-#> [[4]][[1]][[3]]
-#> Token(form='분석', tag='NNG', start=9, len=2)
-#> 
-#> [[4]][[1]][[4]]
-#> Token(form='기', tag='NNB', start=11, len=1)
-#> 
-#> [[4]][[1]][[5]]
-#> Token(form='의', tag='JKG', start=12, len=1)
-#> 
-#> [[4]][[1]][[6]]
-#> Token(form='R', tag='SL', start=14, len=1)
-#> 
-#> [[4]][[1]][[7]]
-#> Token(form='wrapper', tag='SL', start=16, len=7)
-#> 
-#> [[4]][[1]][[8]]
-#> Token(form='이', tag='VCP', start=23, len=1)
-#> 
-#> [[4]][[1]][[9]]
-#> Token(form='ᆫ', tag='ETM', start=24, len=0)
-#> 
-#> [[4]][[1]][[10]]
-#> Token(form='elbird', tag='SL', start=25, len=6)
-#> 
-#> [[4]][[1]][[11]]
-#> Token(form='를', tag='JKO', start=31, len=1)
-#> 
-#> [[4]][[1]][[12]]
-#> Token(form='소개', tag='NNG', start=33, len=2)
-#> 
-#> [[4]][[1]][[13]]
-#> Token(form='하', tag='XSV', start=35, len=1)
-#> 
-#> [[4]][[1]][[14]]
-#> Token(form='ᆸ니다', tag='EF', start=36, len=2)
-#> 
-#> [[4]][[1]][[15]]
-#> Token(form='.', tag='SF', start=38, len=1)
-#> 
-#> 
-#> [[4]][[2]]
-#> [1] -84.13857
-#> 
-#> 
-#> [[5]]
-#> [[5]][[1]]
-#> [[5]][[1]][[1]]
-#> Token(form='kiwi', tag='SL', start=0, len=4)
-#> 
-#> [[5]][[1]][[2]]
-#> Token(form='형태소', tag='NNG', start=5, len=3)
-#> 
-#> [[5]][[1]][[3]]
-#> Token(form='분석', tag='NNG', start=9, len=2)
-#> 
-#> [[5]][[1]][[4]]
-#> Token(form='기', tag='NNG', start=11, len=1)
-#> 
-#> [[5]][[1]][[5]]
-#> Token(form='의', tag='JKG', start=12, len=1)
-#> 
-#> [[5]][[1]][[6]]
-#> Token(form='R', tag='SL', start=14, len=1)
-#> 
-#> [[5]][[1]][[7]]
-#> Token(form='wrapper', tag='SL', start=16, len=7)
-#> 
-#> [[5]][[1]][[8]]
-#> Token(form='이', tag='VCP', start=23, len=1)
-#> 
-#> [[5]][[1]][[9]]
-#> Token(form='ᆫ', tag='ETM', start=24, len=0)
-#> 
-#> [[5]][[1]][[10]]
-#> Token(form='elbird', tag='SL', start=25, len=6)
-#> 
-#> [[5]][[1]][[11]]
-#> Token(form='를', tag='JKO', start=31, len=1)
-#> 
-#> [[5]][[1]][[12]]
-#> Token(form='소개', tag='NNG', start=33, len=2)
-#> 
-#> [[5]][[1]][[13]]
-#> Token(form='하', tag='XSV', start=35, len=1)
-#> 
-#> [[5]][[1]][[14]]
-#> Token(form='ᆸ니다', tag='EF', start=36, len=2)
-#> 
-#> [[5]][[1]][[15]]
-#> Token(form='.', tag='SF', start=38, len=1)
-#> 
-#> 
-#> [[5]][[2]]
-#> [1] -84.71187
-#> 
-#> 
-#> [[6]]
-#> [[6]][[1]]
-#> [[6]][[1]][[1]]
-#> Token(form='kiwi', tag='SL', start=0, len=4)
-#> 
-#> [[6]][[1]][[2]]
-#> Token(form='형태소', tag='NNG', start=5, len=3)
-#> 
-#> [[6]][[1]][[3]]
-#> Token(form='분석', tag='NNG', start=9, len=2)
-#> 
-#> [[6]][[1]][[4]]
-#> Token(form='기', tag='ETN', start=11, len=1)
-#> 
-#> [[6]][[1]][[5]]
-#> Token(form='의', tag='JKG', start=12, len=1)
-#> 
-#> [[6]][[1]][[6]]
-#> Token(form='R', tag='SL', start=14, len=1)
-#> 
-#> [[6]][[1]][[7]]
-#> Token(form='wrapper', tag='SL', start=16, len=7)
-#> 
-#> [[6]][[1]][[8]]
-#> Token(form='이', tag='VCP', start=23, len=1)
-#> 
-#> [[6]][[1]][[9]]
-#> Token(form='ᆫ', tag='ETM', start=24, len=0)
-#> 
-#> [[6]][[1]][[10]]
-#> Token(form='elbird', tag='SL', start=25, len=6)
-#> 
-#> [[6]][[1]][[11]]
-#> Token(form='를', tag='JKO', start=31, len=1)
-#> 
-#> [[6]][[1]][[12]]
-#> Token(form='소개', tag='NNG', start=33, len=2)
-#> 
-#> [[6]][[1]][[13]]
-#> Token(form='하', tag='XSV', start=35, len=1)
-#> 
-#> [[6]][[1]][[14]]
-#> Token(form='ᆸ니다', tag='EF', start=36, len=2)
-#> 
-#> [[6]][[1]][[15]]
-#> Token(form='.', tag='SF', start=38, len=1)
-#> 
-#> 
-#> [[6]][[2]]
-#> [1] -85.65583
 analyze(c("안녕하세요","kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."), top_n = 2)
-#> Warning in if (is.na(item)) break: the condition has length > 1 and only the
-#> first element will be used
-
-#> Warning in if (is.na(item)) break: the condition has length > 1 and only the
-#> first element will be used
 #> [[1]]
-#> [[1]][[1]]
-#> [[1]][[1]][[1]]
-#> Token(form='안녕', tag='NNG', start=0, len=2)
+#> [[1]]$Token
+#> [[1]]$Token[[1]]
+#> [[1]]$Token[[1]]$form
+#> [1] "안녕"
 #> 
-#> [[1]][[1]][[2]]
-#> Token(form='하', tag='XSA', start=2, len=1)
+#> [[1]]$Token[[1]]$tag
+#> [1] "NNG"
 #> 
-#> [[1]][[1]][[3]]
-#> Token(form='시', tag='EP', start=4, len=1)
+#> [[1]]$Token[[1]]$start
+#> [1] 1
 #> 
-#> [[1]][[1]][[4]]
-#> Token(form='어요', tag='EC', start=3, len=2)
+#> [[1]]$Token[[1]]$len
+#> [1] 2
 #> 
 #> 
-#> [[1]][[2]]
+#> [[1]]$Token[[2]]
+#> [[1]]$Token[[2]]$form
+#> [1] "하"
+#> 
+#> [[1]]$Token[[2]]$tag
+#> [1] "XSA"
+#> 
+#> [[1]]$Token[[2]]$start
+#> [1] 3
+#> 
+#> [[1]]$Token[[2]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[3]]
+#> [[1]]$Token[[3]]$form
+#> [1] "시"
+#> 
+#> [[1]]$Token[[3]]$tag
+#> [1] "EP"
+#> 
+#> [[1]]$Token[[3]]$start
+#> [1] 5
+#> 
+#> [[1]]$Token[[3]]$len
+#> [1] 1
+#> 
+#> 
+#> [[1]]$Token[[4]]
+#> [[1]]$Token[[4]]$form
+#> [1] "어요"
+#> 
+#> [[1]]$Token[[4]]$tag
+#> [1] "EC"
+#> 
+#> [[1]]$Token[[4]]$start
+#> [1] 4
+#> 
+#> [[1]]$Token[[4]]$len
+#> [1] 2
+#> 
+#> 
+#> 
+#> [[1]]$Score
 #> [1] -18.16951
 #> 
 #> 
 #> [[2]]
-#> [[2]][[1]]
-#> [[2]][[1]][[1]]
-#> Token(form='안녕', tag='NNG', start=0, len=2)
+#> [[2]]$Token
+#> [[2]]$Token[[1]]
+#> [[2]]$Token[[1]]$form
+#> [1] "안녕"
 #> 
-#> [[2]][[1]][[2]]
-#> Token(form='하', tag='XSA', start=2, len=1)
+#> [[2]]$Token[[1]]$tag
+#> [1] "NNG"
 #> 
-#> [[2]][[1]][[3]]
-#> Token(form='시', tag='EP', start=4, len=1)
+#> [[2]]$Token[[1]]$start
+#> [1] 1
 #> 
-#> [[2]][[1]][[4]]
-#> Token(form='어요', tag='EF', start=3, len=2)
+#> [[2]]$Token[[1]]$len
+#> [1] 2
 #> 
 #> 
-#> [[2]][[2]]
+#> [[2]]$Token[[2]]
+#> [[2]]$Token[[2]]$form
+#> [1] "하"
+#> 
+#> [[2]]$Token[[2]]$tag
+#> [1] "XSA"
+#> 
+#> [[2]]$Token[[2]]$start
+#> [1] 3
+#> 
+#> [[2]]$Token[[2]]$len
+#> [1] 1
+#> 
+#> 
+#> [[2]]$Token[[3]]
+#> [[2]]$Token[[3]]$form
+#> [1] "시"
+#> 
+#> [[2]]$Token[[3]]$tag
+#> [1] "EP"
+#> 
+#> [[2]]$Token[[3]]$start
+#> [1] 5
+#> 
+#> [[2]]$Token[[3]]$len
+#> [1] 1
+#> 
+#> 
+#> [[2]]$Token[[4]]
+#> [[2]]$Token[[4]]$form
+#> [1] "어요"
+#> 
+#> [[2]]$Token[[4]]$tag
+#> [1] "EF"
+#> 
+#> [[2]]$Token[[4]]$start
+#> [1] 4
+#> 
+#> [[2]]$Token[[4]]$len
+#> [1] 2
+#> 
+#> 
+#> 
+#> [[2]]$Score
 #> [1] -22.45279
-#> 
-#> 
-#> [[3]]
-#> [[3]][[1]]
-#> [[3]][[1]][[1]]
-#> Token(form='kiwi', tag='SL', start=0, len=4)
-#> 
-#> [[3]][[1]][[2]]
-#> Token(form='형태소', tag='NNG', start=5, len=3)
-#> 
-#> [[3]][[1]][[3]]
-#> Token(form='분석', tag='NNG', start=9, len=2)
-#> 
-#> [[3]][[1]][[4]]
-#> Token(form='기', tag='NNB', start=11, len=1)
-#> 
-#> [[3]][[1]][[5]]
-#> Token(form='의', tag='JKG', start=12, len=1)
-#> 
-#> [[3]][[1]][[6]]
-#> Token(form='R', tag='SL', start=14, len=1)
-#> 
-#> [[3]][[1]][[7]]
-#> Token(form='wrapper', tag='SL', start=16, len=7)
-#> 
-#> [[3]][[1]][[8]]
-#> Token(form='이', tag='VCP', start=23, len=1)
-#> 
-#> [[3]][[1]][[9]]
-#> Token(form='ᆫ', tag='ETM', start=24, len=0)
-#> 
-#> [[3]][[1]][[10]]
-#> Token(form='elbird', tag='SL', start=25, len=6)
-#> 
-#> [[3]][[1]][[11]]
-#> Token(form='를', tag='JKO', start=31, len=1)
-#> 
-#> [[3]][[1]][[12]]
-#> Token(form='소개', tag='NNG', start=33, len=2)
-#> 
-#> [[3]][[1]][[13]]
-#> Token(form='하', tag='XSV', start=35, len=1)
-#> 
-#> [[3]][[1]][[14]]
-#> Token(form='ᆸ니다', tag='EF', start=36, len=2)
-#> 
-#> [[3]][[1]][[15]]
-#> Token(form='.', tag='SF', start=38, len=1)
-#> 
-#> 
-#> [[3]][[2]]
-#> [1] -84.13857
-#> 
-#> 
-#> [[4]]
-#> [[4]][[1]]
-#> [[4]][[1]][[1]]
-#> Token(form='kiwi', tag='SL', start=0, len=4)
-#> 
-#> [[4]][[1]][[2]]
-#> Token(form='형태소', tag='NNG', start=5, len=3)
-#> 
-#> [[4]][[1]][[3]]
-#> Token(form='분석', tag='NNG', start=9, len=2)
-#> 
-#> [[4]][[1]][[4]]
-#> Token(form='기', tag='NNG', start=11, len=1)
-#> 
-#> [[4]][[1]][[5]]
-#> Token(form='의', tag='JKG', start=12, len=1)
-#> 
-#> [[4]][[1]][[6]]
-#> Token(form='R', tag='SL', start=14, len=1)
-#> 
-#> [[4]][[1]][[7]]
-#> Token(form='wrapper', tag='SL', start=16, len=7)
-#> 
-#> [[4]][[1]][[8]]
-#> Token(form='이', tag='VCP', start=23, len=1)
-#> 
-#> [[4]][[1]][[9]]
-#> Token(form='ᆫ', tag='ETM', start=24, len=0)
-#> 
-#> [[4]][[1]][[10]]
-#> Token(form='elbird', tag='SL', start=25, len=6)
-#> 
-#> [[4]][[1]][[11]]
-#> Token(form='를', tag='JKO', start=31, len=1)
-#> 
-#> [[4]][[1]][[12]]
-#> Token(form='소개', tag='NNG', start=33, len=2)
-#> 
-#> [[4]][[1]][[13]]
-#> Token(form='하', tag='XSV', start=35, len=1)
-#> 
-#> [[4]][[1]][[14]]
-#> Token(form='ᆸ니다', tag='EF', start=36, len=2)
-#> 
-#> [[4]][[1]][[15]]
-#> Token(form='.', tag='SF', start=38, len=1)
-#> 
-#> 
-#> [[4]][[2]]
-#> [1] -84.71187
-```
-
-### add user word
-
-`elbird` connects and provides the add user word function of `kiwi`.
-
-The `add_user_word` function receives words, morpheme tags, and weights
-as inputs and adds a user dictionary to be used for analysis.
-
-The example below is an example of adding a user dictionary and
-modifying the result of `박찬` being divided and tokenized.
-
-``` r
-library(elbird)
-tokenize_tbl("안녕하세요. 저는 박찬엽 입니다.")
-#> # A tibble: 14 × 5
-#>    unique form  tag   start   end
-#>    <chr>  <chr> <chr> <int> <int>
-#>  1 1      안녕  NNG       0     2
-#>  2 1      하    XSA       2     1
-#>  3 1      시    EP        4     1
-#>  4 1      어요  EF        3     2
-#>  5 1      .     SF        5     1
-#>  6 1      저    NP        7     1
-#>  7 1      는    JX        8     1
-#>  8 1      박찬  NNP      10     2
-#>  9 1      이    VCP      12     1
-#> 10 1      어    EC       12     1
-#> 11 1      ᆸ     NNG      13     0
-#> 12 1      이    VCP      14     1
-#> 13 1      ᆸ니다 EF       15     2
-#> 14 1      .     SF       17     1
-add_user_word("박찬엽","NNP",1)
-tokenize_tbl("안녕하세요. 저는 박찬엽 입니다.")
-#> # A tibble: 14 × 5
-#>    unique form  tag   start   end
-#>    <chr>  <chr> <chr> <int> <int>
-#>  1 1      안녕  NNG       0     2
-#>  2 1      하    XSA       2     1
-#>  3 1      시    EP        4     1
-#>  4 1      어요  EF        3     2
-#>  5 1      .     SF        5     1
-#>  6 1      저    NP        7     1
-#>  7 1      는    JX        8     1
-#>  8 1      박찬  NNP      10     2
-#>  9 1      이    VCP      12     1
-#> 10 1      어    EC       12     1
-#> 11 1      ᆸ     NNG      13     0
-#> 12 1      이    VCP      14     1
-#> 13 1      ᆸ니다 EF       15     2
-#> 14 1      .     SF       17     1
 ```
 
 ## tag set
@@ -916,73 +1884,57 @@ tokenize_tbl("안녕하세요. 저는 박찬엽 입니다.")
 list](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)
 that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
-  - The table below is fetched at 2022-03-08 19:37:03 UTC.
+-   The table below is fetched at 2022-03-19 04:43:35 Etc/UTC.
 
-<table class="kable_wrapper">
-
-<tbody>
-
-<tr>
-
-<td>
-
-| 대분류              | 태그         | 설명                                                  |
-| :--------------- | :--------- | :-------------------------------------------------- |
-| 체언(N)            | NNG        | 일반 명사                                               |
-| 체언(N)            | NNP        | 고유 명사                                               |
-| 체언(N)            | NNB        | 의존 명사                                               |
-| 체언(N)            | NR         | 수사                                                  |
-| 체언(N)            | NP         | 대명사                                                 |
-| 용언(V)            | VV         | 동사                                                  |
-| 용언(V)            | VA         | 형용사                                                 |
-| 용언(V)            | VX         | 보조 용언                                               |
-| 용언(V)            | VCP        | 긍정 지시사(이다)                                          |
-| 용언(V)            | VCN        | 부정 지시사(아니다)                                         |
-| 관형사              | MM         | 관형사                                                 |
-| 부사(MA)           | MAG        | 일반 부사                                               |
-| 부사(MA)           | MAJ        | 접속 부사                                               |
-| 감탄사              | IC         | 감탄사                                                 |
-| 조사(J)            | JKS        | 주격 조사                                               |
-| 조사(J)            | JKC        | 보격 조사                                               |
-| 조사(J)            | JKG        | 관형격 조사                                              |
-| 조사(J)            | JKO        | 목적격 조사                                              |
-| 조사(J)            | JKB        | 부사격 조사                                              |
-| 조사(J)            | JKV        | 호격 조사                                               |
-| 조사(J)            | JKQ        | 인용격 조사                                              |
-| 조사(J)            | JX         | 보조사                                                 |
-| 조사(J)            | JC         | 접속 조사                                               |
-| 어미(E)            | EP         | 선어말 어미                                              |
-| 어미(E)            | EF         | 종결 어미                                               |
-| 어미(E)            | EC         | 연결 어미                                               |
-| 어미(E)            | ETN        | 명사형 전성 어미                                           |
-| 어미(E)            | ETM        | 관형형 전성 어미                                           |
-| 접두사              | XPN        | 체언 접두사                                              |
-| 접미사(XS)          | XSN        | 명사 파생 접미사                                           |
-| 접미사(XS)          | XSV        | 동사 파생 접미사                                           |
-| 접미사(XS)          | XSA        | 형용사 파생 접미사                                          |
-| 어근               | XR         | 어근                                                  |
-| 부호, 외국어, 특수문자(S) | SF         | 종결 부호(. \! ?)                                       |
-| 부호, 외국어, 특수문자(S) | SP         | 구분 부호(, / : ;)                                      |
-| 부호, 외국어, 특수문자(S) | SS         | 인용 부호 및 괄호(’ " ( ) \[ \] \< \> { } ― ‘ ’ “ ” ≪ ≫ 등) |
-| 부호, 외국어, 특수문자(S) | SE         | 줄임표(…)                                              |
-| 부호, 외국어, 특수문자(S) | SO         | 붙임표(- \~)                                           |
-| 부호, 외국어, 특수문자(S) | SW         | 기타 특수 문자                                            |
-| 부호, 외국어, 특수문자(S) | SL         | 알파벳(A-Z a-z)                                        |
-| 부호, 외국어, 특수문자(S) | SH         | 한자                                                  |
-| 부호, 외국어, 특수문자(S) | SN         | 숫자(0-9)                                             |
-| 분석 불능            | UN         | 분석 불능\*                                             |
-| 웹(W)             | W\_URL     | URL 주소\*                                            |
-| 웹(W)             | W\_EMAIL   | 이메일 주소\*                                            |
-| 웹(W)             | W\_HASHTAG | 해시태그(\#abcd)\*                                      |
-| 웹(W)             | W\_MENTION | 멘션(@abcd)\*                                         |
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
+| 대분류                    | 태그      | 설명                                                        |
+|:--------------------------|:----------|:------------------------------------------------------------|
+| 체언(N)                   | NNG       | 일반 명사                                                   |
+| 체언(N)                   | NNP       | 고유 명사                                                   |
+| 체언(N)                   | NNB       | 의존 명사                                                   |
+| 체언(N)                   | NR        | 수사                                                        |
+| 체언(N)                   | NP        | 대명사                                                      |
+| 용언(V)                   | VV        | 동사                                                        |
+| 용언(V)                   | VA        | 형용사                                                      |
+| 용언(V)                   | VX        | 보조 용언                                                   |
+| 용언(V)                   | VCP       | 긍정 지시사(이다)                                           |
+| 용언(V)                   | VCN       | 부정 지시사(아니다)                                         |
+| 관형사                    | MM        | 관형사                                                      |
+| 부사(MA)                  | MAG       | 일반 부사                                                   |
+| 부사(MA)                  | MAJ       | 접속 부사                                                   |
+| 감탄사                    | IC        | 감탄사                                                      |
+| 조사(J)                   | JKS       | 주격 조사                                                   |
+| 조사(J)                   | JKC       | 보격 조사                                                   |
+| 조사(J)                   | JKG       | 관형격 조사                                                 |
+| 조사(J)                   | JKO       | 목적격 조사                                                 |
+| 조사(J)                   | JKB       | 부사격 조사                                                 |
+| 조사(J)                   | JKV       | 호격 조사                                                   |
+| 조사(J)                   | JKQ       | 인용격 조사                                                 |
+| 조사(J)                   | JX        | 보조사                                                      |
+| 조사(J)                   | JC        | 접속 조사                                                   |
+| 어미(E)                   | EP        | 선어말 어미                                                 |
+| 어미(E)                   | EF        | 종결 어미                                                   |
+| 어미(E)                   | EC        | 연결 어미                                                   |
+| 어미(E)                   | ETN       | 명사형 전성 어미                                            |
+| 어미(E)                   | ETM       | 관형형 전성 어미                                            |
+| 접두사                    | XPN       | 체언 접두사                                                 |
+| 접미사(XS)                | XSN       | 명사 파생 접미사                                            |
+| 접미사(XS)                | XSV       | 동사 파생 접미사                                            |
+| 접미사(XS)                | XSA       | 형용사 파생 접미사                                          |
+| 어근                      | XR        | 어근                                                        |
+| 부호, 외국어, 특수문자(S) | SF        | 종결 부호(. ! ?)                                            |
+| 부호, 외국어, 특수문자(S) | SP        | 구분 부호(, / : ;)                                          |
+| 부호, 외국어, 특수문자(S) | SS        | 인용 부호 및 괄호(’ ” ( ) \[ \] \< \> { } ― ‘ ’ “ ” ≪ ≫ 등) |
+| 부호, 외국어, 특수문자(S) | SE        | 줄임표(…)                                                   |
+| 부호, 외국어, 특수문자(S) | SO        | 붙임표(- \~)                                                |
+| 부호, 외국어, 특수문자(S) | SW        | 기타 특수 문자                                              |
+| 부호, 외국어, 특수문자(S) | SL        | 알파벳(A-Z a-z)                                             |
+| 부호, 외국어, 특수문자(S) | SH        | 한자                                                        |
+| 부호, 외국어, 특수문자(S) | SN        | 숫자(0-9)                                                   |
+| 분석 불능                 | UN        | 분석 불능\*                                                 |
+| 웹(W)                     | W_URL     | URL 주소\*                                                  |
+| 웹(W)                     | W_EMAIL   | 이메일 주소\*                                               |
+| 웹(W)                     | W_HASHTAG | 해시태그(#abcd)\*                                           |
+| 웹(W)                     | W_MENTION | 멘션(@abcd)\*                                               |
 
 ## Special Thanks to
 

@@ -1,8 +1,13 @@
 ^Elbird\.Rproj$
 ^\.Rproj\.user$
-^README\.Rmd$
+^README*\.Rmd$
 ^README_kr\.Rmd$
 ^README_kr\.md$
 ^LICENSE\.md$
-.github
+.github*
 R/.logo.R
+auto*
+lib
+include
+^data-raw$
+inst/ModelGenerator*

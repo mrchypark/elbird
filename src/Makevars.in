@@ -1,0 +1,4 @@
+CXX_STD=CXX11
+
+PKG_CPPFLAGS=-I../inst/include -pthread @cppflags@
+PKG_LIBS=-pthread @libs@

@@ -18,13 +18,14 @@ jobs:
         run: |
           install.packages("remotes")
           remotes::install_cran("rmarkdown")
-          remotes::install_cran("dplyr")
           remotes::install_cran("tidytext")
-          remotes::install_cran("reticulate")
+          remotes::install_cran("methods")
+          remotes::install_cran("tibble")
+          remotes::install_cran("dplyr")
+          remotes::install_cran("purrr")
           remotes::install_cran("rvest")
           remotes::install_cran("httr")
           install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev")
-          reticulate::install_miniconda()
           remotes::install_local(".")
         shell: Rscript {0}
       - name: Render README

@@ -1,18 +1,16 @@
-#' @importFrom reticulate import
-init <- function(){
-  kiwi <- reticulate::import("kiwipiepy")
-  el <- kiwi$Kiwi()
-  dict_history <- list()
-  dict_history[["word"]] <-
-    tibble::tibble(word = character(),
-                  pos = character(),
-                  score = integer())
-  dict_history[["path"]] <- c()
-  assign("kiwi", kiwi, envir = .el)
-  assign("el", el, envir = .el)
-  assign("dict_history", dict_history, envir = .el)
+
+init_chk_not <- function() {
+  length(ls(envir=.el)) != 1
 }
 
-init_chk_not <- function(){
-  length(ls(envir=.el)) != 3
+#' @importFrom methods new
+init <- function() {
+  kb <- kiwi_init(model_path_full(), 0, 0)
+  if (identical(kb, new("externalptr"))) {
+    tem <- kiwi_error()
+    kiwi_clear_error()
+    stop(tem)
+  }
+
+  assign("kb", kb, envir = .el)
 }
