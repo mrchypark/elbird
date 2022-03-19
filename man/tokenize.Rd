@@ -32,3 +32,6 @@ a \link[tibble:tibble-package]{tibble}
 \description{
 Simple version of tokenizer function.
 }
+\examples{
+  tokenize("안녕하세요")
+}

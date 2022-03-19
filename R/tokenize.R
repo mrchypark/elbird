@@ -5,6 +5,8 @@
 #' @importFrom purrr map
 #' @return a list type resault.
 #' @export
+#' @examples
+#'   tokenize("안녕하세요")
 tokenize <- function(text) {
   if (init_chk_not())
     init()

@@ -16,6 +16,34 @@ kiwi_init_ <- function(model_path, num_threads, options) {
   .Call(`_elbird_kiwi_init_`, model_path, num_threads, options)
 }
 
+kiwi_set_option_ <- function(handle_ex, option, value) {
+  invisible(.Call(`_elbird_kiwi_set_option_`, handle_ex, option, value))
+}
+
+kiwi_get_option_ <- function(handle_ex, option) {
+  .Call(`_elbird_kiwi_get_option_`, handle_ex, option)
+}
+
 kiwi_analyze_ <- function(handle_ex, text, top_n, match_options) {
   .Call(`_elbird_kiwi_analyze_`, handle_ex, text, top_n, match_options)
+}
+
+kiwi_split_into_sents_ <- function(handle_ex, text, match_options, return_tokens) {
+  .Call(`_elbird_kiwi_split_into_sents_`, handle_ex, text, match_options, return_tokens)
+}
+
+kiwi_builder_init_ <- function(model_path, num_threads, options) {
+  .Call(`_elbird_kiwi_builder_init_`, model_path, num_threads, options)
+}
+
+kiwi_builder_add_word_ <- function(handle_ex, word, pos, score) {
+  .Call(`_elbird_kiwi_builder_add_word_`, handle_ex, word, pos, score)
+}
+
+kiwi_builder_load_dict_ <- function(handle_ex, dict_path) {
+  .Call(`_elbird_kiwi_builder_load_dict_`, handle_ex, dict_path)
+}
+
+kiwi_builder_build_ <- function(handle_ex) {
+  .Call(`_elbird_kiwi_builder_build_`, handle_ex)
 }
