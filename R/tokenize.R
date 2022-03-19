@@ -5,7 +5,9 @@
 #' @importFrom purrr map
 #' @export
 tokenize <- function(text) {
-  if (init_chk_not())init()
+  if (init_chk_not())
+    init()
+
   return(purrr::map(
     text,
     ~ kiwi_analyze(get("kb", envir = .el), .x, 1, 1)[[1]][1]

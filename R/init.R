@@ -4,7 +4,11 @@ init_chk_not <- function() {
 
 #' @importFrom methods new
 init <- function() {
+  if (!model_exists())
+    get_model_file()
+
   kb <- kiwi_init(model_path_full(), 0, 0)
+
   if (identical(kb, new("externalptr"))) {
     tem <- kiwi_error()
     kiwi_clear_error()
@@ -13,3 +17,4 @@ init <- function() {
 
   assign("kb", kb, envir = .el)
 }
+

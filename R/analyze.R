@@ -5,7 +5,14 @@
 #' @name analyze
 #' @export
 analyze <- function(text, top_n = 3) {
-  if (init_chk_not()) init()
-  kb <- get("kb", envir = .el)
-  return(kiwi_analyze(kb, text, top_n, 1))
+  if (init_chk_not())
+    init()
+
+  return(
+    kiwi_analyze(
+      get("kb", envir = .el),
+      text,
+      top_n, 1
+    )
+  )
 }

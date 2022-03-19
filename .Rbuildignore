@@ -12,3 +12,4 @@ include
 ^data-raw$
 inst/ModelGenerator*
 ^\.github$
+Kiwi*
