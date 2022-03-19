@@ -1,10 +1,12 @@
 # elbird 0.1.0
 
+* Change backend python to cpp.
+
 # elbird 0.0.2
 
-* package name to lower.
-* kiwi version 0.10.3 support.
-* python version 3.10.2 support.
+* Package name to lower.
+* Kiwi version 0.10.3 support.
+* Python version 3.10.2 support.
 
 # Elbird 0.0.1
 
