@@ -12,10 +12,10 @@ if [ "$INCLUDE_DIR" ] || [ "$LIB_DIR" ]; then
   PKG_CPPFLAGS="-I$INCLUDE_DIR $PKG_CPPFLAGS"
   PKG_LIBS="-L$LIB_DIR $PKG_LIBS"
 
-elif [ -d "`pwd`/inst/libs/" ]; then
+elif [ -d "`pwd`/kiwilibs/libs/" ]; then
   echo "Found libkiwi on pwd installation..."
-  PKG_CPPFLAGS="-I`pwd`/inst/include $PKG_CPPFLAGS"
-  PKG_LIBS="-L`pwd`/inst/libs $PKG_LIBS"
+  PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
+  PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
 
 else
   echo "Prior system libkiwi installation not found"
@@ -34,12 +34,15 @@ else
   make
   cd ../..
 
-  mkdir -p inst/libs
-  mv -f Kiwi/build/libkiwi_static.a inst/libs/libkiwi.a
-  mv -f Kiwi/include inst/include
+  mkdir -p kiwilibs/libs
+  mv -f Kiwi/build/libkiwi_static.a kiwilibs/libs/libkiwi.a
+  mv -f Kiwi/include kiwilibs/include
+  echo "Kiwi compile is done."
   rm -rf Kiwi
-  PKG_CPPFLAGS="-I`pwd`/inst/include $PKG_CPPFLAGS"
-  PKG_LIBS="-L`pwd`/inst/libs $PKG_LIBS"
+  echo "Remove Kiwi folder."
+  ls -alh
+  PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
+  PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
 fi
 
 # For debugging
@@ -78,12 +81,15 @@ if [ $? -ne 0 ]; then
     cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
     make
     cd ../..
-    mkdir -p inst/libs
-    mv -f Kiwi/build/libkiwi_static.a inst/libs/libkiwi.a
-    mv -f Kiwi/include inst/include
+    mkdir -p kiwilibs/libs
+    mv -f Kiwi/build/libkiwi_static.a kiwilibs/libs/libkiwi.a
+    mv -f Kiwi/include kiwilibs/include
+    echo "Kiwi compile is done."
     rm -rf Kiwi
-    PKG_CPPFLAGS="-I`pwd`/inst/include $PKG_CPPFLAGS"
-    PKG_LIBS="-L`pwd`/inst/libs $PKG_LIBS"
+    echo "Remove Kiwi folder."
+    ls -alh
+    PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
+    PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
     # Test for libkiwi
     echo "#include $PKG_TEST_HEADER" | ${CXX11} ${PKG_CPPFLAGS} ${CXXFLAGS} -E -xc++ - >/dev/null 2>&1
     if [ $? -ne 0 ]; then

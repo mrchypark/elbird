@@ -23,3 +23,5 @@ Imports:
     purrr,
     methods,
     tibble
+LinkingTo: 
+    cpp11

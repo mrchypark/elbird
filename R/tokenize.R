@@ -11,7 +11,7 @@ tokenize <- function(text) {
 
   return(purrr::map(
     text,
-    ~ kiwi_analyze(get("kb", envir = .el), .x, 1, 1)[[1]][1]
+    ~ kiwi_analyze_(get("kb", envir = .el), .x, 1, 1)[[1]][1]
     )
   )
 }

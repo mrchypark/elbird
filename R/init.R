@@ -7,11 +7,11 @@ init <- function() {
   if (!model_exists())
     get_model_file()
 
-  kb <- kiwi_init(model_path_full(), 0, 0)
+  kb <- kiwi_init_(model_path_full(), 0, 0)
 
   if (identical(kb, new("externalptr"))) {
-    tem <- kiwi_error()
-    kiwi_clear_error()
+    tem <- kiwi_error_()
+    kiwi_clear_error_()
     stop(tem)
   }
 

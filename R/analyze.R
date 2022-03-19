@@ -9,7 +9,7 @@ analyze <- function(text, top_n = 3) {
     init()
 
   return(
-    kiwi_analyze(
+    kiwi_analyze_(
       get("kb", envir = .el),
       text,
       top_n, 1
