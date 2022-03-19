@@ -5,9 +5,12 @@
 #' @importFrom purrr map
 #' @export
 tokenize <- function(text) {
-  if (init_chk_not()) init()
-  kb <- get("kb", envir = .el)
-  return(purrr::map(text, ~ kiwi_analyze(kb, .x, 1, 1)[[1]][1]))
+  if (init_chk_not())init()
+  return(purrr::map(
+    text,
+    ~ kiwi_analyze(get("kb", envir = .el), .x, 1, 1)[[1]][1]
+    )
+  )
 }
 
 #' @export
@@ -24,7 +27,7 @@ tokenize_tibble <- function(text) {
 #' @rdname tokenize
 tokenize_tidytext <- function(text) {
   res <- tokenize_raw(text)
-  purrr::map(res, ~paste0(.x$form, "/", .x$tag))
+  purrr::map(res, ~ paste0(.x$form, "/", .x$tag))
 }
 
 

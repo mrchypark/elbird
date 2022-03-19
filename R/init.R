@@ -1,6 +1,5 @@
-
 init_chk_not <- function() {
-  length(ls(envir=.el)) != 1
+  length(ls(envir = .el)) != 1
 }
 
 #' @importFrom methods new

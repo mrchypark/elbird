@@ -8,8 +8,3 @@
 #' @importFrom tibble tibble
 ## usethis namespace: end
 NULL
-
-
-# https://github.com/r-lib/devtools/issues/2027#issuecomment-483691800
-# devtools::clean_dll()
-# @useDynLib elbird, .registration = TRUE
