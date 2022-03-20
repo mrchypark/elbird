@@ -42,9 +42,11 @@ model_is_set <- function() {
 
 #' @importFrom utils untar download.file
 get_model_file <-
-  function(version = "v0.10.3",
+  function(version = "v0.11.0",
+           size = "base",
            path = model_path(),
            force = FALSE) {
+    size <- match.arg(size, c("small","base","large"))
     if (force)
       unlink(path, recursive = TRUE)
 
@@ -54,6 +56,8 @@ get_model_file <-
         version,
         "/kiwi_model_",
         version,
+        "_",
+        size,
         ".tgz"
       )
     utils::download.file(tarurl, destfile = "kiwi-model.tgz", quiet = TRUE)

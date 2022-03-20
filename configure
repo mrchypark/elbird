@@ -4,7 +4,7 @@
 PKG_TEST_HEADER="<kiwi/Kiwi.h>"
 PKG_LIBS="-lkiwi"
 PKG_CPPFLAGS=""
-LIB_VER="0.10.3"
+LIB_VER="0.11.0"
 
 # Check for custom locations
 if [ "$INCLUDE_DIR" ] || [ "$LIB_DIR" ]; then

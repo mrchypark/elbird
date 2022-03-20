@@ -7,3 +7,4 @@ Kiwi*
 src/Makevars
 inst/ModelGenerator*
 inst/*
+kiwilibs/*

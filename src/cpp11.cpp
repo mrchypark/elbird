@@ -57,10 +57,10 @@ extern "C" SEXP _elbird_kiwi_analyze_(SEXP handle_ex, SEXP text, SEXP top_n, SEX
   END_CPP11
 }
 // kiwi_bind.cpp
-SEXP kiwi_split_into_sents_(SEXP handle_ex, const char* text, int match_options);
-extern "C" SEXP _elbird_kiwi_split_into_sents_(SEXP handle_ex, SEXP text, SEXP match_options) {
+SEXP kiwi_split_into_sents_(SEXP handle_ex, const char* text, int match_options, bool return_tokens);
+extern "C" SEXP _elbird_kiwi_split_into_sents_(SEXP handle_ex, SEXP text, SEXP match_options, SEXP return_tokens) {
   BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_split_into_sents_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(text), cpp11::as_cpp<cpp11::decay_t<int>>(match_options)));
+    return cpp11::as_sexp(kiwi_split_into_sents_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(text), cpp11::as_cpp<cpp11::decay_t<int>>(match_options), cpp11::as_cpp<cpp11::decay_t<bool>>(return_tokens)));
   END_CPP11
 }
 // kiwi_bind.cpp
@@ -75,6 +75,13 @@ int kiwi_builder_add_word_(SEXP handle_ex, const char* word, const char* pos, fl
 extern "C" SEXP _elbird_kiwi_builder_add_word_(SEXP handle_ex, SEXP word, SEXP pos, SEXP score) {
   BEGIN_CPP11
     return cpp11::as_sexp(kiwi_builder_add_word_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(word), cpp11::as_cpp<cpp11::decay_t<const char*>>(pos), cpp11::as_cpp<cpp11::decay_t<float>>(score)));
+  END_CPP11
+}
+// kiwi_bind.cpp
+int kiwi_builder_add_alias_word_(SEXP handle_ex, const char* alias, const char* pos, float score, const char* orig_word);
+extern "C" SEXP _elbird_kiwi_builder_add_alias_word_(SEXP handle_ex, SEXP alias, SEXP pos, SEXP score, SEXP orig_word) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_builder_add_alias_word_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(alias), cpp11::as_cpp<cpp11::decay_t<const char*>>(pos), cpp11::as_cpp<cpp11::decay_t<float>>(score), cpp11::as_cpp<cpp11::decay_t<const char*>>(orig_word)));
   END_CPP11
 }
 // kiwi_bind.cpp
@@ -94,18 +101,19 @@ extern "C" SEXP _elbird_kiwi_builder_build_(SEXP handle_ex) {
 
 extern "C" {
 static const R_CallMethodDef CallEntries[] = {
-    {"_elbird_kiwi_analyze_",           (DL_FUNC) &_elbird_kiwi_analyze_,           4},
-    {"_elbird_kiwi_builder_add_word_",  (DL_FUNC) &_elbird_kiwi_builder_add_word_,  4},
-    {"_elbird_kiwi_builder_build_",     (DL_FUNC) &_elbird_kiwi_builder_build_,     1},
-    {"_elbird_kiwi_builder_init_",      (DL_FUNC) &_elbird_kiwi_builder_init_,      3},
-    {"_elbird_kiwi_builder_load_dict_", (DL_FUNC) &_elbird_kiwi_builder_load_dict_, 2},
-    {"_elbird_kiwi_clear_error_",       (DL_FUNC) &_elbird_kiwi_clear_error_,       0},
-    {"_elbird_kiwi_error_",             (DL_FUNC) &_elbird_kiwi_error_,             0},
-    {"_elbird_kiwi_get_option_",        (DL_FUNC) &_elbird_kiwi_get_option_,        2},
-    {"_elbird_kiwi_init_",              (DL_FUNC) &_elbird_kiwi_init_,              3},
-    {"_elbird_kiwi_set_option_",        (DL_FUNC) &_elbird_kiwi_set_option_,        3},
-    {"_elbird_kiwi_split_into_sents_",  (DL_FUNC) &_elbird_kiwi_split_into_sents_,  3},
-    {"_elbird_kiwi_version_",           (DL_FUNC) &_elbird_kiwi_version_,           0},
+    {"_elbird_kiwi_analyze_",                (DL_FUNC) &_elbird_kiwi_analyze_,                4},
+    {"_elbird_kiwi_builder_add_alias_word_", (DL_FUNC) &_elbird_kiwi_builder_add_alias_word_, 5},
+    {"_elbird_kiwi_builder_add_word_",       (DL_FUNC) &_elbird_kiwi_builder_add_word_,       4},
+    {"_elbird_kiwi_builder_build_",          (DL_FUNC) &_elbird_kiwi_builder_build_,          1},
+    {"_elbird_kiwi_builder_init_",           (DL_FUNC) &_elbird_kiwi_builder_init_,           3},
+    {"_elbird_kiwi_builder_load_dict_",      (DL_FUNC) &_elbird_kiwi_builder_load_dict_,      2},
+    {"_elbird_kiwi_clear_error_",            (DL_FUNC) &_elbird_kiwi_clear_error_,            0},
+    {"_elbird_kiwi_error_",                  (DL_FUNC) &_elbird_kiwi_error_,                  0},
+    {"_elbird_kiwi_get_option_",             (DL_FUNC) &_elbird_kiwi_get_option_,             2},
+    {"_elbird_kiwi_init_",                   (DL_FUNC) &_elbird_kiwi_init_,                   3},
+    {"_elbird_kiwi_set_option_",             (DL_FUNC) &_elbird_kiwi_set_option_,             3},
+    {"_elbird_kiwi_split_into_sents_",       (DL_FUNC) &_elbird_kiwi_split_into_sents_,       4},
+    {"_elbird_kiwi_version_",                (DL_FUNC) &_elbird_kiwi_version_,                0},
     {NULL, NULL, 0}
 };
 }
