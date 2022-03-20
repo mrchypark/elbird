@@ -91,11 +91,16 @@ SEXP kiwi_split_into_sents_(SEXP handle_ex, const char* text, int match_options,
 
   int resSize = kiwi_ss_size(res_h);
   cpp11::writable::list res;
-  std::string textr = text;
+  std::string textr(text);
 
   for (int i = 0; i < resSize; i++) {
     cpp11::writable::list sent;
-    sent.push_back({"text"_nm = textr.substr(kiwi_ss_begin_position(res_h, i), kiwi_ss_end_position(res_h, i))});
+
+    int start = kiwi_ss_begin_position(res_h, i);
+    int end = kiwi_ss_end_position(res_h, i);
+    sent.push_back({"text"_nm = textr.substr(start, end)});
+    sent.push_back({"start"_nm = start});
+    sent.push_back({"end"_nm = end});
 
     cpp11::writable::list tkns;
     if (return_tokens) {
