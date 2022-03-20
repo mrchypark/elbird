@@ -28,8 +28,8 @@ kiwi_analyze_ <- function(handle_ex, text, top_n, match_options) {
   .Call(`_elbird_kiwi_analyze_`, handle_ex, text, top_n, match_options)
 }
 
-kiwi_split_into_sents_ <- function(handle_ex, text, match_options, return_tokens) {
-  .Call(`_elbird_kiwi_split_into_sents_`, handle_ex, text, match_options, return_tokens)
+kiwi_split_into_sents_ <- function(handle_ex, text, match_options) {
+  .Call(`_elbird_kiwi_split_into_sents_`, handle_ex, text, match_options)
 }
 
 kiwi_builder_init_ <- function(model_path, num_threads, options) {

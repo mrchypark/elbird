@@ -57,10 +57,10 @@ extern "C" SEXP _elbird_kiwi_analyze_(SEXP handle_ex, SEXP text, SEXP top_n, SEX
   END_CPP11
 }
 // kiwi_bind.cpp
-SEXP kiwi_split_into_sents_(SEXP handle_ex, const char* text, int match_options, bool return_tokens);
-extern "C" SEXP _elbird_kiwi_split_into_sents_(SEXP handle_ex, SEXP text, SEXP match_options, SEXP return_tokens) {
+SEXP kiwi_split_into_sents_(SEXP handle_ex, const char* text, int match_options);
+extern "C" SEXP _elbird_kiwi_split_into_sents_(SEXP handle_ex, SEXP text, SEXP match_options) {
   BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_split_into_sents_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(text), cpp11::as_cpp<cpp11::decay_t<int>>(match_options), cpp11::as_cpp<cpp11::decay_t<bool>>(return_tokens)));
+    return cpp11::as_sexp(kiwi_split_into_sents_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(text), cpp11::as_cpp<cpp11::decay_t<int>>(match_options)));
   END_CPP11
 }
 // kiwi_bind.cpp
@@ -104,7 +104,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_elbird_kiwi_get_option_",        (DL_FUNC) &_elbird_kiwi_get_option_,        2},
     {"_elbird_kiwi_init_",              (DL_FUNC) &_elbird_kiwi_init_,              3},
     {"_elbird_kiwi_set_option_",        (DL_FUNC) &_elbird_kiwi_set_option_,        3},
-    {"_elbird_kiwi_split_into_sents_",  (DL_FUNC) &_elbird_kiwi_split_into_sents_,  4},
+    {"_elbird_kiwi_split_into_sents_",  (DL_FUNC) &_elbird_kiwi_split_into_sents_,  3},
     {"_elbird_kiwi_version_",           (DL_FUNC) &_elbird_kiwi_version_,           0},
     {NULL, NULL, 0}
 };

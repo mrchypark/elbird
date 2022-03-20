@@ -1,6 +1,7 @@
 #include <cpp11.hpp>
 using namespace cpp11;
 #include <kiwi/capi.h>
+#include <kiwi/Kiwi.h>
 
 typedef struct kiwi_s* kiwi_h;
 typedef struct kiwi_builder* kiwi_builder_h;
@@ -54,7 +55,7 @@ cpp11::writable::list get_tokens(kiwi_res_h res_h, int i) {
     cpp11::writable::list TokenInfo;
     TokenInfo.push_back({"form"_nm = kiwi_res_form(res_h, i, j)});
     TokenInfo.push_back({"tag"_nm = kiwi_res_tag(res_h, i, j)});
-    TokenInfo.push_back({"start"_nm = kiwi_res_position(res_h, i, j)+1});
+    TokenInfo.push_back({"start"_nm = kiwi_res_position(res_h, i, j)});
     TokenInfo.push_back({"len"_nm = kiwi_res_length(res_h, i, j)});
     tokens.push_back(TokenInfo);
   }
@@ -80,24 +81,16 @@ SEXP kiwi_analyze_(SEXP handle_ex, const char* text, int top_n, int match_option
 }
 
 [[cpp11::register]]
-SEXP kiwi_split_into_sents_(SEXP handle_ex, const char* text, int match_options, bool return_tokens) {
+SEXP kiwi_split_into_sents_(SEXP handle_ex, const char* text, int match_options) {
   cpp11::external_pointer<kiwi_s> handle(handle_ex);
 
   kiwi_res_h tokenized_res;
-  kiwi_res_h *tokenized_res_ptr = &tokenized_res;
-  if (!return_tokens) {
-    *tokenized_res_ptr = NULL;
-  }
-
-  kiwi_ss_h res_h = kiwi_split_into_sents(handle.get(), text, match_options, tokenized_res_ptr);
+  kiwi_ss_h res_h = kiwi_split_into_sents(handle.get(), text, match_options, NULL);
 
   int resSize = kiwi_ss_size(res_h);
   cpp11::writable::list res;
   std::string textr = text;
   cpp11::writable::list tkns;
-  if (return_tokens) {
-    tkns = get_tokens(tokenized_res, 1);
-  }
   for (int i = 0; i < resSize; i++) {
     cpp11::writable::list sents;
     int start = kiwi_ss_begin_position(res_h, i);
