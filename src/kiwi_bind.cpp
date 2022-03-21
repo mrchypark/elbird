@@ -10,6 +10,10 @@ typedef struct kiwi_ws* kiwi_ws_h;
 typedef struct kiwi_ss* kiwi_ss_h;
 typedef unsigned short kchar16_t;
 
+typedef int(*kiwi_reader_t)(int, char*, void*);
+typedef int(*kiwi_receiver_t)(int, kiwi_res_h, void*);
+typedef int(*kiwi_builder_replacer_t)(const char*, int, char*, void*);
+
 [[cpp11::register]]
 std::string kiwi_version_() {
   return kiwi_version();
@@ -25,8 +29,78 @@ void kiwi_clear_error_() {
   kiwi_clear_error();
 }
 
+static void _finalizer_kiwi_builder_h(kiwi_builder_h handle){
+  kiwi_builder_close(handle);
+}
+
+[[cpp11::register]]
+SEXP kiwi_builder_init_(const char* model_path, int num_threads, int options) {
+  kiwi_builder_h kb = kiwi_builder_init(model_path, num_threads, options);
+  cpp11::external_pointer<kiwi_builder, _finalizer_kiwi_builder_h> res(kb);
+  return res;
+}
+
+[[cpp11::register]]
+int kiwi_builder_add_word_(SEXP handle_ex, const char* word, const char* pos, float score) {
+  cpp11::external_pointer<kiwi_builder> handle(handle_ex);
+  int res_h = kiwi_builder_add_word(handle.get(), word, pos, score);
+  return res_h;
+}
+
+[[cpp11::register]]
+int kiwi_builder_add_alias_word_(SEXP handle_ex, const char* alias, const char* pos, float score, const char* orig_word) {
+  cpp11::external_pointer<kiwi_builder> handle(handle_ex);
+  int res_h = kiwi_builder_add_alias_word(handle.get(), alias, pos, score, orig_word);
+  return res_h;
+}
+
+int kiwi_builder_add_pre_analyzed_word_(SEXP handle_ex, const char* form, int size, const char** analyzed_morphs, const char** analyzed_pos, float score, const int* positions) {
+  cpp11::external_pointer<kiwi_builder> handle(handle_ex);
+  int res_h = kiwi_builder_add_pre_analyzed_word(handle.get(), form, size, analyzed_morphs, analyzed_pos, score, positions);
+  return res_h;
+}
+
+int kiwi_builder_add_rule_(SEXP handle_ex, const char* pos, kiwi_builder_replacer_t replacer, void* user_data, float score) {
+  cpp11::external_pointer<kiwi_builder> handle(handle_ex);
+  int res_h = kiwi_builder_add_rule(handle.get(), pos, replacer, user_data, score);
+  return res_h;
+}
+
+[[cpp11::register]]
+int kiwi_builder_load_dict_(SEXP handle_ex, const char* dict_path) {
+  cpp11::external_pointer<kiwi_builder> handle(handle_ex);
+  int res_h = kiwi_builder_load_dict(handle.get(), dict_path);
+  return res_h;
+}
+
 static void _finalizer_kiwi_h(kiwi_h handle){
   kiwi_close(handle);
+}
+
+[[cpp11::register]]
+SEXP kiwi_builder_build_(SEXP handle_ex) {
+  cpp11::external_pointer<kiwi_builder> handle(handle_ex);
+  kiwi_h kw = kiwi_builder_build(handle.get());
+  cpp11::external_pointer<kiwi_s, _finalizer_kiwi_h> res(kw);
+  return res;
+}
+
+static void _finalizer_kiwi_ws_h(kiwi_ws_h handle){
+  kiwi_ws_close(handle);
+}
+
+SEXP kiwi_builder_extract_words_(SEXP handle_ex, kiwi_reader_t reader, void* user_data, int min_cnt, int max_word_len, float min_score, float pos_threshold) {
+  cpp11::external_pointer<kiwi_builder> handle(handle_ex);
+  kiwi_ws_h res_h = kiwi_builder_extract_words(handle.get(), reader, user_data, min_cnt, max_word_len, min_score, pos_threshold);
+  cpp11::external_pointer<kiwi_ws, _finalizer_kiwi_ws_h> res(res_h);
+  return res;
+}
+
+SEXP kiwi_builder_extract_add_words_(SEXP handle_ex, kiwi_reader_t reader, void* user_data, int min_cnt, int max_word_len, float min_score, float pos_threshold) {
+  cpp11::external_pointer<kiwi_builder> handle(handle_ex);
+  kiwi_ws_h res_h = kiwi_builder_extract_add_words(handle.get(), reader, user_data, min_cnt, max_word_len, min_score, pos_threshold);
+  cpp11::external_pointer<kiwi_ws, _finalizer_kiwi_ws_h> res(res_h);
+  return res;
 }
 
 [[cpp11::register]]
@@ -98,7 +172,7 @@ SEXP kiwi_split_into_sents_(SEXP handle_ex, const char* text, int match_options,
 
     int start = kiwi_ss_begin_position(res_h, i);
     int end = kiwi_ss_end_position(res_h, i);
-    sent.push_back({"text"_nm = textr.substr(start, end)});
+    sent.push_back({"text"_nm = textr.substr(start, end-start)});
     sent.push_back({"start"_nm = start});
     sent.push_back({"end"_nm = end});
 
@@ -120,46 +194,5 @@ SEXP kiwi_split_into_sents_(SEXP handle_ex, const char* text, int match_options,
     res.push_back(sent);
   }
   kiwi_ss_close(res_h);
-  return res;
-}
-
-static void _finalizer_kiwi_builder_h(kiwi_builder_h handle){
-  kiwi_builder_close(handle);
-}
-
-[[cpp11::register]]
-SEXP kiwi_builder_init_(const char* model_path, int num_threads, int options) {
-  kiwi_builder_h kb = kiwi_builder_init(model_path, num_threads, options);
-  cpp11::external_pointer<kiwi_builder, _finalizer_kiwi_builder_h> res(kb);
-  return res;
-}
-
-[[cpp11::register]]
-int kiwi_builder_add_word_(SEXP handle_ex, const char* word, const char* pos, float score) {
-  cpp11::external_pointer<kiwi_builder> handle(handle_ex);
-  int res_h = kiwi_builder_add_word(handle.get(), word, pos, score);
-  return res_h;
-}
-
-[[cpp11::register]]
-int kiwi_builder_add_alias_word_(SEXP handle_ex, const char* alias, const char* pos, float score, const char* orig_word) {
-  cpp11::external_pointer<kiwi_builder> handle(handle_ex);
-  int res_h = kiwi_builder_add_alias_word(handle.get(), alias, pos, score, orig_word);
-  return res_h;
-}
-
-[[cpp11::register]]
-int kiwi_builder_load_dict_(SEXP handle_ex, const char* dict_path) {
-  cpp11::external_pointer<kiwi_builder> handle(handle_ex);
-  int res_h = kiwi_builder_load_dict(handle.get(), dict_path);
-  return res_h;
-}
-
-
-[[cpp11::register]]
-SEXP kiwi_builder_build_(SEXP handle_ex) {
-  cpp11::external_pointer<kiwi_builder> handle(handle_ex);
-  kiwi_h kw = kiwi_builder_build(handle.get());
-  cpp11::external_pointer<kiwi_s, _finalizer_kiwi_h> res(kw);
   return res;
 }

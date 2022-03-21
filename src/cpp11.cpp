@@ -28,6 +28,41 @@ extern "C" SEXP _elbird_kiwi_clear_error_() {
   END_CPP11
 }
 // kiwi_bind.cpp
+SEXP kiwi_builder_init_(const char* model_path, int num_threads, int options);
+extern "C" SEXP _elbird_kiwi_builder_init_(SEXP model_path, SEXP num_threads, SEXP options) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_builder_init_(cpp11::as_cpp<cpp11::decay_t<const char*>>(model_path), cpp11::as_cpp<cpp11::decay_t<int>>(num_threads), cpp11::as_cpp<cpp11::decay_t<int>>(options)));
+  END_CPP11
+}
+// kiwi_bind.cpp
+int kiwi_builder_add_word_(SEXP handle_ex, const char* word, const char* pos, float score);
+extern "C" SEXP _elbird_kiwi_builder_add_word_(SEXP handle_ex, SEXP word, SEXP pos, SEXP score) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_builder_add_word_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(word), cpp11::as_cpp<cpp11::decay_t<const char*>>(pos), cpp11::as_cpp<cpp11::decay_t<float>>(score)));
+  END_CPP11
+}
+// kiwi_bind.cpp
+int kiwi_builder_add_alias_word_(SEXP handle_ex, const char* alias, const char* pos, float score, const char* orig_word);
+extern "C" SEXP _elbird_kiwi_builder_add_alias_word_(SEXP handle_ex, SEXP alias, SEXP pos, SEXP score, SEXP orig_word) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_builder_add_alias_word_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(alias), cpp11::as_cpp<cpp11::decay_t<const char*>>(pos), cpp11::as_cpp<cpp11::decay_t<float>>(score), cpp11::as_cpp<cpp11::decay_t<const char*>>(orig_word)));
+  END_CPP11
+}
+// kiwi_bind.cpp
+int kiwi_builder_load_dict_(SEXP handle_ex, const char* dict_path);
+extern "C" SEXP _elbird_kiwi_builder_load_dict_(SEXP handle_ex, SEXP dict_path) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_builder_load_dict_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(dict_path)));
+  END_CPP11
+}
+// kiwi_bind.cpp
+SEXP kiwi_builder_build_(SEXP handle_ex);
+extern "C" SEXP _elbird_kiwi_builder_build_(SEXP handle_ex) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_builder_build_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex)));
+  END_CPP11
+}
+// kiwi_bind.cpp
 SEXP kiwi_init_(const char* model_path, int num_threads, int options);
 extern "C" SEXP _elbird_kiwi_init_(SEXP model_path, SEXP num_threads, SEXP options) {
   BEGIN_CPP11
@@ -61,41 +96,6 @@ SEXP kiwi_split_into_sents_(SEXP handle_ex, const char* text, int match_options,
 extern "C" SEXP _elbird_kiwi_split_into_sents_(SEXP handle_ex, SEXP text, SEXP match_options, SEXP return_tokens) {
   BEGIN_CPP11
     return cpp11::as_sexp(kiwi_split_into_sents_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(text), cpp11::as_cpp<cpp11::decay_t<int>>(match_options), cpp11::as_cpp<cpp11::decay_t<bool>>(return_tokens)));
-  END_CPP11
-}
-// kiwi_bind.cpp
-SEXP kiwi_builder_init_(const char* model_path, int num_threads, int options);
-extern "C" SEXP _elbird_kiwi_builder_init_(SEXP model_path, SEXP num_threads, SEXP options) {
-  BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_builder_init_(cpp11::as_cpp<cpp11::decay_t<const char*>>(model_path), cpp11::as_cpp<cpp11::decay_t<int>>(num_threads), cpp11::as_cpp<cpp11::decay_t<int>>(options)));
-  END_CPP11
-}
-// kiwi_bind.cpp
-int kiwi_builder_add_word_(SEXP handle_ex, const char* word, const char* pos, float score);
-extern "C" SEXP _elbird_kiwi_builder_add_word_(SEXP handle_ex, SEXP word, SEXP pos, SEXP score) {
-  BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_builder_add_word_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(word), cpp11::as_cpp<cpp11::decay_t<const char*>>(pos), cpp11::as_cpp<cpp11::decay_t<float>>(score)));
-  END_CPP11
-}
-// kiwi_bind.cpp
-int kiwi_builder_add_alias_word_(SEXP handle_ex, const char* alias, const char* pos, float score, const char* orig_word);
-extern "C" SEXP _elbird_kiwi_builder_add_alias_word_(SEXP handle_ex, SEXP alias, SEXP pos, SEXP score, SEXP orig_word) {
-  BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_builder_add_alias_word_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(alias), cpp11::as_cpp<cpp11::decay_t<const char*>>(pos), cpp11::as_cpp<cpp11::decay_t<float>>(score), cpp11::as_cpp<cpp11::decay_t<const char*>>(orig_word)));
-  END_CPP11
-}
-// kiwi_bind.cpp
-int kiwi_builder_load_dict_(SEXP handle_ex, const char* dict_path);
-extern "C" SEXP _elbird_kiwi_builder_load_dict_(SEXP handle_ex, SEXP dict_path) {
-  BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_builder_load_dict_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(dict_path)));
-  END_CPP11
-}
-// kiwi_bind.cpp
-SEXP kiwi_builder_build_(SEXP handle_ex);
-extern "C" SEXP _elbird_kiwi_builder_build_(SEXP handle_ex) {
-  BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_builder_build_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex)));
   END_CPP11
 }
 
