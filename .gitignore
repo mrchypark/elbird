@@ -8,3 +8,5 @@ src/Makevars
 inst/ModelGenerator*
 inst/*
 kiwilibs/*
+kiwilibtmp/*
+kiwi-model.tgz

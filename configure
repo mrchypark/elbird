@@ -6,6 +6,12 @@ PKG_LIBS="-lkiwi"
 PKG_CPPFLAGS=""
 LIB_VER="0.11.0"
 
+# Copy libcache for local development.
+if [ -d "`pwd`/kiwilibtmp/libs/libkiwi.a" ]; then
+  echo "Found kiwilibtmp folder!"
+  cp -rf kiwilibtmp/ kiwilibs/
+fi
+
 # Check for custom locations
 if [ "$INCLUDE_DIR" ] || [ "$LIB_DIR" ]; then
   echo "Found INCLUDE_DIR and/or LIB_DIR!"
@@ -37,10 +43,9 @@ else
   mkdir -p kiwilibs/libs
   mv -f Kiwi/build/libkiwi_static.a kiwilibs/libs/libkiwi.a
   mv -f Kiwi/include kiwilibs/include
-  echo "Kiwi compile is done."
   rm -rf Kiwi
-  echo "Remove Kiwi folder."
-  ls -alh
+  # Copy libcache for local development.
+  cp -rf kiwilibs/ kiwilibtmp/
   PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
   PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
 fi
@@ -84,10 +89,9 @@ if [ $? -ne 0 ]; then
     mkdir -p kiwilibs/libs
     mv -f Kiwi/build/libkiwi_static.a kiwilibs/libs/libkiwi.a
     mv -f Kiwi/include kiwilibs/include
-    echo "Kiwi compile is done."
     rm -rf Kiwi
-    echo "Remove Kiwi folder."
-    ls -alh
+    # Copy libcache for local development.
+    cp -rf kiwilibs/ kiwilibtmp/
     PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
     PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
     # Test for libkiwi

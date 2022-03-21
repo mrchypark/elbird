@@ -12,7 +12,8 @@ analyze <- function(text, top_n = 3) {
     kiwi_analyze_(
       get("kb", envir = .el),
       text,
-      top_n, 1
+      top_n,
+      1
     )
   )
 }
