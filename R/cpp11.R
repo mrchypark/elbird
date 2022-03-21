@@ -12,6 +12,26 @@ kiwi_clear_error_ <- function() {
   invisible(.Call(`_elbird_kiwi_clear_error_`))
 }
 
+kiwi_builder_init_ <- function(model_path, num_threads, options) {
+  .Call(`_elbird_kiwi_builder_init_`, model_path, num_threads, options)
+}
+
+kiwi_builder_add_word_ <- function(handle_ex, word, pos, score) {
+  .Call(`_elbird_kiwi_builder_add_word_`, handle_ex, word, pos, score)
+}
+
+kiwi_builder_add_alias_word_ <- function(handle_ex, alias, pos, score, orig_word) {
+  .Call(`_elbird_kiwi_builder_add_alias_word_`, handle_ex, alias, pos, score, orig_word)
+}
+
+kiwi_builder_load_dict_ <- function(handle_ex, dict_path) {
+  .Call(`_elbird_kiwi_builder_load_dict_`, handle_ex, dict_path)
+}
+
+kiwi_builder_build_ <- function(handle_ex) {
+  .Call(`_elbird_kiwi_builder_build_`, handle_ex)
+}
+
 kiwi_init_ <- function(model_path, num_threads, options) {
   .Call(`_elbird_kiwi_init_`, model_path, num_threads, options)
 }
@@ -28,22 +48,6 @@ kiwi_analyze_ <- function(handle_ex, text, top_n, match_options) {
   .Call(`_elbird_kiwi_analyze_`, handle_ex, text, top_n, match_options)
 }
 
-kiwi_split_into_sents_ <- function(handle_ex, text, match_options) {
-  .Call(`_elbird_kiwi_split_into_sents_`, handle_ex, text, match_options)
-}
-
-kiwi_builder_init_ <- function(model_path, num_threads, options) {
-  .Call(`_elbird_kiwi_builder_init_`, model_path, num_threads, options)
-}
-
-kiwi_builder_add_word_ <- function(handle_ex, word, pos, score) {
-  .Call(`_elbird_kiwi_builder_add_word_`, handle_ex, word, pos, score)
-}
-
-kiwi_builder_load_dict_ <- function(handle_ex, dict_path) {
-  .Call(`_elbird_kiwi_builder_load_dict_`, handle_ex, dict_path)
-}
-
-kiwi_builder_build_ <- function(handle_ex) {
-  .Call(`_elbird_kiwi_builder_build_`, handle_ex)
+kiwi_split_into_sents_ <- function(handle_ex, text, match_options, return_tokens) {
+  .Call(`_elbird_kiwi_split_into_sents_`, handle_ex, text, match_options, return_tokens)
 }

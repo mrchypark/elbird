@@ -22,7 +22,8 @@ Imports:
     dplyr,
     purrr,
     methods,
-    tibble
+    tibble,
+    R6
 LinkingTo: 
     cpp11
 Suggests: 
