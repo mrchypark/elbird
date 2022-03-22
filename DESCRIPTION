@@ -1,5 +1,5 @@
 Package: elbird
-Title: Blazing Fast Morphological Analyzer based on kiwi(Korean Intelligent Word Identifier)
+Title: Blazing Fast Morphological Analyzer Based on Kiwi(Korean Intelligent Word Identifier)
 Version: 0.0.2
 Authors@R: person(given = "Chanyub",
              family = "Park",

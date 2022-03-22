@@ -8,7 +8,7 @@ typedef struct kiwi_res* kiwi_res_h;
 typedef struct kiwi_ws* kiwi_ws_h;
 typedef struct kiwi_ss* kiwi_ss_h;
 typedef unsigned short kchar16_t;
-//
+
 // typedef int(*kiwi_reader_t)(int, char*, void*);
 // typedef int(*kiwi_reader_w_t)(int, kchar16_t*, void*);
 // typedef int(*kiwi_receiver_t)(int, kiwi_res_h, void*);
