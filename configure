@@ -29,15 +29,16 @@ else
   echo "Preparing to download and build library from source..."
   git clone -b v$LIB_VER --filter=blob:limit=5m https://github.com/bab2min/Kiwi
   cd Kiwi
+  rm -rf third_party/googletest
+  rm -rf third_party/cpuinfo
   git submodule update --init --recursive
-  cd third_party/googletest && git checkout v1.8.x && cd ../../
   mkdir build
   cd build
   which cmake
   if [ $? -ne 0 ]; then
     export PATH=$PATH:/Applications/CMake.app/Contents/bin
   fi
-  cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
+  cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DKIWI_USE_CPUINFO=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
   make
   cd ../..
 
@@ -76,15 +77,16 @@ if [ $? -ne 0 ]; then
     echo "Preparing to download and build library from source..."
     git clone -b v$LIB_VER --filter=blob:limit=5m https://github.com/bab2min/Kiwi
     cd Kiwi
+    rm -rf third_party/googletest
+    rm -rf third_party/cpuinfo
     git submodule update --init --recursive
-    cd third_party/googletest && git checkout v1.8.x && cd ../../
     mkdir build
     cd build
     which cmake
     if [ $? -ne 0 ]; then
       export PATH=$PATH:/Applications/CMake.app/Contents/bin
     fi
-    cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
+    cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DKIWI_USE_CPUINFO=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
     make
     cd ../..
     mkdir -p kiwilibs/libs
