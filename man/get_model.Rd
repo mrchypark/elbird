@@ -2,27 +2,20 @@
 % Please edit documentation in R/kiwi_model.R
 \name{get_model}
 \alias{get_model}
-\title{Get kiwi model.}
+\title{Get kiwi language model file.}
 \source{
 \url{https://github.com/bab2min/Kiwi/releases}
 }
 \usage{
-get_model(
-  version = "v0.11.0",
-  size = "base",
-  path = model_path(),
-  force = FALSE
-)
+get_model(size = "base", path = model_home_path(), clean = FALSE)
 }
 \arguments{
-\item{version}{model version. default is "v0.11.0"}
+\item{size}{small, base, large model. default is "base". Also "all" available.}
 
-\item{size}{small, base, large model. default is "base".}
+\item{path}{path for model files. default is model_home_path().}
 
-\item{path}{path for model files. default is model_path().}
-
-\item{fresh}{}
+\item{clean}{remove previous model files before get new.}
 }
 \description{
-Get kiwi model.
+Get kiwi language model file.
 }

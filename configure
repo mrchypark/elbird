@@ -9,7 +9,8 @@ LIB_VER="0.11.0"
 # Copy libcache for local development.
 if [ -d "`pwd`/kiwilibtmp/libs/libkiwi.a" ]; then
   echo "Found kiwilibtmp folder!"
-  cp -rf kiwilibtmp/ kiwilibs/
+  mkdir -p kiwilibs
+  cp -rf kiwilibtmp/* kiwilibs/
 fi
 
 # Check for custom locations

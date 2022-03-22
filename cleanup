@@ -1,3 +1,3 @@
 #!/bin/sh
 
-rm -rf src/Makevars kiwilibs/include kiwilibs/libs Kiwi
+rm -rf src/Makevars kiwilibs/include kiwilibs/libs Kiwi kiwi-model.tgz

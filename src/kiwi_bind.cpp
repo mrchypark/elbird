@@ -1,18 +1,18 @@
 #include <cpp11.hpp>
 using namespace cpp11;
 #include <kiwi/capi.h>
-#include <kiwi/Kiwi.h>
 
-typedef struct kiwi_s* kiwi_h;
-typedef struct kiwi_builder* kiwi_builder_h;
-typedef struct kiwi_res* kiwi_res_h;
-typedef struct kiwi_ws* kiwi_ws_h;
-typedef struct kiwi_ss* kiwi_ss_h;
-typedef unsigned short kchar16_t;
+// typedef struct kiwi_s* kiwi_h;
+// typedef struct kiwi_builder* kiwi_builder_h;
+// typedef struct kiwi_res* kiwi_res_h;
+// typedef struct kiwi_ws* kiwi_ws_h;
+// typedef struct kiwi_ss* kiwi_ss_h;
+// typedef unsigned short kchar16_t;
+//
+// typedef int(*kiwi_reader_t)(int, char*, void*);
+// typedef int(*kiwi_receiver_t)(int, kiwi_res_h, void*);
+// typedef int(*kiwi_builder_replacer_t)(const char*, int, char*, void*);
 
-typedef int(*kiwi_reader_t)(int, char*, void*);
-typedef int(*kiwi_receiver_t)(int, kiwi_res_h, void*);
-typedef int(*kiwi_builder_replacer_t)(const char*, int, char*, void*);
 
 [[cpp11::register]]
 std::string kiwi_version_() {

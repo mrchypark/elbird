@@ -4,7 +4,10 @@
 \alias{model_is_set}
 \title{Verifies if model exist}
 \usage{
-model_is_set()
+model_is_set(size = "all")
+}
+\arguments{
+\item{size}{model size. default is "all" which is true that all three models must be present.}
 }
 \value{
 bool

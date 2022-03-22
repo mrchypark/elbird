@@ -21,9 +21,8 @@ LazyData: true
 Imports: 
     dplyr,
     purrr,
-    methods,
     tibble,
-    R6
+    R6 (>= 2.4.0)
 LinkingTo: 
     cpp11
 Suggests: 
