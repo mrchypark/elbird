@@ -6,7 +6,7 @@ init <- function(size = "base") {
   if (!kiwi_model_exists(size))
     get_kiwi_models(size)
 
-  kb <- kiwi_init_(kiwi_model_path_full(size), 0, 0)
+  kb <- kiwi_init_(kiwi_model_path_full(size), 1, 1)
   err <- kiwi_error_wrap()
 
   if (!is.null(err))
