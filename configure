@@ -29,8 +29,8 @@ else
   echo "Preparing to download and build library from source..."
   git clone -b v$LIB_VER --filter=blob:limit=5m https://github.com/bab2min/Kiwi
   cd Kiwi
-  rm -rf third_party/googletest
-  rm -rf third_party/cpuinfo
+  git rm third_party/googletest
+  git rm third_party/cpuinfo
   git submodule update --init --recursive
   mkdir build
   cd build
@@ -77,8 +77,8 @@ if [ $? -ne 0 ]; then
     echo "Preparing to download and build library from source..."
     git clone -b v$LIB_VER --filter=blob:limit=5m https://github.com/bab2min/Kiwi
     cd Kiwi
-    rm -rf third_party/googletest
-    rm -rf third_party/cpuinfo
+    git rm third_party/googletest
+    git rm third_party/cpuinfo
     git submodule update --init --recursive
     mkdir build
     cd build
