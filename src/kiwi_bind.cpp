@@ -10,9 +10,39 @@ using namespace cpp11;
 // typedef unsigned short kchar16_t;
 //
 // typedef int(*kiwi_reader_t)(int, char*, void*);
+// typedef int(*kiwi_reader_w_t)(int, kchar16_t*, void*);
 // typedef int(*kiwi_receiver_t)(int, kiwi_res_h, void*);
 // typedef int(*kiwi_builder_replacer_t)(const char*, int, char*, void*);
-
+//
+// enum
+// {
+//   KIWI_BUILD_INTEGRATE_ALLOMORPH = 1,
+//   KIWI_BUILD_LOAD_DEFAULT_DICT = 2,
+//   KIWI_BUILD_DEFAULT = 3,
+// };
+//
+// enum
+// {
+//   KIWI_NUM_THREADS = 0x8001,
+// };
+//
+// enum
+// {
+//   KIWI_MATCH_URL = 1,
+//   KIWI_MATCH_EMAIL = 2,
+//   KIWI_MATCH_HASHTAG = 4,
+//   KIWI_MATCH_MENTION = 8,
+//   KIWI_MATCH_ALL = KIWI_MATCH_URL | KIWI_MATCH_EMAIL | KIWI_MATCH_HASHTAG | KIWI_MATCH_MENTION,
+//   KIWI_MATCH_NORMALIZE_CODA = 1 << 16,
+//   KIWI_MATCH_ALL_WITH_NORMALIZING = KIWI_MATCH_ALL | KIWI_MATCH_NORMALIZE_CODA,
+//
+//   KIWI_MATCH_JOIN_NOUN_PREFIX = 1 << 17,
+//   KIWI_MATCH_JOIN_NOUN_SUFFIX = 1 << 18,
+//   KIWI_MATCH_JOIN_VERB_SUFFIX = 1 << 19,
+//   KIWI_MATCH_JOIN_ADJ_SUFFIX = 1 << 20,
+//   KIWI_MATCH_JOIN_V_SUFFIX = KIWI_MATCH_JOIN_VERB_SUFFIX | KIWI_MATCH_JOIN_ADJ_SUFFIX,
+//   KIWI_MATCH_JOIN_NOUN_AFFIX = KIWI_MATCH_JOIN_NOUN_PREFIX | KIWI_MATCH_JOIN_NOUN_SUFFIX | KIWI_MATCH_JOIN_V_SUFFIX,
+// };
 
 [[cpp11::register]]
 std::string kiwi_version_() {
