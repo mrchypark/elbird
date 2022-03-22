@@ -59,31 +59,10 @@ model_is_set <- function(size = "all") {
 #' @export
 get_model <-
   function(size = "base",
-           path = model_home_path(),
+           path = kiwi_model_path(),
            clean = FALSE) {
-    size <- match.arg(size, c("all","small", "base", "large"))
-    if (force)
-      unlink(path, recursive = TRUE)
 
-    if (model_exists())
-      return()
-
-    tarurl <-
-      paste0(
-        "https://github.com/bab2min/Kiwi/releases/download/",
-        version,
-        "/kiwi_model_",
-        version,
-        "_",
-        size,
-        ".tgz"
-      )
-
-    dir.create(path, showWarnings = FALSE)
-    utils::download.file(tarurl, destfile = "kiwi-model.tgz", quiet = TRUE)
-    utils::untar("kiwi-model.tgz", exdir = path)
-    file.rename(file.path(path, dir(path)), file.path(path, "model"))
-    unlink("kiwi-model.tgz")
+    get_kiwi_models(size, path, clean)
   }
 
 get_kiwi_models <-
@@ -92,13 +71,12 @@ get_kiwi_models <-
            clean = FALSE) {
 
   size <- match.arg(size, c("all", "small", "base", "large"))
-
   if (clean)
     kiwi_model_clean(size)
 
   if (size == "all") size <- list("small", "base", "large")
 
-  lapply(size, function(x) kiwi_model_get(version, x, path))
+  lapply(size, function(x) kiwi_model_get(x, path))
   invisible()
 }
 
