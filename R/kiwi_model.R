@@ -59,7 +59,7 @@ model_is_set <- function(size = "all") {
 #' @export
 get_model <-
   function(size = "base",
-           path = kiwi_model_path(),
+           path = model_home(),
            clean = FALSE) {
 
     get_kiwi_models(size, path, clean)
@@ -67,7 +67,7 @@ get_model <-
 
 get_kiwi_models <-
   function(size = "all",
-           path = model_home_path(),
+           path = kiwi_model_path(),
            clean = FALSE) {
 
   size <- match.arg(size, c("all", "small", "base", "large"))
