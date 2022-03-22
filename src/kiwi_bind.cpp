@@ -73,6 +73,12 @@ int kiwi_builder_load_dict_(SEXP handle_ex, const char* dict_path) {
   return res_h;
 }
 
+[[cpp11::register]]
+int kiwi_close_(SEXP handle_ex) {
+  cpp11::external_pointer<kiwi_s> handle(handle_ex);
+  return kiwi_close(handle.get());
+}
+
 static void _finalizer_kiwi_h(kiwi_h handle){
   kiwi_close(handle);
 }

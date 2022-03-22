@@ -56,6 +56,13 @@ extern "C" SEXP _elbird_kiwi_builder_load_dict_(SEXP handle_ex, SEXP dict_path) 
   END_CPP11
 }
 // kiwi_bind.cpp
+int kiwi_close_(SEXP handle_ex);
+extern "C" SEXP _elbird_kiwi_close_(SEXP handle_ex) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_close_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex)));
+  END_CPP11
+}
+// kiwi_bind.cpp
 SEXP kiwi_builder_build_(SEXP handle_ex);
 extern "C" SEXP _elbird_kiwi_builder_build_(SEXP handle_ex) {
   BEGIN_CPP11
@@ -108,6 +115,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_elbird_kiwi_builder_init_",           (DL_FUNC) &_elbird_kiwi_builder_init_,           3},
     {"_elbird_kiwi_builder_load_dict_",      (DL_FUNC) &_elbird_kiwi_builder_load_dict_,      2},
     {"_elbird_kiwi_clear_error_",            (DL_FUNC) &_elbird_kiwi_clear_error_,            0},
+    {"_elbird_kiwi_close_",                  (DL_FUNC) &_elbird_kiwi_close_,                  1},
     {"_elbird_kiwi_error_",                  (DL_FUNC) &_elbird_kiwi_error_,                  0},
     {"_elbird_kiwi_get_option_",             (DL_FUNC) &_elbird_kiwi_get_option_,             2},
     {"_elbird_kiwi_init_",                   (DL_FUNC) &_elbird_kiwi_init_,                   3},

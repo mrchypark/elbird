@@ -8,6 +8,13 @@ kiwi_model_path <- function() {
   }
 }
 
+kiwi_model_path_full <- function(size) {
+  size <- match.arg(size, c("small", "base", "large"))
+  if (size == "base")
+    size <- "ModelGenerator"
+  file.path(kiwi_model_path(), size)
+}
+
 #' A simple exported version of kiwi_model_path()
 #' Returns the kiwi model path.
 #'
@@ -19,32 +26,47 @@ model_home <- function() {
   kiwi_model_path()
 }
 
-kiwi_model_path_full <- function(size) {
-  size <- match.arg(size, c("small", "base", "large"))
-  if (size == "base")
-    size <- "ModelGenerator"
-  file.path(kiwi_model_path(), size)
-}
-
-model_exists <- function(size) {
+kiwi_model_exists <- function(size) {
   size <- match.arg(size, c("all","small", "base", "large"))
   if (size == "all") size <- list("small", "base", "large")
-  all(sapply(size, function(x) model_exists_one(x)))
+  all(sapply(size, function(x) kiwi_model_exists_one(x)))
 }
 
-model_exists_one <- function(size) {
+kiwi_model_exists_one <- function(size) {
   size <- match.arg(size, c("small", "base", "large"))
   chk_list <- c("combiningRule.txt", "default.dict", "extract.mdl", "sj.knlm", "sj.morph")
   all(sapply(chk_list, function(x) file.exists(file.path(kiwi_model_path_full(size), x))))
 }
 
-#' Verifies if model exist
+#' Verifies if model files exists.
 #'
 #' @param size model size. default is "all" which is true that all three models must be present.
 #' @return bool
 #' @export
-model_is_set <- function(size = "all") {
-  model_exists(size)
+model_exists <- function(size = "all") {
+  kiwi_model_exists(size)
+}
+
+kiwi_model_works <- function(size) {
+  size <- match.arg(size, c("all","small", "base", "large"))
+  if (size == "all") size <- list("small", "base", "large")
+  all(sapply(size, function(x) kiwi_model_work_one(x)))
+}
+
+kiwi_model_work_one <- function(size) {
+  size <- match.arg(size, c("small", "base", "large"))
+  if (!kiwi_model_exists_one(size)) return(FALSE)
+  invisible(kiwi_init_(kiwi_model_path_full(size), 1, 1))
+  is.null(kiwi_error_wrap())
+}
+
+#' Verifies if models work fine.
+#'
+#' @param size model size. default is "all" which is true that all three models must be present.
+#' @return bool
+#' @export
+model_works <- function(size = "all") {
+  kiwi_model_exists(size)
 }
 
 #' Get kiwi language model file.

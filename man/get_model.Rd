@@ -7,7 +7,7 @@
 \url{https://github.com/bab2min/Kiwi/releases}
 }
 \usage{
-get_model(size = "base", path = model_home_path(), clean = FALSE)
+get_model(size = "base", path = model_home(), clean = FALSE)
 }
 \arguments{
 \item{size}{small, base, large model. default is "base". Also "all" available.}

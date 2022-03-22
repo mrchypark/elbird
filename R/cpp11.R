@@ -28,6 +28,10 @@ kiwi_builder_load_dict_ <- function(handle_ex, dict_path) {
   .Call(`_elbird_kiwi_builder_load_dict_`, handle_ex, dict_path)
 }
 
+kiwi_close_ <- function(handle_ex) {
+  .Call(`_elbird_kiwi_close_`, handle_ex)
+}
+
 kiwi_builder_build_ <- function(handle_ex) {
   .Call(`_elbird_kiwi_builder_build_`, handle_ex)
 }

@@ -2,8 +2,9 @@
 
 export(analyze)
 export(get_model)
+export(model_exists)
 export(model_home)
-export(model_is_set)
+export(model_works)
 export(split_into_sents)
 export(tokenize)
 export(tokenize_tbl)

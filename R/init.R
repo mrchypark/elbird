@@ -2,20 +2,16 @@ init_chk_not <- function() {
   length(ls(envir = .el)) != 1
 }
 
-kiwi_init_chk <- function(kb) {
+init <- function(size = "base") {
+  if (!kiwi_model_exists(size))
+    get_kiwi_models(size)
 
-}
+  kb <- kiwi_init_(kiwi_model_path_full(size), 0, 0)
+  err <- kiwi_error_wrap()
 
-init <- function() {
-  if (!model_check())
-    get_model_file()
+  if (!is.null(err))
+    stop(err)
 
-  kb <- kiwi_init_(model_path_full(), 0, 0)
-  if (identical(kb, new("externalptr"))) {
-    tem <- kiwi_error_()
-    kiwi_clear_error_()
-    stop(tem)
-  }
   assign("kb", kb, envir = .el)
 }
 
