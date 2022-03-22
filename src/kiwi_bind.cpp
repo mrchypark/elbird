@@ -51,6 +51,7 @@ std::string kiwi_version_() {
 
 [[cpp11::register]]
 std::string kiwi_error_() {
+  if (kiwi_error() == nullptr) return "0";
   return kiwi_error();
 }
 

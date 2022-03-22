@@ -1,6 +1,6 @@
 kiwi_error_wrap <- function() {
-  tr <- try(kiwi_error_(), silent = T)
-  if (class(tr) != "try-error") {
+  tr <- kiwi_error_()
+  if (tr != "0") {
     kiwi_clear_error_()
     return(tr)
   }
