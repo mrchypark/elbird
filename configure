@@ -7,7 +7,7 @@ PKG_CPPFLAGS=""
 LIB_VER="0.11.0"
 
 # Copy libcache for local development.
-if [ -d "`pwd`/kiwilibtmp/libs/libkiwi.a" ]; then
+if [ -f "`pwd`/kiwilibtmp/libs/libkiwi.a" ]; then
   echo "Found kiwilibtmp folder!"
   mkdir -p kiwilibs
   cp -rf kiwilibtmp/* kiwilibs/
