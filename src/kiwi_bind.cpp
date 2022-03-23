@@ -14,16 +14,15 @@ typedef int(*kiwi_builder_replacer_t)(const char*, int, char*, void*);
 class Scanner {
 public :
   int init(const char* input) {
-    std::ifstream newfile;
-    newfile.open(input);
-    if (!newfile.is_open()) {
+    strm.open(input);
+    if (!strm.is_open()) {
       return -1;
     }
     return 0;
   };
   bool scan() {
     std::getline(strm, line);
-    return strm.eof();
+    return !strm.eof();
   };
   void rewind() {
     strm.seekg(0);
@@ -32,7 +31,7 @@ public :
     return line;
   };
   int len() {
-    return strlen(line.c_str());
+    return strlen(line.c_str())+1;
   };
   void close() {
     strm.close();
@@ -48,9 +47,12 @@ SEXP scanner(const char* input) {
   Scanner sc;
   if (sc.init(input) == -1) return R_NilValue;
   cpp11::writable::list res;
-  sc.scan();
-  res.push_back({"text"_nm = sc.text()});
-  res.push_back({"len"_nm = sc.len()});
+  while (sc.scan()){
+    cpp11::writable::list word;
+    word.push_back({"text"_nm = sc.text()});
+    word.push_back({"len"_nm = sc.len()});
+    res.push_back(word);
+  }
   sc.close();
   return res;
 };
@@ -169,7 +171,9 @@ static void _finalizer_kiwi_ws_h(kiwi_ws_h handle){
 }
 
 int readLines(int line, char* buffer, void* input) {
-  auto scanner = (Scanner*)input;
+  Scanner* scanner = (Scanner*)input;
+  std::cout << "function start" << std::endl;
+
   if (buffer == nullptr) {
     if (line == 0) {
       scanner->rewind();
