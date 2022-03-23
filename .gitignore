@@ -6,7 +6,7 @@ config.status
 Kiwi*
 src/Makevars
 inst/ModelGenerator*
-inst/*
+inst/model/*
 kiwilibs/*
 kiwilibtmp/*
 kiwi-model.tgz

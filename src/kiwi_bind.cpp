@@ -1,18 +1,60 @@
+#include <fstream>
+#include <iostream>
+#include <cstring>
+
 #include <cpp11.hpp>
 using namespace cpp11;
 #include <kiwi/capi.h>
 
-typedef struct kiwi_s* kiwi_h;
-typedef struct kiwi_builder* kiwi_builder_h;
-typedef struct kiwi_res* kiwi_res_h;
-typedef struct kiwi_ws* kiwi_ws_h;
-typedef struct kiwi_ss* kiwi_ss_h;
-typedef unsigned short kchar16_t;
+typedef int(*kiwi_reader_t)(int, char*, void*);
+typedef int(*kiwi_reader_w_t)(int, kchar16_t*, void*);
+typedef int(*kiwi_receiver_t)(int, kiwi_res_h, void*);
+typedef int(*kiwi_builder_replacer_t)(const char*, int, char*, void*);
 
-// typedef int(*kiwi_reader_t)(int, char*, void*);
-// typedef int(*kiwi_reader_w_t)(int, kchar16_t*, void*);
-// typedef int(*kiwi_receiver_t)(int, kiwi_res_h, void*);
-// typedef int(*kiwi_builder_replacer_t)(const char*, int, char*, void*);
+class Scanner {
+public :
+  int init(const char* input) {
+    std::ifstream newfile;
+    newfile.open(input);
+    if (!newfile.is_open()) {
+      return -1;
+    }
+    return 0;
+  };
+  bool scan() {
+    std::getline(strm, line);
+    return strm.eof();
+  };
+  void rewind() {
+    strm.seekg(0);
+  };
+  std::string text() {
+    return line;
+  };
+  int len() {
+    return strlen(line.c_str());
+  };
+  void close() {
+    strm.close();
+  };
+
+private :
+  std::string line;
+  std::ifstream strm;
+};
+
+[[cpp11::register]]
+SEXP scanner(const char* input) {
+  Scanner sc;
+  if (sc.init(input) == -1) return R_NilValue;
+  cpp11::writable::list res;
+  sc.scan();
+  res.push_back({"text"_nm = sc.text()});
+  res.push_back({"len"_nm = sc.len()});
+  sc.close();
+  return res;
+};
+
 //
 // enum
 // {
@@ -126,16 +168,59 @@ static void _finalizer_kiwi_ws_h(kiwi_ws_h handle){
   kiwi_ws_close(handle);
 }
 
-SEXP kiwi_builder_extract_words_(SEXP handle_ex, kiwi_reader_t reader, void* user_data, int min_cnt, int max_word_len, float min_score, float pos_threshold) {
+int readLines(int line, char* buffer, void* input) {
+  auto scanner = (Scanner*)input;
+  if (buffer == nullptr) {
+    if (line == 0) {
+      scanner->rewind();
+    }
+
+    if (!scanner->scan()) {
+      return 0;
+    }
+    return scanner->len();
+  }
+
+  std::cout << "test start" << std::endl;
+  std::cout << scanner->text().c_str() << std::endl;
+  std::cout << "test end"<< std::endl;
+  strcpy(buffer, scanner->text().c_str());
+  return 0;
+}
+
+[[cpp11::register]]
+SEXP kiwi_builder_extract_words_(SEXP handle_ex, const char* input, int min_cnt, int max_word_len, float min_score, float pos_threshold) {
   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
-  kiwi_ws_h res_h = kiwi_builder_extract_words(handle.get(), reader, user_data, min_cnt, max_word_len, min_score, pos_threshold);
-  cpp11::external_pointer<kiwi_ws, _finalizer_kiwi_ws_h> res(res_h);
+
+  Scanner sc;
+  if (sc.init(input) == -1) return R_NilValue;
+  kiwi_ws_h res_h = kiwi_builder_extract_words(handle.get(), readLines, &sc, min_cnt, max_word_len, min_score, pos_threshold);
+  sc.close();
+
+  int resSize = kiwi_ws_size(res_h);
+  cpp11::writable::list res;
+
+  for (int i = 0; i < resSize; i++) {
+    cpp11::writable::list word;
+    word.push_back({"form"_nm = kiwi_ws_form(res_h, i)});
+    word.push_back({"tag_score"_nm = kiwi_ws_freq(res_h, i)});
+    word.push_back({"freq"_nm = kiwi_ws_pos_score(res_h, i)});
+    word.push_back({"score"_nm = kiwi_ws_score(res_h, i)});
+    res.push_back(word);
+  }
+  kiwi_ws_close(res_h);
   return res;
 }
 
-SEXP kiwi_builder_extract_add_words_(SEXP handle_ex, kiwi_reader_t reader, void* user_data, int min_cnt, int max_word_len, float min_score, float pos_threshold) {
+[[cpp11::register]]
+SEXP kiwi_builder_extract_add_words_(SEXP handle_ex, const char* input, int min_cnt, int max_word_len, float min_score, float pos_threshold) {
   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
-  kiwi_ws_h res_h = kiwi_builder_extract_add_words(handle.get(), reader, user_data, min_cnt, max_word_len, min_score, pos_threshold);
+  Scanner sc;
+  int err = sc.init(input);
+  if (err == -1) {
+    return R_NilValue;
+  }
+  kiwi_ws_h res_h = kiwi_builder_extract_add_words(handle.get(), readLines, &sc, min_cnt, max_word_len, min_score, pos_threshold);
   cpp11::external_pointer<kiwi_ws, _finalizer_kiwi_ws_h> res(res_h);
   return res;
 }
