@@ -180,7 +180,6 @@ static void _finalizer_kiwi_ws_h(kiwi_ws_h handle){
 
 int readLines(int line, char* buffer, void* input) {
   Scanner* scanner = (Scanner*)input;
-  std::cout << "function start" << std::endl;
 
   if (buffer == nullptr) {
     if (line == 0) {
@@ -193,9 +192,6 @@ int readLines(int line, char* buffer, void* input) {
     return scanner->len();
   }
 
-  std::cout << "test start" << std::endl;
-  std::cout << scanner->text().c_str() << std::endl;
-  std::cout << "test end"<< std::endl;
   strcpy(buffer, scanner->text().c_str());
   return 0;
 }
