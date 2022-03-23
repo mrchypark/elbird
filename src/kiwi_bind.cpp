@@ -25,7 +25,8 @@ public :
     return !strm.eof();
   };
   void rewind() {
-    strm.seekg(0);
+    strm.clear();
+    strm.seekg(0, std::ios::beg);
   };
   std::string text() {
     return line;
@@ -38,7 +39,7 @@ public :
   };
 
 private :
-  std::string line;
+  std::string line = "";
   std::ifstream strm;
 };
 
@@ -47,6 +48,13 @@ SEXP scanner(const char* input) {
   Scanner sc;
   if (sc.init(input) == -1) return R_NilValue;
   cpp11::writable::list res;
+  while (sc.scan()){
+    cpp11::writable::list word;
+    word.push_back({"text"_nm = sc.text()});
+    word.push_back({"len"_nm = sc.len()});
+    res.push_back(word);
+  }
+  sc.rewind();
   while (sc.scan()){
     cpp11::writable::list word;
     word.push_back({"text"_nm = sc.text()});
