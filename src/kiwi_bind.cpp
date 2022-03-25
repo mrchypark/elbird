@@ -302,10 +302,4 @@ SEXP kiwi_split_into_sents_(SEXP handle_ex, const char* text, int match_options,
   return res;
 }
 
-[[cpp11::register]]
-void my_strings(cpp11::writable::data_frame analyzed_r) {
-  cpp11::strings elt = analyzed_r["text"];
-  std::string elt2 = elt[0];
-  auto u16s = kiwi::utf8To16(elt2.c_str());
-}
 

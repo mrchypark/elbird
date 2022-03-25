@@ -133,14 +133,6 @@ extern "C" SEXP _elbird_kiwi_split_into_sents_(SEXP handle_ex, SEXP text, SEXP m
     return cpp11::as_sexp(kiwi_split_into_sents_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(text), cpp11::as_cpp<cpp11::decay_t<int>>(match_options), cpp11::as_cpp<cpp11::decay_t<bool>>(return_tokens)));
   END_CPP11
 }
-// kiwi_bind.cpp
-void my_strings(cpp11::writable::data_frame analyzed_r);
-extern "C" SEXP _elbird_my_strings(SEXP analyzed_r) {
-  BEGIN_CPP11
-    my_strings(cpp11::as_cpp<cpp11::decay_t<cpp11::writable::data_frame>>(analyzed_r));
-    return R_NilValue;
-  END_CPP11
-}
 
 extern "C" {
 static const R_CallMethodDef CallEntries[] = {
@@ -162,7 +154,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_elbird_kiwi_set_option_",                    (DL_FUNC) &_elbird_kiwi_set_option_,                    3},
     {"_elbird_kiwi_split_into_sents_",              (DL_FUNC) &_elbird_kiwi_split_into_sents_,              4},
     {"_elbird_kiwi_version_",                       (DL_FUNC) &_elbird_kiwi_version_,                       0},
-    {"_elbird_my_strings",                          (DL_FUNC) &_elbird_my_strings,                          1},
     {NULL, NULL, 0}
 };
 }
