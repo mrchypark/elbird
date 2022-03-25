@@ -71,3 +71,7 @@ kiwi_analyze_ <- function(handle_ex, text, top_n, match_options) {
 kiwi_split_into_sents_ <- function(handle_ex, text, match_options, return_tokens) {
   .Call(`_elbird_kiwi_split_into_sents_`, handle_ex, text, match_options, return_tokens)
 }
+
+my_strings <- function(analyzed_r) {
+  invisible(.Call(`_elbird_my_strings`, analyzed_r))
+}

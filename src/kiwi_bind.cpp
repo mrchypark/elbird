@@ -117,30 +117,23 @@ int kiwi_builder_add_alias_word_(SEXP handle_ex, const char* alias, const char* 
 }
 
 [[cpp11::register]]
-bool kiwi_builder_add_pre_analyzed_word_(SEXP handle_ex, const std::string form, const cpp11::list analyzed_r, float score) {
+bool kiwi_builder_add_pre_analyzed_word_(SEXP handle_ex, const std::string form, const cpp11::data_frame analyzed_r, float score) {
   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
   kiwi::KiwiBuilder* kiwi = (kiwi::KiwiBuilder*)handle.get();
 
-  std::vector<std::pair<std::u16string, kiwi::POSTag>> analyzed(analyzed_r.size());
-  std::vector<std::pair<size_t, size_t>> positions(analyzed_r.size());
+  cpp11::strings morphs = analyzed_r["morphs"];
+  cpp11::strings pos = analyzed_r["pos"];
+  cpp11::integers start = analyzed_r["start"];
+  cpp11::integers end = analyzed_r["end"];
 
-  cpp11::list_of<cpp11::strings> morphs_r(analyzed_r[0]);
-  cpp11::list_of<cpp11::strings> pos_r(analyzed_r[1]);
-  cpp11::list_of<cpp11::integers> start_r(analyzed_r[2]);
-  cpp11::list_of<cpp11::integers> end_r(analyzed_r[3]);
+  std::vector<std::pair<std::u16string, kiwi::POSTag>> analyzed(morphs.size());
+  std::vector<std::pair<size_t, size_t>> positions(morphs.size());
 
-  for (int i = 0; i < morphs_r.size(); ++i) {
-    std::cout << morphs_r[i] << std::endl;
-    auto morphs = cpp11::as_cpp<char>(morphs_r[i]);
-    std::cout << morphs << std::endl;
-    auto pos = cpp11::as_cpp<char>(pos_r[i]);
-    auto start = cpp11::as_cpp<int>(start_r[i]);
-    auto end = cpp11::as_cpp<int>(end_r[i]);
-
-    analyzed[i].first = kiwi::utf8To16(&morphs);
-    analyzed[i].second = parse_tag(&pos);
-    positions[i].first = start;
-    positions[i].first = end;
+  for (int i = 0; i < morphs.size(); ++i) {
+    analyzed[i].first = kiwi::utf8To16(std::string(morphs[i]).c_str());
+    analyzed[i].second = parse_tag(std::string(pos[i]).c_str());
+    positions[i].first = size_t(start[i]);
+    positions[i].first = size_t(end[i]);
   }
 
   return kiwi->addPreAnalyzedWord(kiwi::utf8To16(form), analyzed, positions, score);
@@ -308,3 +301,11 @@ SEXP kiwi_split_into_sents_(SEXP handle_ex, const char* text, int match_options,
   kiwi_ss_close(res_h);
   return res;
 }
+
+[[cpp11::register]]
+void my_strings(cpp11::writable::data_frame analyzed_r) {
+  cpp11::strings elt = analyzed_r["text"];
+  std::string elt2 = elt[0];
+  auto u16s = kiwi::utf8To16(elt2.c_str());
+}
+
