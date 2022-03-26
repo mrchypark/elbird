@@ -4,7 +4,7 @@
 \alias{analyze}
 \title{analyze}
 \usage{
-analyze(text, top_n = 3)
+analyze(text, top_n = 3, match_option = Match$ALL)
 }
 \arguments{
 \item{text}{target text.}

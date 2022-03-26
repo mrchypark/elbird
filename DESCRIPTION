@@ -22,7 +22,9 @@ Imports:
     dplyr,
     purrr,
     tibble,
-    R6 (>= 2.4.0)
+    R6 (>= 2.4.0),
+    vroom,
+    matchr
 LinkingTo: 
     cpp11
 Suggests: 

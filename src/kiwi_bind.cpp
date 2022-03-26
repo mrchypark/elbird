@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstring>
 #include <vector>
+#include <map>
 
 #include <cpp11.hpp>
 using namespace cpp11;
@@ -10,6 +11,27 @@ using namespace cpp11;
 
 typedef int(*kiwi_receiver_t)(int, kiwi_res_h, void*);
 typedef int(*kiwi_builder_replacer_t)(const char*, int, char*, void*);
+
+static std::map<std::string, int> m = {
+  { "URL", KIWI_MATCH_URL },
+  { "EMAIL", KIWI_MATCH_EMAIL },
+  { "HASHTAG", KIWI_MATCH_HASHTAG },
+  { "MENTION", KIWI_MATCH_MENTION },
+  { "ALL", KIWI_MATCH_ALL },
+  { "NORMALIZING_CODA", KIWI_MATCH_NORMALIZE_CODA },
+  { "ALL_WITH_NORMALIZING", KIWI_MATCH_ALL_WITH_NORMALIZING },
+  { "JOIN_NOUN_PREFIX", KIWI_MATCH_JOIN_NOUN_PREFIX },
+  { "JOIN_NOUN_SUFFIX", KIWI_MATCH_JOIN_NOUN_SUFFIX },
+  { "JOIN_VERB_SUFFIX", KIWI_MATCH_JOIN_VERB_SUFFIX },
+  { "JOIN_ADJ_SUFFIX", KIWI_MATCH_JOIN_ADJ_SUFFIX },
+  { "JOIN_V_SUFFIX", KIWI_MATCH_JOIN_V_SUFFIX },
+  { "JOIN_V_SUFFIX", KIWI_MATCH_JOIN_NOUN_AFFIX },
+};
+
+int match_options_(const std::string match_string) {
+  if (!m.count(match_string)) throw std::invalid_argument{ std::string{"Unknown Build Options : "} + match_string };
+  return m.find(match_string)->second;
+};
 
 kiwi::POSTag parse_tag(const char* pos) {
   auto u16 = kiwi::utf8To16(pos);
@@ -228,9 +250,9 @@ int kiwi_get_option_(SEXP handle_ex, int option) {
 }
 
 [[cpp11::register]]
-SEXP kiwi_analyze_(SEXP handle_ex, const char* text, int top_n, int match_options) {
+SEXP kiwi_analyze_(SEXP handle_ex, const char* text, int top_n, std::string match_options) {
   cpp11::external_pointer<kiwi_s> handle(handle_ex);
-  kiwi_res_h res_h = kiwi_analyze(handle.get(), text, top_n, match_options);
+  kiwi_res_h res_h = kiwi_analyze(handle.get(), text, top_n, match_options_(match_options));
 
   int resSize = kiwi_res_size(res_h);
   cpp11::writable::list res;

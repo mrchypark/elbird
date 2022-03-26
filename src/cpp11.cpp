@@ -120,10 +120,10 @@ extern "C" SEXP _elbird_kiwi_get_option_(SEXP handle_ex, SEXP option) {
   END_CPP11
 }
 // kiwi_bind.cpp
-SEXP kiwi_analyze_(SEXP handle_ex, const char* text, int top_n, int match_options);
+SEXP kiwi_analyze_(SEXP handle_ex, const char* text, int top_n, std::string match_options);
 extern "C" SEXP _elbird_kiwi_analyze_(SEXP handle_ex, SEXP text, SEXP top_n, SEXP match_options) {
   BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_analyze_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(text), cpp11::as_cpp<cpp11::decay_t<int>>(top_n), cpp11::as_cpp<cpp11::decay_t<int>>(match_options)));
+    return cpp11::as_sexp(kiwi_analyze_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(text), cpp11::as_cpp<cpp11::decay_t<int>>(top_n), cpp11::as_cpp<cpp11::decay_t<std::string>>(match_options)));
   END_CPP11
 }
 // kiwi_bind.cpp
