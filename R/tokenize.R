@@ -7,13 +7,10 @@
 #' @export
 #' @examples
 #'   tokenize("안녕하세요")
-tokenize <- function(text, match_option = Match.ALL) {
-  if (init_chk_not())
-    init()
-
+tokenize <- function(text, match_option = Match$ALL, stopwords) {
   return(purrr::map(
     text,
-    ~ kiwi_analyze_(get("kb", envir = .el), .x, 1, match_option)[[1]][1]
+    ~ analyze(.x, 1, match_option)[[1]][1]
     )
   )
 }
