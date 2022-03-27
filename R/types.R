@@ -27,8 +27,13 @@ Tags <- matchr::Enum("Tags",
   ep = "EP", ef = "EF", ec = "EC", etn = "ETN", etm = "ETM"
 )
 
+to_tag <- function(tag_candidate_char) {
+  if (!is_tag(tag_candidate_char)) stop(paste0(tag_candidate_char, " is not in tag list. Check Tags."))
+  Tags[tolower(tag_candidate_char)][[1]]
+}
+
 is_tag <- function(tag_candidate_char) {
-  !is.null(tag_list[tolower(tag_candidate_char)][[1]])
+  !is.null(Tags[tolower(tag_candidate_char)][[1]])
 }
 
 build_options <- matchr::Enum("buildOptions",
