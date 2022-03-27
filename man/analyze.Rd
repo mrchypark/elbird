@@ -4,12 +4,14 @@
 \alias{analyze}
 \title{analyze}
 \usage{
-analyze(text, top_n = 3)
+analyze(text, top_n = 3, match_option = Match$ALL, stopwords = FALSE)
 }
 \arguments{
 \item{text}{target text.}
 
 \item{top_n}{Number of result. default is 3.}
+
+\item{match_option}{use Match.}
 }
 \description{
 analyze

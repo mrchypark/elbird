@@ -1,22 +1,29 @@
 #' Simple version of tokenizer function.
 #'
 #' @param text target text.
+#' @param match_options
+#' @param stopwords
 #' @name tokenize
 #' @importFrom purrr map
 #' @return a list type resault.
 #' @export
 #' @examples
 #'   tokenize("안녕하세요")
-tokenize <- function(text) {
-  if (init_chk_not())
-    init()
+tokenize <-
+  function(text,
+           match_option = Match$ALL,
+           stopwords = FALSE) {
 
-  return(purrr::map(
-    text,
-    ~ kiwi_analyze_(get("kb", envir = .el), .x, 1, 1)[[1]][1]
-    )
-  )
-}
+    return(purrr::map(
+      text,
+      ~ analyze(
+        text = .x,
+        top_n = 1,
+        match_option = match_option,
+        stopwords = stopwords
+      )[[1]][1]
+    ))
+  }
 
 #' @export
 #' @importFrom dplyr bind_rows

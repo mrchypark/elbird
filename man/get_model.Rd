@@ -12,7 +12,7 @@ get_model(size = "base", path = model_home(), clean = FALSE)
 \arguments{
 \item{size}{small, base, large model. default is "base". Also "all" available.}
 
-\item{path}{path for model files. default is model_home_path().}
+\item{path}{path for model files. default is \link{model_home("base")}.}
 
 \item{clean}{remove previous model files before get new.}
 }

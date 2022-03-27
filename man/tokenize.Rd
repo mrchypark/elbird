@@ -9,7 +9,7 @@
 \alias{tokenize_tidy}
 \title{Simple version of tokenizer function.}
 \usage{
-tokenize(text)
+tokenize(text, match_option = Match$ALL, stopwords = FALSE)
 
 tokenize_tibble(text)
 
