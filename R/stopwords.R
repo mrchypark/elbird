@@ -7,17 +7,15 @@ Stopwords <- R6::R6Class(
     #   invisible()
     # },
 
-    initialize = function(system_load = FALSE) {
-      if (system_load)
+    initialize = function(use_system_dict = FALSE) {
+      if (use_system_dict)
         private$set_system_dict()
-      if (is.null(private$stopword_list))
-        private$init_stopword_list()
 
       invisible(self)
     },
 
     add = function(form, tag = "NNP") {
-      private$add_dict(tibble::tibble(form = form, tag = check_tag(tag)),
+      private$add_dict_el(tibble::tibble(form = form, tag = check_tag(tag)),
                        "addfunc",
                        paste0(form, "/" , tag))
       invisible(self)
@@ -30,9 +28,9 @@ Stopwords <- R6::R6Class(
     },
 
     remove = function(form = NULL, tag = NULL) {
-      word <- tibble::tibble(form = form, tag = check_tag(tag))
-      private$stopword_list <-
-        dplyr::anti_join(private$stopword_list, word, by = names(word))
+      private$remove_dict_el(tibble::tibble(form = form, tag = check_tag(tag)),
+                          "removefunc",
+                          paste0(form, "/" , tag))
       invisible(self)
     },
 
@@ -44,7 +42,6 @@ Stopwords <- R6::R6Class(
         na = "",
         col_names = FALSE
       )
-      invisible(self)
     },
 
     get = function() {
@@ -87,15 +84,23 @@ Stopwords <- R6::R6Class(
         )
       loaded <- unique(loaded)
       names(loaded) <- c("form", "tag")
-      private$add_dict(dplyr::mutate(loaded,
+      private$add_dict_el(dplyr::mutate(loaded,
                                      tag = purrr::map_chr(tag, ~ check_tag(.x))),
                        dict_name,
                        dict_path)
     },
 
-    add_dict = function(dict, dict_name, dict_info) {
+    add_dict_el = function(dict, dict_name, dict_info) {
       private$stopword_list <-
-        dplyr::bind_rows(private$stopword_list, dict)
+        unique(dplyr::bind_rows(private$stopword_list, dict))
+      private$dict_list <-
+        dplyr::bind_rows(private$dict_list,
+                         tibble::tibble(dict_name = dict_name, info = dict_info))
+    },
+
+    remove_dict_el = function(dict, dict_name, dict_info) {
+      private$stopword_list <-
+        dplyr::anti_join(private$stopword_list, dict, by = names(dict))
       private$dict_list <-
         dplyr::bind_rows(private$dict_list,
                          tibble::tibble(dict_name = dict_name, info = dict_info))
