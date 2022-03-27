@@ -1,3 +1,6 @@
+#' Stop word Class
+#'
+#' @export
 Stopwords <- R6::R6Class(
   'Stopwords',
   public = list(
@@ -7,7 +10,7 @@ Stopwords <- R6::R6Class(
     #   invisible()
     # },
 
-    initialize = function(use_system_dict = FALSE) {
+    initialize = function(use_system_dict = TRUE) {
       if (use_system_dict)
         private$set_system_dict()
 

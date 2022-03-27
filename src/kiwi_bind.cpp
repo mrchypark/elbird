@@ -249,10 +249,34 @@ int kiwi_get_option_(SEXP handle_ex, int option) {
   return kiwi_get_option(handle.get(), option);
 }
 
+
 [[cpp11::register]]
-SEXP kiwi_analyze_(SEXP handle_ex, const char* text, int top_n, std::string match_options) {
+bool test(const cpp11::data_frame stopwords_r) {
+
+  return true;
+}
+
+
+[[cpp11::register]]
+SEXP kiwi_analyze_(
+    SEXP handle_ex,
+    const char* text,
+    int top_n, std::string match_options,
+    const cpp11::data_frame stopwords_r) {
+
+  std::vector<std::pair<std::string, std::string>> filters;
+  cpp11::strings form_r = stopwords_r["form"];
+  cpp11::strings tag_r = stopwords_r["tag"];
+
+  for (int i = 0; i < form_r.size(); i++) {
+    filters.push_back(std::make_pair(std::string(form_r[i]), std::string(tag_r[i])));
+  }
+
   cpp11::external_pointer<kiwi_s> handle(handle_ex);
-  kiwi_res_h res_h = kiwi_analyze(handle.get(), text, top_n, match_options_(match_options));
+  kiwi_res_h res_h = kiwi_analyze(handle.get(),
+                                  text,
+                                  top_n,
+                                  match_options_(match_options));
 
   int resSize = kiwi_res_size(res_h);
   cpp11::writable::list res;
@@ -263,8 +287,26 @@ SEXP kiwi_analyze_(SEXP handle_ex, const char* text, int top_n, std::string matc
     cpp11::writable::list tokens;
     for (int j = 0; j < wlen; j++) {
       cpp11::writable::list token;
-      token.push_back({"form"_nm = kiwi_res_form(res_h, i, j)});
-      token.push_back({"tag"_nm = kiwi_res_tag(res_h, i, j)});
+      bool cont = false;
+      auto form_candi = kiwi_res_form(res_h, i, j);
+      auto tag_candi = kiwi_res_tag(res_h, i, j);
+      for (int i = 0; i < form_r.size(); i++) {
+        if (form_r[i] == NA_STRING) {
+          if (tag_candi == std::string(tag_r[i])) {
+            cont = true;
+            break;
+          }
+        } else {
+          if (form_candi == std::string(form_r[i]) &
+              tag_candi == std::string(tag_r[i])) {
+            cont = true;
+            break;
+          }
+        };
+      };
+      if (cont) continue;
+      token.push_back({"form"_nm = form_candi});
+      token.push_back({"tag"_nm = tag_candi});
       token.push_back({"start"_nm = kiwi_res_position(res_h, i, j)+1});
       token.push_back({"len"_nm = kiwi_res_length(res_h, i, j)});
       tokens.push_back(token);
