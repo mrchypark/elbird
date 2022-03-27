@@ -4,7 +4,7 @@
 #' @importFrom matchr Enum
 #' @export
 #' @keywords internal
-Tags <- matchr::Enum("Tags",
+Tags <- matchr::Enum("tag",
   unknown = "UN",
   nng = "NNG", nnp = "NNP", nnb = "NNB",
   vv = "VV", va = "VA",
@@ -27,8 +27,15 @@ Tags <- matchr::Enum("Tags",
   ep = "EP", ef = "EF", ec = "EC", etn = "ETN", etm = "ETM"
 )
 
+check_tag <- function(tag_candidate_char) {
+  if (!is_tag(tag_candidate_char))
+    stop(paste0(tag_candidate_char, " is not in tag list. Check Tags."))
+  Tags[tolower(tag_candidate_char)][[1]][1]
+}
+
 to_tag <- function(tag_candidate_char) {
-  if (!is_tag(tag_candidate_char)) stop(paste0(tag_candidate_char, " is not in tag list. Check Tags."))
+  if (!is_tag(tag_candidate_char))
+    stop(paste0(tag_candidate_char, " is not in tag list. Check Tags."))
   Tags[tolower(tag_candidate_char)][[1]]
 }
 
