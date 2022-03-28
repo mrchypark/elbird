@@ -30,16 +30,14 @@ tokenize <-
 #' @rdname tokenize
 #' @return a [tibble][tibble::tibble-package]
 tokenize_tibble <- function(text) {
-  res <- tokenize_raw(text)
-  return(dplyr::bind_rows(res, .id = "unique"))
+  dplyr::bind_rows(tokenize_raw(text), .id = "unique")
 }
 
 #' @export
 #' @importFrom purrr map
 #' @rdname tokenize
 tokenize_tidytext <- function(text) {
-  res <- tokenize_raw(text)
-  purrr::map(res, ~ paste0(.x$form, "/", .x$tag))
+  purrr::map(tokenize_raw(text), ~ paste0(.x$form, "/", .x$tag))
 }
 
 

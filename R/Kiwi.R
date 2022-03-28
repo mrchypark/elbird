@@ -11,6 +11,8 @@ Kiwi <- R6::R6Class(
                           load_default_dict = TRUE) {
       private$num_workers = num_workers
       private$model_path <- kiwi_model_path_full(model_size)
+      if (!kiwi_model_exists(model_size))
+        get_kiwi_models(model_size)
 
       boptions <- 0L
       if (integrate_allomorph) {
@@ -24,13 +26,17 @@ Kiwi <- R6::R6Class(
         kiwi_builder_init_(kiwi_model_path_full(model_size), num_workers, boptions)
     },
 
+    get_model_file = function(size) {
+      get_kiwi_models(size)
+    },
+
     add_user_words = function(word, pos, score) {
       kiwi_builder_add_word_(private$kiwi_builder, word, pos, score)
     },
 
-    add_pre_analyzed_words = function(alias, pos, score, orig_word) {
-      kiwi_builder_add_word_(private$kiwi_builder, alias, pos, score, orig_word)
-    },
+    # add_pre_analyzed_words = function(alias, pos, score, orig_word) {
+    #   kiwi_builder_add_word_(private$kiwi_builder, alias, pos, score, orig_word)
+    # },
 
     # add_rules = function(tag, replacer, score) {},
     # add_re_rules = function(tag, pattern, repl, score) {},
@@ -69,25 +75,46 @@ Kiwi <- R6::R6Class(
 
     analyze = function(text,
                        top_n = 3,
-                       match_options = Match$ALL,
-                       stopwords_r = FALSE) {
-      if (private$kiwi_not_ready)
+                       match_option = Match$ALL,
+                       stopwords = FALSE) {
+      if (is.null(private$kiwi))
         private$kiwi_build()
-      kiwi_analyze_(private$kiwi, text, top_n, match_options, stopwords_r)
+
+      kiwi_analyze_wrap(private$kiwi, text, top_n, match_option, stopwords)
     },
 
     tokenize = function(text,
-                        match_options = Match$ALL,
-                        stopwords_r = FALSE) {
-      if (private$kiwi_not_ready)
-        private$kiwi_build()
-      kiwi_analyze_(private$kiwi, text, 1, match_options, stopwords_r)
+                        match_option = Match$ALL,
+                        stopwords = FALSE,
+                        form = "tibble") {
+      form <- match.arg(form, c("list", "tibble", "tidytext"))
+      res <- purrr::map(
+        text,
+        ~ self$analyze(
+          text = .x,
+          top_n = 1,
+          match_option = match_option,
+          stopwords = stopwords
+        )[[1]][1]
+      )
+      if (form == "list") return(res)
+      raw <- purrr::map(
+        res,
+        ~ tibble::tibble(
+          form = purrr::map_chr(.x$Token, ~ .x$form),
+          tag = purrr::map_chr(.x$Token, ~ .x$tag),
+          start = purrr::map_int(.x$Token, ~ .x$start),
+          len = purrr::map_int(.x$Token, ~ .x$len),
+        )
+      )
+      if (form == "tibble") return(dplyr::bind_rows(raw, .id = "unique"))
+      if (form == "tidytext") return(purrr::map(raw, ~ paste0(.x$form, "/", .x$tag)))
     },
 
-    split_into_sents = function(text, match_options, return_tokens) {
+    split_into_sents = function(text, match_option, return_tokens) {
       if (private$kiwi_not_ready)
         private$kiwi_build()
-      kiwi_split_into_sents_(private$kiwi, text, match_options, return_tokens)
+      kiwi_split_into_sents_(private$kiwi, text, match_option, return_tokens)
     },
 
     save_user_dictionarys = function(user_dict_path) {
@@ -100,7 +127,6 @@ Kiwi <- R6::R6Class(
     kiwi = NULL,
     kiwi_builder = NULL,
     user_dic = NULL,
-    kiwi_not_ready = FALSE,
 
     kiwi_build = function() {
       private$kiwi <- kiwi_builder_build_(private$kiwi_builder)

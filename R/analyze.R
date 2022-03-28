@@ -14,18 +14,11 @@ analyze <-
     if (init_chk_not())
       init()
 
-    sw <- purrr::when(
-      stopwords,
-      isFALSE(.) ~ Stopwords$new(use_system_dict = FALSE),
-      isTRUE(.) ~ Stopwords$new(),
-      any(class(.) == "Stopwords") ~ .,
-      file.exists(.) ~ Stopwords$new()$add_from_dict(.),
-      ~ Stopwords$new(use_system_dict = FALSE)
+    kiwi_analyze_wrap(
+      get("kb", envir = .el),
+      text,
+      top_n,
+      match_option,
+      stopwords
     )
-
-    kiwi_analyze_(get("kb", envir = .el),
-                  text,
-                  top_n,
-                  match_option,
-                  sw$get()) -> res
   }
