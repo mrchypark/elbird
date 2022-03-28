@@ -19,5 +19,6 @@ Tags contains tag list for elbird.
 \examples{
   Tags
   Tags$nnp
+
 }
 \keyword{datasets}

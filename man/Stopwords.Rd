@@ -4,9 +4,7 @@
 \alias{Stopwords}
 \title{Stopwords Class}
 \description{
-Stopwords Class
-
-Stopwords Class
+Stopwords is for filter result.
 }
 \examples{
   Stopwords$new()
@@ -21,7 +19,6 @@ Stopwords Class
 \item \href{#method-remove}{\code{Stopwords$remove()}}
 \item \href{#method-save_user_dict}{\code{Stopwords$save_user_dict()}}
 \item \href{#method-get}{\code{Stopwords$get()}}
-\item \href{#method-use}{\code{Stopwords$use()}}
 \item \href{#method-clone}{\code{Stopwords$clone()}}
 }
 }
@@ -29,10 +26,20 @@ Stopwords Class
 \if{html}{\out{<a id="method-print"></a>}}
 \if{latex}{\out{\hypertarget{method-print}{}}}
 \subsection{Method \code{print()}}{
+print method for \code{Stopwords} objects
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stopwords$print(x, ...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{self}
+
+\item{\code{...}}{ignored}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
@@ -75,7 +82,10 @@ add stopword one at a time.
 \if{html}{\out{<a id="method-add_from_dict"></a>}}
 \if{latex}{\out{\hypertarget{method-add_from_dict}{}}}
 \subsection{Method \code{add_from_dict()}}{
-add stopword one at a time.
+add stopword from text file.
+text file need to form "TEXT/TAG".
+TEXT can remove like "/NNP".
+TAG required like "FORM/NNP".
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stopwords$add_from_dict(path, dict_name = "user")}\if{html}{\out{</div>}}
 }
@@ -83,7 +93,7 @@ add stopword one at a time.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{path}}{str:}
+\item{\code{path}}{str: dictionary file path.}
 
 \item{\code{dict_name}}{str: default is "user"}
 }
@@ -113,7 +123,7 @@ remove stopword one at a time.
 \if{html}{\out{<a id="method-save_user_dict"></a>}}
 \if{latex}{\out{\hypertarget{method-save_user_dict}{}}}
 \subsection{Method \code{save_user_dict()}}{
-add stopword one at a time.
+save stopwords to text file.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stopwords$save_user_dict(path)}\if{html}{\out{</div>}}
 }
@@ -130,18 +140,9 @@ add stopword one at a time.
 \if{html}{\out{<a id="method-get"></a>}}
 \if{latex}{\out{\hypertarget{method-get}{}}}
 \subsection{Method \code{get()}}{
-add stopword one at a time.
+return tibble of stopword
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stopwords$get()}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-use"></a>}}
-\if{latex}{\out{\hypertarget{method-use}{}}}
-\subsection{Method \code{use()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Stopwords$use()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

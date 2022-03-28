@@ -6,6 +6,7 @@
 #' @examples
 #'   Tags
 #'   Tags$nnp
+#'
 #' @importFrom matchr Enum
 #' @export
 Tags <- matchr::Enum("tag",
@@ -47,21 +48,10 @@ is_tag <- function(tag_candidate_char) {
   !is.null(Tags[tolower(tag_candidate_char)][[1]])
 }
 
-#' Build options for Kiwi Class
-#'
-#' @examples
-#'  BuildOpt
-#'  BuildOpt$DEFAULT
-#'
-#' @export
-BuildOpt <- matchr::Enum("buildOpt",
-  INTEGRATE_ALLOMORPH = 1L,
-  LOAD_DEFAULT_DICT = 2L,
-  DEFAULT = 3L
-)
 
 #' Analyze Match Options.
 #'
+#' ALL option contains URL, EMAIL, HASHTAG, MENTION.
 #'
 #' @examples
 #'  Match
@@ -84,5 +74,11 @@ Match <- matchr::Enum("match",
   JOIN_ADJ_SUFFIX = "JOIN_ADJ_SUFFIX",
 
   JOIN_V_SUFFIX  = "JOIN_V_SUFFIX",
-  JOIN_NOUN_AFFIX = "JOIN_V_SUFFIX"
+  JOIN_NOUN_AFFIX = "JOIN_NOUN_AFFIX"
+)
+
+BuildOpt <- matchr::Enum("buildOpt",
+                         INTEGRATE_ALLOMORPH = 1L,
+                         LOAD_DEFAULT_DICT = 2L,
+                         DEFAULT = 3L
 )

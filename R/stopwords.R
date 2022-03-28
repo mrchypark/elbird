@@ -1,14 +1,20 @@
 #' Stopwords Class
 #'
 #' @description
+#'   Stopwords is for filter result.
+#'
 #' @examples
 #'   Stopwords$new()
 #' @export
 Stopwords <- R6::R6Class(
   'Stopwords',
   public = list(
+
+    #' @description print method for `Stopwords` objects
+    #' @param x self
+    #' @param ... ignored
     print = function(x, ...) {
-      cat("<Stopwords Class> ", sep = "\n")
+      cat("<stopwords dict> ", sep = "\n")
       invisible()
     },
 
@@ -35,8 +41,12 @@ Stopwords <- R6::R6Class(
     },
 
     #' @description
-    #'   add stopword one at a time.
-    #' @param path       str:
+    #'   add stopword from text file.
+    #'   text file need to form "TEXT/TAG".
+    #'   TEXT can remove like "/NNP".
+    #'   TAG required like "FORM/NNP".
+    #'
+    #' @param path       str: dictionary file path.
     #' @param dict_name  str: default is "user"
     add_from_dict = function(path, dict_name = "user") {
       path <- normalizePath(path, mustWork = TRUE)
@@ -57,7 +67,7 @@ Stopwords <- R6::R6Class(
     },
 
     #' @description
-    #'   add stopword one at a time.
+    #'   save stopwords to text file.
     #' @param path \code{character}:
     save_user_dict = function(path) {
       vroom::vroom_write(
@@ -69,18 +79,11 @@ Stopwords <- R6::R6Class(
       )
     },
 
-
     #' @description
-    #'   add stopword one at a time.
-    get = function() {
-      private$stopword_list
-    },
-
-
-    #' @description
+    #'  return tibble of stopword
     #' @return a [tibble][tibble::tibble-package] for stopwords options
     #'         for [analyze()] / [tokenize()] function.
-    use = function() {
+    get = function() {
       unique(private$stopword_list[c("form", "tag")])
     }
   ),

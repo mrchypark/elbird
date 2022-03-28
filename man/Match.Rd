@@ -11,7 +11,7 @@ An object of class \code{EnumGenerator} of length 13.
 Match
 }
 \description{
-Analyze Match Options.
+ALL option contains URL, EMAIL, HASHTAG, MENTION.
 }
 \examples{
  Match
