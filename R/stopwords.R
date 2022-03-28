@@ -1,5 +1,8 @@
-#' Stop word Class
+#' Stopwords Class
 #'
+#' @description
+#' @examples
+#'   Stopwords$new()
 #' @export
 Stopwords <- R6::R6Class(
   'Stopwords',
@@ -10,6 +13,10 @@ Stopwords <- R6::R6Class(
     #   invisible()
     # },
 
+    #' @description
+    #'   Create a stopwords
+    #' @param use_system_dict \code{logical}: use system stopwords dictionary or not.
+    #'                              defualt is TRUE.
     initialize = function(use_system_dict = TRUE) {
       if (use_system_dict)
         private$set_system_dict()
@@ -17,6 +24,10 @@ Stopwords <- R6::R6Class(
       invisible(self)
     },
 
+    #' @description
+    #'   add stopword one at a time.
+    #' @param form \code{character}:
+    #' @param tag  \code{character}: Default is "NNP".
     add = function(form, tag = "NNP") {
       private$add_dict_el(tibble::tibble(form = form, tag = check_tag(tag)),
                        "addfunc",
@@ -24,19 +35,31 @@ Stopwords <- R6::R6Class(
       invisible(self)
     },
 
+    #' @description
+    #'   add stopword one at a time.
+    #' @param path       str:
+    #' @param dict_name  str: default is "user"
     add_from_dict = function(path, dict_name = "user") {
       path <- normalizePath(path, mustWork = TRUE)
       private$set_dict(path)
       invisible(self)
     },
 
+    #' @description
+    #'   remove stopword one at a time.
+    #' @param form \code{character}:
+    #' @param tag  \code{character}:
     remove = function(form = NULL, tag = NULL) {
+      if (is.null(tag)) {stop("argument \"tag\" is missing, with no default")}
       private$remove_dict_el(tibble::tibble(form = form, tag = check_tag(tag)),
                           "removefunc",
                           paste0(form, "/" , tag))
       invisible(self)
     },
 
+    #' @description
+    #'   add stopword one at a time.
+    #' @param path \code{character}:
     save_user_dict = function(path) {
       vroom::vroom_write(
         x = private$stopword_list,
@@ -47,25 +70,23 @@ Stopwords <- R6::R6Class(
       )
     },
 
+
+    #' @description
+    #'   add stopword one at a time.
     get = function() {
       private$stopword_list
     },
 
+
+    #' @description
+    #' @return a [tibble][tibble::tibble-package] for stopwords options
+    #'         for [analyze()] / [tokenize()] function.
     use = function() {
       unique(private$stopword_list[c("form", "tag")])
-    },
-
-    lists = function() {
-      private$dict_list
     }
   ),
 
   private = list(
-    # stopword_list = NULL,
-    # init_stopword_list = function() {
-    #   private$stopword_list <- tibble::tibble(form = "",
-    #                                           tag = Tags$nng)[-1, ]
-    # },
 
     stopword_list = tibble::tibble(form = character(),
                                    tag = character()),

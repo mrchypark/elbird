@@ -7,12 +7,28 @@
 analyze(text, top_n = 3, match_option = Match$ALL, stopwords = FALSE)
 }
 \arguments{
-\item{text}{target text.}
+\item{text}{\code{character}: target text.}
 
-\item{top_n}{Number of result. default is 3.}
+\item{top_n}{\code{integer}: Number of result. Default is 3.}
 
-\item{match_option}{use Match.}
+\item{match_option}{\code{\link{Match}}: use Match. Default is Match$ALL}
+
+\item{stopwords}{stopword option. Default is FALSE.
+If TRUE, use embaded stopwords dictionany.
+If char: path of dictionary txt file, use file.
+If \code{\link{Stopwords}} class, use it.}
 }
 \description{
 analyze
+}
+\examples{
+  analyze("안녕하세요")
+  analyze("안녕하세요", 1)
+  analyze("안녕하세요", 1, Match$ALL_WITH_NORMALIZING)
+  analyze("안녕하세요", stopwords = FALSE)
+  analyze("안녕하세요", stopwords = TRUE)
+  analyze("안녕하세요", stopwords = "user_dict.txt")
+  analyze("안녕하세요", stopwords = "user_dict.txt")
+  analyze("안녕하세요", stopwords = Stopwords$new(TRUE))
+  analyze("안녕하세요", stopwords = Stopwords$new(TRUE)$add("test","NNP"))
 }

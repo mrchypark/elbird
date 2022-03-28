@@ -1,10 +1,23 @@
 #' analyze
 #'
-#' @param text target text.
-#' @param top_n Number of result. default is 3.
-#' @param match_option use Match.
-#' @param stopwords
+#' @param text  \code{character}: target text.
+#' @param top_n  \code{integer}: Number of result. Default is 3.
+#' @param match_option [`Match`]: use Match. Default is Match$ALL
+#' @param stopwords stopword option. Default is FALSE.
+#'                  If TRUE, use embaded stopwords dictionany.
+#'                  If char: path of dictionary txt file, use file.
+#'                  If [`Stopwords`] class, use it.
 #' @name analyze
+#' @examples
+#'   analyze("안녕하세요")
+#'   analyze("안녕하세요", 1)
+#'   analyze("안녕하세요", 1, Match$ALL_WITH_NORMALIZING)
+#'   analyze("안녕하세요", stopwords = FALSE)
+#'   analyze("안녕하세요", stopwords = TRUE)
+#'   analyze("안녕하세요", stopwords = "user_dict.txt")
+#'   analyze("안녕하세요", stopwords = "user_dict.txt")
+#'   analyze("안녕하세요", stopwords = Stopwords$new(TRUE))
+#'   analyze("안녕하세요", stopwords = Stopwords$new(TRUE)$add("test","NNP"))
 #' @export
 analyze <-
   function(text,

@@ -12,8 +12,8 @@ kiwi R6 class
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{Kiwi$new()}}
+\item \href{#method-get_model_file}{\code{Kiwi$get_model_file()}}
 \item \href{#method-add_user_words}{\code{Kiwi$add_user_words()}}
-\item \href{#method-add_pre_analyzed_words}{\code{Kiwi$add_pre_analyzed_words()}}
 \item \href{#method-load_user_dictionarys}{\code{Kiwi$load_user_dictionarys()}}
 \item \href{#method-extract_words}{\code{Kiwi$extract_words()}}
 \item \href{#method-extract_add_words}{\code{Kiwi$extract_add_words()}}
@@ -39,20 +39,20 @@ kiwi R6 class
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_model_file"></a>}}
+\if{latex}{\out{\hypertarget{method-get_model_file}{}}}
+\subsection{Method \code{get_model_file()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$get_model_file(size)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add_user_words"></a>}}
 \if{latex}{\out{\hypertarget{method-add_user_words}{}}}
 \subsection{Method \code{add_user_words()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Kiwi$add_user_words(word, pos, score)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add_pre_analyzed_words"></a>}}
-\if{latex}{\out{\hypertarget{method-add_pre_analyzed_words}{}}}
-\subsection{Method \code{add_pre_analyzed_words()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Kiwi$add_pre_analyzed_words(alias, pos, score, orig_word)}\if{html}{\out{</div>}}
 }
 
 }
@@ -88,7 +88,7 @@ kiwi R6 class
 \if{latex}{\out{\hypertarget{method-analyze}{}}}
 \subsection{Method \code{analyze()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Kiwi$analyze(text, top_n = 3, match_options = Match$ALL, stopwords_r = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$analyze(text, top_n = 3, match_option = Match$ALL, stopwords = FALSE)}\if{html}{\out{</div>}}
 }
 
 }
@@ -97,7 +97,12 @@ kiwi R6 class
 \if{latex}{\out{\hypertarget{method-tokenize}{}}}
 \subsection{Method \code{tokenize()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Kiwi$tokenize(text, match_options = Match$ALL, stopwords_r = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$tokenize(
+  text,
+  match_option = Match$ALL,
+  stopwords = FALSE,
+  form = "tibble"
+)}\if{html}{\out{</div>}}
 }
 
 }
@@ -106,7 +111,7 @@ kiwi R6 class
 \if{latex}{\out{\hypertarget{method-split_into_sents}{}}}
 \subsection{Method \code{split_into_sents()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Kiwi$split_into_sents(text, match_options, return_tokens)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$split_into_sents(text, match_option, return_tokens)}\if{html}{\out{</div>}}
 }
 
 }

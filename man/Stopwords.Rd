@@ -2,11 +2,14 @@
 % Please edit documentation in R/stopwords.R
 \name{Stopwords}
 \alias{Stopwords}
-\title{Stop word Class}
+\title{Stopwords Class}
 \description{
-Stop word Class
+Stopwords Class
 
-Stop word Class
+Stopwords Class
+}
+\examples{
+  Stopwords$new()
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -18,7 +21,6 @@ Stop word Class
 \item \href{#method-save_user_dict}{\code{Stopwords$save_user_dict()}}
 \item \href{#method-get}{\code{Stopwords$get()}}
 \item \href{#method-use}{\code{Stopwords$use()}}
-\item \href{#method-lists}{\code{Stopwords$lists()}}
 \item \href{#method-clone}{\code{Stopwords$clone()}}
 }
 }
@@ -26,51 +28,99 @@ Stop word Class
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
+Create a stopwords
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stopwords$new(use_system_dict = TRUE)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{use_system_dict}}{\code{logical}: use system stopwords dictionary or not.
+defualt is TRUE.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add"></a>}}
 \if{latex}{\out{\hypertarget{method-add}{}}}
 \subsection{Method \code{add()}}{
+add stopword one at a time.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stopwords$add(form, tag = "NNP")}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{form}}{\code{character}:}
+
+\item{\code{tag}}{\code{character}: Default is "NNP".}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add_from_dict"></a>}}
 \if{latex}{\out{\hypertarget{method-add_from_dict}{}}}
 \subsection{Method \code{add_from_dict()}}{
+add stopword one at a time.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stopwords$add_from_dict(path, dict_name = "user")}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{path}}{str:}
+
+\item{\code{dict_name}}{str: default is "user"}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-remove"></a>}}
 \if{latex}{\out{\hypertarget{method-remove}{}}}
 \subsection{Method \code{remove()}}{
+remove stopword one at a time.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stopwords$remove(form = NULL, tag = NULL)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{form}}{\code{character}:}
+
+\item{\code{tag}}{\code{character}:}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-save_user_dict"></a>}}
 \if{latex}{\out{\hypertarget{method-save_user_dict}{}}}
 \subsection{Method \code{save_user_dict()}}{
+add stopword one at a time.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stopwords$save_user_dict(path)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{path}}{\code{character}:}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get"></a>}}
 \if{latex}{\out{\hypertarget{method-get}{}}}
 \subsection{Method \code{get()}}{
+add stopword one at a time.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stopwords$get()}\if{html}{\out{</div>}}
 }
@@ -84,15 +134,10 @@ Stop word Class
 \if{html}{\out{<div class="r">}}\preformatted{Stopwords$use()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+a \link[tibble:tibble-package]{tibble} for stopwords options
+for \code{\link[=analyze]{analyze()}} / \code{\link[=tokenize]{tokenize()}} function.
 }
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-lists"></a>}}
-\if{latex}{\out{\hypertarget{method-lists}{}}}
-\subsection{Method \code{lists()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Stopwords$lists()}\if{html}{\out{</div>}}
-}
-
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}

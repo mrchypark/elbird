@@ -19,7 +19,7 @@ kiwi_analyze_wrap <-
       isFALSE(.) ~ Stopwords$new(use_system_dict = FALSE),
       isTRUE(.) ~ Stopwords$new(),
       any(class(.) == "Stopwords") ~ .,
-      file.exists(.) ~ Stopwords$new()$add_from_dict(.),
+      file.exists(.) ~ Stopwords$new(FALSE)$add_from_dict(.),
       ~ Stopwords$new(use_system_dict = FALSE)
     )
 

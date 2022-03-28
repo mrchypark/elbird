@@ -1,9 +1,7 @@
-#' Elbird enums
+#' Tags of
 #'
-#' @name enums
 #' @importFrom matchr Enum
 #' @export
-#' @keywords internal
 Tags <- matchr::Enum("tag",
   unknown = "UN",
   nng = "NNG", nnp = "NNP", nnb = "NNB",
@@ -43,15 +41,16 @@ is_tag <- function(tag_candidate_char) {
   !is.null(Tags[tolower(tag_candidate_char)][[1]])
 }
 
-build_options <- matchr::Enum("buildOptions",
+#' @export
+build_options <- matchr::Enum("build_options",
   INTEGRATE_ALLOMORPH = 1L,
   LOAD_DEFAULT_DICT = 2L,
   DEFAULT = 3L
 )
 
-#' @rdname enums
+
 #' @export
-Match <- matchr::Enum("Match",
+Match <- matchr::Enum("match",
   URL = "URL",
   EMAIL = "EMAIL",
   HASHTAG = "HASHTAG",
