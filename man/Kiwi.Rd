@@ -11,6 +11,7 @@ kiwi R6 class
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
+\item \href{#method-print}{\code{Kiwi$print()}}
 \item \href{#method-new}{\code{Kiwi$new()}}
 \item \href{#method-get_model_file}{\code{Kiwi$get_model_file()}}
 \item \href{#method-add_user_words}{\code{Kiwi$add_user_words()}}
@@ -23,6 +24,15 @@ kiwi R6 class
 \item \href{#method-save_user_dictionarys}{\code{Kiwi$save_user_dictionarys()}}
 \item \href{#method-clone}{\code{Kiwi$clone()}}
 }
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$print(x, ...)}\if{html}{\out{</div>}}
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}

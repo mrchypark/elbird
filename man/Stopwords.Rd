@@ -14,6 +14,7 @@ Stopwords Class
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
+\item \href{#method-print}{\code{Stopwords$print()}}
 \item \href{#method-new}{\code{Stopwords$new()}}
 \item \href{#method-add}{\code{Stopwords$add()}}
 \item \href{#method-add_from_dict}{\code{Stopwords$add_from_dict()}}
@@ -23,6 +24,15 @@ Stopwords Class
 \item \href{#method-use}{\code{Stopwords$use()}}
 \item \href{#method-clone}{\code{Stopwords$clone()}}
 }
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Stopwords$print(x, ...)}\if{html}{\out{</div>}}
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}

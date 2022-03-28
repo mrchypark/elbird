@@ -13,22 +13,22 @@ analyze(text, top_n = 3, match_option = Match$ALL, stopwords = FALSE)
 
 \item{match_option}{\code{\link{Match}}: use Match. Default is Match$ALL}
 
-\item{stopwords}{stopword option. Default is FALSE.
+\item{stopwords}{stopwords option. Default is FALSE.
 If TRUE, use embaded stopwords dictionany.
 If char: path of dictionary txt file, use file.
-If \code{\link{Stopwords}} class, use it.}
+If \code{\link{Stopwords}} class, use it.
+If not valid value, work same as FALSE.}
 }
 \description{
 analyze
 }
 \examples{
-  analyze("안녕하세요")
-  analyze("안녕하세요", 1)
-  analyze("안녕하세요", 1, Match$ALL_WITH_NORMALIZING)
-  analyze("안녕하세요", stopwords = FALSE)
-  analyze("안녕하세요", stopwords = TRUE)
-  analyze("안녕하세요", stopwords = "user_dict.txt")
-  analyze("안녕하세요", stopwords = "user_dict.txt")
-  analyze("안녕하세요", stopwords = Stopwords$new(TRUE))
-  analyze("안녕하세요", stopwords = Stopwords$new(TRUE)$add("test","NNP"))
+  analyze("Test text.")
+  analyze("Please use Korean.", top_n = 1)
+  analyze("Test text.", 1, Match$ALL_WITH_NORMALIZING)
+  analyze("Test text.", stopwords = FALSE)
+  analyze("Test text.", stopwords = TRUE)
+  analyze("Test text.", stopwords = "user_dict.txt")
+  analyze("Test text.", stopwords = Stopwords$new(TRUE))
+
 }

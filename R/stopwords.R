@@ -7,11 +7,10 @@
 Stopwords <- R6::R6Class(
   'Stopwords',
   public = list(
-    # print = function(x, ...) {
-    #   cat("<elbird dictionary> ", sep = "\n")
-    #   cat("  Stopwords ", sep = "\n")
-    #   invisible()
-    # },
+    print = function(x, ...) {
+      cat("<Stopwords Class> ", sep = "\n")
+      invisible()
+    },
 
     #' @description
     #'   Create a stopwords

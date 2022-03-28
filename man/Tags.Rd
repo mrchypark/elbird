@@ -3,14 +3,21 @@
 \docType{data}
 \name{Tags}
 \alias{Tags}
-\title{Tags of}
+\title{Tag list}
 \format{
 An object of class \code{EnumGenerator} of length 47.
+}
+\source{
+\url{https://github.com/bab2min/Kiwi}
 }
 \usage{
 Tags
 }
 \description{
-Tags of
+Tags contains tag list for elbird.
+}
+\examples{
+  Tags
+  Tags$nnp
 }
 \keyword{datasets}

@@ -2,36 +2,29 @@
 % Please edit documentation in R/tokenize.R
 \name{tokenize}
 \alias{tokenize}
-\alias{tokenize_tibble}
-\alias{tokenize_tidytext}
-\alias{tokenize_tbl}
-\alias{tokenize_tt}
-\alias{tokenize_tidy}
 \title{Simple version of tokenizer function.}
 \usage{
-tokenize(text, match_option = Match$ALL, stopwords = FALSE)
-
-tokenize_tibble(text)
-
-tokenize_tidytext(text)
-
-tokenize_tbl(text)
-
-tokenize_tt(text)
-
-tokenize_tidy(text)
+tokenize(text, match_option = Match$ALL, stopwords = TRUE)
 }
 \arguments{
 \item{text}{target text.}
+
+\item{match_option}{\code{\link{Match}}: use Match. Default is Match$ALL}
+
+\item{stopwords}{stopwords option. Default is TRUE which is
+to use embaded stopwords dictionany.
+If FALSE, use not embaded stopwords dictionany.
+If char: path of dictionary txt file, use file.
+If \code{\link{Stopwords}} class, use it.
+If not valid value, work same as FALSE.}
 }
 \value{
 a list type resault.
-
-a \link[tibble:tibble-package]{tibble}
 }
 \description{
 Simple version of tokenizer function.
 }
 \examples{
-  tokenize("안녕하세요")
+  tokenize("Test text.")
+  tokenize("Please use Korean.", Match$ALL_WITH_NORMALIZING)
 }

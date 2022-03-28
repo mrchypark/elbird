@@ -10,7 +10,7 @@ model_works(size = "all")
 \item{size}{model size. default is "all" which is true that all three models must be present.}
 }
 \value{
-bool
+\code{logical} model work or not.
 }
 \description{
 Verifies if models work fine.

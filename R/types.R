@@ -1,5 +1,11 @@
-#' Tags of
+#' Tag list
 #'
+#' Tags contains tag list for elbird.
+#'
+#' @source \url{https://github.com/bab2min/Kiwi}
+#' @examples
+#'   Tags
+#'   Tags$nnp
 #' @importFrom matchr Enum
 #' @export
 Tags <- matchr::Enum("tag",
@@ -41,14 +47,26 @@ is_tag <- function(tag_candidate_char) {
   !is.null(Tags[tolower(tag_candidate_char)][[1]])
 }
 
+#' Build options for Kiwi Class
+#'
+#' @examples
+#'  BuildOpt
+#'  BuildOpt$DEFAULT
+#'
 #' @export
-build_options <- matchr::Enum("build_options",
+BuildOpt <- matchr::Enum("buildOpt",
   INTEGRATE_ALLOMORPH = 1L,
   LOAD_DEFAULT_DICT = 2L,
   DEFAULT = 3L
 )
 
-
+#' Analyze Match Options.
+#'
+#'
+#' @examples
+#'  Match
+#'  Match$ALL
+#'
 #' @export
 Match <- matchr::Enum("match",
   URL = "URL",

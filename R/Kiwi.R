@@ -4,7 +4,12 @@
 #' @export
 Kiwi <- R6::R6Class(
   "Kiwi",
+
   public = list(
+    print = function(x, ...) {
+      cat("<Kiwi Class> ", sep = "\n")
+      invisible()
+    },
     initialize = function(num_workers = 0,
                           model_size = "base",
                           integrate_allomorph = TRUE,
@@ -16,10 +21,10 @@ Kiwi <- R6::R6Class(
 
       boptions <- 0L
       if (integrate_allomorph) {
-        boptions <- bitwOr(boptions, build_options$INTEGRATE_ALLOMORPH)
+        boptions <- bitwOr(boptions, BuildOpt$INTEGRATE_ALLOMORPH)
       }
       if (load_default_dict) {
-        boptions <- bitwOr(boptions, build_options$LOAD_DEFAULT_DICT)
+        boptions <- bitwOr(boptions, BuildOpt$LOAD_DEFAULT_DICT)
       }
       private$build_options <- boptions
       private$kiwi_builder <-
