@@ -1,14 +1,7 @@
 #' analyze
 #'
-#' @param text  \code{character}: target text.
 #' @param top_n  \code{integer}: Number of result. Default is 3.
-#' @param match_option [`Match`]: use Match. Default is Match$ALL
-#' @param stopwords stopwords option. Default is FALSE.
-#'                  If TRUE, use embaded stopwords dictionany.
-#'                  If char: path of dictionary txt file, use file.
-#'                  If [`Stopwords`] class, use it.
-#'                  If not valid value, work same as FALSE.
-#' @name analyze
+#' @inheritParams tokenize
 #' @examples
 #'   analyze("Test text.")
 #'   analyze("Please use Korean.", top_n = 1)

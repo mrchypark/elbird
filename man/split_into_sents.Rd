@@ -2,7 +2,7 @@
 % Please edit documentation in R/split_into_sents.R
 \name{split_into_sents}
 \alias{split_into_sents}
-\title{split_into_sents}
+\title{Split Sentences}
 \usage{
 split_into_sents(text, return_tokens = FALSE)
 }
@@ -12,5 +12,6 @@ split_into_sents(text, return_tokens = FALSE)
 \item{return_tokens}{add tokenized resault.}
 }
 \description{
-split_into_sents
+Some text may not split sentence by sentence.
+split_into_sents works split sentences to sentence by sentence.
 }

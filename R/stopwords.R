@@ -5,6 +5,7 @@
 #'
 #' @examples
 #'   Stopwords$new()
+#'
 #' @export
 Stopwords <- R6::R6Class(
   'Stopwords',
@@ -19,9 +20,9 @@ Stopwords <- R6::R6Class(
     },
 
     #' @description
-    #'   Create a stopwords
-    #' @param use_system_dict \code{logical}: use system stopwords dictionary or not.
-    #'                              defualt is TRUE.
+    #'   Create a stopwords object for filter stopwords on [analyze()] and [tokenize()] results.
+    #' @param use_system_dict \code{bool(optional)}: use system stopwords dictionary or not.
+    #'                              Defualt is TRUE.
     initialize = function(use_system_dict = TRUE) {
       if (use_system_dict)
         private$set_system_dict()
@@ -31,9 +32,13 @@ Stopwords <- R6::R6Class(
 
     #' @description
     #'   add stopword one at a time.
-    #' @param form \code{character}:
-    #' @param tag  \code{character}: Default is "NNP".
-    add = function(form, tag = "NNP") {
+    #' @param form \code{char(required)}: Form information.
+    #' @param tag  \code{char(optional)}: Tag information. Default is "NNP". Please check [Tags].
+    #' @examples
+    #'   sw <- Stopwords$new()
+    #'   sw$add("word", "NNG")
+    #'   sw$add("word", Tags$nng)
+    add = function(form, tag = Tags$NNP) {
       private$add_dict_el(tibble::tibble(form = form, tag = check_tag(tag)),
                        "addfunc",
                        paste0(form, "/" , tag))
@@ -45,9 +50,8 @@ Stopwords <- R6::R6Class(
     #'   text file need to form "TEXT/TAG".
     #'   TEXT can remove like "/NNP".
     #'   TAG required like "FORM/NNP".
-    #'
-    #' @param path       str: dictionary file path.
-    #' @param dict_name  str: default is "user"
+    #' @param path       \code{char(required)}: dictionary file path.
+    #' @param dict_name  \code{char(optional)}: default is "user"
     add_from_dict = function(path, dict_name = "user") {
       path <- normalizePath(path, mustWork = TRUE)
       private$set_dict(path)
@@ -56,8 +60,8 @@ Stopwords <- R6::R6Class(
 
     #' @description
     #'   remove stopword one at a time.
-    #' @param form \code{character}:
-    #' @param tag  \code{character}:
+    #' @param form \code{char(optional)}: Form information. If form not set, remove tag in input.
+    #' @param tag  \code{char(required)}: Tag information. Please check [Tags].
     remove = function(form = NULL, tag = NULL) {
       if (is.null(tag)) {stop("argument \"tag\" is missing, with no default")}
       private$remove_dict_el(tibble::tibble(form = form, tag = check_tag(tag)),
@@ -67,8 +71,8 @@ Stopwords <- R6::R6Class(
     },
 
     #' @description
-    #'   save stopwords to text file.
-    #' @param path \code{character}:
+    #'   save current stopwords list in text file.
+    #' @param path \code{char(required)}: file path to save stopwords list.
     save_user_dict = function(path) {
       vroom::vroom_write(
         x = private$stopword_list,
@@ -80,7 +84,7 @@ Stopwords <- R6::R6Class(
     },
 
     #' @description
-    #'  return tibble of stopword
+    #'  return tibble of stopwords.
     #' @return a [tibble][tibble::tibble-package] for stopwords options
     #'         for [analyze()] / [tokenize()] function.
     get = function() {

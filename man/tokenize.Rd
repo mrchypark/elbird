@@ -2,9 +2,24 @@
 % Please edit documentation in R/tokenize.R
 \name{tokenize}
 \alias{tokenize}
+\alias{tokenize_tibble}
+\alias{tokenize_tidytext}
+\alias{tokenize_tbl}
+\alias{tokenize_tt}
+\alias{tokenize_tidy}
 \title{Simple version of tokenizer function.}
 \usage{
 tokenize(text, match_option = Match$ALL, stopwords = TRUE)
+
+tokenize_tibble(text, match_option = Match$ALL, stopwords = FALSE)
+
+tokenize_tidytext(text, match_option = Match$ALL, stopwords = FALSE)
+
+tokenize_tbl(text, match_option = Match$ALL, stopwords = FALSE)
+
+tokenize_tt(text, match_option = Match$ALL, stopwords = FALSE)
+
+tokenize_tidy(text, match_option = Match$ALL, stopwords = FALSE)
 }
 \arguments{
 \item{text}{target text.}
@@ -19,7 +34,7 @@ If \code{\link{Stopwords}} class, use it.
 If not valid value, work same as FALSE.}
 }
 \value{
-a list type resault.
+list type of result.
 }
 \description{
 Simple version of tokenizer function.

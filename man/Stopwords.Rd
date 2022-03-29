@@ -8,6 +8,15 @@ Stopwords is for filter result.
 }
 \examples{
   Stopwords$new()
+
+
+## ------------------------------------------------
+## Method `Stopwords$add`
+## ------------------------------------------------
+
+  sw <- Stopwords$new()
+  sw$add("word", "NNG")
+  sw$add("word", Tags$nng)
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -45,7 +54,7 @@ print method for \code{Stopwords} objects
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Create a stopwords
+Create a stopwords object for filter stopwords on \code{\link[=analyze]{analyze()}} and \code{\link[=tokenize]{tokenize()}} results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stopwords$new(use_system_dict = TRUE)}\if{html}{\out{</div>}}
 }
@@ -53,8 +62,8 @@ Create a stopwords
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{use_system_dict}}{\code{logical}: use system stopwords dictionary or not.
-defualt is TRUE.}
+\item{\code{use_system_dict}}{\code{bool(optional)}: use system stopwords dictionary or not.
+Defualt is TRUE.}
 }
 \if{html}{\out{</div>}}
 }
@@ -65,18 +74,28 @@ defualt is TRUE.}
 \subsection{Method \code{add()}}{
 add stopword one at a time.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Stopwords$add(form, tag = "NNP")}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Stopwords$add(form, tag = Tags$NNP)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{form}}{\code{character}:}
+\item{\code{form}}{\code{char(required)}: Form information.}
 
-\item{\code{tag}}{\code{character}: Default is "NNP".}
+\item{\code{tag}}{\code{char(optional)}: Tag information. Default is "NNP". Please check \link{Tags}.}
 }
 \if{html}{\out{</div>}}
 }
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{  sw <- Stopwords$new()
+  sw$add("word", "NNG")
+  sw$add("word", Tags$nng)
+}
+\if{html}{\out{</div>}}
+
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add_from_dict"></a>}}
@@ -93,9 +112,9 @@ TAG required like "FORM/NNP".
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{path}}{str: dictionary file path.}
+\item{\code{path}}{\code{char(required)}: dictionary file path.}
 
-\item{\code{dict_name}}{str: default is "user"}
+\item{\code{dict_name}}{\code{char(optional)}: default is "user"}
 }
 \if{html}{\out{</div>}}
 }
@@ -112,9 +131,9 @@ remove stopword one at a time.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{form}}{\code{character}:}
+\item{\code{form}}{\code{char(optional)}: Form information. If form not set, remove tag in input.}
 
-\item{\code{tag}}{\code{character}:}
+\item{\code{tag}}{\code{char(required)}: Tag information. Please check \link{Tags}.}
 }
 \if{html}{\out{</div>}}
 }
@@ -123,7 +142,7 @@ remove stopword one at a time.
 \if{html}{\out{<a id="method-save_user_dict"></a>}}
 \if{latex}{\out{\hypertarget{method-save_user_dict}{}}}
 \subsection{Method \code{save_user_dict()}}{
-save stopwords to text file.
+save current stopwords list in text file.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stopwords$save_user_dict(path)}\if{html}{\out{</div>}}
 }
@@ -131,7 +150,7 @@ save stopwords to text file.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{path}}{\code{character}:}
+\item{\code{path}}{\code{char(required)}: file path to save stopwords list.}
 }
 \if{html}{\out{</div>}}
 }
@@ -140,7 +159,7 @@ save stopwords to text file.
 \if{html}{\out{<a id="method-get"></a>}}
 \if{latex}{\out{\hypertarget{method-get}{}}}
 \subsection{Method \code{get()}}{
-return tibble of stopword
+return tibble of stopwords.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Stopwords$get()}\if{html}{\out{</div>}}
 }

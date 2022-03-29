@@ -13,15 +13,14 @@ kiwi R6 class
 \itemize{
 \item \href{#method-print}{\code{Kiwi$print()}}
 \item \href{#method-new}{\code{Kiwi$new()}}
-\item \href{#method-get_model_file}{\code{Kiwi$get_model_file()}}
 \item \href{#method-add_user_words}{\code{Kiwi$add_user_words()}}
 \item \href{#method-load_user_dictionarys}{\code{Kiwi$load_user_dictionarys()}}
 \item \href{#method-extract_words}{\code{Kiwi$extract_words()}}
 \item \href{#method-extract_add_words}{\code{Kiwi$extract_add_words()}}
 \item \href{#method-analyze}{\code{Kiwi$analyze()}}
 \item \href{#method-tokenize}{\code{Kiwi$tokenize()}}
+\item \href{#method-get_tidytext_func}{\code{Kiwi$get_tidytext_func()}}
 \item \href{#method-split_into_sents}{\code{Kiwi$split_into_sents()}}
-\item \href{#method-save_user_dictionarys}{\code{Kiwi$save_user_dictionarys()}}
 \item \href{#method-clone}{\code{Kiwi$clone()}}
 }
 }
@@ -29,15 +28,26 @@ kiwi R6 class
 \if{html}{\out{<a id="method-print"></a>}}
 \if{latex}{\out{\hypertarget{method-print}{}}}
 \subsection{Method \code{print()}}{
+print method for \code{Kiwi} objects
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Kiwi$print(x, ...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{self}
+
+\item{\code{...}}{ignored}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
+Create a kiwi instance.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Kiwi$new(
   num_workers = 0,
@@ -47,65 +57,153 @@ kiwi R6 class
 )}\if{html}{\out{</div>}}
 }
 
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_model_file"></a>}}
-\if{latex}{\out{\hypertarget{method-get_model_file}{}}}
-\subsection{Method \code{get_model_file()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Kiwi$get_model_file(size)}\if{html}{\out{</div>}}
-}
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{num_workers}}{use multi-thread core number. default is 0 which means use all core.}
 
+\item{\code{model_size}}{kiwi model select. default is "base". "small", "large" is available.}
+
+\item{\code{integrate_allomorph}}{default is TRUE.}
+
+\item{\code{load_default_dict}}{use defualt dictionary. default is TRUE.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add_user_words"></a>}}
 \if{latex}{\out{\hypertarget{method-add_user_words}{}}}
 \subsection{Method \code{add_user_words()}}{
+add user word with pos and score
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Kiwi$add_user_words(word, pos, score)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{word}}{target word to add.}
+
+\item{\code{pos}}{pos information about word.}
+
+\item{\code{score}}{score information about word.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-load_user_dictionarys"></a>}}
 \if{latex}{\out{\hypertarget{method-load_user_dictionarys}{}}}
 \subsection{Method \code{load_user_dictionarys()}}{
+add user dictionary using text file.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Kiwi$load_user_dictionarys(user_dict_path)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{user_dict_path}}{path of user dictionary file.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-extract_words"></a>}}
 \if{latex}{\out{\hypertarget{method-extract_words}{}}}
 \subsection{Method \code{extract_words()}}{
+Extract Noun word candidate from texts.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Kiwi$extract_words(input, min_cnt, max_word_len, min_score, pos_threshold)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{input}}{target text data}
+
+\item{\code{min_cnt}}{minimum count of word in text.}
+
+\item{\code{max_word_len}}{max word length.}
+
+\item{\code{min_score}}{minimum score.}
+
+\item{\code{pos_threshold}}{pos threashold.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-extract_add_words"></a>}}
 \if{latex}{\out{\hypertarget{method-extract_add_words}{}}}
 \subsection{Method \code{extract_add_words()}}{
+Extract Noun word candidate from texts and add user words.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Kiwi$extract_add_words(input, min_cnt, max_word_len, min_score, pos_threshold)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{input}}{target text data}
+
+\item{\code{min_cnt}}{minimum count of word in text.}
+
+\item{\code{max_word_len}}{max word length.}
+
+\item{\code{min_score}}{minimum score.}
+
+\item{\code{pos_threshold}}{pos threashold.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-analyze"></a>}}
 \if{latex}{\out{\hypertarget{method-analyze}{}}}
 \subsection{Method \code{analyze()}}{
+Analyze text to token and pos results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Kiwi$analyze(text, top_n = 3, match_option = Match$ALL, stopwords = FALSE)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{text}}{target text.}
+
+\item{\code{top_n}}{number of result. Default is 3.}
+
+\item{\code{match_option}}{\code{\link{Match}}: use Match. Default is Match$ALL}
+
+\item{\code{stopwords}}{stopwords option. Default is TRUE which is
+to use embaded stopwords dictionany.
+If FALSE, use not embaded stopwords dictionany.
+If char: path of dictionary txt file, use file.
+If \code{\link{Stopwords}} class, use it.
+If not valid value, work same as FALSE.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tokenize"></a>}}
 \if{latex}{\out{\hypertarget{method-tokenize}{}}}
 \subsection{Method \code{tokenize()}}{
+Analyze text to token and pos result just top 1.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Kiwi$tokenize(
   text,
@@ -115,24 +213,79 @@ kiwi R6 class
 )}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{text}}{target text.}
+
+\item{\code{match_option}}{\code{\link{Match}}: use Match. Default is Match$ALL}
+
+\item{\code{stopwords}}{stopwords option. Default is TRUE which is
+to use embaded stopwords dictionary.
+If FALSE, use not embaded stopwords dictionary.
+If char: path of dictionary txt file, use file.
+If \code{\link{Stopwords}} class, use it.
+If not valid value, work same as FALSE.}
+
+\item{\code{form}}{return form. default is "tibble". "list", "tidytext" is available.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_tidytext_func"></a>}}
+\if{latex}{\out{\hypertarget{method-get_tidytext_func}{}}}
+\subsection{Method \code{get_tidytext_func()}}{
+set function to tidytext unnest_tokens.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$get_tidytext_func(match_option = Match$ALL, stopwords = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{match_option}}{match_option \code{\link{Match}}: use Match. Default is Match$ALL}
+
+\item{\code{stopwords}}{stopwords option. Default is TRUE which is
+to use embaded stopwords dictionary.
+If FALSE, use not embaded stopwords dictionary.
+If char: path of dictionary txt file, use file.
+If \code{\link{Stopwords}} class, use it.
+If not valid value, work same as FALSE.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-split_into_sents"></a>}}
 \if{latex}{\out{\hypertarget{method-split_into_sents}{}}}
 \subsection{Method \code{split_into_sents()}}{
+Some text may not split sentence by sentence.
+split_into_sents works split sentences to sentence by sentence.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Kiwi$split_into_sents(text, match_option, return_tokens)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$split_into_sents(text, match_option = Match$ALL, return_tokens = FALSE)}\if{html}{\out{</div>}}
 }
 
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-save_user_dictionarys"></a>}}
-\if{latex}{\out{\hypertarget{method-save_user_dictionarys}{}}}
-\subsection{Method \code{save_user_dictionarys()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Kiwi$save_user_dictionarys(user_dict_path)}\if{html}{\out{</div>}}
-}
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{text}}{target text.}
 
+\item{\code{match_option}}{match_option \code{\link{Match}}: use Match. Default is Match$ALL}
+
+\item{\code{return_tokens}}{add tokenized resault.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
