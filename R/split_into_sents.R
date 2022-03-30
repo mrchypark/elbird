@@ -10,7 +10,7 @@ split_into_sents <- function(text, return_tokens = FALSE) {
   if (init_chk_not())
     init()
 
-  return (
+  return(
     kiwi_split_into_sents_(
       get("kb", envir = .el),
       text,

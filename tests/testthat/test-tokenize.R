@@ -1,15 +1,15 @@
 test_that("tokenize works", {
-  res <- tokenize("안녕하세요.")
-  expect_equal(res[[1]]$Token[[1]]$form, "안녕")
-  expect_equal(res[[1]]$Token[[1]]$tag, "NNG")
+  res <- tokenize("Test text.")
+  expect_equal(res[[1]]$Token[[1]]$form, "Test")
+  expect_equal(res[[1]]$Token[[1]]$tag, "SL")
   expect_equal(res[[1]]$Token[[1]]$start, 1)
-  expect_equal(res[[1]]$Token[[1]]$len, 2)
+  expect_equal(res[[1]]$Token[[1]]$len, 4)
 })
 
 test_that("tokenize_tbl works", {
-  res <- tokenize_tbl("안녕하세요.")
+  res <- tokenize_tbl("Test text.")
   expect_true(tibble::is_tibble(res))
-  expect_equal(nrow(res), 5)
+  expect_equal(nrow(res), 3)
   expect_equal(ncol(res), 5)
   expect_true("unique" %in% names(res))
   expect_true("form" %in% names(res))
