@@ -70,6 +70,7 @@ tokenize_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호�
 
 ```{r}
 suppressMessages(library(dplyr))
+install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev/")
 library(stringr)
 library(tidytext)
 library(presidentSpeech)
@@ -101,8 +102,7 @@ tar %>%
 ```{r}
 library(elbird)
 analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
-analyze(c("안녕하세요","kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."))
-analyze(c("안녕하세요","kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."), top_n = 2)
+analyze(c("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."), top_n = 1)
 ```
 
 

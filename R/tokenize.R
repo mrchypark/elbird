@@ -13,8 +13,10 @@
 #' @returns list type of result.
 #' @export
 #' @examples
+#' \dontrun{
 #'   tokenize("Test text.")
 #'   tokenize("Please use Korean.", Match$ALL_WITH_NORMALIZING)
+#' }
 #' @name tokenize
 NULL
 

@@ -15,3 +15,9 @@ split_into_sents(text, return_tokens = FALSE)
 Some text may not split sentence by sentence.
 split_into_sents works split sentences to sentence by sentence.
 }
+\examples{
+\dontrun{
+ split_into_sents("text")
+ split_into_sents("text", return_tokens = TRUE)
+}
+}

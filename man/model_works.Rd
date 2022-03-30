@@ -16,6 +16,8 @@ model_works(size = "all")
 Verifies if models work fine.
 }
 \examples{
+\dontrun{
   get_model("small")
   model_works("small")
+}
 }

@@ -16,6 +16,8 @@ model_exists(size = "all")
 Verifies if model files exists.
 }
 \examples{
+\dontrun{
   get_model("small")
   model_exists("small")
+}
 }
