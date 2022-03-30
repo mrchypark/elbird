@@ -18,7 +18,8 @@ to use embaded stopwords dictionany.
 If FALSE, use not embaded stopwords dictionany.
 If char: path of dictionary txt file, use file.
 If \code{\link{Stopwords}} class, use it.
-If not valid value, work same as FALSE.}
+If not valid value, work same as FALSE.
+Check \code{\link[=analyze]{analyze()}} how to use stopwords param.}
 }
 \description{
 analyze

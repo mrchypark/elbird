@@ -8,6 +8,7 @@
 #'                  If char: path of dictionary txt file, use file.
 #'                  If [`Stopwords`] class, use it.
 #'                  If not valid value, work same as FALSE.
+#'                  Check [analyze()] how to use stopwords param.
 #' @importFrom purrr map
 #' @returns list type of result.
 #' @export
