@@ -120,13 +120,6 @@ extern "C" SEXP _elbird_kiwi_get_option_(SEXP handle_ex, SEXP option) {
   END_CPP11
 }
 // kiwi_bind.cpp
-bool test(const cpp11::data_frame stopwords_r);
-extern "C" SEXP _elbird_test(SEXP stopwords_r) {
-  BEGIN_CPP11
-    return cpp11::as_sexp(test(cpp11::as_cpp<cpp11::decay_t<const cpp11::data_frame>>(stopwords_r)));
-  END_CPP11
-}
-// kiwi_bind.cpp
 SEXP kiwi_analyze_(SEXP handle_ex, const char* text, int top_n, std::string match_options, const cpp11::data_frame stopwords_r);
 extern "C" SEXP _elbird_kiwi_analyze_(SEXP handle_ex, SEXP text, SEXP top_n, SEXP match_options, SEXP stopwords_r) {
   BEGIN_CPP11
@@ -161,7 +154,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_elbird_kiwi_set_option_",                    (DL_FUNC) &_elbird_kiwi_set_option_,                    3},
     {"_elbird_kiwi_split_into_sents_",              (DL_FUNC) &_elbird_kiwi_split_into_sents_,              4},
     {"_elbird_kiwi_version_",                       (DL_FUNC) &_elbird_kiwi_version_,                       0},
-    {"_elbird_test",                                (DL_FUNC) &_elbird_test,                                1},
     {NULL, NULL, 0}
 };
 }

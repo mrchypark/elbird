@@ -33,12 +33,14 @@ int match_options_(const std::string match_string) {
   return m.find(match_string)->second;
 };
 
-kiwi::POSTag parse_tag(const char* pos) {
-  auto u16 = kiwi::utf8To16(pos);
-  transform(u16.begin(), u16.end(), u16.begin(), static_cast<int(*)(int)>(toupper));
-  auto ret = kiwi::toPOSTag(u16);
-  if (ret == kiwi::POSTag::max) throw std::invalid_argument{ std::string{"Unknown POSTag : "} + pos };
-  return ret;
+namespace bind {
+  kiwi::POSTag parse_tag(const char* pos) {
+    auto u16 = kiwi::utf8To16(pos);
+    transform(u16.begin(), u16.end(), u16.begin(), static_cast<int(*)(int)>(toupper));
+    auto ret = kiwi::toPOSTag(u16);
+    if (ret == kiwi::POSTag::max) throw std::invalid_argument{ std::string{"Unknown POSTag : "} + pos };
+    return ret;
+  }
 }
 
 class Scanner {
@@ -153,7 +155,7 @@ bool kiwi_builder_add_pre_analyzed_word_(SEXP handle_ex, const std::string form,
 
   for (int i = 0; i < morphs.size(); ++i) {
     analyzed[i].first = kiwi::utf8To16(std::string(morphs[i]).c_str());
-    analyzed[i].second = parse_tag(std::string(pos[i]).c_str());
+    analyzed[i].second = bind::parse_tag(std::string(pos[i]).c_str());
     positions[i].first = size_t(start[i]);
     positions[i].first = size_t(end[i]);
   }
@@ -248,14 +250,6 @@ int kiwi_get_option_(SEXP handle_ex, int option) {
   cpp11::external_pointer<kiwi_s> handle(handle_ex);
   return kiwi_get_option(handle.get(), option);
 }
-
-
-[[cpp11::register]]
-bool test(const cpp11::data_frame stopwords_r) {
-
-  return true;
-}
-
 
 [[cpp11::register]]
 SEXP kiwi_analyze_(
