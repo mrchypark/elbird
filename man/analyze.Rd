@@ -4,13 +4,34 @@
 \alias{analyze}
 \title{analyze}
 \usage{
-analyze(text, top_n = 3)
+analyze(text, top_n = 3, match_option = Match$ALL, stopwords = FALSE)
 }
 \arguments{
 \item{text}{target text.}
 
-\item{top_n}{Number of result. default is 3.}
+\item{top_n}{\code{integer}: Number of result. Default is 3.}
+
+\item{match_option}{\code{\link{Match}}: use Match. Default is Match$ALL}
+
+\item{stopwords}{stopwords option. Default is TRUE which is
+to use embaded stopwords dictionany.
+If FALSE, use not embaded stopwords dictionany.
+If char: path of dictionary txt file, use file.
+If \code{\link{Stopwords}} class, use it.
+If not valid value, work same as FALSE.
+Check \code{\link[=analyze]{analyze()}} how to use stopwords param.}
 }
 \description{
 analyze
+}
+\examples{
+\dontrun{
+  analyze("Test text.")
+  analyze("Please use Korean.", top_n = 1)
+  analyze("Test text.", 1, Match$ALL_WITH_NORMALIZING)
+  analyze("Test text.", stopwords = FALSE)
+  analyze("Test text.", stopwords = TRUE)
+  analyze("Test text.", stopwords = "user_dict.txt")
+  analyze("Test text.", stopwords = Stopwords$new(TRUE))
+}
 }

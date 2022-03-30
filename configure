@@ -4,7 +4,14 @@
 PKG_TEST_HEADER="<kiwi/Kiwi.h>"
 PKG_LIBS="-lkiwi"
 PKG_CPPFLAGS=""
-LIB_VER="0.10.3"
+LIB_VER="0.11.0"
+
+# Copy libcache for local development.
+if [ -f "`pwd`/kiwilibtmp/libs/libkiwi.a" ]; then
+  echo "Found kiwilibtmp folder!"
+  mkdir -p kiwilibs
+  cp -rf kiwilibtmp/* kiwilibs/
+fi
 
 # Check for custom locations
 if [ "$INCLUDE_DIR" ] || [ "$LIB_DIR" ]; then
@@ -12,34 +19,37 @@ if [ "$INCLUDE_DIR" ] || [ "$LIB_DIR" ]; then
   PKG_CPPFLAGS="-I$INCLUDE_DIR $PKG_CPPFLAGS"
   PKG_LIBS="-L$LIB_DIR $PKG_LIBS"
 
-elif [ -d "`pwd`/inst/libs/" ]; then
+elif [ -d "`pwd`/kiwilibs/libs/" ]; then
   echo "Found libkiwi on pwd installation..."
-  PKG_CPPFLAGS="-I`pwd`/inst/include $PKG_CPPFLAGS"
-  PKG_LIBS="-L`pwd`/inst/libs $PKG_LIBS"
+  PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
+  PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
 
 else
   echo "Prior system libkiwi installation not found"
   echo "Preparing to download and build library from source..."
   git clone -b v$LIB_VER --filter=blob:limit=5m https://github.com/bab2min/Kiwi
   cd Kiwi
+  git rm third_party/googletest
+  git rm third_party/cpuinfo
   git submodule update --init --recursive
-  cd third_party/googletest && git checkout v1.8.x && cd ../../
   mkdir build
   cd build
   which cmake
   if [ $? -ne 0 ]; then
     export PATH=$PATH:/Applications/CMake.app/Contents/bin
   fi
-  cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
-  make
+  cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DKIWI_USE_CPUINFO=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
+  make kiwi_static
   cd ../..
 
-  mkdir -p inst/libs
-  mv -f Kiwi/build/libkiwi_static.a inst/libs/libkiwi.a
-  mv -f Kiwi/include inst/include
+  mkdir -p kiwilibs/libs
+  mv -f Kiwi/build/libkiwi_static.a kiwilibs/libs/libkiwi.a
+  mv -f Kiwi/include kiwilibs/include
   rm -rf Kiwi
-  PKG_CPPFLAGS="-I`pwd`/inst/include $PKG_CPPFLAGS"
-  PKG_LIBS="-L`pwd`/inst/libs $PKG_LIBS"
+  # Copy libcache for local development.
+  cp -rf kiwilibs/ kiwilibtmp/
+  PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
+  PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
 fi
 
 # For debugging
@@ -67,23 +77,26 @@ if [ $? -ne 0 ]; then
     echo "Preparing to download and build library from source..."
     git clone -b v$LIB_VER --filter=blob:limit=5m https://github.com/bab2min/Kiwi
     cd Kiwi
+    git rm third_party/googletest
+    git rm third_party/cpuinfo
     git submodule update --init --recursive
-    cd third_party/googletest && git checkout v1.8.x && cd ../../
     mkdir build
     cd build
     which cmake
     if [ $? -ne 0 ]; then
       export PATH=$PATH:/Applications/CMake.app/Contents/bin
     fi
-    cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
-    make
+    cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DKIWI_USE_CPUINFO=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
+    make kiwi_static
     cd ../..
-    mkdir -p inst/libs
-    mv -f Kiwi/build/libkiwi_static.a inst/libs/libkiwi.a
-    mv -f Kiwi/include inst/include
+    mkdir -p kiwilibs/libs
+    mv -f Kiwi/build/libkiwi_static.a kiwilibs/libs/libkiwi.a
+    mv -f Kiwi/include kiwilibs/include
     rm -rf Kiwi
-    PKG_CPPFLAGS="-I`pwd`/inst/include $PKG_CPPFLAGS"
-    PKG_LIBS="-L`pwd`/inst/libs $PKG_LIBS"
+    # Copy libcache for local development.
+    cp -rf kiwilibs/ kiwilibtmp/
+    PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
+    PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
     # Test for libkiwi
     echo "#include $PKG_TEST_HEADER" | ${CXX11} ${PKG_CPPFLAGS} ${CXXFLAGS} -E -xc++ - >/dev/null 2>&1
     if [ $? -ne 0 ]; then

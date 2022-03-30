@@ -4,7 +4,7 @@
 \name{elbird-package}
 \alias{elbird}
 \alias{elbird-package}
-\title{elbird: Blazing Fast Morphological Analyzer based on kiwi(Korean Intelligent Word Identifier)}
+\title{elbird: Blazing Fast Morphological Analyzer Based on Kiwi(Korean Intelligent Word Identifier)}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 

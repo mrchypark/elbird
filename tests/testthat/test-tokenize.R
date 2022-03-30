@@ -1,0 +1,21 @@
+test_that("tokenize works", {
+  skip_if_offline()
+  res <- tokenize("Test text.")
+  expect_equal(res[[1]]$Token[[1]]$form, "Test")
+  expect_equal(res[[1]]$Token[[1]]$tag, "SL")
+  expect_equal(res[[1]]$Token[[1]]$start, 1)
+  expect_equal(res[[1]]$Token[[1]]$len, 4)
+})
+
+test_that("tokenize_tbl works", {
+  skip_if_offline()
+  res <- tokenize_tbl("Test text.")
+  expect_true(tibble::is_tibble(res))
+  expect_equal(nrow(res), 3)
+  expect_equal(ncol(res), 5)
+  expect_true("unique" %in% names(res))
+  expect_true("form" %in% names(res))
+  expect_true("tag" %in% names(res))
+  expect_true("start" %in% names(res))
+  expect_true("len" %in% names(res))
+})

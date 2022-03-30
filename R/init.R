@@ -2,19 +2,18 @@ init_chk_not <- function() {
   length(ls(envir = .el)) != 1
 }
 
-#' @importFrom methods new
-init <- function() {
-  if (!model_exists())
-    get_model_file()
+init <- function(size = "small") {
+  if (!kiwi_model_exists(size))
+    get_kiwi_models(size)
 
-  kb <- kiwi_init(model_path_full(), 0, 0)
+  kb <- kiwi_init_(kiwi_model_path_full(size), 0, BuildOpt$DEFAULT)
+  err <- kiwi_error_wrap()
 
-  if (identical(kb, new("externalptr"))) {
-    tem <- kiwi_error()
-    kiwi_clear_error()
-    stop(tem)
-  }
+  if (!is.null(err))
+    stop(err)
 
   assign("kb", kb, envir = .el)
 }
+
+
 

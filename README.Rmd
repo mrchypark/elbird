@@ -18,12 +18,12 @@ options(crayon.enabled = NULL)
 
 
 <!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN status](https://www.r-pkg.org/badges/version/elbird)](https://CRAN.R-project.org/package=elbird)
 [![](https://cranlogs.r-pkg.org/badges/elbird)](https://cran.r-project.org/package=elbird)
 <!-- badges: end -->
 
-# [한국어 버전](./README_kr.md)는 [여기](./README_kr.md)에서 확인하세요.
+# 한국어 버전은 README_kr.md 파일을 확인하세요.
 
 The `elbird` package is a morpheme analysis package packed with [kiwipiepy](https://github.com/bab2min/kiwipiepy).
 It is based on cpp package `kiwi` and that has convenient functions such as faster performance compared to other tokenizers, easy user dictionary addition, unregistered noun extraction (not implemented in `elbird` yet).
@@ -72,6 +72,7 @@ The `tar` below is the target text for morpheme analysis.
 
 ```{r}
 suppressMessages(library(dplyr))
+install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev/")
 library(stringr)
 library(tidytext)
 library(presidentSpeech)
@@ -103,8 +104,7 @@ In addition, an `analyze` function is provided that uses the output of the `anal
 ```{r}
 library(elbird)
 analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
-analyze(c("안녕하세요","kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."))
-analyze(c("안녕하세요","kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."), top_n = 2)
+analyze(c("안녕하세요. kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."), top_n = 1)
 ```
 
 ## tag set

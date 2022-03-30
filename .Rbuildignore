@@ -11,3 +11,8 @@ auto*
 inst/ModelGenerator*
 ^\.github$
 ^_pkgdown\.yml$
+kiwilibtmp/*
+kiwilibs/*
+^model*
+^windows/*
+^tools/winbuild*
