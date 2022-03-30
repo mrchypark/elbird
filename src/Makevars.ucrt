@@ -1,2 +1,2 @@
-CRT=_ucrt
+CRT=-ucrt
 include Makevars.win
