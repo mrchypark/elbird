@@ -14,8 +14,9 @@ Match
 ALL option contains URL, EMAIL, HASHTAG, MENTION.
 }
 \examples{
+\dontrun{
  Match
  Match$ALL
-
+}
 }
 \keyword{datasets}

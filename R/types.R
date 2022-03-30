@@ -4,9 +4,10 @@
 #'
 #' @source \url{https://github.com/bab2min/Kiwi}
 #' @examples
+#'  \dontrun{
 #'   Tags
 #'   Tags$nnp
-#'
+#'  }
 #' @importFrom matchr Enum
 #' @export
 Tags <- matchr::Enum("tag",
@@ -54,9 +55,10 @@ is_tag <- function(tag_candidate_char) {
 #' ALL option contains URL, EMAIL, HASHTAG, MENTION.
 #'
 #' @examples
+#' \dontrun{
 #'  Match
 #'  Match$ALL
-#'
+#' }
 #' @export
 Match <- matchr::Enum("match",
   URL = "URL",

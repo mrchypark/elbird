@@ -17,8 +17,9 @@ Tags
 Tags contains tag list for elbird.
 }
 \examples{
+ \dontrun{
   Tags
   Tags$nnp
-
+ }
 }
 \keyword{datasets}

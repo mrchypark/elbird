@@ -17,9 +17,11 @@ kiwi class is provide method for korean mophological analyze result.
 ## Method `Kiwi$get_tidytext_func`
 ## ------------------------------------------------
 
+\dontrun{
    kw <- Kiwi$new()
    tidytoken <- kw$get_tidytext_func()
    tidytoken("test")
+}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -263,9 +265,11 @@ If not valid value, work same as FALSE.}
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
-\preformatted{   kw <- Kiwi$new()
+\preformatted{\dontrun{
+   kw <- Kiwi$new()
    tidytoken <- kw$get_tidytext_func()
    tidytoken("test")
+}
 }
 \if{html}{\out{</div>}}
 

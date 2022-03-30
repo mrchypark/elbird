@@ -13,7 +13,6 @@
 #' @export
 Kiwi <- R6::R6Class(
   "Kiwi",
-
   public = list(
     #' @description print method for `Kiwi` objects
     #' @param x self
@@ -190,9 +189,11 @@ Kiwi <- R6::R6Class(
     #'                  If [`Stopwords`] class, use it.
     #'                  If not valid value, work same as FALSE.
     #' @examples
+    #' \dontrun{
     #'    kw <- Kiwi$new()
     #'    tidytoken <- kw$get_tidytext_func()
     #'    tidytoken("test")
+    #' }
     #' @return \code{function}
     get_tidytext_func = function(match_option = Match$ALL,
                                  stopwords = FALSE) {

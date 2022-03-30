@@ -8,8 +8,11 @@ Returns the kiwi model path.}
 model_home()
 }
 \value{
-\code{character}: file path.
+\code{character}: file path
 }
 \description{
 TODO explain ELBIRD_MODEL_HOME
+}
+\examples{
+ model_home()
 }
