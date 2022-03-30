@@ -64,10 +64,6 @@ kiwi_get_option_ <- function(handle_ex, option) {
   .Call(`_elbird_kiwi_get_option_`, handle_ex, option)
 }
 
-test <- function(stopwords_r) {
-  .Call(`_elbird_test`, stopwords_r)
-}
-
 kiwi_analyze_ <- function(handle_ex, text, top_n, match_options, stopwords_r) {
   .Call(`_elbird_kiwi_analyze_`, handle_ex, text, top_n, match_options, stopwords_r)
 }
