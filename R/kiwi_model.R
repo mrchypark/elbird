@@ -15,12 +15,12 @@ kiwi_model_path_full <- function(size) {
   file.path(kiwi_model_path(), size)
 }
 
-#' A simple exported version of [kiwi_model_path()]
+#' A simple exported version of \code{kiwi_model_path()}
 #' Returns the kiwi model path.
 #'
 #' TODO explain ELBIRD_MODEL_HOME
 #'
-#' @return path char.
+#' @return \code{character}: file path.
 #' @export
 model_home <- function() {
   kiwi_model_path()
@@ -41,7 +41,7 @@ kiwi_model_exists_one <- function(size) {
 #' Verifies if model files exists.
 #'
 #' @param size model size. default is "all" which is true that all three models must be present.
-#' @return bool
+#' @return \code{logical} model files exists or not.
 #' @export
 model_exists <- function(size = "all") {
   kiwi_model_exists(size)
@@ -63,7 +63,7 @@ kiwi_model_work_one <- function(size) {
 #' Verifies if models work fine.
 #'
 #' @param size model size. default is "all" which is true that all three models must be present.
-#' @return bool
+#' @return \code{logical} model work or not.
 #' @export
 model_works <- function(size = "all") {
   kiwi_model_exists(size)
@@ -71,8 +71,8 @@ model_works <- function(size = "all") {
 
 #' Get kiwi language model file.
 #'
-#' @param size small, base, large model. default is "base". Also "all" available.
-#' @param path path for model files. default is [model_home("base")].
+#' @param size "small", "base", "large" model. default is "base". Also "all" available.
+#' @param path path for model files. default is [model_home()].
 #' @param clean remove previous model files before get new.
 #'
 #' @source \url{https://github.com/bab2min/Kiwi/releases}

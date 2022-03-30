@@ -2,13 +2,13 @@
 % Please edit documentation in R/kiwi_model.R
 \name{model_home}
 \alias{model_home}
-\title{A simple exported version of \code{\link[=kiwi_model_path]{kiwi_model_path()}}
+\title{A simple exported version of \code{kiwi_model_path()}
 Returns the kiwi model path.}
 \usage{
 model_home()
 }
 \value{
-path char.
+\code{character}: file path.
 }
 \description{
 TODO explain ELBIRD_MODEL_HOME

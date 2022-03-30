@@ -12,4 +12,5 @@ inst/ModelGenerator*
 ^\.github$
 ^_pkgdown\.yml$
 kiwilibtmp/*
+kiwilibs/*
 ^model*

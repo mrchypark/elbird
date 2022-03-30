@@ -1,10 +1,16 @@
 #' analyze
 #'
-#' @param text target text.
-#' @param top_n Number of result. default is 3.
-#' @param match_option use Match.
-#' @param stopwords
-#' @name analyze
+#' @param top_n  \code{integer}: Number of result. Default is 3.
+#' @inheritParams tokenize
+#' @examples
+#'   analyze("Test text.")
+#'   analyze("Please use Korean.", top_n = 1)
+#'   analyze("Test text.", 1, Match$ALL_WITH_NORMALIZING)
+#'   analyze("Test text.", stopwords = FALSE)
+#'   analyze("Test text.", stopwords = TRUE)
+#'   analyze("Test text.", stopwords = "user_dict.txt")
+#'   analyze("Test text.", stopwords = Stopwords$new(TRUE))
+#'
 #' @export
 analyze <-
   function(text,
@@ -14,18 +20,11 @@ analyze <-
     if (init_chk_not())
       init()
 
-    sw <- purrr::when(
-      stopwords,
-      isFALSE(.) ~ Stopwords$new(use_system_dict = FALSE),
-      isTRUE(.) ~ Stopwords$new(),
-      any(class(.) == "Stopwords") ~ .,
-      file.exists(.) ~ Stopwords$new()$add_from_dict(.),
-      ~ Stopwords$new(use_system_dict = FALSE)
+    kiwi_analyze_wrap(
+      get("kb", envir = .el),
+      text,
+      top_n,
+      match_option,
+      stopwords
     )
-
-    kiwi_analyze_(get("kb", envir = .el),
-                  text,
-                  top_n,
-                  match_option,
-                  sw$get()) -> res
   }

@@ -10,7 +10,7 @@ model_exists(size = "all")
 \item{size}{model size. default is "all" which is true that all three models must be present.}
 }
 \value{
-bool
+\code{logical} model files exists or not.
 }
 \description{
 Verifies if model files exists.

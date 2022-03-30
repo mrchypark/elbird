@@ -1,9 +1,14 @@
-#' Elbird enums
+#' Tag list
 #'
-#' @name enums
+#' Tags contains tag list for elbird.
+#'
+#' @source \url{https://github.com/bab2min/Kiwi}
+#' @examples
+#'   Tags
+#'   Tags$nnp
+#'
 #' @importFrom matchr Enum
 #' @export
-#' @keywords internal
 Tags <- matchr::Enum("tag",
   unknown = "UN",
   nng = "NNG", nnp = "NNP", nnb = "NNB",
@@ -43,15 +48,17 @@ is_tag <- function(tag_candidate_char) {
   !is.null(Tags[tolower(tag_candidate_char)][[1]])
 }
 
-build_options <- matchr::Enum("buildOptions",
-  INTEGRATE_ALLOMORPH = 1L,
-  LOAD_DEFAULT_DICT = 2L,
-  DEFAULT = 3L
-)
 
-#' @rdname enums
+#' Analyze Match Options.
+#'
+#' ALL option contains URL, EMAIL, HASHTAG, MENTION.
+#'
+#' @examples
+#'  Match
+#'  Match$ALL
+#'
 #' @export
-Match <- matchr::Enum("Match",
+Match <- matchr::Enum("match",
   URL = "URL",
   EMAIL = "EMAIL",
   HASHTAG = "HASHTAG",
@@ -67,5 +74,11 @@ Match <- matchr::Enum("Match",
   JOIN_ADJ_SUFFIX = "JOIN_ADJ_SUFFIX",
 
   JOIN_V_SUFFIX  = "JOIN_V_SUFFIX",
-  JOIN_NOUN_AFFIX = "JOIN_V_SUFFIX"
+  JOIN_NOUN_AFFIX = "JOIN_NOUN_AFFIX"
+)
+
+BuildOpt <- matchr::Enum("buildOpt",
+                         INTEGRATE_ALLOMORPH = 1L,
+                         LOAD_DEFAULT_DICT = 2L,
+                         DEFAULT = 3L
 )

@@ -1,4 +1,7 @@
-#' split_into_sents
+#' Split Sentences
+#'
+#' Some text may not split sentence by sentence.
+#' split_into_sents works split sentences to sentence by sentence.
 #'
 #' @param text target text.
 #' @param return_tokens add tokenized resault.
@@ -11,7 +14,7 @@ split_into_sents <- function(text, return_tokens = FALSE) {
     kiwi_split_into_sents_(
       get("kb", envir = .el),
       text,
-      1,
+      Match$ALL,
       return_tokens
     )
   )
