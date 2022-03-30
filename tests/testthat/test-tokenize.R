@@ -1,4 +1,5 @@
 test_that("tokenize works", {
+  skip_if_offline()
   res <- tokenize("Test text.")
   expect_equal(res[[1]]$Token[[1]]$form, "Test")
   expect_equal(res[[1]]$Token[[1]]$tag, "SL")
@@ -7,6 +8,7 @@ test_that("tokenize works", {
 })
 
 test_that("tokenize_tbl works", {
+  skip_if_offline()
   res <- tokenize_tbl("Test text.")
   expect_true(tibble::is_tibble(res))
   expect_equal(nrow(res), 3)
