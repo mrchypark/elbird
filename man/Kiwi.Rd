@@ -7,9 +7,11 @@
 kiwi class is provide method for korean mophological analyze result.
 }
 \examples{
+\dontrun{
   kw <- Kiwi$new()
   kw$analyze("test")
   kw$tokenize("test")
+  }
 
 ## ------------------------------------------------
 ## Method `Kiwi$get_tidytext_func`

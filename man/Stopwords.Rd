@@ -7,8 +7,9 @@
 Stopwords is for filter result.
 }
 \examples{
+\dontrun{
   Stopwords$new()
-
+}
 
 ## ------------------------------------------------
 ## Method `Stopwords$add`

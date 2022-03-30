@@ -5,9 +5,11 @@
 #'
 #' @importFrom R6 R6Class
 #' @examples
+#' \dontrun{
 #'   kw <- Kiwi$new()
 #'   kw$analyze("test")
 #'   kw$tokenize("test")
+#'   }
 #' @export
 Kiwi <- R6::R6Class(
   "Kiwi",
@@ -18,7 +20,7 @@ Kiwi <- R6::R6Class(
     #' @param ... ignored
     print = function(x, ...) {
       cat("<kiwi class> ", sep = "\n")
-      invisible()
+      invisible(x)
     },
 
     #' @description
@@ -145,6 +147,8 @@ Kiwi <- R6::R6Class(
     #'                  If not valid value, work same as FALSE.
     #' @param form \code{char(optional)}: return form. default is "tibble".
     #'                                     "list", "tidytext" is available.
+    #' @importFrom purrr map map_chr map_int
+    #' @importFrom dplyr bind_rows
     tokenize = function(text,
                         match_option = Match$ALL,
                         stopwords = FALSE,

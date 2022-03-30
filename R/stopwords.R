@@ -4,8 +4,9 @@
 #'   Stopwords is for filter result.
 #'
 #' @examples
+#' \dontrun{
 #'   Stopwords$new()
-#'
+#'}
 #' @export
 Stopwords <- R6::R6Class(
   'Stopwords',
@@ -16,7 +17,7 @@ Stopwords <- R6::R6Class(
     #' @param ... ignored
     print = function(x, ...) {
       cat("<stopwords dict> ", sep = "\n")
-      invisible()
+      invisible(x)
     },
 
     #' @description
@@ -73,6 +74,7 @@ Stopwords <- R6::R6Class(
     #' @description
     #'   save current stopwords list in text file.
     #' @param path \code{char(required)}: file path to save stopwords list.
+    #' @importFrom vroom vroom_write
     save_user_dict = function(path) {
       vroom::vroom_write(
         x = private$stopword_list,
@@ -104,6 +106,9 @@ Stopwords <- R6::R6Class(
       private$set_dict(dict_stopwords_path(), "system")
     },
 
+    #' @importFrom vroom vroom
+    #' @importFrom dplyr mutate
+    #' @importFrom purrr map_chr
     set_dict = function(dict_path, dict_name) {
       loaded <-
         vroom::vroom(
@@ -120,6 +125,7 @@ Stopwords <- R6::R6Class(
                        dict_path)
     },
 
+    #' @importFrom dplyr bind_rows
     add_dict_el = function(dict, dict_name, dict_info) {
       private$stopword_list <-
         unique(dplyr::bind_rows(private$stopword_list, dict))
@@ -128,6 +134,7 @@ Stopwords <- R6::R6Class(
                          tibble::tibble(dict_name = dict_name, info = dict_info))
     },
 
+    #' @importFrom dplyr anti_join bind_rows
     remove_dict_el = function(dict, dict_name, dict_info) {
       private$stopword_list <-
         dplyr::anti_join(private$stopword_list, dict, by = names(dict))
