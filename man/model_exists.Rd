@@ -15,3 +15,7 @@ model_exists(size = "all")
 \description{
 Verifies if model files exists.
 }
+\examples{
+  get_model("small")
+  model_exists("small")
+}

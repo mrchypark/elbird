@@ -36,9 +36,11 @@ Stopwords <- R6::R6Class(
     #' @param form \code{char(required)}: Form information.
     #' @param tag  \code{char(optional)}: Tag information. Default is "NNP". Please check [Tags].
     #' @examples
+    #'  \dontrun{
     #'   sw <- Stopwords$new()
     #'   sw$add("word", "NNG")
     #'   sw$add("word", Tags$nng)
+    #'   }
     add = function(form, tag = Tags$NNP) {
       private$add_dict_el(tibble::tibble(form = form, tag = check_tag(tag)),
                        "addfunc",

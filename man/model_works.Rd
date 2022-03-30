@@ -15,3 +15,7 @@ model_works(size = "all")
 \description{
 Verifies if models work fine.
 }
+\examples{
+  get_model("small")
+  model_works("small")
+}

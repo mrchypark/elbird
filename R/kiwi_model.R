@@ -20,7 +20,9 @@ kiwi_model_path_full <- function(size) {
 #'
 #' TODO explain ELBIRD_MODEL_HOME
 #'
-#' @return \code{character}: file path.
+#' @return \code{character}: file path
+#' @examples
+#'  model_home()
 #' @export
 model_home <- function() {
   kiwi_model_path()
@@ -52,6 +54,9 @@ kiwi_model_exists_one <- function(size) {
 #'
 #' @param size model size. default is "all" which is true that all three models must be present.
 #' @return \code{logical} model files exists or not.
+#' @examples
+#'   get_model("small")
+#'   model_exists("small")
 #' @export
 model_exists <- function(size = "all") {
   kiwi_model_exists(size)
@@ -77,6 +82,9 @@ kiwi_model_work_one <- function(size) {
 #'
 #' @param size model size. default is "all" which is true that all three models must be present.
 #' @return \code{logical} model work or not.
+#' @examples
+#'   get_model("small")
+#'   model_works("small")
 #' @export
 model_works <- function(size = "all") {
   kiwi_model_exists(size)
@@ -89,7 +97,8 @@ model_works <- function(size = "all") {
 #' @param clean remove previous model files before get new.
 #'
 #' @source \url{https://github.com/bab2min/Kiwi/releases}
-#'
+#' @examples
+#'   get_model("small")
 #' @export
 get_model <-
   function(size = "base",

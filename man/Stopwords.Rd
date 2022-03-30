@@ -15,9 +15,11 @@ Stopwords is for filter result.
 ## Method `Stopwords$add`
 ## ------------------------------------------------
 
+ \dontrun{
   sw <- Stopwords$new()
   sw$add("word", "NNG")
   sw$add("word", Tags$nng)
+  }
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -89,9 +91,11 @@ add stopword one at a time.
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
-\preformatted{  sw <- Stopwords$new()
+\preformatted{ \dontrun{
+  sw <- Stopwords$new()
   sw$add("word", "NNG")
   sw$add("word", Tags$nng)
+  }
 }
 \if{html}{\out{</div>}}
 

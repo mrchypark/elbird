@@ -2,7 +2,7 @@ init_chk_not <- function() {
   length(ls(envir = .el)) != 1
 }
 
-init <- function(size = "base") {
+init <- function(size = "small") {
   if (!kiwi_model_exists(size))
     get_kiwi_models(size)
 

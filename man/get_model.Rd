@@ -19,3 +19,6 @@ get_model(size = "base", path = model_home(), clean = FALSE)
 \description{
 Get kiwi language model file.
 }
+\examples{
+  get_model("small")
+}

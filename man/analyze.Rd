@@ -25,6 +25,7 @@ Check \code{\link[=analyze]{analyze()}} how to use stopwords param.}
 analyze
 }
 \examples{
+\dontrun{
   analyze("Test text.")
   analyze("Please use Korean.", top_n = 1)
   analyze("Test text.", 1, Match$ALL_WITH_NORMALIZING)
@@ -32,5 +33,5 @@ analyze
   analyze("Test text.", stopwords = TRUE)
   analyze("Test text.", stopwords = "user_dict.txt")
   analyze("Test text.", stopwords = Stopwords$new(TRUE))
-
+}
 }
