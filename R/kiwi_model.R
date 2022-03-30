@@ -55,8 +55,10 @@ kiwi_model_exists_one <- function(size) {
 #' @param size model size. default is "all" which is true that all three models must be present.
 #' @return \code{logical} model files exists or not.
 #' @examples
+#' \dontrun{
 #'   get_model("small")
 #'   model_exists("small")
+#' }
 #' @export
 model_exists <- function(size = "all") {
   kiwi_model_exists(size)
@@ -83,8 +85,10 @@ kiwi_model_work_one <- function(size) {
 #' @param size model size. default is "all" which is true that all three models must be present.
 #' @return \code{logical} model work or not.
 #' @examples
+#' \dontrun{
 #'   get_model("small")
 #'   model_works("small")
+#' }
 #' @export
 model_works <- function(size = "all") {
   kiwi_model_exists(size)
@@ -98,7 +102,9 @@ model_works <- function(size = "all") {
 #'
 #' @source \url{https://github.com/bab2min/Kiwi/releases}
 #' @examples
+#' \dontrun{
 #'   get_model("small")
+#' }
 #' @export
 get_model <-
   function(size = "base",

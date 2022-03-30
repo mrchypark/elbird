@@ -20,5 +20,7 @@ get_model(size = "base", path = model_home(), clean = FALSE)
 Get kiwi language model file.
 }
 \examples{
+\dontrun{
   get_model("small")
+}
 }

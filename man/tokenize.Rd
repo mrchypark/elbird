@@ -41,6 +41,8 @@ list type of result.
 Simple version of tokenizer function.
 }
 \examples{
+\dontrun{
   tokenize("Test text.")
   tokenize("Please use Korean.", Match$ALL_WITH_NORMALIZING)
+}
 }
