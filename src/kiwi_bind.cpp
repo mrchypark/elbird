@@ -33,7 +33,7 @@ int match_options_(const std::string match_string) {
   return m.find(match_string)->second;
 };
 
-namespace bind {
+namespace kiwi_bind {
   kiwi::POSTag parse_tag(const char* pos) {
     auto u16 = kiwi::utf8To16(pos);
     transform(u16.begin(), u16.end(), u16.begin(), static_cast<int(*)(int)>(toupper));
@@ -41,7 +41,7 @@ namespace bind {
     if (ret == kiwi::POSTag::max) throw std::invalid_argument{ std::string{"Unknown POSTag : "} + pos };
     return ret;
   }
-}
+};
 
 class Scanner {
 public :
@@ -155,7 +155,7 @@ bool kiwi_builder_add_pre_analyzed_word_(SEXP handle_ex, const std::string form,
 
   for (int i = 0; i < morphs.size(); ++i) {
     analyzed[i].first = kiwi::utf8To16(std::string(morphs[i]).c_str());
-    analyzed[i].second = bind::parse_tag(std::string(pos[i]).c_str());
+    analyzed[i].second = kiwi_bind::parse_tag(std::string(pos[i]).c_str());
     positions[i].first = size_t(start[i]);
     positions[i].first = size_t(end[i]);
   }
@@ -291,8 +291,8 @@ SEXP kiwi_analyze_(
             break;
           }
         } else {
-          if (form_candi == std::string(form_r[i]) &
-              tag_candi == std::string(tag_r[i])) {
+          if ((form_candi == std::string(form_r[i])) &
+              (tag_candi == std::string(tag_r[i]))) {
             cont = true;
             break;
           }
