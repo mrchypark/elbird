@@ -27,7 +27,7 @@ elif [ -d "`pwd`/kiwilibs/libs/" ]; then
 else
   echo "Prior system libkiwi installation not found"
   echo "Preparing to download and build library from source..."
-  git clone -b v$LIB_VER --filter=blob:limit=5m https://github.com/mrchypark/Kiwi
+  git clone -b v$LIB_VER https://github.com/mrchypark/Kiwi
   cd Kiwi
   git rm third_party/googletest
   git rm third_party/cpuinfo
@@ -58,7 +58,7 @@ echo "Using PKG_LIBS=$PKG_LIBS"
 
 # Find compiler
 CXX11=`${R_HOME}/bin/R CMD config CXX11`
-CXXFLAGS="`${R_HOME}/bin/R CMD config CXXFLAGS` -Wreorder -Wpedantic"
+CXXFLAGS=`${R_HOME}/bin/R CMD config CXXFLAGS`
 
 # Test for libkiwi
 echo "#include $PKG_TEST_HEADER" | ${CXX11} ${PKG_CPPFLAGS} ${CXXFLAGS} -E -xc++ - >/dev/null 2>&1
@@ -75,7 +75,7 @@ if [ $? -ne 0 ]; then
   else
     echo "Attempt to use system libkiwi failed"
     echo "Preparing to download and build library from source..."
-    git clone -b v$LIB_VER --filter=blob:limit=5m https://github.com/bab2min/Kiwi
+    git clone -b v$LIB_VER https://github.com/mrchypark/Kiwi
     cd Kiwi
     git rm third_party/googletest
     git rm third_party/cpuinfo
