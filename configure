@@ -4,7 +4,7 @@
 PKG_TEST_HEADER="<kiwi/Kiwi.h>"
 PKG_LIBS="-lkiwi"
 PKG_CPPFLAGS=""
-LIB_VER="0.11.0"
+LIB_VER="0.11.1"
 
 # Copy libcache for local development.
 if [ -f "`pwd`/kiwilibtmp/libs/libkiwi.a" ]; then
@@ -27,7 +27,7 @@ elif [ -d "`pwd`/kiwilibs/libs/" ]; then
 else
   echo "Prior system libkiwi installation not found"
   echo "Preparing to download and build library from source..."
-  git clone -b v$LIB_VER --filter=blob:limit=5m https://github.com/bab2min/Kiwi
+  git clone -b v$LIB_VER --filter=blob:limit=5m https://github.com/mrchypark/Kiwi
   cd Kiwi
   git rm third_party/googletest
   git rm third_party/cpuinfo
