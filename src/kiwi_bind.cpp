@@ -31,7 +31,7 @@ static std::map<std::string, int> m = {
 int match_options_(const std::string match_string) {
   if (!m.count(match_string)) throw std::invalid_argument{ std::string{"Unknown Build Options : "} + match_string };
   return m.find(match_string)->second;
-};
+}
 
 namespace kiwi_bind {
   kiwi::POSTag parse_tag(const char* pos) {
@@ -41,7 +41,7 @@ namespace kiwi_bind {
     if (ret == kiwi::POSTag::max) throw std::invalid_argument{ std::string{"Unknown POSTag : "} + pos };
     return ret;
   }
-};
+}
 
 class Scanner {
 public :
@@ -291,7 +291,7 @@ SEXP kiwi_analyze_(
             break;
           }
         } else {
-          if ((form_candi == std::string(form_r[i])) &
+          if ((form_candi == std::string(form_r[i])) &&
               (tag_candi == std::string(tag_r[i]))) {
             cont = true;
             break;
