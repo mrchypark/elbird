@@ -8,13 +8,34 @@ if ! [ -x $(command -v uname) ]; then
     exit 1
 fi
 
-rpath=$(${R_HOME}/bin/Rscript -e 'cat(file.path(.libPaths()[1], "elbird", "lib"))')
+## Check for Linux or OSX
+: ${R_HOME=$(R RHOME)}
+sysname=$(${R_HOME}/bin/Rscript -e 'cat(Sys.info()["sysname"])')
+if [ ${sysname} = "Linux" ]; then
+    platform="lnx"
+elif [ ${sysname} = "Darwin" ]; then
+    platform="mac"
+    if [ $(uname -m) = "aarch64" ]; then
+      echo "Unsupported platform: $sysname"
+      exit 2
+    fi
+else
+    echo "Unsupported platform: $sysname"
+    exit 2
+fi
+
+ARCH=$(uname -m)
 
 # Library settings
+rpath=$(${R_HOME}/bin/Rscript -e 'cat(file.path(.libPaths()[1], "elbird", "lib"))')
 PKG_TEST_HEADER="<kiwi/Kiwi.h>"
 PKG_LIBS="-Wl,-rpath,${rpath}"
 PKG_CPPFLAGS="-I`pwd`/inst/include"
-LIB_VER="0.11.1"
+LIB_VER="0.11.0"
+
+LIB_URL=https://github.com/bab2min/Kiwi/releases/download/v${LIB_VER}/kiwi_${platform}_${ARCH}_v${LIB_VER}.tgz
+
+echo ${LIB_URL}
 
 # Check for custom locations
 if [ "$INCLUDE_DIR" ] || [ "$LIB_DIR" ]; then
@@ -25,7 +46,7 @@ if [ "$INCLUDE_DIR" ] || [ "$LIB_DIR" ]; then
 else
   echo "Prior system libkiwi installation not found"
   echo "Preparing to download and build library from source..."
-  curl -L https://github.com/bab2min/Kiwi/releases/download/v0.11.0/kiwi_lnx_x86_64_v0.11.0.tgz -o kiwi.tgz
+  curl -L ${LIB_URL} -o kiwi.tgz
   gzip -dc kiwi.tgz | tar -xf -
   rm -f kiwi.tgz
 
