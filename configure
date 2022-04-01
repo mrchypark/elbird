@@ -1,12 +1,20 @@
 #!/bin/sh
+#  Based on configure of Rblpapi
+#  https://github.com/Rblp/Rblpapi/blob/master/configure
+
+## Check that we are on Unix
+if ! [ -x $(command -v uname) ]; then
+    echo "You do not have 'uname' so this is unlikely to be a Unix system. Exiting."
+    exit 1
+fi
+
+rpath=$(${R_HOME}/bin/Rscript -e 'cat(file.path(.libPaths()[1], "elbird", "lib"))')
 
 # Library settings
 PKG_TEST_HEADER="<kiwi/Kiwi.h>"
-PKG_LIBS="-lkiwi"
-PKG_CPPFLAGS=""
+PKG_LIBS="-Wl,-rpath,${rpath}"
+PKG_CPPFLAGS="-I`pwd`/inst/include"
 LIB_VER="0.11.1"
-
-git config --global advice.detachedHead false
 
 # Check for custom locations
 if [ "$INCLUDE_DIR" ] || [ "$LIB_DIR" ]; then
@@ -14,42 +22,24 @@ if [ "$INCLUDE_DIR" ] || [ "$LIB_DIR" ]; then
   PKG_CPPFLAGS="-I$INCLUDE_DIR $PKG_CPPFLAGS"
   PKG_LIBS="-L$LIB_DIR $PKG_LIBS"
 
-elif [ -d "`pwd`/kiwilibs/libs/" ]; then
-  echo "Found libkiwi on pwd installation..."
-  PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
-  PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
-
 else
   echo "Prior system libkiwi installation not found"
   echo "Preparing to download and build library from source..."
-  git clone -b v$LIB_VER https://github.com/mrchypark/Kiwi
-  cd Kiwi
-  git rm third_party/googletest
-  git rm third_party/cpuinfo
-  git submodule update --init --recursive
-  mkdir build
-  cd build
-  which cmake
-  if [ $? -ne 0 ]; then
-    export PATH=$PATH:/Applications/CMake.app/Contents/bin
-  fi
-  cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DKIWI_USE_CPUINFO=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
-  make kiwi_static
-  cd ../..
+  curl -L https://github.com/bab2min/Kiwi/releases/download/v0.11.0/kiwi_lnx_x86_64_v0.11.0.tgz -o kiwi.tgz
+  gzip -dc kiwi.tgz | tar -xf -
+  rm -f kiwi.tgz
 
-  mkdir -p kiwilibs/libs
-  mv -f Kiwi/build/libkiwi_static.a kiwilibs/libs/libkiwi.a
-  mv -f Kiwi/include kiwilibs/include
-  rm -rf Kiwi
-  # Copy libcache for local development.
-  cp -rf kiwilibs/ kiwilibtmp/
-  PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
-  PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
+  # mkdir -p inst/lib
+  mkdir -p ${rpath}
+  # cp -rf build/libkiwi.so* inst/lib
+  cp -rf build/libkiwi.so* ${rpath}
+  rm -rf build
+  PKG_LIBS="-lkiwi -L${rpath} $PKG_LIBS"
 fi
 
 # For debugging
-echo "Using PKG_CPPFLAGS=$PKG_CPPFLAGS"
-echo "Using PKG_LIBS=$PKG_LIBS"
+# echo "Using PKG_CPPFLAGS=$PKG_CPPFLAGS"
+# echo "Using PKG_LIBS=$PKG_LIBS"
 
 # Find compiler
 CXX11=`${R_HOME}/bin/R CMD config CXX11`
@@ -59,55 +49,17 @@ CXXFLAGS=`${R_HOME}/bin/R CMD config CXXFLAGS`
 echo "#include $PKG_TEST_HEADER" | ${CXX11} ${PKG_CPPFLAGS} ${CXXFLAGS} -E -xc++ - >/dev/null 2>&1
 
 if [ $? -ne 0 ]; then
-  if [ "$SYS_LIB" -ne 1 ]; then
-    echo "------------------------------[ ELBIRD ]------------------------------"
-    echo "Configuration failed because 'libkiwi' was not found."
-    echo "If 'libkiwi' is already installed but in a non-standard location, you"
-    echo "may set INCLUDE_DIR and LIB_DIR manually via:"
-    echo "R CMD INSTALL --configure-vars='INCLUDE_DIR=... LIB_DIR=...'"
-    echo "-------------------------------------------------------------------------"
-    exit 1
-  else
-    echo "Attempt to use system libkiwi failed"
-    echo "Preparing to download and build library from source..."
-    git clone -b v$LIB_VER https://github.com/mrchypark/Kiwi
-    cd Kiwi
-    git rm third_party/googletest
-    git rm third_party/cpuinfo
-    git submodule update --init --recursive
-    mkdir build
-    cd build
-    which cmake
-    if [ $? -ne 0 ]; then
-      export PATH=$PATH:/Applications/CMake.app/Contents/bin
-    fi
-    cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DKIWI_USE_CPUINFO=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
-    make kiwi_static
-    cd ../..
-    mkdir -p kiwilibs/libs
-    mv -f Kiwi/build/libkiwi_static.a kiwilibs/libs/libkiwi.a
-    mv -f Kiwi/include kiwilibs/include
-    rm -rf Kiwi
-    # Copy libcache for local development.
-    cp -rf kiwilibs/ kiwilibtmp/
-    PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
-    PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
-    # Test for libkiwi
-    echo "#include $PKG_TEST_HEADER" | ${CXX11} ${PKG_CPPFLAGS} ${CXXFLAGS} -E -xc++ - >/dev/null 2>&1
-    if [ $? -ne 0 ]; then
-    echo "------------------------------[ ELBIRD ]------------------------------"
-    echo "Configuration failed because 'libkiwi' was not found."
-    echo "If 'libkiwi' is already installed but in a non-standard location, you"
-    echo "may set INCLUDE_DIR and LIB_DIR manually via:"
-    echo "R CMD INSTALL --configure-vars='INCLUDE_DIR=... LIB_DIR=...'"
-    echo "-------------------------------------------------------------------------"
-      exit 1
-    fi
-  fi
+  echo "------------------------------[ ELBIRD ]------------------------------"
+  echo "Configuration failed because 'libkiwi' was not found."
+  echo "If 'libkiwi' is already installed but in a non-standard location, you"
+  echo "may set INCLUDE_DIR and LIB_DIR manually via:"
+  echo "R CMD INSTALL --configure-vars='INCLUDE_DIR=... LIB_DIR=...'"
+  echo "-------------------------------------------------------------------------"
+  exit 1
 fi
 
 # Write to Makevars
-sed -e "s|@cppflags@|$PKG_CPPFLAGS|" -e "s|@libs@|$PKG_LIBS|" -e "s|@cxxflags@|$CXXFLAGS|" src/Makevars.in > src/Makevars
+sed -e "s|@cppflags@|$PKG_CPPFLAGS|" -e "s|@libs@|$PKG_LIBS|" -e"s|@rpath@|$rpath|" src/Makevars.in > src/Makevars
 
 # Success
 exit 0

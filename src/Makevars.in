@@ -1,4 +1,8 @@
+## -*- mode: makefile; -*-
+##
+##  Makefile -- Unix build system
+
 CXX_STD=CXX11
 
-PKG_CPPFLAGS=-I../inst/include -pthread @cppflags@
-PKG_LIBS=-pthread @libs@
+PKG_CPPFLAGS=@cppflags@
+PKG_LIBS=@libs@
