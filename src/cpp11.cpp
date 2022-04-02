@@ -56,13 +56,6 @@ extern "C" SEXP _elbird_kiwi_builder_add_alias_word_(SEXP handle_ex, SEXP alias,
   END_CPP11
 }
 // kiwi_bind.cpp
-bool kiwi_builder_add_pre_analyzed_word_(SEXP handle_ex, const std::string form, const cpp11::data_frame analyzed_r, float score);
-extern "C" SEXP _elbird_kiwi_builder_add_pre_analyzed_word_(SEXP handle_ex, SEXP form, SEXP analyzed_r, SEXP score) {
-  BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_builder_add_pre_analyzed_word_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const std::string>>(form), cpp11::as_cpp<cpp11::decay_t<const cpp11::data_frame>>(analyzed_r), cpp11::as_cpp<cpp11::decay_t<float>>(score)));
-  END_CPP11
-}
-// kiwi_bind.cpp
 int kiwi_builder_load_dict_(SEXP handle_ex, const char* dict_path);
 extern "C" SEXP _elbird_kiwi_builder_load_dict_(SEXP handle_ex, SEXP dict_path) {
   BEGIN_CPP11
@@ -136,24 +129,23 @@ extern "C" SEXP _elbird_kiwi_split_into_sents_(SEXP handle_ex, SEXP text, SEXP m
 
 extern "C" {
 static const R_CallMethodDef CallEntries[] = {
-    {"_elbird_kiwi_analyze_",                       (DL_FUNC) &_elbird_kiwi_analyze_,                       5},
-    {"_elbird_kiwi_builder_add_alias_word_",        (DL_FUNC) &_elbird_kiwi_builder_add_alias_word_,        5},
-    {"_elbird_kiwi_builder_add_pre_analyzed_word_", (DL_FUNC) &_elbird_kiwi_builder_add_pre_analyzed_word_, 4},
-    {"_elbird_kiwi_builder_add_word_",              (DL_FUNC) &_elbird_kiwi_builder_add_word_,              4},
-    {"_elbird_kiwi_builder_build_",                 (DL_FUNC) &_elbird_kiwi_builder_build_,                 1},
-    {"_elbird_kiwi_builder_close_",                 (DL_FUNC) &_elbird_kiwi_builder_close_,                 1},
-    {"_elbird_kiwi_builder_extract_add_words_",     (DL_FUNC) &_elbird_kiwi_builder_extract_add_words_,     6},
-    {"_elbird_kiwi_builder_extract_words_",         (DL_FUNC) &_elbird_kiwi_builder_extract_words_,         6},
-    {"_elbird_kiwi_builder_init_",                  (DL_FUNC) &_elbird_kiwi_builder_init_,                  3},
-    {"_elbird_kiwi_builder_load_dict_",             (DL_FUNC) &_elbird_kiwi_builder_load_dict_,             2},
-    {"_elbird_kiwi_clear_error_",                   (DL_FUNC) &_elbird_kiwi_clear_error_,                   0},
-    {"_elbird_kiwi_close_",                         (DL_FUNC) &_elbird_kiwi_close_,                         1},
-    {"_elbird_kiwi_error_",                         (DL_FUNC) &_elbird_kiwi_error_,                         0},
-    {"_elbird_kiwi_get_option_",                    (DL_FUNC) &_elbird_kiwi_get_option_,                    2},
-    {"_elbird_kiwi_init_",                          (DL_FUNC) &_elbird_kiwi_init_,                          3},
-    {"_elbird_kiwi_set_option_",                    (DL_FUNC) &_elbird_kiwi_set_option_,                    3},
-    {"_elbird_kiwi_split_into_sents_",              (DL_FUNC) &_elbird_kiwi_split_into_sents_,              4},
-    {"_elbird_kiwi_version_",                       (DL_FUNC) &_elbird_kiwi_version_,                       0},
+    {"_elbird_kiwi_analyze_",                   (DL_FUNC) &_elbird_kiwi_analyze_,                   5},
+    {"_elbird_kiwi_builder_add_alias_word_",    (DL_FUNC) &_elbird_kiwi_builder_add_alias_word_,    5},
+    {"_elbird_kiwi_builder_add_word_",          (DL_FUNC) &_elbird_kiwi_builder_add_word_,          4},
+    {"_elbird_kiwi_builder_build_",             (DL_FUNC) &_elbird_kiwi_builder_build_,             1},
+    {"_elbird_kiwi_builder_close_",             (DL_FUNC) &_elbird_kiwi_builder_close_,             1},
+    {"_elbird_kiwi_builder_extract_add_words_", (DL_FUNC) &_elbird_kiwi_builder_extract_add_words_, 6},
+    {"_elbird_kiwi_builder_extract_words_",     (DL_FUNC) &_elbird_kiwi_builder_extract_words_,     6},
+    {"_elbird_kiwi_builder_init_",              (DL_FUNC) &_elbird_kiwi_builder_init_,              3},
+    {"_elbird_kiwi_builder_load_dict_",         (DL_FUNC) &_elbird_kiwi_builder_load_dict_,         2},
+    {"_elbird_kiwi_clear_error_",               (DL_FUNC) &_elbird_kiwi_clear_error_,               0},
+    {"_elbird_kiwi_close_",                     (DL_FUNC) &_elbird_kiwi_close_,                     1},
+    {"_elbird_kiwi_error_",                     (DL_FUNC) &_elbird_kiwi_error_,                     0},
+    {"_elbird_kiwi_get_option_",                (DL_FUNC) &_elbird_kiwi_get_option_,                2},
+    {"_elbird_kiwi_init_",                      (DL_FUNC) &_elbird_kiwi_init_,                      3},
+    {"_elbird_kiwi_set_option_",                (DL_FUNC) &_elbird_kiwi_set_option_,                3},
+    {"_elbird_kiwi_split_into_sents_",          (DL_FUNC) &_elbird_kiwi_split_into_sents_,          4},
+    {"_elbird_kiwi_version_",                   (DL_FUNC) &_elbird_kiwi_version_,                   0},
     {NULL, NULL, 0}
 };
 }

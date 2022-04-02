@@ -20,7 +20,7 @@ SystemRequirements: A valid Kiwi installation. Dynamic library is
  downloaded from <https://github.com/bab2min/Kiwi/releases> during the
  build step. See <https://github.com/bab2min/Kiwi> as well as for API
  documentation. A recent-enough compiler with C++11 support is required.
- cmake may required to build from source to kiwi.
+ git and cmake required to build from source for kiwi.
 Depends: 
     R (>= 3.5)
 Imports: 
