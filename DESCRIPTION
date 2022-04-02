@@ -16,7 +16,11 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 URL: https://github.com/mrchypark/elbird/
 BugReports: https://github.com/mrchypark/elbird/issues
-SystemRequirements: c("C++11", "git", "wget", "cmake")
+SystemRequirements: A valid Kiwi installation. Dynamic library is 
+ downloaded from <https://github.com/bab2min/Kiwi/releases> during the
+ build step. See <https://github.com/bab2min/Kiwi> as well as for API
+ documentation. A recent-enough compiler with C++11 support is required.
+ cmake may required to build from source to kiwi.
 Depends: 
     R (>= 3.5)
 Imports: 
