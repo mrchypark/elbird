@@ -35,8 +35,6 @@ LIB_VER="0.11.0"
 
 LIB_URL=https://github.com/bab2min/Kiwi/releases/download/v${LIB_VER}/kiwi_${platform}_${ARCH}_v${LIB_VER}.tgz
 
-echo ${LIB_URL}
-
 # Check for custom locations
 if [ "$INCLUDE_DIR" ] || [ "$LIB_DIR" ]; then
   echo "Found INCLUDE_DIR and/or LIB_DIR!"
