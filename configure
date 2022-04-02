@@ -53,7 +53,7 @@ else
   # mkdir -p inst/lib
   mkdir -p ${rpath}
   # cp -rf build/libkiwi.so* inst/lib
-  cp -rf build/libkiwi.so* ${rpath}
+  cp -rf build/libkiwi.* ${rpath}
   rm -rf build
   PKG_LIBS="-lkiwi -L${rpath} $PKG_LIBS"
 fi
