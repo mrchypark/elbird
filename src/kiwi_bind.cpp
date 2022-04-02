@@ -291,7 +291,7 @@ SEXP kiwi_analyze_(
             break;
           }
         } else {
-          if ((form_candi == std::string(form_r[i])) &
+          if ((form_candi == std::string(form_r[i])) &&
               (tag_candi == std::string(tag_r[i]))) {
             cont = true;
             break;
