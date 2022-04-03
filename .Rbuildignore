@@ -16,3 +16,4 @@ kiwilibs/*
 ^model*
 ^windows/*
 ^tools/winbuild*
+^codecov\.yml$

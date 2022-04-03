@@ -14,6 +14,8 @@ status](https://www.r-pkg.org/badges/version/elbird)](https://CRAN.R-project.org
 [![runiverse-package](https://mrchypark.r-universe.dev/badges/elbird)](https://mrchypark.r-universe.dev/ui#packages)
 [![metacran
 downloads](https://cranlogs.r-pkg.org/badges/elbird)](https://cran.r-project.org/package=elbird)
+[![Codecov test
+coverage](https://codecov.io/gh/mrchypark/elbird/branch/main/graph/badge.svg)](https://app.codecov.io/gh/mrchypark/elbird?branch=main)
 <!-- badges: end -->
 
 `elbird` 패키지는 `cpp` 기반의 [Kiwi](https://github.com/bab2min/Kiwi)
@@ -1389,7 +1391,7 @@ analyze(c("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 �
 태그](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)는
 아래와 같습니다.
 
--   The table below is fetched at 2022-04-03 05:38:45 Etc/UTC.
+-   The table below is fetched at 2022-04-03 06:58:37 Etc/UTC.
 
 | 대분류                    | 태그      | 설명                                                        |
 |:--------------------------|:----------|:------------------------------------------------------------|
