@@ -33,16 +33,6 @@ int match_options_(const std::string match_string) {
   return m.find(match_string)->second;
 };
 
-namespace kiwi_bind {
-  kiwi::POSTag parse_tag(const char* pos) {
-    auto u16 = kiwi::utf8To16(pos);
-    transform(u16.begin(), u16.end(), u16.begin(), static_cast<int(*)(int)>(toupper));
-    auto ret = kiwi::toPOSTag(u16);
-    if (ret == kiwi::POSTag::max) throw std::invalid_argument{ std::string{"Unknown POSTag : "} + pos };
-    return ret;
-  }
-};
-
 class Scanner {
 public :
   int init(const char* input) {

@@ -1,4 +1,12 @@
 #!/bin/sh
+#  Based on configure of Rblpapi
+#  https://github.com/Rblp/Rblpapi/blob/master/configure
+
+## Check that we are on Unix
+if ! [ -x $(command -pv uname) ]; then
+    echo "You do not have 'uname' so this is unlikely to be a Unix system. Exiting."
+    exit 1
+fi
 
 # Library settings
 PKG_TEST_HEADER="<kiwi/Kiwi.h>"
@@ -30,7 +38,7 @@ else
   echo "Prior system libkiwi installation not found"
   echo "Preparing to download and build library from source..."
 
-  if ! [ -x $(command -v cmake) ]; then
+  if ! [ -x $(command -pv cmake) ]; then
     echo "------------------------------[ ELBIRD ]------------------------------"
     echo "Configuration failed because 'libkiwi' and 'cmake' were not found."
     echo "If 'libkiwi' is already installed but in a non-standard location, you"
