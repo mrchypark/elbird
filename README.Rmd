@@ -19,22 +19,24 @@ options(crayon.enabled = NULL)
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/mrchypark/elbird/workflows/R-CMD-check/badge.svg)](https://github.com/mrchypark/elbird/actions)
 [![CRAN status](https://www.r-pkg.org/badges/version/elbird)](https://CRAN.R-project.org/package=elbird)
-[![](https://cranlogs.r-pkg.org/badges/elbird)](https://cran.r-project.org/package=elbird)
+[![runiverse-name](https://mrchypark.r-universe.dev/badges/:name)](https://mrchypark.r-universe.dev/)
+[![runiverse-package](https://mrchypark.r-universe.dev/badges/elbird)](https://mrchypark.r-universe.dev/ui#packages)
+[![metacran downloads](https://cranlogs.r-pkg.org/badges/elbird)](https://cran.r-project.org/package=elbird)
 <!-- badges: end -->
 
 # 한국어 버전은 README_kr.md 파일을 확인하세요.
 
-The `elbird` package is a morpheme analysis package packed with [kiwipiepy](https://github.com/bab2min/kiwipiepy).
-It is based on cpp package `kiwi` and that has convenient functions such as faster performance compared to other tokenizers, easy user dictionary addition, unregistered noun extraction (not implemented in `elbird` yet).
+The `elbird` package is a morpheme analysis package packed with [Kiwi](https://github.com/bab2min/Kiwi).
+It is based on cpp package `Kiwi` and that has convenient functions such as faster performance compared to other tokenizers, easy user dictionary addition, unregistered noun extraction (not implemented in `elbird` yet).
 
 ## Installation
 
-### CRAN *!NOT YET!*
 You can install the released version of elbird from [CRAN](https://CRAN.R-project.org) with:
 
 ```r
-# CRAN *!NOT YET!*
+# CRAN
 install.packages("elbird")
 
 # Dev version
@@ -47,7 +49,7 @@ The examples below introduce the behavior of `elbird`'s functions.
 
 ### tokenize
 
-Basically, the `tokenize` function that uses the output of the `tokenize` function of the [kiwipiepy](https://github.com/bab2min/kiwipiepy) package as it is, and the `tokenize_tbl` organized in tibble data type, and grammar compatibility with tidytext are supported provides an `tokenize_tidy` function.
+Basically, the `tokenize` function return list form and the `tokenize_tbl` organized in tibble data type, and grammar compatibility with tidytext are supported provides an `tokenize_tidy` function.
 
 ```{r}
 library(elbird)
@@ -99,7 +101,7 @@ tar %>%
 
 ### analyze
 
-In addition, an `analyze` function is provided that uses the output of the `analyze` function of the [kiwipiepy](https://github.com/bab2min/kiwipiepy) package as it is.
+In addition, an `analyze` function is provided that uses the output of multi-result with there scores.
 
 ```{r}
 library(elbird)
