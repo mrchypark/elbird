@@ -1,3 +1,5 @@
+# elbird 0.1.2
+
 # elbird 0.1.1
 
 * Fix -Wreorder warnning for cran.
