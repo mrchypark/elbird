@@ -31,7 +31,7 @@ static std::map<std::string, int> m = {
 int match_options_(const std::string match_string) {
   if (!m.count(match_string)) throw std::invalid_argument{ std::string{"Unknown Build Options : "} + match_string };
   return m.find(match_string)->second;
-};
+}
 
 class Scanner {
 public :
