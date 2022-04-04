@@ -1,5 +1,7 @@
 # elbird 0.1.3
 
+* Fix bashism on configure file for cran.
+
 # elbird 0.1.2
 
 * Fix -Wbitwise-instead-of-logical warning for cran.
