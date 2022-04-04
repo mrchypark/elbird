@@ -67,7 +67,7 @@ else
   fi
 
   git config --global advice.detachedHead false
-  git clone --depth 1 https://github.com/bab2min/Kiwi
+  git clone -b v$LIB_VER -depth 1 https://github.com/bab2min/Kiwi
   cd Kiwi
   git rm third_party/googletest
   git rm third_party/cpuinfo
