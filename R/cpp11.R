@@ -28,10 +28,6 @@ kiwi_builder_add_alias_word_ <- function(handle_ex, alias, pos, score, orig_word
   .Call(`_elbird_kiwi_builder_add_alias_word_`, handle_ex, alias, pos, score, orig_word)
 }
 
-kiwi_builder_add_pre_analyzed_word_ <- function(handle_ex, form, analyzed_r, score) {
-  .Call(`_elbird_kiwi_builder_add_pre_analyzed_word_`, handle_ex, form, analyzed_r, score)
-}
-
 kiwi_builder_load_dict_ <- function(handle_ex, dict_path) {
   .Call(`_elbird_kiwi_builder_load_dict_`, handle_ex, dict_path)
 }

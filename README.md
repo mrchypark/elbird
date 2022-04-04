@@ -7,28 +7,32 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/mrchypark/elbird/workflows/R-CMD-check/badge.svg)](https://github.com/mrchypark/elbird/actions)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/elbird)](https://CRAN.R-project.org/package=elbird)
-[![](https://cranlogs.r-pkg.org/badges/elbird)](https://cran.r-project.org/package=elbird)
+[![runiverse-name](https://mrchypark.r-universe.dev/badges/:name)](https://mrchypark.r-universe.dev/)
+[![runiverse-package](https://mrchypark.r-universe.dev/badges/elbird)](https://mrchypark.r-universe.dev/ui#packages)
+[![metacran
+downloads](https://cranlogs.r-pkg.org/badges/elbird)](https://cran.r-project.org/package=elbird)
+[![Codecov test
+coverage](https://codecov.io/gh/mrchypark/elbird/branch/main/graph/badge.svg)](https://app.codecov.io/gh/mrchypark/elbird?branch=main)
 <!-- badges: end -->
 
 # 한국어 버전은 README_kr.md 파일을 확인하세요.
 
 The `elbird` package is a morpheme analysis package packed with
-[kiwipiepy](https://github.com/bab2min/kiwipiepy). It is based on cpp
-package `kiwi` and that has convenient functions such as faster
-performance compared to other tokenizers, easy user dictionary addition,
+[Kiwi](https://github.com/bab2min/Kiwi). It is based on cpp package
+`Kiwi` and that has convenient functions such as faster performance
+compared to other tokenizers, easy user dictionary addition,
 unregistered noun extraction (not implemented in `elbird` yet).
 
 ## Installation
-
-### CRAN *!NOT YET!*
 
 You can install the released version of elbird from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-# CRAN *!NOT YET!*
+# CRAN
 install.packages("elbird")
 
 # Dev version
@@ -41,12 +45,9 @@ The examples below introduce the behavior of `elbird`’s functions.
 
 ### tokenize
 
-Basically, the `tokenize` function that uses the output of the
-`tokenize` function of the
-[kiwipiepy](https://github.com/bab2min/kiwipiepy) package as it is, and
-the `tokenize_tbl` organized in tibble data type, and grammar
-compatibility with tidytext are supported provides an `tokenize_tidy`
-function.
+Basically, the `tokenize` function return list form and the
+`tokenize_tbl` organized in tibble data type, and grammar compatibility
+with tidytext are supported provides an `tokenize_tidy` function.
 
 ``` r
 library(elbird)
@@ -412,7 +413,7 @@ tar %>%
     output = word,
     token = tokenize_tidy
     )
-#> # A tibble: 4,543 × 2
+#> # A tibble: 4,537 × 2
 #>    paragraph word     
 #>        <int> <chr>    
 #>  1         1 존경/nng 
@@ -425,14 +426,13 @@ tar %>%
 #>  8         2 만/nr    
 #>  9         2 해외/nng 
 #> 10         2 동포/nng 
-#> # … with 4,533 more rows
+#> # … with 4,527 more rows
 ```
 
 ### analyze
 
 In addition, an `analyze` function is provided that uses the output of
-the `analyze` function of the
-[kiwipiepy](https://github.com/bab2min/kiwipiepy) package as it is.
+multi-result with there scores.
 
 ``` r
 library(elbird)
@@ -651,7 +651,7 @@ analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소�
 #> 
 #> 
 #> [[1]]$Score
-#> [1] -94.6228
+#> [1] -91.58401
 #> 
 #> 
 #> [[2]]
@@ -910,7 +910,7 @@ analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소�
 #> 
 #> 
 #> [[2]]$Score
-#> [1] -94.97831
+#> [1] -95.38721
 #> 
 #> 
 #> [[3]]
@@ -962,7 +962,7 @@ analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소�
 #> [1] "어요"
 #> 
 #> [[3]]$Token[[4]]$tag
-#> [1] "EC"
+#> [1] "EF"
 #> 
 #> [[3]]$Token[[4]]$start
 #> [1] 4
@@ -1169,7 +1169,7 @@ analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소�
 #> 
 #> 
 #> [[3]]$Score
-#> [1] -96.02621
+#> [1] -95.38721
 analyze(c("안녕하세요. kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."), top_n = 1)
 #> [[1]]
 #> [[1]]$Token
@@ -1441,7 +1441,7 @@ analyze(c("안녕하세요. kiwi 형태소 분석기의 R wrapper인 elbird를 �
 #> 
 #> 
 #> [[1]]$Score
-#> [1] -90.55171
+#> [1] -92.35323
 ```
 
 ## tag set
@@ -1450,7 +1450,7 @@ analyze(c("안녕하세요. kiwi 형태소 분석기의 R wrapper인 elbird를 �
 list](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)
 that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
--   The table below is fetched at 2022-03-30 14:43:41 Etc/UTC.
+-   The table below is fetched at 2022-04-03 06:59:58 Etc/UTC.
 
 | 대분류                    | 태그      | 설명                                                        |
 |:--------------------------|:----------|:------------------------------------------------------------|

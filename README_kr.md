@@ -6,26 +6,29 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/mrchypark/elbird/workflows/R-CMD-check/badge.svg)](https://github.com/mrchypark/elbird/actions)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/elbird)](https://CRAN.R-project.org/package=elbird)
-[![](https://cranlogs.r-pkg.org/badges/elbird)](https://cran.r-project.org/package=elbird)
+[![runiverse-name](https://mrchypark.r-universe.dev/badges/:name)](https://mrchypark.r-universe.dev/)
+[![runiverse-package](https://mrchypark.r-universe.dev/badges/elbird)](https://mrchypark.r-universe.dev/ui#packages)
+[![metacran
+downloads](https://cranlogs.r-pkg.org/badges/elbird)](https://cran.r-project.org/package=elbird)
+[![Codecov test
+coverage](https://codecov.io/gh/mrchypark/elbird/branch/main/graph/badge.svg)](https://app.codecov.io/gh/mrchypark/elbird?branch=main)
 <!-- badges: end -->
 
-`elbird` 패키지는 [kiwipiepy](https://github.com/bab2min/kiwipiepy) 를
-wrapping한 형태소 분석기 패키지입니다. `cpp` 기반의 `kiwi`를 베이스로
-하고 있으며 다른 분석기에 비해 빠른 성능과 쉬운 사용자 사전 추가, 미등록
-명사 추출(아직 elbird에는 미구현) 등 편의 기능이 있습니다.
+`elbird` 패키지는 `cpp` 기반의 [Kiwi](https://github.com/bab2min/Kiwi)
+를 wrapping한 형태소 분석기 패키지입니다. 다른 분석기에 비해 빠른 성능과
+쉬운 사용자 사전 추가, 미등록 명사 추출(아직 elbird에는 미구현) 등 편의
+기능이 있습니다.
 
 ## 설치
 
-### CRAN *!아직 적용 전입니다!*
-
-안정화 버전의 `elbird`는 아래 명령어로 설치할 수 있습니다.(아직
-안됬습니다!)
+`elbird`는 아래 명령어로 설치할 수 있습니다.
 
 ``` r
-# CRAN *!NOT YET!*
+# CRAN
 install.packages("elbird")
 
 # Dev version
@@ -38,8 +41,7 @@ install.packages("elbird", repos = 'https://mrchypark.r-universe.dev')
 
 ### tokenize 함수
 
-기본적으로 [kiwipiepy](https://github.com/bab2min/kiwipiepy) 패키지의
-`tokenize` 함수의 출력을 그대로 사용하는 `tokenize` 함수와 tibble
+기본적으로 list형태의 결과를 출력하는 `tokenize` 함수와 tibble
 자료형으로 정리한 `tokenize_tbl`, tidytext와의 문법호환을 지원하는
 `tokenize_tidy` 함수를 제공합니다.
 
@@ -407,7 +409,7 @@ tar %>%
     output = word,
     token = tokenize_tidy
     )
-#> # A tibble: 4,543 × 2
+#> # A tibble: 4,537 × 2
 #>    paragraph word     
 #>        <int> <chr>    
 #>  1         1 존경/nng 
@@ -420,13 +422,13 @@ tar %>%
 #>  8         2 만/nr    
 #>  9         2 해외/nng 
 #> 10         2 동포/nng 
-#> # … with 4,533 more rows
+#> # … with 4,527 more rows
 ```
 
 ### analyze 함수
 
-추가로 [kiwipiepy](https://github.com/bab2min/kiwipiepy) 패키지의
-`analyze` 함수의 출력을 그대로 사용하는 `analyze` 함수를 제공합니다.
+추가로 여러 분석 후보와 분석결과의 점수를 함께 제공하는 `analyze` 함수를
+제공합니다.
 
 ``` r
 library(elbird)
@@ -645,7 +647,7 @@ analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소�
 #> 
 #> 
 #> [[1]]$Score
-#> [1] -94.6228
+#> [1] -91.58401
 #> 
 #> 
 #> [[2]]
@@ -904,7 +906,7 @@ analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소�
 #> 
 #> 
 #> [[2]]$Score
-#> [1] -94.97831
+#> [1] -95.38721
 #> 
 #> 
 #> [[3]]
@@ -956,7 +958,7 @@ analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소�
 #> [1] "어요"
 #> 
 #> [[3]]$Token[[4]]$tag
-#> [1] "EC"
+#> [1] "EF"
 #> 
 #> [[3]]$Token[[4]]$start
 #> [1] 4
@@ -1163,7 +1165,7 @@ analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소�
 #> 
 #> 
 #> [[3]]$Score
-#> [1] -96.02621
+#> [1] -95.38721
 analyze(c("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."), top_n = 1)
 #> [[1]]
 #> [[1]]$Token
@@ -1379,7 +1381,7 @@ analyze(c("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 �
 #> 
 #> 
 #> [[1]]$Score
-#> [1] -94.6228
+#> [1] -91.58401
 ```
 
 ## 형태소 태그
@@ -1389,7 +1391,7 @@ analyze(c("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 �
 태그](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)는
 아래와 같습니다.
 
--   The table below is fetched at 2022-03-30 14:44:55 Etc/UTC.
+-   The table below is fetched at 2022-04-03 06:58:37 Etc/UTC.
 
 | 대분류                    | 태그      | 설명                                                        |
 |:--------------------------|:----------|:------------------------------------------------------------|

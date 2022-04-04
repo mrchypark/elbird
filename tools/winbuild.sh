@@ -1,4 +1,4 @@
-git clone -b v0.11.0 --filter=blob:limit=5m https://github.com/bab2min/Kiwi
+git clone -b v0.11.1 --depth 1 https://github.com/bab2min/Kiwi
 cd Kiwi
 git rm third_party/mimalloc
 git rm third_party/googletest

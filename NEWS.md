@@ -2,9 +2,17 @@
 
 * Change git clone to curl release source download for mac.
 
+# elbird 0.1.3
+
+* Fix bashism on configure file for cran.
+
+# elbird 0.1.2
+
+* Fix -Wbitwise-instead-of-logical warning for cran.
+
 # elbird 0.1.1
 
-* Fix -Wreorder warnning for cran.
+* Fix -Wreorder warning for cran.
 
 # elbird 0.1.0
 

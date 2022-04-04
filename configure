@@ -67,13 +67,16 @@ else
   fi
 
   git config --global advice.detachedHead false
+
   curl -L https://github.com/bab2min/Kiwi/archive/refs/tags/v$LIB_VER.tar.gz -o kiwi.tar.gz
   gzip -dc kiwi.tgz | tar -xf -
   rm -f kiwi.tgz
   cd Kiwi
+
   git rm third_party/googletest
   git rm third_party/cpuinfo
   git submodule update --init --recursive
+
   mkdir build
   cd build
   cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DKIWI_USE_CPUINFO=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON --log-level=ERROR ..
@@ -86,6 +89,7 @@ else
   mv -f Kiwi/build/libkiwi_static.a kiwilibs/libs/libkiwi.a
   mv -f Kiwi/include kiwilibs/include
   rm -rf Kiwi
+
   # Copy libcache for local development.
   cp -rf kiwilibs/ kiwilibtmp/
   PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
