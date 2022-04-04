@@ -1,5 +1,7 @@
 # elbird (development version)
 
+* Change git clone to curl release source download for mac.
+
 # elbird 0.1.1
 
 * Fix -Wreorder warnning for cran.
