@@ -1,3 +1,5 @@
+# elbird 0.1.3
+
 # elbird 0.1.2
 
 * Fix -Wbitwise-instead-of-logical warning for cran.
