@@ -67,10 +67,7 @@ else
   fi
 
   git config --global advice.detachedHead false
-
-  curl -L https://github.com/bab2min/Kiwi/archive/refs/tags/v$LIB_VER.tar.gz -o kiwi.tar.gz
-  gzip -dc kiwi.tgz | tar -xf -
-  rm -f kiwi.tgz
+  git clone -b v$LIB_VER --depth 1 https://github.com/bab2min/Kiwi
   cd Kiwi
 
   git rm third_party/googletest
