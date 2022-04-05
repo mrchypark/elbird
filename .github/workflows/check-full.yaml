@@ -55,8 +55,3 @@ jobs:
 
       - uses: r-lib/actions/check-r-package@v1
 
-      - name: Print error
-        if: always()
-        run: |
-          cat D:/a/elbird/elbird/check/elbird.Rcheck/00check.log
-        shell: bash
