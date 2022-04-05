@@ -56,6 +56,4 @@ jobs:
       - uses: r-lib/actions/check-r-package@v1
 
       - name: Install dependencies
-        run: |
-          cat D:/a/elbird/elbird/check/elbird.Rcheck/00check.log
-        shell: Rscript {0}
+        shell: cat D:/a/elbird/elbird/check/elbird.Rcheck/00check.log
