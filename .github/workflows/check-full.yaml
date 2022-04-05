@@ -58,3 +58,4 @@ jobs:
       - name: Print error
         run: |
           cat D:/a/elbird/elbird/check/elbird.Rcheck/00check.log
+        shell: bash
