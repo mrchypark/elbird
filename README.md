@@ -373,9 +373,7 @@ package. The `tar` below is the target text for morpheme analysis.
 
 ``` r
 suppressMessages(library(dplyr))
-install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev/")
-#> Installing package into '/usr/local/lib/R/site-library'
-#> (as 'lib' is unspecified)
+# install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev/")
 library(stringr)
 library(tidytext)
 library(presidentSpeech)
@@ -1450,7 +1448,7 @@ analyze(c("안녕하세요. kiwi 형태소 분석기의 R wrapper인 elbird를 �
 list](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)
 that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
--   The table below is fetched at 2022-04-03 06:59:58 Etc/UTC.
+-   The table below is fetched at 2022-04-07 05:59:33 Asia/Seoul.
 
 | 대분류                    | 태그      | 설명                                                        |
 |:--------------------------|:----------|:------------------------------------------------------------|

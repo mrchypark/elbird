@@ -369,9 +369,7 @@ tokenize_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호�
 
 ``` r
 suppressMessages(library(dplyr))
-install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev/")
-#> Installing package into '/usr/local/lib/R/site-library'
-#> (as 'lib' is unspecified)
+# install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev/")
 library(stringr)
 library(tidytext)
 library(presidentSpeech)
@@ -1391,7 +1389,7 @@ analyze(c("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 �
 태그](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)는
 아래와 같습니다.
 
--   The table below is fetched at 2022-04-03 06:58:37 Etc/UTC.
+-   The table below is fetched at 2022-04-07 06:00:10 Asia/Seoul.
 
 | 대분류                    | 태그      | 설명                                                        |
 |:--------------------------|:----------|:------------------------------------------------------------|

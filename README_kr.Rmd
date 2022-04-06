@@ -72,7 +72,7 @@ tokenize_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호�
 
 ```{r}
 suppressMessages(library(dplyr))
-install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev/")
+# install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev/")
 library(stringr)
 library(tidytext)
 library(presidentSpeech)

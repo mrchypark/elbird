@@ -74,7 +74,7 @@ The `tar` below is the target text for morpheme analysis.
 
 ```{r}
 suppressMessages(library(dplyr))
-install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev/")
+# install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev/")
 library(stringr)
 library(tidytext)
 library(presidentSpeech)
