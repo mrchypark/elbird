@@ -25,7 +25,6 @@ options(crayon.enabled = NULL)
 [![metacran downloads](https://cranlogs.r-pkg.org/badges/elbird)](https://cran.r-project.org/package=elbird)
 [![Codecov test coverage](https://codecov.io/gh/mrchypark/elbird/branch/main/graph/badge.svg)](https://app.codecov.io/gh/mrchypark/elbird?branch=main)
 <!-- badges: end -->
-
 # 한국어 버전은 README_kr.md 파일을 확인하세요.
 
 The `elbird` package is a morpheme analysis package packed with [Kiwi](https://github.com/bab2min/Kiwi).
