@@ -29,7 +29,7 @@ options(crayon.enabled = NULL)
 # 한국어 버전은 README_kr.md 파일을 확인하세요.
 
 The `elbird` package is a morpheme analysis package packed with [Kiwi](https://github.com/bab2min/Kiwi).
-It is based on cpp package `Kiwi` and that has convenient functions such as faster performance compared to other tokenizers, easy user dictionary addition, unregistered noun extraction (not implemented in `elbird` yet).
+It is based on cpp package `Kiwi` and that has convenient functions such as faster performance compared to other tokenizers, easy user dictionary addition, unregistered noun extraction, etc.
 
 ## Installation
 
