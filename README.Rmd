@@ -101,7 +101,7 @@ tar %>%
 
 ### analyze
 
-In addition, an `analyze` function is provided that uses the output of multi-result with there scores.
+In addition, an `analyze` function is provided that uses the output of multi-result with there score.
 
 ```{r}
 library(elbird)
