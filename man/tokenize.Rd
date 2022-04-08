@@ -11,15 +11,15 @@
 \usage{
 tokenize(text, match_option = Match$ALL, stopwords = TRUE)
 
-tokenize_tibble(text, match_option = Match$ALL, stopwords = FALSE)
+tokenize_tibble(text, match_option = Match$ALL, stopwords = TRUE)
 
-tokenize_tidytext(text, match_option = Match$ALL, stopwords = FALSE)
+tokenize_tidytext(text, match_option = Match$ALL, stopwords = TRUE)
 
-tokenize_tbl(text, match_option = Match$ALL, stopwords = FALSE)
+tokenize_tbl(text, match_option = Match$ALL, stopwords = TRUE)
 
-tokenize_tt(text, match_option = Match$ALL, stopwords = FALSE)
+tokenize_tt(text, match_option = Match$ALL, stopwords = TRUE)
 
-tokenize_tidy(text, match_option = Match$ALL, stopwords = FALSE)
+tokenize_tidy(text, match_option = Match$ALL, stopwords = TRUE)
 }
 \arguments{
 \item{text}{target text.}
