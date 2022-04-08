@@ -43,7 +43,7 @@ tokenize <-
 #' @importFrom dplyr bind_rows
 tokenize_tibble <- function(text,
                             match_option = Match$ALL,
-                            stopwords = FALSE) {
+                            stopwords = TRUE) {
   dplyr::bind_rows(tokenize_raw(text, match_option, stopwords), .id = "unique")
 }
 
@@ -52,7 +52,7 @@ tokenize_tibble <- function(text,
 #' @importFrom purrr map
 tokenize_tidytext <- function(text,
                               match_option = Match$ALL,
-                              stopwords = FALSE) {
+                              stopwords = TRUE) {
   purrr::map(tokenize_raw(text, match_option, stopwords),
              ~ paste0(.x$form, "/", .x$tag))
 }

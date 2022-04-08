@@ -1,6 +1,7 @@
 # elbird (development version)
 
 * Change git clone to curl release source download for mac.
+* Change tokenize function stopwords params default to TRUE.
 
 # elbird 0.1.3
 
