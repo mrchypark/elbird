@@ -119,65 +119,70 @@ SEXP kiwi_builder_init_(const char* model_path, int num_threads, int options) {
 [[cpp11::register]]
 int kiwi_builder_add_word_(SEXP handle_ex, const char* word, const char* pos, float score) {
   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
-  int res_h = kiwi_builder_add_word(handle.get(), word, pos, score);
-  return res_h;
+  return kiwi_builder_add_word(handle.get(), word, pos, score);
 }
 
 [[cpp11::register]]
 int kiwi_builder_add_alias_word_(SEXP handle_ex, const char* alias, const char* pos, float score, const char* orig_word) {
   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
-  int res_h = kiwi_builder_add_alias_word(handle.get(), alias, pos, score, orig_word);
-  return res_h;
+  return kiwi_builder_add_alias_word(handle.get(), alias, pos, score, orig_word);
 }
 
 [[cpp11::register]]
 int kiwi_builder_add_pre_analyzed_word_(
     SEXP handle_ex,
-    const std::string form,
+    const char* form,
     const cpp11::data_frame analyzed_r,
     float score) {
   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
 
-  cpp11::strings morphs = analyzed_r["morphs"];
-  cpp11::strings pos = analyzed_r["pos"];
+  cpp11::strings morphs_r = analyzed_r["morphs"];
+  cpp11::strings pos_r = analyzed_r["pos"];
+
+  const int size = morphs_r.size();
+
+  std::vector<std::string> morphs;
+  std::vector<std::string> pos;
+
+  for (int i = 0; i < size; ++i) {
+    morphs.push_back(static_cast<std::string>(morphs_r[i]));
+    pos.push_back(static_cast<std::string>(pos_r[i]));
+  }
+
   cpp11::integers start = analyzed_r["start"];
   cpp11::integers end = analyzed_r["end"];
 
-  int size = morphs.size();
-
   const char* analyzed_morphs[size];
   const char* analyzed_pos[size];
-  int positions[size];
+  int positions[size*2+1];
 
   for (int i = 0; i < size; ++i) {
-    analyzed_morphs[i] =  std::string(morphs[i]).c_str();
-    analyzed_pos[i] =  std::string(pos[i]).c_str();
+    analyzed_morphs[i] = morphs[i].c_str();
+    analyzed_pos[i] =  pos[i].c_str();
     positions[i*2] = int(start[i]);
     positions[i*2+1] = int(end[i]);
   }
 
   return kiwi_builder_add_pre_analyzed_word(
     handle.get(),
-    form.c_str(),
+    form,
     size,
     analyzed_morphs,
     analyzed_pos,
     score,
     positions
-    );
+  );
 }
 
 int kiwi_builder_add_rule_(SEXP handle_ex, const char* pos, kiwi_builder_replacer_t replacer, void* user_data, float score) {
   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
-  int res_h = kiwi_builder_add_rule(handle.get(), pos, replacer, user_data, score);
-  return res_h;
+  return kiwi_builder_add_rule(handle.get(), pos, replacer, user_data, score);
 }
 
 [[cpp11::register]]
 int kiwi_builder_load_dict_(SEXP handle_ex, const char* dict_path) {
   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
-  int res_h = kiwi_builder_load_dict(handle.get(), dict_path);
-  return res_h;
+  return kiwi_builder_load_dict(handle.get(), dict_path);
 }
 
 [[cpp11::register]]
