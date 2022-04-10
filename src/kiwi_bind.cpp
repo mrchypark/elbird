@@ -9,7 +9,6 @@ using namespace cpp11;
 #include <kiwi/capi.h>
 #include <kiwi/Kiwi.h>
 
-typedef int(*kiwi_receiver_t)(int, kiwi_res_h, void*);
 typedef int(*kiwi_builder_replacer_t)(const char*, int, char*, void*);
 
 static std::map<std::string, int> m = {
@@ -65,11 +64,15 @@ private :
   std::ifstream strm;
 };
 
-int readLines(int line, char* buffer, void* input) {
-  Scanner* scanner = (Scanner*)input;
+int replacers(const char* input, int len, char* buffer, void* user) {
+  return 1;
+}
+
+int readLines(int line_num, char* buffer, void* user) {
+  Scanner* scanner = (Scanner*)user;
 
   if (buffer == nullptr) {
-    if (line == 0) {
+    if (line_num == 0) {
       scanner->rewind();
     }
 
