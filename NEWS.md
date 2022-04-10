@@ -2,6 +2,7 @@
 
 * Change git clone to curl release source download for mac.
 * Change tokenize function stopwords params default to TRUE.
+* Update Model version to 0.11.1
 
 # elbird 0.1.3
 
