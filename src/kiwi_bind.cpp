@@ -130,28 +130,42 @@ int kiwi_builder_add_alias_word_(SEXP handle_ex, const char* alias, const char* 
   return res_h;
 }
 
-// [[cpp11::register]]
-// bool kiwi_builder_add_pre_analyzed_word_(SEXP handle_ex, const std::string form, const cpp11::data_frame analyzed_r, float score) {
-//   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
-//   kiwi::KiwiBuilder* kiwi = (kiwi::KiwiBuilder*)handle.get();
-//
-//   cpp11::strings morphs = analyzed_r["morphs"];
-//   cpp11::strings pos = analyzed_r["pos"];
-//   cpp11::integers start = analyzed_r["start"];
-//   cpp11::integers end = analyzed_r["end"];
-//
-//   std::vector<std::pair<std::u16string, kiwi::POSTag>> analyzed(morphs.size());
-//   std::vector<std::pair<size_t, size_t>> positions(morphs.size());
-//
-//   for (int i = 0; i < morphs.size(); ++i) {
-//     analyzed[i].first = kiwi::utf8To16(std::string(morphs[i]).c_str());
-//     analyzed[i].second = kiwi_bind::parse_tag(std::string(pos[i]).c_str());
-//     positions[i].first = size_t(start[i]);
-//     positions[i].first = size_t(end[i]);
-//   }
-//
-//   return kiwi->addPreAnalyzedWord(kiwi::utf8To16(form), analyzed, positions, score);
-// }
+[[cpp11::register]]
+int kiwi_builder_add_pre_analyzed_word_(
+    SEXP handle_ex,
+    const std::string form,
+    const cpp11::data_frame analyzed_r,
+    float score) {
+  cpp11::external_pointer<kiwi_builder> handle(handle_ex);
+
+  cpp11::strings morphs = analyzed_r["morphs"];
+  cpp11::strings pos = analyzed_r["pos"];
+  cpp11::integers start = analyzed_r["start"];
+  cpp11::integers end = analyzed_r["end"];
+
+  int size = morphs.size();
+
+  const char* analyzed_morphs[size];
+  const char* analyzed_pos[size];
+  int positions[size];
+
+  for (int i = 0; i < size; ++i) {
+    analyzed_morphs[i] =  std::string(morphs[i]).c_str();
+    analyzed_pos[i] =  std::string(pos[i]).c_str();
+    positions[i*2] = int(start[i]);
+    positions[i*2+1] = int(end[i]);
+  }
+
+  return kiwi_builder_add_pre_analyzed_word(
+    handle.get(),
+    form.c_str(),
+    size,
+    analyzed_morphs,
+    analyzed_pos,
+    score,
+    positions
+    );
+}
 
 int kiwi_builder_add_rule_(SEXP handle_ex, const char* pos, kiwi_builder_replacer_t replacer, void* user_data, float score) {
   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
