@@ -22,7 +22,7 @@ analyze <-
       init()
 
     kiwi_analyze_wrap(
-      get("kb", envir = .el),
+      get("kw", envir = .el),
       text,
       top_n,
       match_option,
