@@ -32,6 +32,10 @@ kiwi_builder_add_pre_analyzed_word_ <- function(handle_ex, form, analyzed_r, sco
   .Call(`_elbird_kiwi_builder_add_pre_analyzed_word_`, handle_ex, form, analyzed_r, score)
 }
 
+kiwi_builder_add_rule_ <- function(handle_ex, pos, pattern, replacement, score) {
+  .Call(`_elbird_kiwi_builder_add_rule_`, handle_ex, pos, pattern, replacement, score)
+}
+
 kiwi_builder_load_dict_ <- function(handle_ex, dict_path) {
   .Call(`_elbird_kiwi_builder_load_dict_`, handle_ex, dict_path)
 }
