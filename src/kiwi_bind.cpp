@@ -10,15 +10,6 @@ using namespace cpp11;
 #include <kiwi/capi.h>
 #include <kiwi/Kiwi.h>
 
-[[cpp11::register]]
-SEXP function_r(cpp11::function func){
-  // cpp11::writable::strings x;
-  // x.push_back("test");
-  auto res = func("안녕하세요");
-  return res;
-};
-
-
 static std::map<std::string, int> m = {
   { "URL", KIWI_MATCH_URL },
   { "EMAIL", KIWI_MATCH_EMAIL },
@@ -102,7 +93,9 @@ public :
     this->replacemnet = replacemnet_;
   };
   int size(const char* input) {
-    std::string output = std::regex_replace(std::string(input), this->rep, this->replacemnet);
+    std::string output = std::regex_replace(std::string(input),
+                                            this->rep,
+                                            this->replacemnet);
     this->res = output;
     return strlen(output.c_str())+1;
   };
@@ -121,7 +114,6 @@ int ruleprovider(const char* input, int size, char* buffer, void* user) {
   if (buffer == nullptr) {
     return rpcr->size(input);
   }
-  std::cout << rpcr->text() << std::endl;
   strcpy(buffer, rpcr->text());
   return 0;
 }
