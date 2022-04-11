@@ -6,13 +6,6 @@
 #include <R_ext/Visibility.h>
 
 // kiwi_bind.cpp
-SEXP function_r(cpp11::function func);
-extern "C" SEXP _elbird_function_r(SEXP func) {
-  BEGIN_CPP11
-    return cpp11::as_sexp(function_r(cpp11::as_cpp<cpp11::decay_t<cpp11::function>>(func)));
-  END_CPP11
-}
-// kiwi_bind.cpp
 std::string kiwi_version_();
 extern "C" SEXP _elbird_kiwi_version_() {
   BEGIN_CPP11
@@ -150,7 +143,6 @@ extern "C" SEXP _elbird_kiwi_split_into_sents_(SEXP handle_ex, SEXP text, SEXP m
 
 extern "C" {
 static const R_CallMethodDef CallEntries[] = {
-    {"_elbird_function_r",                          (DL_FUNC) &_elbird_function_r,                          1},
     {"_elbird_kiwi_analyze_",                       (DL_FUNC) &_elbird_kiwi_analyze_,                       5},
     {"_elbird_kiwi_builder_add_alias_word_",        (DL_FUNC) &_elbird_kiwi_builder_add_alias_word_,        5},
     {"_elbird_kiwi_builder_add_pre_analyzed_word_", (DL_FUNC) &_elbird_kiwi_builder_add_pre_analyzed_word_, 4},
