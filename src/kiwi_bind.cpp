@@ -119,7 +119,6 @@ private :
 int ruleprovider(const char* input, int size, char* buffer, void* user) {
   Replacer* rpcr = (Replacer*)user;
   if (buffer == nullptr) {
-    std::cout << input << std::endl;
     return rpcr->size(input);
   }
   std::cout << rpcr->text() << std::endl;
