@@ -1,6 +1,7 @@
 test_that("pre analyze words", {
   skip_if_offline()
-  get_model("small")
+  if (!model_works("small"))
+    get_model("small")
 
   anl <- data.frame(
     morphs = c("팅기", "었", "어"),

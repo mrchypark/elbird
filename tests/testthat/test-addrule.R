@@ -1,6 +1,8 @@
 test_that("add rule works", {
   skip_if_offline()
-  get_model("small")
+  if (!model_works("small"))
+    get_model("small")
+
   kw <- kiwi_init_(kiwi_model_path_full("small"), 0, BuildOpt$DEFAULT)
   res1<- kiwi_analyze_wrap(kw, "했어요! 하잖아요! 할까요?", top_n = 1)
   res2<- kiwi_analyze_wrap(kw, "했어용! 하잖아용! 할까용?", top_n = 1)

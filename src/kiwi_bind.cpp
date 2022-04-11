@@ -211,7 +211,12 @@ int kiwi_builder_add_pre_analyzed_word_(
 }
 
 [[cpp11::register]]
-int kiwi_builder_add_rule_(SEXP handle_ex, const char* pos, std::string pattern, std::string replacement, float score) {
+int kiwi_builder_add_rule_(
+    SEXP handle_ex,
+    const char* pos,
+    std::string pattern,
+    std::string replacement,
+    float score) {
   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
   Replacer rpcr;
   rpcr.init(pattern, replacement);
@@ -364,7 +369,11 @@ SEXP kiwi_analyze_(
 }
 
 [[cpp11::register]]
-SEXP kiwi_split_into_sents_(SEXP handle_ex, const char* text, int match_options, bool return_tokens) {
+SEXP kiwi_split_into_sents_(
+    SEXP handle_ex,
+    const char* text,
+    int match_options,
+    bool return_tokens) {
   cpp11::external_pointer<kiwi_s> handle(handle_ex);
   kiwi_res_h tokenized_res;
   kiwi_res_h *tknptr = &tokenized_res;
