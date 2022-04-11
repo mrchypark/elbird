@@ -17,9 +17,9 @@ split_into_sents <- function(text, return_tokens = FALSE) {
 
   return(
     kiwi_split_into_sents_(
-      get("kb", envir = .el),
+      get("kw", envir = .el),
       text,
-      Match$ALL,
+      Match$ALL_WITH_NORMALIZING,
       return_tokens
     )
   )

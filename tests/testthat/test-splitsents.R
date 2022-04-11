@@ -1,0 +1,9 @@
+test_that("split sents works", {
+  res <- split_into_sents("안녕하세요 박박사입니다 다시 한번 인사드립니다")
+  expect_equal(length(res), 2)
+  expect_equal(res[[1]]$tokens, list())
+  expect_equal(res[[2]]$tokens, list())
+  res <- split_into_sents("안녕하세요 박박사입니다 다시 한번 인사드립니다", return_tokens = TRUE)
+  expect_equal(length(res[[1]]$tokens), 5)
+  expect_equal(length(res[[2]]$tokens), 5)
+})

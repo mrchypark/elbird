@@ -372,16 +372,19 @@ SEXP kiwi_analyze_(
 SEXP kiwi_split_into_sents_(
     SEXP handle_ex,
     const char* text,
-    int match_options,
+    std::string match_options,
     bool return_tokens) {
   cpp11::external_pointer<kiwi_s> handle(handle_ex);
   kiwi_res_h tokenized_res;
   kiwi_res_h *tknptr = &tokenized_res;
   if (!return_tokens) {
-    tknptr = NULL;
+    tknptr = nullptr;
   }
 
-  kiwi_ss_h res_h = kiwi_split_into_sents(handle.get(), text, match_options, tknptr);
+  kiwi_ss_h res_h = kiwi_split_into_sents(handle.get(),
+                                          text,
+                                          match_options_(match_options),
+                                          tknptr);
 
   int resSize = kiwi_ss_size(res_h);
   cpp11::writable::list res;
@@ -392,6 +395,7 @@ SEXP kiwi_split_into_sents_(
 
     int start = kiwi_ss_begin_position(res_h, i);
     int end = kiwi_ss_end_position(res_h, i);
+
     sent.push_back({"text"_nm = textr.substr(start, end-start)});
     sent.push_back({"start"_nm = start});
     sent.push_back({"end"_nm = end});
