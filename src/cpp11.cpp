@@ -6,6 +6,13 @@
 #include <R_ext/Visibility.h>
 
 // kiwi_bind.cpp
+SEXP function_r(cpp11::function func);
+extern "C" SEXP _elbird_function_r(SEXP func) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(function_r(cpp11::as_cpp<cpp11::decay_t<cpp11::function>>(func)));
+  END_CPP11
+}
+// kiwi_bind.cpp
 std::string kiwi_version_();
 extern "C" SEXP _elbird_kiwi_version_() {
   BEGIN_CPP11
@@ -60,6 +67,13 @@ int kiwi_builder_add_pre_analyzed_word_(SEXP handle_ex, const char* form, const 
 extern "C" SEXP _elbird_kiwi_builder_add_pre_analyzed_word_(SEXP handle_ex, SEXP form, SEXP analyzed_r, SEXP score) {
   BEGIN_CPP11
     return cpp11::as_sexp(kiwi_builder_add_pre_analyzed_word_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(form), cpp11::as_cpp<cpp11::decay_t<const cpp11::data_frame>>(analyzed_r), cpp11::as_cpp<cpp11::decay_t<float>>(score)));
+  END_CPP11
+}
+// kiwi_bind.cpp
+int kiwi_builder_add_rule_(SEXP handle_ex, const char* pos, std::string pattern, std::string replacement, float score);
+extern "C" SEXP _elbird_kiwi_builder_add_rule_(SEXP handle_ex, SEXP pos, SEXP pattern, SEXP replacement, SEXP score) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_builder_add_rule_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(pos), cpp11::as_cpp<cpp11::decay_t<std::string>>(pattern), cpp11::as_cpp<cpp11::decay_t<std::string>>(replacement), cpp11::as_cpp<cpp11::decay_t<float>>(score)));
   END_CPP11
 }
 // kiwi_bind.cpp
@@ -136,9 +150,11 @@ extern "C" SEXP _elbird_kiwi_split_into_sents_(SEXP handle_ex, SEXP text, SEXP m
 
 extern "C" {
 static const R_CallMethodDef CallEntries[] = {
+    {"_elbird_function_r",                          (DL_FUNC) &_elbird_function_r,                          1},
     {"_elbird_kiwi_analyze_",                       (DL_FUNC) &_elbird_kiwi_analyze_,                       5},
     {"_elbird_kiwi_builder_add_alias_word_",        (DL_FUNC) &_elbird_kiwi_builder_add_alias_word_,        5},
     {"_elbird_kiwi_builder_add_pre_analyzed_word_", (DL_FUNC) &_elbird_kiwi_builder_add_pre_analyzed_word_, 4},
+    {"_elbird_kiwi_builder_add_rule_",              (DL_FUNC) &_elbird_kiwi_builder_add_rule_,              5},
     {"_elbird_kiwi_builder_add_word_",              (DL_FUNC) &_elbird_kiwi_builder_add_word_,              4},
     {"_elbird_kiwi_builder_build_",                 (DL_FUNC) &_elbird_kiwi_builder_build_,                 1},
     {"_elbird_kiwi_builder_close_",                 (DL_FUNC) &_elbird_kiwi_builder_close_,                 1},

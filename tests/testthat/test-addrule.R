@@ -1,0 +1,11 @@
+test_that("add rule works", {
+  skip_if_offline()
+  get_model("small")
+  kw <- kiwi_init_(kiwi_model_path_full("small"), 0, BuildOpt$DEFAULT)
+  res<- kiwi_analyze_wrap(kw, "했어요! 하잖아요! 할까요?")
+  res<- kiwi_analyze_wrap(kw, "했어요! 하잖아요! 할까요?")
+  kb <- kiwi_builder_init_(kiwi_model_path_full("small"), 0, BuildOpt$DEFAULT)
+  kiwi_builder_add_rule_(kb, "ef", "요$", "용", -2)
+  kw <- kiwi_builder_build_(kb)
+  res<- kiwi_analyze_wrap(kw, "했어용! 하잖아용! 할까용?")
+})

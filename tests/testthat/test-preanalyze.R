@@ -22,6 +22,4 @@ test_that("pre analyze words", {
   res <- kiwi_analyze_wrap(kw, text = "팅겼어...", 1, Match$ALL_WITH_NORMALIZING)
   expect_equal(res[[1]]$Token[[1]]$form, "팅기")
   expect_equal(res[[1]]$Token[[1]]$tag, "VV")
-  rm(kw)
-  rm(kb)
 })

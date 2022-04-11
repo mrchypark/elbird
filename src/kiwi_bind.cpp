@@ -3,13 +3,21 @@
 #include <cstring>
 #include <vector>
 #include <map>
+#include <regex>
 
 #include <cpp11.hpp>
 using namespace cpp11;
 #include <kiwi/capi.h>
 #include <kiwi/Kiwi.h>
 
-typedef int(*kiwi_builder_replacer_t)(const char*, int, char*, void*);
+[[cpp11::register]]
+SEXP function_r(cpp11::function func){
+  // cpp11::writable::strings x;
+  // x.push_back("test");
+  auto res = func("안녕하세요");
+  return res;
+};
+
 
 static std::map<std::string, int> m = {
   { "URL", KIWI_MATCH_URL },
@@ -28,7 +36,11 @@ static std::map<std::string, int> m = {
 };
 
 int match_options_(const std::string match_string) {
-  if (!m.count(match_string)) throw std::invalid_argument{ std::string{"Unknown Build Options : "} + match_string };
+  if (!m.count(match_string)) {
+    throw std::invalid_argument{
+      std::string{"Unknown Build Options : "} + match_string
+      };
+  }
   return m.find(match_string)->second;
 }
 
@@ -64,10 +76,6 @@ private :
   std::ifstream strm;
 };
 
-int replacers(const char* input, int len, char* buffer, void* user) {
-  return 1;
-}
-
 int readLines(int line_num, char* buffer, void* user) {
   Scanner* scanner = (Scanner*)user;
 
@@ -85,6 +93,40 @@ int readLines(int line_num, char* buffer, void* user) {
   strcpy(buffer, scanner->text().c_str());
   return 0;
 }
+
+class Replacer {
+public :
+  void init(const std::string pattern, const std::string replacemnet_) {
+    std::regex re(pattern);
+    this->rep = re;
+    this->replacemnet = replacemnet_;
+  };
+  int size(const char* input) {
+    std::string output = std::regex_replace(std::string(input), this->rep, this->replacemnet);
+    this->res = output;
+    return strlen(output.c_str())+1;
+  };
+  const char* text() {
+    return this->res.c_str();
+  };
+
+private :
+  std::regex rep;
+  std::string replacemnet = "";
+  std::string res;
+};
+
+int ruleprovider(const char* input, int size, char* buffer, void* user) {
+  Replacer* rpcr = (Replacer*)user;
+  if (buffer == nullptr) {
+    std::cout << input << std::endl;
+    return rpcr->size(input);
+  }
+  std::cout << rpcr->text() << std::endl;
+  strcpy(buffer, rpcr->text());
+  return 0;
+}
+
 
 [[cpp11::register]]
 std::string kiwi_version_() {
@@ -177,9 +219,12 @@ int kiwi_builder_add_pre_analyzed_word_(
   );
 }
 
-int kiwi_builder_add_rule_(SEXP handle_ex, const char* pos, kiwi_builder_replacer_t replacer, void* user_data, float score) {
+[[cpp11::register]]
+int kiwi_builder_add_rule_(SEXP handle_ex, const char* pos, std::string pattern, std::string replacement, float score) {
   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
-  return kiwi_builder_add_rule(handle.get(), pos, replacer, user_data, score);
+  Replacer rpcr;
+  rpcr.init(pattern, replacement);
+  return kiwi_builder_add_rule(handle.get(), pos, ruleprovider, &rpcr, score);
 }
 
 [[cpp11::register]]
