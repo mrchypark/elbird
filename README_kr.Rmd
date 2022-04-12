@@ -27,11 +27,11 @@ options(crayon.enabled = NULL)
 <!-- badges: end -->
 
 `elbird` 패키지는 `cpp` 기반의 [Kiwi](https://github.com/bab2min/Kiwi) 를 wrapping한 형태소 분석기 패키지입니다.
-다른 분석기에 비해 빠른 성능과 쉬운 사용자 사전 추가, 미등록 명사 추출(아직 elbird에는 미구현) 등 편의 기능이 있습니다.
+다른 분석기에 비해 빠른 성능과 쉬운 사용자 사전 추가, 미등록 명사 추출 등의 편의 기능이 있습니다.
 
 ## 설치
 
- `elbird`는 아래 명령어로 설치할 수 있습니다.
+`elbird`는 아래 명령어로 설치할 수 있습니다.
 
 ```r
 # CRAN

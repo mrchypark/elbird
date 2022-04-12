@@ -32,7 +32,7 @@ It is based on cpp package `Kiwi` and that has convenient functions such as fast
 
 ## Installation
 
-You can install the released version of elbird from [CRAN](https://CRAN.R-project.org) with:
+You can install the elbird with:
 
 ```r
 # CRAN
