@@ -58,6 +58,7 @@ Kiwi <- R6::R6Class(
     #' @param score \code{num(required)}: score information about word.
     add_user_words = function(word, pos, score) {
       kiwi_builder_add_word_(private$kiwi_builder, word, pos, score)
+      private$builder_updated <- TRUE
     },
 
     # add_pre_analyzed_words = function(alias, pos, score, orig_word) {
@@ -74,6 +75,7 @@ Kiwi <- R6::R6Class(
       # TODO validate dict
       # TODO add user dict list for save
       kiwi_builder_load_dict_(private$kiwi_builder, user_dict_path)
+      private$builder_updated <- TRUE
     },
 
     #' @description
@@ -94,6 +96,7 @@ Kiwi <- R6::R6Class(
                                   max_word_len,
                                   min_score,
                                   pos_threshold)
+      private$builder_updated <- TRUE
     },
 
     #' @description
@@ -114,6 +117,7 @@ Kiwi <- R6::R6Class(
                                       max_word_len,
                                       min_score,
                                       pos_threshold)
+      private$builder_updated <- TRUE
     },
 
     #' @description
@@ -131,7 +135,9 @@ Kiwi <- R6::R6Class(
                        top_n = 3,
                        match_option = Match$ALL,
                        stopwords = FALSE) {
-      if (is.null(private$kiwi))
+      if (private$kiwi_not_ready())
+        private$kiwi_build()
+      if (private$builder_updated)
         private$kiwi_build()
 
       kiwi_analyze_wrap(private$kiwi, text, top_n, match_option, stopwords)
@@ -217,8 +223,11 @@ Kiwi <- R6::R6Class(
     split_into_sents = function(text,
                                 match_option = Match$ALL,
                                 return_tokens = FALSE) {
-      if (private$kiwi_not_ready)
+      if (private$kiwi_not_ready())
         private$kiwi_build()
+      if (private$builder_updated)
+        private$kiwi_build()
+
       kiwi_split_into_sents_(private$kiwi, text, match_option, return_tokens)
     }
 
@@ -231,10 +240,16 @@ Kiwi <- R6::R6Class(
   private = list(
     kiwi = NULL,
     kiwi_builder = NULL,
+    builder_updated = FALSE,
     user_dic = NULL,
+
+    kiwi_not_ready = function() {
+      is.null(private$kiwi)
+    },
 
     kiwi_build = function() {
       private$kiwi <- kiwi_builder_build_(private$kiwi_builder)
+      private$builder_updated <- FALSE
     },
 
     num_workers = NULL,

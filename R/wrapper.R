@@ -4,7 +4,7 @@ kiwi_error_wrap <- function() {
     kiwi_clear_error_()
     return(tr)
   }
-  invisible()
+  invisible(tr)
 }
 
 kiwi_analyze_wrap <-
