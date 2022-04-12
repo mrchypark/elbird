@@ -29,7 +29,7 @@ Stopwords is for filter result.
 \item \href{#method-add}{\code{Stopwords$add()}}
 \item \href{#method-add_from_dict}{\code{Stopwords$add_from_dict()}}
 \item \href{#method-remove}{\code{Stopwords$remove()}}
-\item \href{#method-save_user_dict}{\code{Stopwords$save_user_dict()}}
+\item \href{#method-save_dict}{\code{Stopwords$save_dict()}}
 \item \href{#method-get}{\code{Stopwords$get()}}
 \item \href{#method-clone}{\code{Stopwords$clone()}}
 }
@@ -77,7 +77,7 @@ Defualt is TRUE.}
 \subsection{Method \code{add()}}{
 add stopword one at a time.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Stopwords$add(form, tag = Tags$NNP)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Stopwords$add(form, tag = Tags$nnp)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -144,12 +144,12 @@ remove stopword one at a time.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-save_user_dict"></a>}}
-\if{latex}{\out{\hypertarget{method-save_user_dict}{}}}
-\subsection{Method \code{save_user_dict()}}{
+\if{html}{\out{<a id="method-save_dict"></a>}}
+\if{latex}{\out{\hypertarget{method-save_dict}{}}}
+\subsection{Method \code{save_dict()}}{
 save current stopwords list in text file.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Stopwords$save_user_dict(path)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Stopwords$save_dict(path)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

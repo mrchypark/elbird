@@ -88,15 +88,16 @@ Stopwords <- R6::R6Class(
       )
     },
 
+    # history = function() {
+    #   private$dict_list
+    # }
+
     #' @description
     #'  return tibble of stopwords.
     #' @return a [tibble][tibble::tibble-package] for stopwords options
     #'         for [analyze()] / [tokenize()] function.
     get = function() {
       unique(private$stopword_list[c("form", "tag")])
-    },
-    history = function() {
-      private$dict_list
     }
   ),
 

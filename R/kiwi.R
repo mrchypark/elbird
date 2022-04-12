@@ -54,19 +54,44 @@ Kiwi <- R6::R6Class(
     #' @description
     #'   add user word with pos and score
     #' @param word \code{char(required)}: target word to add.
-    #' @param pos \code{char(required)}: pos information about word.
+    #' @param pos \code{Tags(required)}: pos information about word.
     #' @param score \code{num(required)}: score information about word.
     add_user_words = function(word, pos, score) {
       kiwi_builder_add_word_(private$kiwi_builder, word, pos, score)
       private$builder_updated <- TRUE
     },
 
-    # add_pre_analyzed_words = function(alias, pos, score, orig_word) {
-    #   kiwi_builder_add_word_(private$kiwi_builder, alias, pos, score, orig_word)
-    # },
+    #' @description
+    #'   TODO
+    #' @param form \code{char(required)}: target word to add analyzed result.
+    #' @param analyzed \code{data.frame(required)}: analyzed result expected.
+    #' @param score \code{num(required)}: score information about pre analyzed result.
+    add_pre_analyzed_words = function(form, analyzed, score) {
+      kiwi_builder_add_pre_analyzed_word_(private$kiwi_builder, form, analyzed, score)
+      private$builder_updated <- TRUE
+    },
 
-    # add_rules = function(tag, replacer, score) {},
-    # add_re_rules = function(tag, pattern, repl, score) {},
+    #' @description
+    #'   TODO
+    #' @param alias \code{char(required)}: target word to add.
+    #' @param pos \code{Tags(required)}: pos information about word.
+    #' @param score \code{num(required)}: score information about word.
+    #' @param orig_word \code{char(required)}: origin word.
+    add_alias_word = function(alias, pos, score, orig_word) {
+      kiwi_builder_add_alias_word_(private$kiwi_builder, alias, pos, score, orig_word)
+      private$builder_updated <- TRUE
+    },
+
+    #' @description
+    #'  TODO
+    #' @param pos \code{Tags(required)}: target pos to add rules.
+    #' @param pattern \code{char(required)}: regular expression.
+    #' @param replacement \code{char(required)}: replace text.
+    #' @param score \code{num(required)}: score information about rules.
+    add_rules = function(pos, pattern, replacement, score) {
+      kiwi_builder_add_rule_(private$kiwi_builder, pos, pattern, replacement, score)
+      private$builder_updated <- TRUE
+    },
 
     #' @description
     #'   add user dictionary using text file.

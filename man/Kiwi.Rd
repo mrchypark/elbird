@@ -29,6 +29,9 @@ kiwi class is provide method for korean mophological analyze result.
 \item \href{#method-print}{\code{Kiwi$print()}}
 \item \href{#method-new}{\code{Kiwi$new()}}
 \item \href{#method-add_user_words}{\code{Kiwi$add_user_words()}}
+\item \href{#method-add_pre_analyzed_words}{\code{Kiwi$add_pre_analyzed_words()}}
+\item \href{#method-add_alias_word}{\code{Kiwi$add_alias_word()}}
+\item \href{#method-add_rules}{\code{Kiwi$add_rules()}}
 \item \href{#method-load_user_dictionarys}{\code{Kiwi$load_user_dictionarys()}}
 \item \href{#method-extract_words}{\code{Kiwi$extract_words()}}
 \item \href{#method-extract_add_words}{\code{Kiwi$extract_add_words()}}
@@ -100,9 +103,76 @@ add user word with pos and score
 \describe{
 \item{\code{word}}{\code{char(required)}: target word to add.}
 
-\item{\code{pos}}{\code{char(required)}: pos information about word.}
+\item{\code{pos}}{\code{Tags(required)}: pos information about word.}
 
 \item{\code{score}}{\code{num(required)}: score information about word.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-add_pre_analyzed_words"></a>}}
+\if{latex}{\out{\hypertarget{method-add_pre_analyzed_words}{}}}
+\subsection{Method \code{add_pre_analyzed_words()}}{
+TODO
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$add_pre_analyzed_words(form, analyzed, score)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{form}}{\code{char(required)}: target word to add analyzed result.}
+
+\item{\code{analyzed}}{\code{data.frame(required)}: analyzed result expected.}
+
+\item{\code{score}}{\code{num(required)}: score information about pre analyzed result.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-add_alias_word"></a>}}
+\if{latex}{\out{\hypertarget{method-add_alias_word}{}}}
+\subsection{Method \code{add_alias_word()}}{
+TODO
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$add_alias_word(alias, pos, score, orig_word)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{alias}}{\code{char(required)}: target word to add.}
+
+\item{\code{pos}}{\code{Tags(required)}: pos information about word.}
+
+\item{\code{score}}{\code{num(required)}: score information about word.}
+
+\item{\code{orig_word}}{\code{char(required)}: origin word.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-add_rules"></a>}}
+\if{latex}{\out{\hypertarget{method-add_rules}{}}}
+\subsection{Method \code{add_rules()}}{
+TODO
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$add_rules(pos, pattern, replacement, score)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{pos}}{\code{Tags(required)}: target pos to add rules.}
+
+\item{\code{pattern}}{\code{char(required)}: regular expression.}
+
+\item{\code{replacement}}{\code{char(required)}: replace text.}
+
+\item{\code{score}}{\code{num(required)}: score information about rules.}
 }
 \if{html}{\out{</div>}}
 }
