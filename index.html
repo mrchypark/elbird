@@ -115,11 +115,7 @@
 </div>
 <!-- badges: start -->
 
-</div>
-<div class="section level1">
-<h1 id="한국어-버전은-readme_krmd-파일을-확인하세요">한국어 버전은 README_kr.md 파일을 확인하세요.<a class="anchor" aria-label="anchor" href="#%ED%95%9C%EA%B5%AD%EC%96%B4-%EB%B2%84%EC%A0%84%EC%9D%80-readme_krmd-%ED%8C%8C%EC%9D%BC%EC%9D%84-%ED%99%95%EC%9D%B8%ED%95%98%EC%84%B8%EC%9A%94"></a>
-</h1>
-<p>The <code>elbird</code> package is a morpheme analysis package packed with <a href="https://github.com/bab2min/Kiwi" class="external-link">Kiwi</a>. It is based on cpp package <code>Kiwi</code> and that has convenient functions such as faster performance compared to other tokenizers, easy user dictionary addition, unregistered noun extraction (not implemented in <code>elbird</code> yet).</p>
+<p>The <code>elbird</code> package is a morpheme analysis package packed with <a href="https://github.com/bab2min/Kiwi" class="external-link">Kiwi</a>. It is based on cpp package <code>Kiwi</code> and that has convenient functions such as faster performance compared to other tokenizers, easy user dictionary addition, unregistered noun extraction, etc.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -509,7 +505,7 @@
 <div class="section level3">
 <h3 id="analyze">analyze<a class="anchor" aria-label="anchor" href="#analyze"></a>
 </h3>
-<p>In addition, an <code>analyze</code> function is provided that uses the output of multi-result with there scores.</p>
+<p>In addition, an <code>analyze</code> function is provided that uses the output of multi-result with there score.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrchypark/elbird/" class="external-link">elbird</a></span><span class="op">)</span>
 <span class="fu"><a href="reference/analyze.html">analyze</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>
@@ -1525,8 +1521,10 @@
 </h2>
 <p><a href="https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8" class="external-link">Tag list</a> that used in <a href="https://github.com/bab2min/kiwipiepy" class="external-link">kiwipiepy</a> package.</p>
 <ul>
-<li>The table below is fetched at 2022-04-07 05:59:33 Asia/Seoul.</li>
+<li>The table below is fetched at 2022-04-12 13:04:25 Asia/Seoul.</li>
 </ul>
+<table class="table kable_wrapper"><tbody><tr>
+<td>
 <table class="table">
 <thead><tr class="header">
 <th align="left">대분류</th>
@@ -1712,7 +1710,7 @@
 <tr class="even">
 <td align="left">부호, 외국어, 특수문자(S)</td>
 <td align="left">SS</td>
-<td align="left">인용 부호 및 괄호(’ ” ( ) [ ] &lt; &gt; { } ― ‘ ’ “ ” ≪ ≫ 등)</td>
+<td align="left">인용 부호 및 괄호(’ " ( ) [ ] &lt; &gt; { } ― ‘ ’ “ ” ≪ ≫ 등)</td>
 </tr>
 <tr class="odd">
 <td align="left">부호, 외국어, 특수문자(S)</td>
@@ -1771,6 +1769,8 @@
 </tr>
 </tbody>
 </table>
+</td>
+</tr></tbody></table>
 </div>
 <div class="section level2">
 <h2 id="special-thanks-to">Special Thanks to<a class="anchor" aria-label="anchor" href="#special-thanks-to"></a>
@@ -1785,9 +1785,13 @@
 </h3>
 <p><a href="https://github.com/jhk0530" class="external-link">jhk0530</a> with <a href="https://github.com/mrchypark/elbird/issues/6" class="external-link">suggestion</a>.</p>
 </div>
+<div class="section level3">
+<h3 id="cpp-backend">cpp backend<a class="anchor" aria-label="anchor" href="#cpp-backend"></a>
+</h3>
+<p><a href="https://github.com/kkweon" class="external-link">kkweon</a></p>
 </div>
 </div>
-
+</div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
