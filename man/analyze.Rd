@@ -2,7 +2,7 @@
 % Please edit documentation in R/analyze.R
 \name{analyze}
 \alias{analyze}
-\title{analyze}
+\title{Simple version of analyze function.}
 \usage{
 analyze(text, top_n = 3, match_option = Match$ALL, stopwords = FALSE)
 }
@@ -22,7 +22,7 @@ If not valid value, work same as FALSE.
 Check \code{\link[=analyze]{analyze()}} how to use stopwords param.}
 }
 \description{
-analyze
+Simple version of analyze function.
 }
 \examples{
 \dontrun{

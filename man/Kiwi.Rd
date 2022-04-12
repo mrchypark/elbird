@@ -30,7 +30,6 @@ kiwi class is provide method for korean mophological analyze result.
 \item \href{#method-new}{\code{Kiwi$new()}}
 \item \href{#method-add_user_words}{\code{Kiwi$add_user_words()}}
 \item \href{#method-add_pre_analyzed_words}{\code{Kiwi$add_pre_analyzed_words()}}
-\item \href{#method-add_alias_word}{\code{Kiwi$add_alias_word()}}
 \item \href{#method-add_rules}{\code{Kiwi$add_rules()}}
 \item \href{#method-load_user_dictionarys}{\code{Kiwi$load_user_dictionarys()}}
 \item \href{#method-extract_words}{\code{Kiwi$extract_words()}}
@@ -39,6 +38,7 @@ kiwi class is provide method for korean mophological analyze result.
 \item \href{#method-tokenize}{\code{Kiwi$tokenize()}}
 \item \href{#method-get_tidytext_func}{\code{Kiwi$get_tidytext_func()}}
 \item \href{#method-split_into_sents}{\code{Kiwi$split_into_sents()}}
+\item \href{#method-save_user_dictionary}{\code{Kiwi$save_user_dictionary()}}
 \item \href{#method-clone}{\code{Kiwi$clone()}}
 }
 }
@@ -95,7 +95,7 @@ Create a kiwi instance.
 \subsection{Method \code{add_user_words()}}{
 add user word with pos and score
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Kiwi$add_user_words(word, pos, score)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$add_user_words(word, tag, score, orig_word = "")}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -103,9 +103,11 @@ add user word with pos and score
 \describe{
 \item{\code{word}}{\code{char(required)}: target word to add.}
 
-\item{\code{pos}}{\code{Tags(required)}: pos information about word.}
+\item{\code{tag}}{\code{Tags(required)}: tag information about word.}
 
 \item{\code{score}}{\code{num(required)}: score information about word.}
+
+\item{\code{orig_word}}{\code{char(optional)}: origin word.}
 }
 \if{html}{\out{</div>}}
 }
@@ -132,41 +134,18 @@ TODO
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add_alias_word"></a>}}
-\if{latex}{\out{\hypertarget{method-add_alias_word}{}}}
-\subsection{Method \code{add_alias_word()}}{
-TODO
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Kiwi$add_alias_word(alias, pos, score, orig_word)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{alias}}{\code{char(required)}: target word to add.}
-
-\item{\code{pos}}{\code{Tags(required)}: pos information about word.}
-
-\item{\code{score}}{\code{num(required)}: score information about word.}
-
-\item{\code{orig_word}}{\code{char(required)}: origin word.}
-}
-\if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add_rules"></a>}}
 \if{latex}{\out{\hypertarget{method-add_rules}{}}}
 \subsection{Method \code{add_rules()}}{
 TODO
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Kiwi$add_rules(pos, pattern, replacement, score)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$add_rules(tag, pattern, replacement, score)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{pos}}{\code{Tags(required)}: target pos to add rules.}
+\item{\code{tag}}{\code{Tags(required)}: target tag to add rules.}
 
 \item{\code{pattern}}{\code{char(required)}: regular expression.}
 
@@ -248,7 +227,7 @@ Extract Noun word candidate from texts and add user words.
 \if{html}{\out{<a id="method-analyze"></a>}}
 \if{latex}{\out{\hypertarget{method-analyze}{}}}
 \subsection{Method \code{analyze()}}{
-Analyze text to token and pos results.
+Analyze text to token and tag results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Kiwi$analyze(text, top_n = 3, match_option = Match$ALL, stopwords = FALSE)}\if{html}{\out{</div>}}
 }
@@ -364,6 +343,23 @@ split_into_sents works split sentences to sentence by sentence.
 \item{\code{match_option}}{match_option \code{\link{Match}}: use Match. Default is Match$ALL}
 
 \item{\code{return_tokens}}{\code{bool(optional)}: add tokenized resault.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-save_user_dictionary"></a>}}
+\if{latex}{\out{\hypertarget{method-save_user_dictionary}{}}}
+\subsection{Method \code{save_user_dictionary()}}{
+
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$save_user_dictionary(user_dict_path)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{user_dict_path}}{\code{char(required)}: path to save dictionary file.}
 }
 \if{html}{\out{</div>}}
 }

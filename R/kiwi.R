@@ -54,10 +54,15 @@ Kiwi <- R6::R6Class(
     #' @description
     #'   add user word with pos and score
     #' @param word \code{char(required)}: target word to add.
-    #' @param pos \code{Tags(required)}: pos information about word.
+    #' @param tag \code{Tags(required)}: tag information about word.
     #' @param score \code{num(required)}: score information about word.
-    add_user_words = function(word, pos, score) {
-      kiwi_builder_add_word_(private$kiwi_builder, word, pos, score)
+    #' @param orig_word \code{char(optional)}: origin word.
+    add_user_words = function(word, tag, score, orig_word = "") {
+      if (orig_word == "") {
+        kiwi_builder_add_word_(private$kiwi_builder, word, tag, score)
+      } else {
+        kiwi_builder_add_alias_word_(private$kiwi_builder, word, tag, score, orig_word)
+      }
       private$builder_updated <- TRUE
     },
 
@@ -72,24 +77,13 @@ Kiwi <- R6::R6Class(
     },
 
     #' @description
-    #'   TODO
-    #' @param alias \code{char(required)}: target word to add.
-    #' @param pos \code{Tags(required)}: pos information about word.
-    #' @param score \code{num(required)}: score information about word.
-    #' @param orig_word \code{char(required)}: origin word.
-    add_alias_word = function(alias, pos, score, orig_word) {
-      kiwi_builder_add_alias_word_(private$kiwi_builder, alias, pos, score, orig_word)
-      private$builder_updated <- TRUE
-    },
-
-    #' @description
     #'  TODO
-    #' @param pos \code{Tags(required)}: target pos to add rules.
+    #' @param tag \code{Tags(required)}: target tag to add rules.
     #' @param pattern \code{char(required)}: regular expression.
     #' @param replacement \code{char(required)}: replace text.
     #' @param score \code{num(required)}: score information about rules.
-    add_rules = function(pos, pattern, replacement, score) {
-      kiwi_builder_add_rule_(private$kiwi_builder, pos, pattern, replacement, score)
+    add_rules = function(tag, pattern, replacement, score) {
+      kiwi_builder_add_rule_(private$kiwi_builder, tag, pattern, replacement, score)
       private$builder_updated <- TRUE
     },
 
@@ -146,7 +140,7 @@ Kiwi <- R6::R6Class(
     },
 
     #' @description
-    #'   Analyze text to token and pos results.
+    #'   Analyze text to token and tag results.
     #' @param text \code{char(required)}: target text.
     #' @param top_n \code{int(optional)}: number of result. Default is 3.
     #' @param match_option match_option [`Match`]: use Match. Default is Match$ALL
@@ -160,9 +154,7 @@ Kiwi <- R6::R6Class(
                        top_n = 3,
                        match_option = Match$ALL,
                        stopwords = FALSE) {
-      if (private$kiwi_not_ready())
-        private$kiwi_build()
-      if (private$builder_updated)
+      if (any(private$kiwi_not_ready(), private$builder_updated))
         private$kiwi_build()
 
       kiwi_analyze_wrap(private$kiwi, text, top_n, match_option, stopwords)
@@ -248,17 +240,19 @@ Kiwi <- R6::R6Class(
     split_into_sents = function(text,
                                 match_option = Match$ALL,
                                 return_tokens = FALSE) {
-      if (private$kiwi_not_ready())
-        private$kiwi_build()
-      if (private$builder_updated)
+      if (any(private$kiwi_not_ready(), private$builder_updated))
         private$kiwi_build()
 
       kiwi_split_into_sents_(private$kiwi, text, match_option, return_tokens)
-    }
+    },
 
-    # save_user_dictionarys = function(user_dict_path) {
-    #
-    # }
+    #' @description
+    #'
+    #'
+    #' @param user_dict_path \code{char(required)}: path to save dictionary file.
+    save_user_dictionary = function(user_dict_path) {
+
+    }
 
   ),
 
@@ -266,7 +260,25 @@ Kiwi <- R6::R6Class(
     kiwi = NULL,
     kiwi_builder = NULL,
     builder_updated = FALSE,
-    user_dic = NULL,
+
+    word_list = tibble::tibble(word = character(),
+                               tag = character(),
+                               score = double(),
+                               orig_word = character()),
+
+    pre_analyzed_list = tibble::tibble(
+                                      form = character(),
+                                      analyzed = tibble::tibble(
+                                                  morphs = character(),
+                                                  tag = character(),
+                                                  start = integer(),
+                                                  end = integer()
+                                                  ),
+                                      score = double()
+                                      ),
+
+    dict_list = tibble::tibble(dict_name = character(),
+                               info = character()),
 
     kiwi_not_ready = function() {
       is.null(private$kiwi)

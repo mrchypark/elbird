@@ -1,4 +1,4 @@
-#' analyze
+#' Simple version of analyze function.
 #'
 #' @param top_n  \code{integer}: Number of result. Default is 3.
 #' @inheritParams tokenize
