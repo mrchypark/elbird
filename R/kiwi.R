@@ -19,6 +19,7 @@ Kiwi <- R6::R6Class(
     #' @param ... ignored
     print = function(x, ...) {
       cat("<kiwi class> ", sep = "\n")
+      cat(paste0("  model: ",private$model_size), sep = "\n")
       invisible(self)
     },
 
@@ -32,7 +33,8 @@ Kiwi <- R6::R6Class(
                           model_size = "base",
                           integrate_allomorph = TRUE,
                           load_default_dict = TRUE) {
-      private$num_workers = num_workers
+      private$num_workers <-  num_workers
+      private$model_size <- model_size
       private$model_path <- kiwi_model_path_full(model_size)
       if (!kiwi_model_exists(model_size))
         get_kiwi_models(model_size)
@@ -174,7 +176,7 @@ Kiwi <- R6::R6Class(
         )
       )
       if (form == "tibble")
-        return(dplyr::bind_rows(raw, .id = "unique"))
+        return(dplyr::bind_rows(raw, .id = "sent"))
       if (form == "tidytext")
         return(purrr::map(raw, ~ paste0(.x$form, "/", .x$tag)))
     },
@@ -237,6 +239,7 @@ Kiwi <- R6::R6Class(
 
     num_workers = NULL,
     model_path = NULL,
+    model_size = NULL,
     build_options = NULL
   )
 )
