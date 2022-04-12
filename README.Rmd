@@ -126,9 +126,10 @@ httr::GET("https://github.com/bab2min/kiwipiepy/blob/master/README.md") %>%
 ## Special Thanks to
 
 ### kiwi package
-
 [bab2min](https://github.com/bab2min) with [kiwi package](https://github.com/bab2min/Kiwi) author.
 
 ### logo
-
 [jhk0530](https://github.com/jhk0530) with [suggestion](https://github.com/mrchypark/elbird/issues/6).
+
+### cpp backend
+[kkweon](https://github.com/kkweon)

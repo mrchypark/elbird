@@ -130,3 +130,6 @@ kiwi 패키지 제작자 이신 [bab2min](https://github.com/bab2min)님께 감�
 
 ### logo
 로고 제작에 [의견](https://github.com/mrchypark/elbird/issues/6)을 주신 [jhk0530](https://github.com/jhk0530)님께 감사드립니다.
+
+### cpp backend
+패키지 개발에 도움을 주신 [kkweon](https://github.com/kkweon)님께 감사드립니다.
