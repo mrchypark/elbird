@@ -19,7 +19,7 @@ Kiwi <- R6::R6Class(
     #' @param ... ignored
     print = function(x, ...) {
       cat("<kiwi class> ", sep = "\n")
-      invisible(x)
+      invisible(self)
     },
 
     #' @description

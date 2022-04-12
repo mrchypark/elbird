@@ -16,8 +16,9 @@ Stopwords <- R6::R6Class(
     #' @param x self
     #' @param ... ignored
     print = function(x, ...) {
-      cat("<stopwords dict> ", sep = "\n")
-      invisible(x)
+      cat("<stopwords dict>", sep = "\n")
+      cat(paste0("  word count: ", nrow(private$stopword_list)), sep = "\n")
+      invisible(self)
     },
 
     #' @description
@@ -41,7 +42,7 @@ Stopwords <- R6::R6Class(
     #'   sw$add("word", "NNG")
     #'   sw$add("word", Tags$nng)
     #'   }
-    add = function(form, tag = Tags$NNP) {
+    add = function(form, tag = Tags$nnp) {
       private$add_dict_el(tibble::tibble(form = form, tag = check_tag(tag)),
                        "addfunc",
                        paste0(form, "/" , tag))
@@ -77,7 +78,7 @@ Stopwords <- R6::R6Class(
     #'   save current stopwords list in text file.
     #' @param path \code{char(required)}: file path to save stopwords list.
     #' @importFrom vroom vroom_write
-    save_user_dict = function(path) {
+    save_dict = function(path) {
       vroom::vroom_write(
         x = private$stopword_list,
         file = path,
@@ -93,6 +94,9 @@ Stopwords <- R6::R6Class(
     #'         for [analyze()] / [tokenize()] function.
     get = function() {
       unique(private$stopword_list[c("form", "tag")])
+    },
+    history = function() {
+      private$dict_list
     }
   ),
 
