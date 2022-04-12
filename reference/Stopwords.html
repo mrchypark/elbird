@@ -28,7 +28,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">elbird</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3.9005</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3.9006</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,7 +89,7 @@
 <li><p><a href="#method-add"><code>Stopwords$add()</code></a></p></li>
 <li><p><a href="#method-add_from_dict"><code>Stopwords$add_from_dict()</code></a></p></li>
 <li><p><a href="#method-remove"><code>Stopwords$remove()</code></a></p></li>
-<li><p><a href="#method-save_user_dict"><code>Stopwords$save_user_dict()</code></a></p></li>
+<li><p><a href="#method-save_dict"><code>Stopwords$save_dict()</code></a></p></li>
 <li><p><a href="#method-get"><code>Stopwords$get()</code></a></p></li>
 <li><p><a href="#method-clone"><code>Stopwords$clone()</code></a></p></li>
 </ul></div><p></p><hr><a id="method-print"></a><div class="section">
@@ -133,7 +133,7 @@ Defualt is TRUE.</p></dd>
 <h3 id="method-add-">Method <code>add()</code><a class="anchor" aria-label="anchor" href="#method-add-"></a></h3>
 <p>add stopword one at a time.</p><div class="section">
 <h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">Stopwords</span><span class="op">$</span><span class="fu">add</span><span class="op">(</span><span class="va">form</span>, tag <span class="op">=</span> <span class="va">Tags</span><span class="op">$</span><span class="va">NNP</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">Stopwords</span><span class="op">$</span><span class="fu">add</span><span class="op">(</span><span class="va">form</span>, tag <span class="op">=</span> <span class="va">Tags</span><span class="op">$</span><span class="va">nnp</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -202,11 +202,11 @@ TAG required like "FORM/NNP".</p><div class="section">
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-save_user_dict"></a><div class="section">
-<h3 id="method-save-user-dict-">Method <code>save_user_dict()</code><a class="anchor" aria-label="anchor" href="#method-save-user-dict-"></a></h3>
+</div><p></p><hr><a id="method-save_dict"></a><div class="section">
+<h3 id="method-save-dict-">Method <code>save_dict()</code><a class="anchor" aria-label="anchor" href="#method-save-dict-"></a></h3>
 <p>save current stopwords list in text file.</p><div class="section">
 <h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">Stopwords</span><span class="op">$</span><span class="fu">save_user_dict</span><span class="op">(</span><span class="va">path</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">Stopwords</span><span class="op">$</span><span class="fu">save_dict</span><span class="op">(</span><span class="va">path</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
