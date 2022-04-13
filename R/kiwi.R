@@ -282,7 +282,7 @@ Kiwi <- R6::R6Class(
     # dict_list = tibble::tibble(dict_name = character(),
     #                            info = character()),
 
-    history =
+    history = list(),
 
     kiwi_not_ready = function() {
       is.null(private$kiwi)
