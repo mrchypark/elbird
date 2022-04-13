@@ -33,6 +33,7 @@ Kiwi <- R6::R6Class(
                           model_size = "base",
                           integrate_allomorph = TRUE,
                           load_default_dict = TRUE) {
+
       private$num_workers <-  num_workers
       private$model_size <- model_size
       private$model_path <- kiwi_model_path_full(model_size)
@@ -248,7 +249,6 @@ Kiwi <- R6::R6Class(
 
     #' @description
     #'
-    #'
     #' @param user_dict_path \code{char(required)}: path to save dictionary file.
     save_user_dictionary = function(user_dict_path) {
 
@@ -261,24 +261,28 @@ Kiwi <- R6::R6Class(
     kiwi_builder = NULL,
     builder_updated = FALSE,
 
-    word_list = tibble::tibble(word = character(),
-                               tag = character(),
-                               score = double(),
-                               orig_word = character()),
+    # # type is user and extracted
+    # word_list = tibble::tibble(type = character(),
+    #                            word = character(),
+    #                            tag = character(),
+    #                            score = double(),
+    #                            orig_word = character()),
+    #
+    # pre_analyzed_list = tibble::tibble(
+    #                                   form = character(),
+    #                                   analyzed = tibble::tibble(
+    #                                               morphs = character(),
+    #                                               tag = character(),
+    #                                               start = integer(),
+    #                                               end = integer()
+    #                                               ),
+    #                                   score = double()
+    #                                   ),
 
-    pre_analyzed_list = tibble::tibble(
-                                      form = character(),
-                                      analyzed = tibble::tibble(
-                                                  morphs = character(),
-                                                  tag = character(),
-                                                  start = integer(),
-                                                  end = integer()
-                                                  ),
-                                      score = double()
-                                      ),
+    # dict_list = tibble::tibble(dict_name = character(),
+    #                            info = character()),
 
-    dict_list = tibble::tibble(dict_name = character(),
-                               info = character()),
+    history =
 
     kiwi_not_ready = function() {
       is.null(private$kiwi)
