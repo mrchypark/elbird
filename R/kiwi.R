@@ -65,6 +65,10 @@ Kiwi <- R6::R6Class(
         kiwi_builder_add_alias_word_(private$kiwi_builder, word, tag, score, orig_word)
       }
       private$builder_updated <- TRUE
+      private$add_history(
+        "add_user_words",
+        list(word, tag, score, orig_word)
+      )
     },
 
     #' @description
@@ -75,6 +79,10 @@ Kiwi <- R6::R6Class(
     add_pre_analyzed_words = function(form, analyzed, score) {
       kiwi_builder_add_pre_analyzed_word_(private$kiwi_builder, form, analyzed, score)
       private$builder_updated <- TRUE
+      private$add_history(
+        "add_pre_analyzed_words",
+        list(from, analyzed, score)
+      )
     },
 
     #' @description
@@ -86,6 +94,10 @@ Kiwi <- R6::R6Class(
     add_rules = function(tag, pattern, replacement, score) {
       kiwi_builder_add_rule_(private$kiwi_builder, tag, pattern, replacement, score)
       private$builder_updated <- TRUE
+      private$add_history(
+        "add_rules",
+        list(tag, pattern, replacement, score)
+      )
     },
 
     #' @description
@@ -96,6 +108,10 @@ Kiwi <- R6::R6Class(
       # TODO add user dict list for save
       kiwi_builder_load_dict_(private$kiwi_builder, user_dict_path)
       private$builder_updated <- TRUE
+      private$add_history(
+        "load_user_dictionarys",
+        list(user_dict_path)
+      )
     },
 
     #' @description
@@ -110,34 +126,20 @@ Kiwi <- R6::R6Class(
                               max_word_len,
                               min_score,
                               pos_threshold) {
-      kiwi_builder_extract_words_(private$kiwi_builder,
+      res <- kiwi_builder_extract_words_wrap(private$kiwi_builder,
                                   input,
                                   min_cnt,
                                   max_word_len,
                                   min_score,
                                   pos_threshold)
       private$builder_updated <- TRUE
+      private$add_history("extract_words",
+                  list(input, min_cnt, max_word_len, min_score, pos_threshold))
+      return(res)
     },
 
-    #' @description
-    #'   Extract Noun word candidate from texts and add user words.
-    #' @param input \code{char(required)}: target text data
-    #' @param min_cnt \code{int(required)}: minimum count of word in text.
-    #' @param max_word_len \code{int(required)}: max word length.
-    #' @param min_score \code{num(required)}: minimum score.
-    #' @param pos_threshold \code{num(required)}: pos threashold.
-    extract_add_words =  function(input,
-                                  min_cnt,
-                                  max_word_len,
-                                  min_score,
-                                  pos_threshold) {
-      kiwi_builder_extract_add_words_(private$kiwi_builder,
-                                      input,
-                                      min_cnt,
-                                      max_word_len,
-                                      min_score,
-                                      pos_threshold)
-      private$builder_updated <- TRUE
+    histories = function() {
+      private$history
     },
 
     #' @description
@@ -206,6 +208,22 @@ Kiwi <- R6::R6Class(
     },
 
     #' @description
+    #' Some text may not split sentence by sentence.
+    #' split_into_sents works split sentences to sentence by sentence.
+    #'
+    #' @param text \code{char(required)}: target text.
+    #' @param match_option match_option [`Match`]: use Match. Default is Match$ALL
+    #' @param return_tokens \code{bool(optional)}: add tokenized resault.
+    split_into_sents = function(text,
+                                match_option = Match$ALL,
+                                return_tokens = FALSE) {
+      if (any(private$kiwi_not_ready(), private$builder_updated))
+        private$kiwi_build()
+
+      kiwi_split_into_sents_(private$kiwi, text, match_option, return_tokens)
+    },
+
+    #' @description
     #'   set function to tidytext unnest_tokens.
     #' @param match_option match_option [`Match`]: use Match. Default is Match$ALL
     #' @param stopwords stopwords option. Default is TRUE which is
@@ -229,22 +247,6 @@ Kiwi <- R6::R6Class(
                       stopwords,
                       form = "tidytext")
       }
-    },
-
-    #' @description
-    #' Some text may not split sentence by sentence.
-    #' split_into_sents works split sentences to sentence by sentence.
-    #'
-    #' @param text \code{char(required)}: target text.
-    #' @param match_option match_option [`Match`]: use Match. Default is Match$ALL
-    #' @param return_tokens \code{bool(optional)}: add tokenized resault.
-    split_into_sents = function(text,
-                                match_option = Match$ALL,
-                                return_tokens = FALSE) {
-      if (any(private$kiwi_not_ready(), private$builder_updated))
-        private$kiwi_build()
-
-      kiwi_split_into_sents_(private$kiwi, text, match_option, return_tokens)
     },
 
     #' @description
@@ -282,7 +284,15 @@ Kiwi <- R6::R6Class(
     # dict_list = tibble::tibble(dict_name = character(),
     #                            info = character()),
 
-    history = list(),
+    history = tibble::tibble(method = character(),
+                             info = list()),
+
+    add_history = function(method_, info_) {
+      private$history <- dplyr::bind_rows(
+        private$history,
+        tibble::tibble(method = method_, info = list(info_))
+      )
+    },
 
     kiwi_not_ready = function() {
       is.null(private$kiwi)

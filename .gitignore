@@ -12,3 +12,5 @@ kiwilibtmp/*
 kiwi-model.tgz
 model*
 windows/*
+docs/*
+pkgdown/*
