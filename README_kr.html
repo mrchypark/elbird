@@ -39,6 +39,12 @@
       <ul class="navbar-nav me-auto"><li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown--">한글문서모음</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown--">
+    <a class="dropdown-item" href="README_kr.html">readme</a>
+  </div>
+</li>
 <li class="nav-item">
   <a class="nav-link" href="news/index.html">Changelog</a>
 </li>
@@ -76,7 +82,7 @@
 
 <!-- badges: start -->
 <p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a> <a href="https://github.com/mrchypark/elbird/actions" class="external-link"><img src="https://github.com/mrchypark/elbird/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a> <a href="https://CRAN.R-project.org/package=elbird" class="external-link"><img src="https://www.r-pkg.org/badges/version/elbird" alt="CRAN status"></a> <a href="https://mrchypark.r-universe.dev/" class="external-link"><img src="https://mrchypark.r-universe.dev/badges/:name" alt="runiverse-name"></a> <a href="https://mrchypark.r-universe.dev/ui#packages" class="external-link"><img src="https://mrchypark.r-universe.dev/badges/elbird" alt="runiverse-package"></a> <a href="https://cran.r-project.org/package=elbird" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/elbird" alt="metacran downloads"></a> <a href="https://app.codecov.io/gh/mrchypark/elbird?branch=main" class="external-link"><img src="https://codecov.io/gh/mrchypark/elbird/branch/main/graph/badge.svg" alt="Codecov test coverage"></a> <!-- badges: end --></p>
-<p><code>elbird</code> 패키지는 <code>cpp</code> 기반의 <a href="https://github.com/bab2min/Kiwi" class="external-link">Kiwi</a> 를 wrapping한 형태소 분석기 패키지입니다. 다른 분석기에 비해 빠른 성능과 쉬운 사용자 사전 추가, 미등록 명사 추출(아직 elbird에는 미구현) 등 편의 기능이 있습니다.</p>
+<p><code>elbird</code> 패키지는 <code>cpp</code> 기반의 <a href="https://github.com/bab2min/Kiwi" class="external-link">Kiwi</a> 를 wrapping한 형태소 분석기 패키지입니다. 다른 분석기에 비해 빠른 성능과 쉬운 사용자 사전 추가, 미등록 명사 추출 등의 편의 기능이 있습니다.</p>
 <div class="section level2">
 <h2 id="설치">설치<a class="anchor" aria-label="anchor" href="#%EC%84%A4%EC%B9%98"></a></h2>
 <p><code>elbird</code>는 아래 명령어로 설치할 수 있습니다.</p>
@@ -223,30 +229,23 @@
 <span class="co">#&gt; [[1]]$Token[[9]]$len</span>
 <span class="co">#&gt; [1] 3</span>
 <span class="fu"><a href="reference/tokenize.html">tokenize_tbl</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 15 × 5</span>
-<span class="co">#&gt;    unique form       tag   start   len</span>
-<span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
-<span class="co">#&gt;  1 1      안녕하세요 NNP       1     5</span>
-<span class="co">#&gt;  2 1      kiwi       SL        7     4</span>
-<span class="co">#&gt;  3 1      형태소     NNG      12     3</span>
-<span class="co">#&gt;  4 1      분석기     NNG      16     3</span>
-<span class="co">#&gt;  5 1      의         JKG      19     1</span>
-<span class="co">#&gt;  6 1      R          SL       21     1</span>
-<span class="co">#&gt;  7 1      wrapper    SL       23     7</span>
-<span class="co">#&gt;  8 1      이         VCP      30     1</span>
-<span class="co">#&gt;  9 1      ᆫ          ETM      30     1</span>
-<span class="co">#&gt; 10 1      elbird     SL       32     6</span>
-<span class="co">#&gt; 11 1      를         JKO      38     1</span>
-<span class="co">#&gt; 12 1      소개       NNG      40     2</span>
-<span class="co">#&gt; 13 1      하         XSV      42     1</span>
-<span class="co">#&gt; 14 1      ᆸ니다      EF       42     3</span>
-<span class="co">#&gt; 15 1      .          SF       45     1</span>
+<span class="co">#&gt; # A tibble: 9 × 5</span>
+<span class="co">#&gt;   sent  form       tag   start   len</span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
+<span class="co">#&gt; 1 1     안녕하세요 NNP       1     5</span>
+<span class="co">#&gt; 2 1     kiwi       SL        7     4</span>
+<span class="co">#&gt; 3 1     형태소     NNG      12     3</span>
+<span class="co">#&gt; 4 1     분석기     NNG      16     3</span>
+<span class="co">#&gt; 5 1     R          SL       21     1</span>
+<span class="co">#&gt; 6 1     wrapper    SL       23     7</span>
+<span class="co">#&gt; 7 1     elbird     SL       32     6</span>
+<span class="co">#&gt; 8 1     소개       NNG      40     2</span>
+<span class="co">#&gt; 9 1     ᆸ니다      EF       42     3</span>
 <span class="fu"><a href="reference/tokenize.html">tokenize_tidy</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt;  [1] "안녕하세요/NNP" "kiwi/SL"        "형태소/NNG"     "분석기/NNG"    </span>
-<span class="co">#&gt;  [5] "의/JKG"         "R/SL"           "wrapper/SL"     "이/VCP"        </span>
-<span class="co">#&gt;  [9] "ᆫ/ETM"           "elbird/SL"      "를/JKO"         "소개/NNG"      </span>
-<span class="co">#&gt; [13] "하/XSV"         "ᆸ니다/EF"        "./SF"</span></code></pre></div>
+<span class="co">#&gt; [1] "안녕하세요/NNP" "kiwi/SL"        "형태소/NNG"     "분석기/NNG"    </span>
+<span class="co">#&gt; [5] "R/SL"           "wrapper/SL"     "elbird/SL"      "소개/NNG"      </span>
+<span class="co">#&gt; [9] "ᆸ니다/EF"</span></code></pre></div>
 <p>여러 문장의 경우 <code>vector</code>나 <code>list</code>로 입력받아서 <code>list</code>로 출력합니다.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/tokenize.html">tokenize</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
@@ -381,29 +380,24 @@
 <span class="co">#&gt; [[2]]$Token[[5]]$len</span>
 <span class="co">#&gt; [1] 3</span>
 <span class="fu"><a href="reference/tokenize.html">tokenize_tbl</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 22 × 5</span>
-<span class="co">#&gt;    unique form     tag   start   len</span>
-<span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
-<span class="co">#&gt;  1 1      새롭     VA        1     2</span>
-<span class="co">#&gt;  2 1      게       EC        3     1</span>
-<span class="co">#&gt;  3 1      작성     NNG       5     2</span>
-<span class="co">#&gt;  4 1      되       XSV       7     1</span>
-<span class="co">#&gt;  5 1      ᆫ        ETM       7     1</span>
-<span class="co">#&gt;  6 1      패키지   NNG       9     3</span>
-<span class="co">#&gt;  7 1      이       VCP      13     1</span>
-<span class="co">#&gt;  8 1      ᆸ니다    EF       13     3</span>
-<span class="co">#&gt;  9 1      .        SF       16     1</span>
-<span class="co">#&gt; 10 2      tidytext SL        1     8</span>
-<span class="co">#&gt; # … with 12 more rows</span>
+<span class="co">#&gt; # A tibble: 9 × 5</span>
+<span class="co">#&gt;   sent  form     tag   start   len</span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
+<span class="co">#&gt; 1 1     새롭     VA        1     2</span>
+<span class="co">#&gt; 2 1     작성     NNG       5     2</span>
+<span class="co">#&gt; 3 1     패키지   NNG       9     3</span>
+<span class="co">#&gt; 4 1     ᆸ니다    EF       13     3</span>
+<span class="co">#&gt; 5 2     tidytext SL        1     8</span>
+<span class="co">#&gt; 6 2     호환     NNG      12     2</span>
+<span class="co">#&gt; 7 2     염두     NNG      16     2</span>
+<span class="co">#&gt; 8 2     작성     NNG      21     2</span>
+<span class="co">#&gt; 9 2     습니다   EF       25     3</span>
 <span class="fu"><a href="reference/tokenize.html">tokenize_tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; [1] "새롭/VA"    "게/EC"      "작성/NNG"   "되/XSV"     "ᆫ/ETM"      </span>
-<span class="co">#&gt; [6] "패키지/NNG" "이/VCP"     "ᆸ니다/EF"    "./SF"      </span>
+<span class="co">#&gt; [1] "새롭/VA"    "작성/NNG"   "패키지/NNG" "ᆸ니다/EF"   </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt;  [1] "tidytext/SL" "와/JKB"      "의/JKG"      "호환/NNG"    "을/JKO"     </span>
-<span class="co">#&gt;  [6] "염두/NNG"    "하/XSV"      "고/EC"       "작성/NNG"    "하/XSV"     </span>
-<span class="co">#&gt; [11] "었/EP"       "습니다/EF"   "./SF"</span></code></pre></div>
+<span class="co">#&gt; [1] "tidytext/SL" "호환/NNG"    "염두/NNG"    "작성/NNG"    "습니다/EF"</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="with-tidytext">With tidytext<a class="anchor" aria-label="anchor" href="#with-tidytext"></a></h3>
@@ -444,20 +438,20 @@
     output <span class="op">=</span> <span class="va">word</span>,
     token <span class="op">=</span> <span class="va">tokenize_tidy</span>
     <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 4,537 × 2</span>
+<span class="co">#&gt; # A tibble: 2,119 × 2</span>
 <span class="co">#&gt;    paragraph word     </span>
 <span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;    </span>
 <span class="co">#&gt;  1         1 존경/nng </span>
-<span class="co">#&gt;  2         1 하/xsv   </span>
-<span class="co">#&gt;  3         1 는/etm   </span>
-<span class="co">#&gt;  4         1 국민/nng </span>
-<span class="co">#&gt;  5         1 여러분/np</span>
-<span class="co">#&gt;  6         1 !/sf     </span>
-<span class="co">#&gt;  7         2 700/sn   </span>
-<span class="co">#&gt;  8         2 만/nr    </span>
-<span class="co">#&gt;  9         2 해외/nng </span>
-<span class="co">#&gt; 10         2 동포/nng </span>
-<span class="co">#&gt; # … with 4,527 more rows</span></code></pre></div>
+<span class="co">#&gt;  2         1 국민/nng </span>
+<span class="co">#&gt;  3         1 여러분/np</span>
+<span class="co">#&gt;  4         2 700/sn   </span>
+<span class="co">#&gt;  5         2 해외/nng </span>
+<span class="co">#&gt;  6         2 동포/nng </span>
+<span class="co">#&gt;  7         2 여러분/np</span>
+<span class="co">#&gt;  8         3 자리/nng </span>
+<span class="co">#&gt;  9         3 참석/nng </span>
+<span class="co">#&gt; 10         3 시/ep    </span>
+<span class="co">#&gt; # … with 2,109 more rows</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="analyze-함수">analyze 함수<a class="anchor" aria-label="anchor" href="#analyze-%ED%95%A8%EC%88%98"></a></h3>
@@ -1419,9 +1413,8 @@
 <div class="section level2">
 <h2 id="형태소-태그">형태소 태그<a class="anchor" aria-label="anchor" href="#%ED%98%95%ED%83%9C%EC%86%8C-%ED%83%9C%EA%B7%B8"></a></h2>
 <p><a href="https://github.com/bab2min/kiwipiepy" class="external-link">kiwipiepy</a>패키지에서 사용하는 <a href="https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8" class="external-link">형태소 태그</a>는 아래와 같습니다.</p>
-<ul><li>The table below is fetched at 2022-04-12 13:03:47 Asia/Seoul.</li>
-</ul><table class="table kable_wrapper"><tbody><tr><td>
-<table class="table"><thead><tr class="header"><th align="left">대분류</th>
+<ul><li>The table below is fetched at 2022-04-13 14:49:17 Asia/Seoul.</li>
+</ul><table class="table"><thead><tr class="header"><th align="left">대분류</th>
 <th align="left">태그</th>
 <th align="left">설명</th>
 </tr></thead><tbody><tr class="odd"><td align="left">체언(N)</td>
@@ -1531,7 +1524,7 @@
 <td align="left">구분 부호(, / : ;)</td>
 </tr><tr class="even"><td align="left">부호, 외국어, 특수문자(S)</td>
 <td align="left">SS</td>
-<td align="left">인용 부호 및 괄호(’ " ( ) [ ] &lt; &gt; { } ― ‘ ’ “ ” ≪ ≫ 등)</td>
+<td align="left">인용 부호 및 괄호(’ ” ( ) [ ] &lt; &gt; { } ― ‘ ’ “ ” ≪ ≫ 등)</td>
 </tr><tr class="odd"><td align="left">부호, 외국어, 특수문자(S)</td>
 <td align="left">SE</td>
 <td align="left">줄임표(…)</td>
@@ -1565,7 +1558,6 @@
 </tr><tr class="odd"><td align="left">웹(W)</td>
 <td align="left">W_MENTION</td>
 <td align="left">멘션(@abcd)*</td>
-</tr></tbody></table></td>
 </tr></tbody></table></div>
 <div class="section level2">
 <h2 id="특별히-감사">특별히 감사<a class="anchor" aria-label="anchor" href="#%ED%8A%B9%EB%B3%84%ED%9E%88-%EA%B0%90%EC%82%AC"></a></h2>
