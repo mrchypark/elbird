@@ -15,3 +15,6 @@ navbar:
       menu:
       - text: readme
         href: materials/README_kr.html
+      - text: intro-stopwords
+        href: materials/stopwords.html
+
