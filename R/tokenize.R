@@ -31,6 +31,10 @@ tokenize <- function(text,
 
 #' @rdname tokenize
 #' @export
+tokenize_tbl <- tokenize
+
+#' @rdname tokenize
+#' @export
 #' @importFrom purrr map
 tokenize_tidytext <- function(text,
                               match_option = Match$ALL,
