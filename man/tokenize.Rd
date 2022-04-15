@@ -2,22 +2,13 @@
 % Please edit documentation in R/tokenize.R
 \name{tokenize}
 \alias{tokenize}
-\alias{tokenize_tibble}
 \alias{tokenize_tidytext}
-\alias{tokenize_tbl}
-\alias{tokenize_tt}
 \alias{tokenize_tidy}
 \title{Simple version of tokenizer function.}
 \usage{
 tokenize(text, match_option = Match$ALL, stopwords = TRUE)
 
-tokenize_tibble(text, match_option = Match$ALL, stopwords = TRUE)
-
 tokenize_tidytext(text, match_option = Match$ALL, stopwords = TRUE)
-
-tokenize_tbl(text, match_option = Match$ALL, stopwords = TRUE)
-
-tokenize_tt(text, match_option = Match$ALL, stopwords = TRUE)
 
 tokenize_tidy(text, match_option = Match$ALL, stopwords = TRUE)
 }

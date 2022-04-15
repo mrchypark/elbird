@@ -20,28 +20,10 @@
 #' @name tokenize
 NULL
 
-#' @export
-#' @rdname tokenize
-tokenize <-
-  function(text,
-           match_option = Match$ALL,
-           stopwords = TRUE) {
-    return(purrr::map(
-      text,
-      ~ analyze(
-        text = .x,
-        top_n = 1,
-        match_option = match_option,
-        stopwords = stopwords
-      )[[1]][1]
-    ))
-  }
-
-
 #' @rdname tokenize
 #' @export
 #' @importFrom dplyr bind_rows
-tokenize_tibble <- function(text,
+tokenize <- function(text,
                             match_option = Match$ALL,
                             stopwords = TRUE) {
   dplyr::bind_rows(tokenize_raw(text, match_option, stopwords), .id = "sent")
@@ -57,24 +39,22 @@ tokenize_tidytext <- function(text,
              ~ paste0(.x$form, "/", .x$tag))
 }
 
-
 #' @rdname tokenize
 #' @export
-tokenize_tbl <- tokenize_tibble
-
-#' @rdname tokenize
-#' @export
-tokenize_tt <- tokenize_tidytext
-
-#' @rdname tokenize
-#' @export
-tokenize_tidy <- tokenize_tidytext
+tokenize_tidy <- tokenize_tt <- tokenize_tidytext
 
 #' @importFrom purrr map_chr map_int
 tokenize_raw <- function(text, match_option, stopwords) {
-  res <- tokenize(text, match_option, stopwords)
   purrr::map(
-    res,
+    purrr::map(
+      text,
+      ~ analyze(
+        text = .x,
+        top_n = 1,
+        match_option = match_option,
+        stopwords = stopwords
+      )[[1]][1]
+    ),
     ~ tibble::tibble(
       form = purrr::map_chr(.x$Token, ~ .x$form),
       tag = purrr::map_chr(.x$Token, ~ .x$tag),

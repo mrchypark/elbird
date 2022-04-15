@@ -138,10 +138,6 @@ Kiwi <- R6::R6Class(
       return(res)
     },
 
-    histories = function() {
-      private$history
-    },
-
     #' @description
     #'   Analyze text to token and tag results.
     #' @param text \code{char(required)}: target text.
@@ -180,7 +176,7 @@ Kiwi <- R6::R6Class(
                         match_option = Match$ALL,
                         stopwords = FALSE,
                         form = "tibble") {
-      form <- match.arg(form, c("list", "tibble", "tidytext"))
+      form <- match.arg(form, c("tibble", "tidytext"))
       res <- purrr::map(
         text,
         ~ self$analyze(
@@ -190,8 +186,6 @@ Kiwi <- R6::R6Class(
           stopwords = stopwords
         )[[1]][1]
       )
-      if (form == "list")
-        return(res)
       raw <- purrr::map(
         res,
         ~ tibble::tibble(
