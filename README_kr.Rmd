@@ -47,12 +47,11 @@ install.packages("elbird", repos = 'https://mrchypark.r-universe.dev')
 
 ### tokenize 함수
 
-기본적으로 list형태의 결과를 출력하는 `tokenize` 함수와 tibble 자료형으로 정리한 `tokenize_tbl`, tidytext와의 문법호환을 지원하는 `tokenize_tidy` 함수를 제공합니다.
+기본적으로 tibble 자료형으로 출력하는 `tokenize`, tidytext와의 호환을 지원하는 `tokenize_tidy` 함수를 제공합니다.
 
 ```{r}
 library(elbird)
 tokenize("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
-tokenize_tbl("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
 tokenize_tidy("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
 ```
 
@@ -60,7 +59,6 @@ tokenize_tidy("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird�
 
 ```{r}
 tokenize(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
-tokenize_tbl(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
 tokenize_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
 ```
 
@@ -123,7 +121,7 @@ httr::GET("https://github.com/bab2min/kiwipiepy/blob/master/README.md") %>%
   knitr::kable(format = "markdown")
 ```
 
-## 특별히 감사
+## 특별히 감사합니다
 
 ### kiwi 패키지
 kiwi 패키지 제작자 이신 [bab2min](https://github.com/bab2min)님께 감사드립니다.

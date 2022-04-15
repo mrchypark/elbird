@@ -1,9 +1,11 @@
 # elbird 0.2.0
 
+* Change `_tbl` function to base.
+  `tokenize()` return `tibble` base and remove `tokenize_tbl()`.
 * Fix Kiwi when builder updated, kiwi rebuild.
 * Change git clone to curl release source download for mac.
 * Change tokenize function stopwords params default to TRUE.
-* Update Model version to 0.11.1
+* Update Model version to 0.11.2
 
 # elbird 0.1.3
 

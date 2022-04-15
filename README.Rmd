@@ -26,7 +26,7 @@ options(crayon.enabled = NULL)
 [![Codecov test coverage](https://codecov.io/gh/mrchypark/elbird/branch/main/graph/badge.svg)](https://app.codecov.io/gh/mrchypark/elbird?branch=main)
 <!-- badges: end -->
 
-* 한국어 버전은 README_kr.md 파일을 확인하세요.
+* [Korean version README](https://mrchypark.github.io/elbird/README_kr.html)
 
 The `elbird` package is a morpheme analysis package packed with [Kiwi](https://github.com/bab2min/Kiwi).
 It is based on cpp package `Kiwi` and that has convenient functions such as faster performance compared to other tokenizers, easy user dictionary addition, unregistered noun extraction, etc.
@@ -54,7 +54,6 @@ Basically, the `tokenize` function return list form and the `tokenize_tbl` organ
 ```{r}
 library(elbird)
 tokenize("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
-tokenize_tbl("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
 tokenize_tidy("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
 ```
 
@@ -62,7 +61,6 @@ Multiple sentences are input as `vector` or `list` and output as `list`.
 
 ```{r}
 tokenize(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
-tokenize_tbl(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
 tokenize_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
 ```
 
@@ -133,4 +131,4 @@ httr::GET("https://github.com/bab2min/kiwipiepy/blob/master/README.md") %>%
 [jhk0530](https://github.com/jhk0530) with [suggestion](https://github.com/mrchypark/elbird/issues/6).
 
 ### cpp backend
-[kkweon](https://github.com/kkweon)
+[kkweon](https://github.com/kkweon) with [kiwigo package](https://github.com/codingpot/kiwigo)

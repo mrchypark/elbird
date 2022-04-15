@@ -18,7 +18,8 @@ downloads](https://cranlogs.r-pkg.org/badges/elbird)](https://cran.r-project.org
 coverage](https://codecov.io/gh/mrchypark/elbird/branch/main/graph/badge.svg)](https://app.codecov.io/gh/mrchypark/elbird?branch=main)
 <!-- badges: end -->
 
--   한국어 버전은 README_kr.md 파일을 확인하세요.
+-   [Korean version
+    README](https://mrchypark.github.io/elbird/README_kr.html)
 
 The `elbird` package is a morpheme analysis package packed with
 [Kiwi](https://github.com/bab2min/Kiwi). It is based on cpp package
@@ -51,133 +52,6 @@ with tidytext are supported provides an `tokenize_tidy` function.
 ``` r
 library(elbird)
 tokenize("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
-#> [[1]]
-#> [[1]]$Token
-#> [[1]]$Token[[1]]
-#> [[1]]$Token[[1]]$form
-#> [1] "안녕하세요"
-#> 
-#> [[1]]$Token[[1]]$tag
-#> [1] "NNP"
-#> 
-#> [[1]]$Token[[1]]$start
-#> [1] 1
-#> 
-#> [[1]]$Token[[1]]$len
-#> [1] 5
-#> 
-#> 
-#> [[1]]$Token[[2]]
-#> [[1]]$Token[[2]]$form
-#> [1] "kiwi"
-#> 
-#> [[1]]$Token[[2]]$tag
-#> [1] "SL"
-#> 
-#> [[1]]$Token[[2]]$start
-#> [1] 7
-#> 
-#> [[1]]$Token[[2]]$len
-#> [1] 4
-#> 
-#> 
-#> [[1]]$Token[[3]]
-#> [[1]]$Token[[3]]$form
-#> [1] "형태소"
-#> 
-#> [[1]]$Token[[3]]$tag
-#> [1] "NNG"
-#> 
-#> [[1]]$Token[[3]]$start
-#> [1] 12
-#> 
-#> [[1]]$Token[[3]]$len
-#> [1] 3
-#> 
-#> 
-#> [[1]]$Token[[4]]
-#> [[1]]$Token[[4]]$form
-#> [1] "분석기"
-#> 
-#> [[1]]$Token[[4]]$tag
-#> [1] "NNG"
-#> 
-#> [[1]]$Token[[4]]$start
-#> [1] 16
-#> 
-#> [[1]]$Token[[4]]$len
-#> [1] 3
-#> 
-#> 
-#> [[1]]$Token[[5]]
-#> [[1]]$Token[[5]]$form
-#> [1] "R"
-#> 
-#> [[1]]$Token[[5]]$tag
-#> [1] "SL"
-#> 
-#> [[1]]$Token[[5]]$start
-#> [1] 21
-#> 
-#> [[1]]$Token[[5]]$len
-#> [1] 1
-#> 
-#> 
-#> [[1]]$Token[[6]]
-#> [[1]]$Token[[6]]$form
-#> [1] "wrapper"
-#> 
-#> [[1]]$Token[[6]]$tag
-#> [1] "SL"
-#> 
-#> [[1]]$Token[[6]]$start
-#> [1] 23
-#> 
-#> [[1]]$Token[[6]]$len
-#> [1] 7
-#> 
-#> 
-#> [[1]]$Token[[7]]
-#> [[1]]$Token[[7]]$form
-#> [1] "elbird"
-#> 
-#> [[1]]$Token[[7]]$tag
-#> [1] "SL"
-#> 
-#> [[1]]$Token[[7]]$start
-#> [1] 32
-#> 
-#> [[1]]$Token[[7]]$len
-#> [1] 6
-#> 
-#> 
-#> [[1]]$Token[[8]]
-#> [[1]]$Token[[8]]$form
-#> [1] "소개"
-#> 
-#> [[1]]$Token[[8]]$tag
-#> [1] "NNG"
-#> 
-#> [[1]]$Token[[8]]$start
-#> [1] 40
-#> 
-#> [[1]]$Token[[8]]$len
-#> [1] 2
-#> 
-#> 
-#> [[1]]$Token[[9]]
-#> [[1]]$Token[[9]]$form
-#> [1] "ᆸ니다"
-#> 
-#> [[1]]$Token[[9]]$tag
-#> [1] "EF"
-#> 
-#> [[1]]$Token[[9]]$start
-#> [1] 42
-#> 
-#> [[1]]$Token[[9]]$len
-#> [1] 3
-tokenize_tbl("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다.")
 #> # A tibble: 9 × 5
 #>   sent  form       tag   start   len
 #>   <chr> <chr>      <chr> <int> <int>
@@ -201,137 +75,6 @@ Multiple sentences are input as `vector` or `list` and output as `list`.
 
 ``` r
 tokenize(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
-#> [[1]]
-#> [[1]]$Token
-#> [[1]]$Token[[1]]
-#> [[1]]$Token[[1]]$form
-#> [1] "새롭"
-#> 
-#> [[1]]$Token[[1]]$tag
-#> [1] "VA"
-#> 
-#> [[1]]$Token[[1]]$start
-#> [1] 1
-#> 
-#> [[1]]$Token[[1]]$len
-#> [1] 2
-#> 
-#> 
-#> [[1]]$Token[[2]]
-#> [[1]]$Token[[2]]$form
-#> [1] "작성"
-#> 
-#> [[1]]$Token[[2]]$tag
-#> [1] "NNG"
-#> 
-#> [[1]]$Token[[2]]$start
-#> [1] 5
-#> 
-#> [[1]]$Token[[2]]$len
-#> [1] 2
-#> 
-#> 
-#> [[1]]$Token[[3]]
-#> [[1]]$Token[[3]]$form
-#> [1] "패키지"
-#> 
-#> [[1]]$Token[[3]]$tag
-#> [1] "NNG"
-#> 
-#> [[1]]$Token[[3]]$start
-#> [1] 9
-#> 
-#> [[1]]$Token[[3]]$len
-#> [1] 3
-#> 
-#> 
-#> [[1]]$Token[[4]]
-#> [[1]]$Token[[4]]$form
-#> [1] "ᆸ니다"
-#> 
-#> [[1]]$Token[[4]]$tag
-#> [1] "EF"
-#> 
-#> [[1]]$Token[[4]]$start
-#> [1] 13
-#> 
-#> [[1]]$Token[[4]]$len
-#> [1] 3
-#> 
-#> 
-#> 
-#> 
-#> [[2]]
-#> [[2]]$Token
-#> [[2]]$Token[[1]]
-#> [[2]]$Token[[1]]$form
-#> [1] "tidytext"
-#> 
-#> [[2]]$Token[[1]]$tag
-#> [1] "SL"
-#> 
-#> [[2]]$Token[[1]]$start
-#> [1] 1
-#> 
-#> [[2]]$Token[[1]]$len
-#> [1] 8
-#> 
-#> 
-#> [[2]]$Token[[2]]
-#> [[2]]$Token[[2]]$form
-#> [1] "호환"
-#> 
-#> [[2]]$Token[[2]]$tag
-#> [1] "NNG"
-#> 
-#> [[2]]$Token[[2]]$start
-#> [1] 12
-#> 
-#> [[2]]$Token[[2]]$len
-#> [1] 2
-#> 
-#> 
-#> [[2]]$Token[[3]]
-#> [[2]]$Token[[3]]$form
-#> [1] "염두"
-#> 
-#> [[2]]$Token[[3]]$tag
-#> [1] "NNG"
-#> 
-#> [[2]]$Token[[3]]$start
-#> [1] 16
-#> 
-#> [[2]]$Token[[3]]$len
-#> [1] 2
-#> 
-#> 
-#> [[2]]$Token[[4]]
-#> [[2]]$Token[[4]]$form
-#> [1] "작성"
-#> 
-#> [[2]]$Token[[4]]$tag
-#> [1] "NNG"
-#> 
-#> [[2]]$Token[[4]]$start
-#> [1] 21
-#> 
-#> [[2]]$Token[[4]]$len
-#> [1] 2
-#> 
-#> 
-#> [[2]]$Token[[5]]
-#> [[2]]$Token[[5]]$form
-#> [1] "습니다"
-#> 
-#> [[2]]$Token[[5]]$tag
-#> [1] "EF"
-#> 
-#> [[2]]$Token[[5]]$start
-#> [1] 25
-#> 
-#> [[2]]$Token[[5]]$len
-#> [1] 3
-tokenize_tbl(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호환을 염두하고 작성하였습니다."))
 #> # A tibble: 9 × 5
 #>   sent  form     tag   start   len
 #>   <chr> <chr>    <chr> <int> <int>
@@ -1435,57 +1178,67 @@ analyze(c("안녕하세요. kiwi 형태소 분석기의 R wrapper인 elbird를 �
 list](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)
 that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
--   The table below is fetched at 2022-04-13 13:43:27 Asia/Seoul.
+-   The table below is fetched at 2022-04-15 14:21:39 Asia/Seoul.
 
-| 대분류                    | 태그      | 설명                                                        |
-|:--------------------------|:----------|:------------------------------------------------------------|
-| 체언(N)                   | NNG       | 일반 명사                                                   |
-| 체언(N)                   | NNP       | 고유 명사                                                   |
-| 체언(N)                   | NNB       | 의존 명사                                                   |
-| 체언(N)                   | NR        | 수사                                                        |
-| 체언(N)                   | NP        | 대명사                                                      |
-| 용언(V)                   | VV        | 동사                                                        |
-| 용언(V)                   | VA        | 형용사                                                      |
-| 용언(V)                   | VX        | 보조 용언                                                   |
-| 용언(V)                   | VCP       | 긍정 지시사(이다)                                           |
-| 용언(V)                   | VCN       | 부정 지시사(아니다)                                         |
-| 관형사                    | MM        | 관형사                                                      |
-| 부사(MA)                  | MAG       | 일반 부사                                                   |
-| 부사(MA)                  | MAJ       | 접속 부사                                                   |
-| 감탄사                    | IC        | 감탄사                                                      |
-| 조사(J)                   | JKS       | 주격 조사                                                   |
-| 조사(J)                   | JKC       | 보격 조사                                                   |
-| 조사(J)                   | JKG       | 관형격 조사                                                 |
-| 조사(J)                   | JKO       | 목적격 조사                                                 |
-| 조사(J)                   | JKB       | 부사격 조사                                                 |
-| 조사(J)                   | JKV       | 호격 조사                                                   |
-| 조사(J)                   | JKQ       | 인용격 조사                                                 |
-| 조사(J)                   | JX        | 보조사                                                      |
-| 조사(J)                   | JC        | 접속 조사                                                   |
-| 어미(E)                   | EP        | 선어말 어미                                                 |
-| 어미(E)                   | EF        | 종결 어미                                                   |
-| 어미(E)                   | EC        | 연결 어미                                                   |
-| 어미(E)                   | ETN       | 명사형 전성 어미                                            |
-| 어미(E)                   | ETM       | 관형형 전성 어미                                            |
-| 접두사                    | XPN       | 체언 접두사                                                 |
-| 접미사(XS)                | XSN       | 명사 파생 접미사                                            |
-| 접미사(XS)                | XSV       | 동사 파생 접미사                                            |
-| 접미사(XS)                | XSA       | 형용사 파생 접미사                                          |
-| 어근                      | XR        | 어근                                                        |
-| 부호, 외국어, 특수문자(S) | SF        | 종결 부호(. ! ?)                                            |
-| 부호, 외국어, 특수문자(S) | SP        | 구분 부호(, / : ;)                                          |
-| 부호, 외국어, 특수문자(S) | SS        | 인용 부호 및 괄호(’ ” ( ) \[ \] \< \> { } ― ‘ ’ “ ” ≪ ≫ 등) |
-| 부호, 외국어, 특수문자(S) | SE        | 줄임표(…)                                                   |
-| 부호, 외국어, 특수문자(S) | SO        | 붙임표(- \~)                                                |
-| 부호, 외국어, 특수문자(S) | SW        | 기타 특수 문자                                              |
-| 부호, 외국어, 특수문자(S) | SL        | 알파벳(A-Z a-z)                                             |
-| 부호, 외국어, 특수문자(S) | SH        | 한자                                                        |
-| 부호, 외국어, 특수문자(S) | SN        | 숫자(0-9)                                                   |
-| 분석 불능                 | UN        | 분석 불능\*                                                 |
-| 웹(W)                     | W_URL     | URL 주소\*                                                  |
-| 웹(W)                     | W_EMAIL   | 이메일 주소\*                                               |
-| 웹(W)                     | W_HASHTAG | 해시태그(#abcd)\*                                           |
-| 웹(W)                     | W_MENTION | 멘션(@abcd)\*                                               |
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+
+| 대분류                    | 태그       | 설명                                                            |
+|:--------------------------|:-----------|:----------------------------------------------------------------|
+| 체언(N)                   | NNG        | 일반 명사                                                       |
+| 체언(N)                   | NNP        | 고유 명사                                                       |
+| 체언(N)                   | NNB        | 의존 명사                                                       |
+| 체언(N)                   | NR         | 수사                                                            |
+| 체언(N)                   | NP         | 대명사                                                          |
+| 용언(V)                   | VV         | 동사                                                            |
+| 용언(V)                   | VA         | 형용사                                                          |
+| 용언(V)                   | VX         | 보조 용언                                                       |
+| 용언(V)                   | VCP        | 긍정 지시사(이다)                                               |
+| 용언(V)                   | VCN        | 부정 지시사(아니다)                                             |
+| 관형사                    | MM         | 관형사                                                          |
+| 부사(MA)                  | MAG        | 일반 부사                                                       |
+| 부사(MA)                  | MAJ        | 접속 부사                                                       |
+| 감탄사                    | IC         | 감탄사                                                          |
+| 조사(J)                   | JKS        | 주격 조사                                                       |
+| 조사(J)                   | JKC        | 보격 조사                                                       |
+| 조사(J)                   | JKG        | 관형격 조사                                                     |
+| 조사(J)                   | JKO        | 목적격 조사                                                     |
+| 조사(J)                   | JKB        | 부사격 조사                                                     |
+| 조사(J)                   | JKV        | 호격 조사                                                       |
+| 조사(J)                   | JKQ        | 인용격 조사                                                     |
+| 조사(J)                   | JX         | 보조사                                                          |
+| 조사(J)                   | JC         | 접속 조사                                                       |
+| 어미(E)                   | EP         | 선어말 어미                                                     |
+| 어미(E)                   | EF         | 종결 어미                                                       |
+| 어미(E)                   | EC         | 연결 어미                                                       |
+| 어미(E)                   | ETN        | 명사형 전성 어미                                                |
+| 어미(E)                   | ETM        | 관형형 전성 어미                                                |
+| 접두사                    | XPN        | 체언 접두사                                                     |
+| 접미사(XS)                | XSN        | 명사 파생 접미사                                                |
+| 접미사(XS)                | XSV        | 동사 파생 접미사                                                |
+| 접미사(XS)                | XSA        | 형용사 파생 접미사                                              |
+| 어근                      | XR         | 어근                                                            |
+| 부호, 외국어, 특수문자(S) | SF         | 종결 부호(. ! ?)                                                |
+| 부호, 외국어, 특수문자(S) | SP         | 구분 부호(, / : ;)                                              |
+| 부호, 외국어, 특수문자(S) | SS         | 인용 부호 및 괄호(’ " ( ) \[ \] &lt; &gt; { } ― ‘ ’ “ ” ≪ ≫ 등) |
+| 부호, 외국어, 특수문자(S) | SE         | 줄임표(…)                                                       |
+| 부호, 외국어, 특수문자(S) | SO         | 붙임표(- \~)                                                    |
+| 부호, 외국어, 특수문자(S) | SW         | 기타 특수 문자                                                  |
+| 부호, 외국어, 특수문자(S) | SL         | 알파벳(A-Z a-z)                                                 |
+| 부호, 외국어, 특수문자(S) | SH         | 한자                                                            |
+| 부호, 외국어, 특수문자(S) | SN         | 숫자(0-9)                                                       |
+| 분석 불능                 | UN         | 분석 불능\*                                                     |
+| 웹(W)                     | W\_URL     | URL 주소\*                                                      |
+| 웹(W)                     | W\_EMAIL   | 이메일 주소\*                                                   |
+| 웹(W)                     | W\_HASHTAG | 해시태그(\#abcd)\*                                              |
+| 웹(W)                     | W\_MENTION | 멘션(@abcd)\*                                                   |
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ## Special Thanks to
 
@@ -1501,4 +1254,5 @@ package](https://github.com/bab2min/Kiwi) author.
 
 ### cpp backend
 
-[kkweon](https://github.com/kkweon)
+[kkweon](https://github.com/kkweon) with [kiwigo
+package](https://github.com/codingpot/kiwigo)
