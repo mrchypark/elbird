@@ -1,4 +1,4 @@
-# elbird (development version)
+# elbird 0.2.0
 
 * Fix Kiwi when builder updated, kiwi rebuild.
 * Change git clone to curl release source download for mac.
