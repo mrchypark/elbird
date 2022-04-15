@@ -97,11 +97,10 @@
 <li><p><a href="#method-add_rules"><code>Kiwi$add_rules()</code></a></p></li>
 <li><p><a href="#method-load_user_dictionarys"><code>Kiwi$load_user_dictionarys()</code></a></p></li>
 <li><p><a href="#method-extract_words"><code>Kiwi$extract_words()</code></a></p></li>
-<li><p><a href="#method-extract_add_words"><code>Kiwi$extract_add_words()</code></a></p></li>
 <li><p><a href="#method-analyze"><code>Kiwi$analyze()</code></a></p></li>
 <li><p><a href="#method-tokenize"><code>Kiwi$tokenize()</code></a></p></li>
-<li><p><a href="#method-get_tidytext_func"><code>Kiwi$get_tidytext_func()</code></a></p></li>
 <li><p><a href="#method-split_into_sents"><code>Kiwi$split_into_sents()</code></a></p></li>
+<li><p><a href="#method-get_tidytext_func"><code>Kiwi$get_tidytext_func()</code></a></p></li>
 <li><p><a href="#method-save_user_dictionary"><code>Kiwi$save_user_dictionary()</code></a></p></li>
 <li><p><a href="#method-clone"><code>Kiwi$clone()</code></a></p></li>
 </ul></div><p></p><hr><a id="method-print"></a><div class="section">
@@ -285,47 +284,15 @@
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-extract_add_words"></a><div class="section">
-<h3 id="method-extract-add-words-">Method <code>extract_add_words()</code><a class="anchor" aria-label="anchor" href="#method-extract-add-words-"></a></h3>
-<p>Extract Noun word candidate from texts and add user words.</p><div class="section">
-<h4 id="usage-7">Usage<a class="anchor" aria-label="anchor" href="#usage-7"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">Kiwi</span><span class="op">$</span><span class="fu">extract_add_words</span><span class="op">(</span><span class="va">input</span>, <span class="va">min_cnt</span>, <span class="va">max_word_len</span>, <span class="va">min_score</span>, <span class="va">pos_threshold</span><span class="op">)</span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
-<h4 id="arguments-7">Arguments<a class="anchor" aria-label="anchor" href="#arguments-7"></a></h4>
-<p></p><div class="arguments"><dl><dt><code>input</code></dt>
-<dd><p><code>char(required)</code>: target text data</p></dd>
-
-
-<dt><code>min_cnt</code></dt>
-<dd><p><code>int(required)</code>: minimum count of word in text.</p></dd>
-
-
-<dt><code>max_word_len</code></dt>
-<dd><p><code>int(required)</code>: max word length.</p></dd>
-
-
-<dt><code>min_score</code></dt>
-<dd><p><code>num(required)</code>: minimum score.</p></dd>
-
-
-<dt><code>pos_threshold</code></dt>
-<dd><p><code>num(required)</code>: pos threashold.</p></dd>
-
-
-</dl><p></p></div>
-</div>
-
 </div><p></p><hr><a id="method-analyze"></a><div class="section">
 <h3 id="method-analyze-">Method <code><a href="analyze.html">analyze()</a></code><a class="anchor" aria-label="anchor" href="#method-analyze-"></a></h3>
 <p>Analyze text to token and tag results.</p><div class="section">
-<h4 id="usage-8">Usage<a class="anchor" aria-label="anchor" href="#usage-8"></a></h4>
+<h4 id="usage-7">Usage<a class="anchor" aria-label="anchor" href="#usage-7"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">Kiwi</span><span class="op">$</span><span class="fu">analyze</span><span class="op">(</span><span class="va">text</span>, top_n <span class="op">=</span> <span class="fl">3</span>, match_option <span class="op">=</span> <span class="va">Match</span><span class="op">$</span><span class="va">ALL</span>, stopwords <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="arguments-8">Arguments<a class="anchor" aria-label="anchor" href="#arguments-8"></a></h4>
+<h4 id="arguments-7">Arguments<a class="anchor" aria-label="anchor" href="#arguments-7"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>text</code></dt>
 <dd><p><code>char(required)</code>: target text.</p></dd>
 
@@ -356,7 +323,7 @@ If not valid value, work same as FALSE.</p></dd>
 </div><p></p><hr><a id="method-tokenize"></a><div class="section">
 <h3 id="method-tokenize-">Method <code><a href="tokenize.html">tokenize()</a></code><a class="anchor" aria-label="anchor" href="#method-tokenize-"></a></h3>
 <p>Analyze text to token and pos result just top 1.</p><div class="section">
-<h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
+<h4 id="usage-8">Usage<a class="anchor" aria-label="anchor" href="#usage-8"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">Kiwi</span><span class="op">$</span><span class="fu">tokenize</span><span class="op">(</span>
   <span class="va">text</span>,
   match_option <span class="op">=</span> <span class="va">Match</span><span class="op">$</span><span class="va">ALL</span>,
@@ -366,7 +333,7 @@ If not valid value, work same as FALSE.</p></dd>
 </div>
 
 <div class="section">
-<h4 id="arguments-9">Arguments<a class="anchor" aria-label="anchor" href="#arguments-9"></a></h4>
+<h4 id="arguments-8">Arguments<a class="anchor" aria-label="anchor" href="#arguments-8"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>text</code></dt>
 <dd><p><code>char(required)</code>: target text.</p></dd>
 
@@ -386,6 +353,31 @@ If not valid value, work same as FALSE.</p></dd>
 <dt><code>form</code></dt>
 <dd><p><code>char(optional)</code>: return form. default is "tibble".
 "list", "tidytext" is available.</p></dd>
+
+
+</dl><p></p></div>
+</div>
+
+</div><p></p><hr><a id="method-split_into_sents"></a><div class="section">
+<h3 id="method-split-into-sents-">Method <code><a href="split_into_sents.html">split_into_sents()</a></code><a class="anchor" aria-label="anchor" href="#method-split-into-sents-"></a></h3>
+<p>Some text may not split sentence by sentence.
+split_into_sents works split sentences to sentence by sentence.</p><div class="section">
+<h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">Kiwi</span><span class="op">$</span><span class="fu">split_into_sents</span><span class="op">(</span><span class="va">text</span>, match_option <span class="op">=</span> <span class="va">Match</span><span class="op">$</span><span class="va">ALL</span>, return_tokens <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="arguments-9">Arguments<a class="anchor" aria-label="anchor" href="#arguments-9"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>text</code></dt>
+<dd><p><code>char(required)</code>: target text.</p></dd>
+
+
+<dt><code>match_option</code></dt>
+<dd><p>match_option <code><a href="Match.html">Match</a></code>: use Match. Default is Match$ALL</p></dd>
+
+
+<dt><code>return_tokens</code></dt>
+<dd><p><code>bool(optional)</code>: add tokenized resault.</p></dd>
 
 
 </dl><p></p></div>
@@ -430,42 +422,17 @@ If not valid value, work same as FALSE.</p></dd>
 </div>
 
 
-</div><p></p><hr><a id="method-split_into_sents"></a><div class="section">
-<h3 id="method-split-into-sents-">Method <code><a href="split_into_sents.html">split_into_sents()</a></code><a class="anchor" aria-label="anchor" href="#method-split-into-sents-"></a></h3>
-<p>Some text may not split sentence by sentence.
-split_into_sents works split sentences to sentence by sentence.</p><div class="section">
-<h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">Kiwi</span><span class="op">$</span><span class="fu">split_into_sents</span><span class="op">(</span><span class="va">text</span>, match_option <span class="op">=</span> <span class="va">Match</span><span class="op">$</span><span class="va">ALL</span>, return_tokens <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
-<h4 id="arguments-11">Arguments<a class="anchor" aria-label="anchor" href="#arguments-11"></a></h4>
-<p></p><div class="arguments"><dl><dt><code>text</code></dt>
-<dd><p><code>char(required)</code>: target text.</p></dd>
-
-
-<dt><code>match_option</code></dt>
-<dd><p>match_option <code><a href="Match.html">Match</a></code>: use Match. Default is Match$ALL</p></dd>
-
-
-<dt><code>return_tokens</code></dt>
-<dd><p><code>bool(optional)</code>: add tokenized resault.</p></dd>
-
-
-</dl><p></p></div>
-</div>
-
 </div><p></p><hr><a id="method-save_user_dictionary"></a><div class="section">
 <h3 id="method-save-user-dictionary-">Method <code>save_user_dictionary()</code><a class="anchor" aria-label="anchor" href="#method-save-user-dictionary-"></a></h3>
 
 
 <div class="section">
-<h4 id="usage-12">Usage<a class="anchor" aria-label="anchor" href="#usage-12"></a></h4>
+<h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">Kiwi</span><span class="op">$</span><span class="fu">save_user_dictionary</span><span class="op">(</span><span class="va">user_dict_path</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="arguments-12">Arguments<a class="anchor" aria-label="anchor" href="#arguments-12"></a></h4>
+<h4 id="arguments-11">Arguments<a class="anchor" aria-label="anchor" href="#arguments-11"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>user_dict_path</code></dt>
 <dd><p><code>char(required)</code>: path to save dictionary file.</p></dd>
 
@@ -476,12 +443,12 @@ split_into_sents works split sentences to sentence by sentence.</p><div class="s
 </div><p></p><hr><a id="method-clone"></a><div class="section">
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
-<h4 id="usage-13">Usage<a class="anchor" aria-label="anchor" href="#usage-13"></a></h4>
+<h4 id="usage-12">Usage<a class="anchor" aria-label="anchor" href="#usage-12"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">Kiwi</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="arguments-13">Arguments<a class="anchor" aria-label="anchor" href="#arguments-13"></a></h4>
+<h4 id="arguments-12">Arguments<a class="anchor" aria-label="anchor" href="#arguments-12"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>deep</code></dt>
 <dd><p>Whether to make a deep clone.</p></dd>
 
