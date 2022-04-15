@@ -42,7 +42,7 @@ Stopwords <- R6::R6Class(
     #'   sw$add("word", "NNG")
     #'   sw$add("word", Tags$nng)
     #'   }
-    add = function(form, tag = Tags$nnp) {
+    add = function(form = NA, tag = Tags$nnp) {
       private$add_dict_el(tibble::tibble(form = form, tag = check_tag(tag)),
                        "addfunc",
                        paste0(form, "/" , tag))
