@@ -1,5 +1,7 @@
 # elbird (development version)
 
+* Add `Stopwords` `add()` method form param default value NA.
+
 # elbird 0.2.0
 
 * Change `_tbl` function to base.

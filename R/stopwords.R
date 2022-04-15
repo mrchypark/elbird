@@ -34,7 +34,7 @@ Stopwords <- R6::R6Class(
 
     #' @description
     #'   add stopword one at a time.
-    #' @param form \code{char(required)}: Form information.
+    #' @param form \code{char(optional)}: Form information. Default is NA.
     #' @param tag  \code{char(optional)}: Tag information. Default is "NNP". Please check [Tags].
     #' @examples
     #'  \dontrun{

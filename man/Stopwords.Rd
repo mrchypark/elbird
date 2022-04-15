@@ -77,13 +77,13 @@ Defualt is TRUE.}
 \subsection{Method \code{add()}}{
 add stopword one at a time.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Stopwords$add(form, tag = Tags$nnp)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Stopwords$add(form = NA, tag = Tags$nnp)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{form}}{\code{char(required)}: Form information.}
+\item{\code{form}}{\code{char(optional)}: Form information. Default is NA.}
 
 \item{\code{tag}}{\code{char(optional)}: Tag information. Default is "NNP". Please check \link{Tags}.}
 }
