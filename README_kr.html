@@ -28,7 +28,7 @@
     
     <a class="navbar-brand me-2" href="index.html">elbird</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3.9006</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,137 +98,10 @@
 <p>아래 예시들은 elbird의 함수의 동작을 소개합니다.</p>
 <div class="section level3">
 <h3 id="tokenize-함수">tokenize 함수<a class="anchor" aria-label="anchor" href="#tokenize-%ED%95%A8%EC%88%98"></a></h3>
-<p>기본적으로 list형태의 결과를 출력하는 <code>tokenize</code> 함수와 tibble 자료형으로 정리한 <code>tokenize_tbl</code>, tidytext와의 문법호환을 지원하는 <code>tokenize_tidy</code> 함수를 제공합니다.</p>
+<p>기본적으로 tibble 자료형으로 출력하는 <code>tokenize</code>, tidytext와의 호환을 지원하는 <code>tokenize_tidy</code> 함수를 제공합니다.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrchypark/elbird/" class="external-link">elbird</a></span><span class="op">)</span>
 <span class="fu"><a href="reference/tokenize.html">tokenize</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>
-<span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; [[1]]$Token</span>
-<span class="co">#&gt; [[1]]$Token[[1]]</span>
-<span class="co">#&gt; [[1]]$Token[[1]]$form</span>
-<span class="co">#&gt; [1] "안녕하세요"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[1]]$tag</span>
-<span class="co">#&gt; [1] "NNP"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[1]]$start</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[1]]$len</span>
-<span class="co">#&gt; [1] 5</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[2]]</span>
-<span class="co">#&gt; [[1]]$Token[[2]]$form</span>
-<span class="co">#&gt; [1] "kiwi"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[2]]$tag</span>
-<span class="co">#&gt; [1] "SL"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[2]]$start</span>
-<span class="co">#&gt; [1] 7</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[2]]$len</span>
-<span class="co">#&gt; [1] 4</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[3]]</span>
-<span class="co">#&gt; [[1]]$Token[[3]]$form</span>
-<span class="co">#&gt; [1] "형태소"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[3]]$tag</span>
-<span class="co">#&gt; [1] "NNG"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[3]]$start</span>
-<span class="co">#&gt; [1] 12</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[3]]$len</span>
-<span class="co">#&gt; [1] 3</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[4]]</span>
-<span class="co">#&gt; [[1]]$Token[[4]]$form</span>
-<span class="co">#&gt; [1] "분석기"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[4]]$tag</span>
-<span class="co">#&gt; [1] "NNG"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[4]]$start</span>
-<span class="co">#&gt; [1] 16</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[4]]$len</span>
-<span class="co">#&gt; [1] 3</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[5]]</span>
-<span class="co">#&gt; [[1]]$Token[[5]]$form</span>
-<span class="co">#&gt; [1] "R"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[5]]$tag</span>
-<span class="co">#&gt; [1] "SL"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[5]]$start</span>
-<span class="co">#&gt; [1] 21</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[5]]$len</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[6]]</span>
-<span class="co">#&gt; [[1]]$Token[[6]]$form</span>
-<span class="co">#&gt; [1] "wrapper"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[6]]$tag</span>
-<span class="co">#&gt; [1] "SL"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[6]]$start</span>
-<span class="co">#&gt; [1] 23</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[6]]$len</span>
-<span class="co">#&gt; [1] 7</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[7]]</span>
-<span class="co">#&gt; [[1]]$Token[[7]]$form</span>
-<span class="co">#&gt; [1] "elbird"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[7]]$tag</span>
-<span class="co">#&gt; [1] "SL"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[7]]$start</span>
-<span class="co">#&gt; [1] 32</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[7]]$len</span>
-<span class="co">#&gt; [1] 6</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[8]]</span>
-<span class="co">#&gt; [[1]]$Token[[8]]$form</span>
-<span class="co">#&gt; [1] "소개"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[8]]$tag</span>
-<span class="co">#&gt; [1] "NNG"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[8]]$start</span>
-<span class="co">#&gt; [1] 40</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[8]]$len</span>
-<span class="co">#&gt; [1] 2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[9]]</span>
-<span class="co">#&gt; [[1]]$Token[[9]]$form</span>
-<span class="co">#&gt; [1] "ᆸ니다"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[9]]$tag</span>
-<span class="co">#&gt; [1] "EF"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[9]]$start</span>
-<span class="co">#&gt; [1] 42</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[9]]$len</span>
-<span class="co">#&gt; [1] 3</span>
-<span class="fu">tokenize_tbl</span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 9 × 5</span>
 <span class="co">#&gt;   sent  form       tag   start   len</span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
@@ -249,137 +122,6 @@
 <p>여러 문장의 경우 <code>vector</code>나 <code>list</code>로 입력받아서 <code>list</code>로 출력합니다.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/tokenize.html">tokenize</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; [[1]]$Token</span>
-<span class="co">#&gt; [[1]]$Token[[1]]</span>
-<span class="co">#&gt; [[1]]$Token[[1]]$form</span>
-<span class="co">#&gt; [1] "새롭"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[1]]$tag</span>
-<span class="co">#&gt; [1] "VA"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[1]]$start</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[1]]$len</span>
-<span class="co">#&gt; [1] 2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[2]]</span>
-<span class="co">#&gt; [[1]]$Token[[2]]$form</span>
-<span class="co">#&gt; [1] "작성"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[2]]$tag</span>
-<span class="co">#&gt; [1] "NNG"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[2]]$start</span>
-<span class="co">#&gt; [1] 5</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[2]]$len</span>
-<span class="co">#&gt; [1] 2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[3]]</span>
-<span class="co">#&gt; [[1]]$Token[[3]]$form</span>
-<span class="co">#&gt; [1] "패키지"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[3]]$tag</span>
-<span class="co">#&gt; [1] "NNG"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[3]]$start</span>
-<span class="co">#&gt; [1] 9</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[3]]$len</span>
-<span class="co">#&gt; [1] 3</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[4]]</span>
-<span class="co">#&gt; [[1]]$Token[[4]]$form</span>
-<span class="co">#&gt; [1] "ᆸ니다"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[4]]$tag</span>
-<span class="co">#&gt; [1] "EF"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[4]]$start</span>
-<span class="co">#&gt; [1] 13</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$Token[[4]]$len</span>
-<span class="co">#&gt; [1] 3</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; [[2]]$Token</span>
-<span class="co">#&gt; [[2]]$Token[[1]]</span>
-<span class="co">#&gt; [[2]]$Token[[1]]$form</span>
-<span class="co">#&gt; [1] "tidytext"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[1]]$tag</span>
-<span class="co">#&gt; [1] "SL"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[1]]$start</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[1]]$len</span>
-<span class="co">#&gt; [1] 8</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[2]]</span>
-<span class="co">#&gt; [[2]]$Token[[2]]$form</span>
-<span class="co">#&gt; [1] "호환"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[2]]$tag</span>
-<span class="co">#&gt; [1] "NNG"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[2]]$start</span>
-<span class="co">#&gt; [1] 12</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[2]]$len</span>
-<span class="co">#&gt; [1] 2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[3]]</span>
-<span class="co">#&gt; [[2]]$Token[[3]]$form</span>
-<span class="co">#&gt; [1] "염두"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[3]]$tag</span>
-<span class="co">#&gt; [1] "NNG"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[3]]$start</span>
-<span class="co">#&gt; [1] 16</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[3]]$len</span>
-<span class="co">#&gt; [1] 2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[4]]</span>
-<span class="co">#&gt; [[2]]$Token[[4]]$form</span>
-<span class="co">#&gt; [1] "작성"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[4]]$tag</span>
-<span class="co">#&gt; [1] "NNG"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[4]]$start</span>
-<span class="co">#&gt; [1] 21</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[4]]$len</span>
-<span class="co">#&gt; [1] 2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[5]]</span>
-<span class="co">#&gt; [[2]]$Token[[5]]$form</span>
-<span class="co">#&gt; [1] "습니다"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[5]]$tag</span>
-<span class="co">#&gt; [1] "EF"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[5]]$start</span>
-<span class="co">#&gt; [1] 25</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$Token[[5]]$len</span>
-<span class="co">#&gt; [1] 3</span>
-<span class="fu">tokenize_tbl</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"새롭게 작성된 패키지 입니다."</span>, <span class="st">"tidytext와의 호환을 염두하고 작성하였습니다."</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 9 × 5</span>
 <span class="co">#&gt;   sent  form     tag   start   len</span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
@@ -1413,8 +1155,9 @@
 <div class="section level2">
 <h2 id="형태소-태그">형태소 태그<a class="anchor" aria-label="anchor" href="#%ED%98%95%ED%83%9C%EC%86%8C-%ED%83%9C%EA%B7%B8"></a></h2>
 <p><a href="https://github.com/bab2min/kiwipiepy" class="external-link">kiwipiepy</a>패키지에서 사용하는 <a href="https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8" class="external-link">형태소 태그</a>는 아래와 같습니다.</p>
-<ul><li>The table below is fetched at 2022-04-13 14:49:17 Asia/Seoul.</li>
-</ul><table class="table"><thead><tr class="header"><th align="left">대분류</th>
+<ul><li>The table below is fetched at 2022-04-15 14:19:55 Asia/Seoul.</li>
+</ul><table class="table kable_wrapper"><tbody><tr><td>
+<table class="table"><thead><tr class="header"><th align="left">대분류</th>
 <th align="left">태그</th>
 <th align="left">설명</th>
 </tr></thead><tbody><tr class="odd"><td align="left">체언(N)</td>
@@ -1524,7 +1267,7 @@
 <td align="left">구분 부호(, / : ;)</td>
 </tr><tr class="even"><td align="left">부호, 외국어, 특수문자(S)</td>
 <td align="left">SS</td>
-<td align="left">인용 부호 및 괄호(’ ” ( ) [ ] &lt; &gt; { } ― ‘ ’ “ ” ≪ ≫ 등)</td>
+<td align="left">인용 부호 및 괄호(’ " ( ) [ ] &lt; &gt; { } ― ‘ ’ “ ” ≪ ≫ 등)</td>
 </tr><tr class="odd"><td align="left">부호, 외국어, 특수문자(S)</td>
 <td align="left">SE</td>
 <td align="left">줄임표(…)</td>
@@ -1558,6 +1301,7 @@
 </tr><tr class="odd"><td align="left">웹(W)</td>
 <td align="left">W_MENTION</td>
 <td align="left">멘션(@abcd)*</td>
+</tr></tbody></table></td>
 </tr></tbody></table></div>
 <div class="section level2">
 <h2 id="특별히-감사">특별히 감사<a class="anchor" aria-label="anchor" href="#%ED%8A%B9%EB%B3%84%ED%9E%88-%EA%B0%90%EC%82%AC"></a></h2>
