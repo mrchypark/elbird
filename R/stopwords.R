@@ -58,7 +58,7 @@ Stopwords <- R6::R6Class(
     #' @param dict_name  \code{char(optional)}: default is "user"
     add_from_dict = function(path, dict_name = "user") {
       path <- normalizePath(path, mustWork = TRUE)
-      private$set_dict(path)
+      private$set_dict(path, dict_name)
       invisible(self)
     },
 
