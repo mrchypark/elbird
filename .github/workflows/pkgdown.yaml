@@ -33,7 +33,7 @@ jobs:
           renv::restore()
           install.packages("pkgdown")
           packageVersion("pkgdown")
-          remotes::install_github("amirmasoudabdol/preferably", type = "source")
+          install.packages("preferably")
           packageVersion("preferably")
         shell: Rscript {0}
 
