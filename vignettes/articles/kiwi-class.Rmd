@@ -2,8 +2,6 @@
 output: github_document
 ---
 
-<!-- README_kr.md is generated from README_kr.Rmd. Please edit that file -->
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -14,13 +12,13 @@ knitr::opts_chunk$set(
 options(crayon.enabled = NULL)
 ```
 
-# kiwi 고급 api 사용법
+# Kiwi Class API
 
 [elbird][elbird]는 간단하게 바로 사용할 수 있는 함수 api(`tokenize()`, `analyze()`, `split_into_sents()`)를 제공합니다.
 하지만 더욱 복잡한 동작에 대한 요구는 당연히 있겠죠.
-그래서 `Kiwi` 클래스를 고급 api로 제공합니다.
+그래서 `Kiwi` 클래스 api를 제공합니다.
 
-```{r}
+```{R}
 library(elbird)
 kw <- Kiwi$new()
 kw
@@ -34,6 +32,22 @@ kw
 ```{r}
 kwl <- Kiwi$new(model_size = "large")
 kwl
+```
+
+이렇게 만든 `Kiwi`의 객체는 몇 가지 메소드를 제공합니다.
+우선 당연히 `tokenize()` 와 `analyze()`를 제공합니다.
+
+```{r}
+kw$tokenize("안녕하세요.")
+kw$analyze("안녕하세요.")
+```
+
+그리고 사용자의 추가 단어를 등록할 수 있습니다.
+
+```{r}
+kw$tokenize("박박사입니다.")
+kw$add_user_word("박박사", Tags$nnb, 0)
+kw$tokenize("박박사입니다.")
 ```
 
 

@@ -28,7 +28,7 @@ kiwi class is provide method for korean mophological analyze result.
 \itemize{
 \item \href{#method-print}{\code{Kiwi$print()}}
 \item \href{#method-new}{\code{Kiwi$new()}}
-\item \href{#method-add_user_words}{\code{Kiwi$add_user_words()}}
+\item \href{#method-add_user_word}{\code{Kiwi$add_user_word()}}
 \item \href{#method-add_pre_analyzed_words}{\code{Kiwi$add_pre_analyzed_words()}}
 \item \href{#method-add_rules}{\code{Kiwi$add_rules()}}
 \item \href{#method-load_user_dictionarys}{\code{Kiwi$load_user_dictionarys()}}
@@ -89,12 +89,12 @@ Create a kiwi instance.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add_user_words"></a>}}
-\if{latex}{\out{\hypertarget{method-add_user_words}{}}}
-\subsection{Method \code{add_user_words()}}{
+\if{html}{\out{<a id="method-add_user_word"></a>}}
+\if{latex}{\out{\hypertarget{method-add_user_word}{}}}
+\subsection{Method \code{add_user_word()}}{
 add user word with pos and score
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Kiwi$add_user_words(word, tag, score, orig_word = "")}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$add_user_word(word, tag, score, orig_word = "")}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

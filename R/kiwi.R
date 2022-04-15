@@ -58,17 +58,13 @@ Kiwi <- R6::R6Class(
     #' @param tag \code{Tags(required)}: tag information about word.
     #' @param score \code{num(required)}: score information about word.
     #' @param orig_word \code{char(optional)}: origin word.
-    add_user_words = function(word, tag, score, orig_word = "") {
+    add_user_word = function(word, tag, score, orig_word = "") {
       if (orig_word == "") {
-        kiwi_builder_add_word_(private$kiwi_builder, word, tag, score)
+        kiwi_builder_add_word_(private$kiwi_builder, word, check_tag(tag), score)
       } else {
-        kiwi_builder_add_alias_word_(private$kiwi_builder, word, tag, score, orig_word)
+        kiwi_builder_add_alias_word_(private$kiwi_builder, word, check_tag(tag), score, orig_word)
       }
       private$builder_updated <- TRUE
-      private$add_history(
-        "add_user_words",
-        list(word, tag, score, orig_word)
-      )
     },
 
     #' @description
@@ -79,10 +75,6 @@ Kiwi <- R6::R6Class(
     add_pre_analyzed_words = function(form, analyzed, score) {
       kiwi_builder_add_pre_analyzed_word_(private$kiwi_builder, form, analyzed, score)
       private$builder_updated <- TRUE
-      private$add_history(
-        "add_pre_analyzed_words",
-        list(from, analyzed, score)
-      )
     },
 
     #' @description
@@ -94,10 +86,6 @@ Kiwi <- R6::R6Class(
     add_rules = function(tag, pattern, replacement, score) {
       kiwi_builder_add_rule_(private$kiwi_builder, tag, pattern, replacement, score)
       private$builder_updated <- TRUE
-      private$add_history(
-        "add_rules",
-        list(tag, pattern, replacement, score)
-      )
     },
 
     #' @description
@@ -108,10 +96,6 @@ Kiwi <- R6::R6Class(
       # TODO add user dict list for save
       kiwi_builder_load_dict_(private$kiwi_builder, user_dict_path)
       private$builder_updated <- TRUE
-      private$add_history(
-        "load_user_dictionarys",
-        list(user_dict_path)
-      )
     },
 
     #' @description
@@ -133,8 +117,6 @@ Kiwi <- R6::R6Class(
                                   min_score,
                                   pos_threshold)
       private$builder_updated <- TRUE
-      private$add_history("extract_words",
-                  list(input, min_cnt, max_word_len, min_score, pos_threshold))
       return(res)
     },
 
@@ -241,13 +223,6 @@ Kiwi <- R6::R6Class(
                       stopwords,
                       form = "tidytext")
       }
-    },
-
-    #' @description
-    #'
-    #' @param user_dict_path \code{char(required)}: path to save dictionary file.
-    save_user_dictionary = function(user_dict_path) {
-
     }
 
   ),
@@ -256,6 +231,13 @@ Kiwi <- R6::R6Class(
     kiwi = NULL,
     kiwi_builder = NULL,
     builder_updated = FALSE,
+
+    #' @description
+    #'
+    #' @param user_dict_path \code{char(required)}: path to save dictionary file.
+    save_user_dictionary = function(user_dict_path) {
+
+    },
 
     # # type is user and extracted
     # word_list = tibble::tibble(type = character(),
@@ -278,15 +260,15 @@ Kiwi <- R6::R6Class(
     # dict_list = tibble::tibble(dict_name = character(),
     #                            info = character()),
 
-    history = tibble::tibble(method = character(),
-                             info = list()),
-
-    add_history = function(method_, info_) {
-      private$history <- dplyr::bind_rows(
-        private$history,
-        tibble::tibble(method = method_, info = list(info_))
-      )
-    },
+    # history = tibble::tibble(method = character(),
+    #                          info = list()),
+    #
+    # add_history = function(method_, info_) {
+    #   private$history <- dplyr::bind_rows(
+    #     private$history,
+    #     tibble::tibble(method = method_, info = list(info_))
+    #   )
+    # },
 
     kiwi_not_ready = function() {
       is.null(private$kiwi)
