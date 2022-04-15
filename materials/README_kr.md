@@ -1,7 +1,7 @@
 
 <!-- README_kr.md is generated from README_kr.Rmd. Please edit that file -->
 
-# elbird <img src="man/figures/logo.png" align="right" height=140/>
+# elbird
 
 <!-- badges: start -->
 
@@ -135,7 +135,7 @@ tar %>%
     output = word,
     token = tokenize_tidy
     )
-#> # A tibble: 2,119 × 2
+#> # A tibble: 2,117 × 2
 #>    paragraph word     
 #>        <int> <chr>    
 #>  1         1 존경/nng 
@@ -148,7 +148,7 @@ tar %>%
 #>  8         3 자리/nng 
 #>  9         3 참석/nng 
 #> 10         3 시/ep    
-#> # … with 2,109 more rows
+#> # … with 2,107 more rows
 ```
 
 ### analyze 함수
@@ -1117,7 +1117,7 @@ analyze(c("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 �
 태그](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)는
 아래와 같습니다.
 
--   The table below is fetched at 2022-04-15 14:19:55 Asia/Seoul.
+-   The table below is fetched at 2022-04-15 20:44:05 Asia/Seoul.
 
 <table class="kable_wrapper">
 <tbody>
@@ -1179,7 +1179,7 @@ analyze(c("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 �
 </tbody>
 </table>
 
-## 특별히 감사
+## 특별히 감사합니다
 
 ### kiwi 패키지
 

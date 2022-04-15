@@ -14,4 +14,4 @@ navbar:
       text: 한글문서모음
       menu:
       - text: readme
-        href: README_kr.html
+        href: materials/README_kr.html
