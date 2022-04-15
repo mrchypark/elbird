@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.2.0",
+    "Version": "4.1.3",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -746,11 +746,11 @@
       "Package": "presidentSpeech",
       "Version": "0.0.3",
       "Source": "Repository",
-      "Repository": "https://forkonlp.r-universe.dev",
+      "RemoteType": "repository",
       "RemoteUrl": "https://github.com/forkonlp/presidentSpeech",
       "RemoteRef": "HEAD",
       "RemoteSha": "cf97edac55550464fb0790989322ae8497696093",
-      "Hash": "e86fee6cbfb0b27f53a34b7b9588b649",
+      "Hash": "3443beddbf371891d7be6dc296b288c2",
       "Requirements": [
         "httr",
         "rvest",
@@ -1155,10 +1155,10 @@
     },
     "vctrs": {
       "Package": "vctrs",
-      "Version": "0.4.0",
+      "Version": "0.4.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "95c2573b232eac82df562f9e300f9790",
+      "Hash": "8b54f22e2a58c4f275479c92ce041a57",
       "Requirements": [
         "cli",
         "glue",
