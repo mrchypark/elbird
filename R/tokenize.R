@@ -24,8 +24,8 @@ NULL
 #' @export
 #' @importFrom dplyr bind_rows
 tokenize <- function(text,
-                            match_option = Match$ALL,
-                            stopwords = TRUE) {
+                     match_option = Match$ALL,
+                     stopwords = TRUE) {
   dplyr::bind_rows(tokenize_raw(text, match_option, stopwords), .id = "sent")
 }
 
