@@ -14,7 +14,9 @@ navbar:
       text: 한글문서모음
       menu:
       - text: readme
-        href: materials/README_kr.html
+        href: articles/README_kr.html
       - text: intro-stopwords
-        href: materials/stopwords.html
+        href: articles/stopwords.html
+      - text: intro-kiwi-class
+        href: articles/kiwi-class.html
 
