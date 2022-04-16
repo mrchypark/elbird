@@ -1,4 +1,4 @@
-# elbird 0.3.0
+# elbird 0.2.1
 
 * Add `Stopwords` `add()` method form param default value NA.
 * Fix `Stopwords` `add_from_dict()` param pass.

@@ -1,7 +1,7 @@
-#' kiwi class
+#' Kiwi class
 #'
 #' @description
-#'   kiwi class is provide method for korean mophological analyze result.
+#'   Kiwi class is provide method for korean mophological analyze result.
 #'
 #' @importFrom R6 R6Class
 #' @examples
@@ -232,9 +232,6 @@ Kiwi <- R6::R6Class(
     kiwi_builder = NULL,
     builder_updated = FALSE,
 
-    #' @description
-    #'
-    #' @param user_dict_path \code{char(required)}: path to save dictionary file.
     save_user_dictionary = function(user_dict_path) {
 
     },

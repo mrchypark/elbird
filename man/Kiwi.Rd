@@ -2,9 +2,9 @@
 % Please edit documentation in R/kiwi.R
 \name{Kiwi}
 \alias{Kiwi}
-\title{kiwi class}
+\title{Kiwi class}
 \description{
-kiwi class is provide method for korean mophological analyze result.
+Kiwi class is provide method for korean mophological analyze result.
 }
 \examples{
 \dontrun{
@@ -37,7 +37,6 @@ kiwi class is provide method for korean mophological analyze result.
 \item \href{#method-tokenize}{\code{Kiwi$tokenize()}}
 \item \href{#method-split_into_sents}{\code{Kiwi$split_into_sents()}}
 \item \href{#method-get_tidytext_func}{\code{Kiwi$get_tidytext_func()}}
-\item \href{#method-save_user_dictionary}{\code{Kiwi$save_user_dictionary()}}
 \item \href{#method-clone}{\code{Kiwi$clone()}}
 }
 }
@@ -320,23 +319,6 @@ If not valid value, work same as FALSE.}
 
 }
 
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-save_user_dictionary"></a>}}
-\if{latex}{\out{\hypertarget{method-save_user_dictionary}{}}}
-\subsection{Method \code{save_user_dictionary()}}{
-
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Kiwi$save_user_dictionary(user_dict_path)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{user_dict_path}}{\code{char(required)}: path to save dictionary file.}
-}
-\if{html}{\out{</div>}}
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}

@@ -19,4 +19,26 @@ navbar:
         href: articles/stopwords.html
       - text: intro-kiwi-class
         href: articles/kiwi-class.html
+reference:
+- title: Class API
+  contents:
+  - Kiwi
+  - Stopwords
 
+- title: Function API
+  contents:
+  - starts_with("tokenize")
+  - analyze
+  - split_into_sents
+
+- title: Model Managements
+  contents:
+  - model_home
+  - model_exists
+  - model_works
+  - get_model
+
+- title: Helpers
+  contents:
+  - Tags
+  - Match

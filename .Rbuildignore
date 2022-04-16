@@ -19,3 +19,7 @@ kiwilibs/*
 ^windows/*
 ^tools/winbuild*
 ^codecov\.yml$
+^docs/*
+^pkgdown/*
+^vignettes/*
+^CRAN-SUBMISSION$
