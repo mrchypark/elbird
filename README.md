@@ -19,7 +19,7 @@ coverage](https://codecov.io/gh/mrchypark/elbird/branch/main/graph/badge.svg)](h
 <!-- badges: end -->
 
 -   [Korean version
-    README](https://mrchypark.github.io/elbird/README_kr.html)
+    README](https://mrchypark.github.io/elbird/articles/README_kr.html)
 
 The `elbird` package is a morpheme analysis package packed with
 [Kiwi](https://github.com/bab2min/Kiwi). It is based on cpp package
@@ -141,7 +141,7 @@ tar %>%
     output = word,
     token = tokenize_tidy
     )
-#> # A tibble: 2,117 × 2
+#> # A tibble: 2,119 × 2
 #>    paragraph word     
 #>        <int> <chr>    
 #>  1         1 존경/nng 
@@ -154,7 +154,7 @@ tar %>%
 #>  8         3 자리/nng 
 #>  9         3 참석/nng 
 #> 10         3 시/ep    
-#> # … with 2,107 more rows
+#> # … with 2,109 more rows
 ```
 
 ### analyze
@@ -1178,7 +1178,7 @@ analyze(c("안녕하세요. kiwi 형태소 분석기의 R wrapper인 elbird를 �
 list](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)
 that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
--   The table below is fetched at 2022-04-15 20:38:53 Asia/Seoul.
+-   The table below is fetched at 2022-04-16 12:15:10 Asia/Seoul.
 
 <table class="kable_wrapper">
 <tbody>
