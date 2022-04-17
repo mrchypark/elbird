@@ -88,7 +88,7 @@ unnest_tokens(
   tar,
   input = content,
   output = word,
-  token = token_funcs
+  token = token_func
 )
 ```
 
