@@ -26,12 +26,12 @@ options(crayon.enabled = NULL)
 [![Codecov test coverage](https://codecov.io/gh/mrchypark/elbird/branch/main/graph/badge.svg)](https://app.codecov.io/gh/mrchypark/elbird?branch=main)
 <!-- badges: end -->
 
-`elbird` 패키지는 `cpp` 기반의 [Kiwi](https://github.com/bab2min/Kiwi) 를 wrapping한 형태소 분석기 패키지입니다.
+[elbird][elbird] 패키지는 `cpp` 기반의 [Kiwi](https://github.com/bab2min/Kiwi) 를 wrapping한 형태소 분석기 패키지입니다.
 다른 분석기에 비해 빠른 성능과 쉬운 사용자 사전 추가, 미등록 명사 추출 등의 편의 기능이 있습니다.
 
 ## 설치
 
-`elbird`는 아래 명령어로 설치할 수 있습니다.
+[elbird][elbird]는 아래 명령어로 설치할 수 있습니다.
 
 ```r
 # CRAN
@@ -47,7 +47,7 @@ install.packages("elbird", repos = 'https://mrchypark.r-universe.dev')
 
 ### tokenize 함수
 
-기본적으로 tibble 자료형으로 출력하는 `tokenize`, tidytext와의 호환을 지원하는 `tokenize_tidy` 함수를 제공합니다.
+기본적으로 tibble 자료형으로 출력하는 `tokenize()`, tidytext와의 호환을 지원하는 `tokenize_tidy()` 함수를 제공합니다.
 
 ```{r}
 library(elbird)
@@ -64,8 +64,8 @@ tokenize_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호�
 
 ### With tidytext
 
-`tokenize_tidy` 함수는 `tokenize_tt`, `tokenize_tidytext` 로도 사용할 수 있습니다.
-아래는 `tidytext` 패키지와 함께 사용하는 예시 입니다.
+`tokenize_tidy()` 함수는 `tokenize_tt()`, `tokenize_tidytext()` 로도 사용할 수 있습니다.
+아래는 [tidytext][tidytext] 패키지와 함께 사용하는 예시 입니다.
 아래 `tar`는 형태소 분석을 위한 타겟 텍스트입니다.
 
 ```{r}
@@ -84,7 +84,7 @@ spidx %>%
 tar
 ```
 
-`tar`를 `tidytext` 패키지의 함수인 `unnest_tokens`로 `elbird`의 `tokenize_tidy`를 tokenizer로 사용하는 예시입니다.
+`tar`를 [tidytext][tidytext] 패키지의 함수인 `unnest_tokens()`로 [elbird][elbird]의 `tokenize_tidy()`를 tokenizer로 사용하는 예시입니다.
 
 ```{r}
 tar %>% 
@@ -97,7 +97,7 @@ tar %>%
 
 ### analyze 함수
 
-추가로 여러 분석 후보와 분석결과의 점수를 함께 제공하는 `analyze` 함수를 제공합니다.
+추가로 여러 분석 후보와 분석결과의 점수를 함께 제공하는 `analyze()` 함수를 제공합니다.
 
 ```{r}
 library(elbird)
@@ -131,3 +131,7 @@ kiwi 패키지 제작자 이신 [bab2min](https://github.com/bab2min)님께 감�
 
 ### cpp backend
 패키지 개발에 도움을 주신 [kkweon](https://github.com/kkweon)님께 감사드립니다.
+
+
+[elbird]: https://mrchypark.github.io/elbird/index.html
+[tidytext]: https://www.tidytextmining.com/tidytext.html
