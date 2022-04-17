@@ -1,4 +1,4 @@
-#' Kiwi class
+#' Kiwi Class
 #'
 #' @description
 #'   Kiwi class is provide method for korean mophological analyze result.

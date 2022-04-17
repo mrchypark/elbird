@@ -1,5 +1,7 @@
 # elbird 0.2.2
 
+* size to 30 for [-Wvla]
+
 # elbird 0.2.1
 
 * Add `Stopwords` `add()` method form param default value NA.

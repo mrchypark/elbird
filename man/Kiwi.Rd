@@ -2,7 +2,7 @@
 % Please edit documentation in R/kiwi.R
 \name{Kiwi}
 \alias{Kiwi}
-\title{Kiwi class}
+\title{Kiwi Class}
 \description{
 Kiwi class is provide method for korean mophological analyze result.
 }

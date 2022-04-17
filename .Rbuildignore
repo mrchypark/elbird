@@ -23,3 +23,4 @@ kiwilibs/*
 ^pkgdown/*
 ^vignettes/*
 ^CRAN-SUBMISSION$
+^cran-comments\.md$

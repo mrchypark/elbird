@@ -188,9 +188,9 @@ int kiwi_builder_add_pre_analyzed_word_(
   cpp11::integers start = analyzed_r["start"];
   cpp11::integers end = analyzed_r["end"];
 
-  const char* analyzed_morphs[size];
-  const char* analyzed_pos[size];
-  int positions[size*2+1];
+  const char* analyzed_morphs[30];
+  const char* analyzed_pos[30];
+  int positions[61];
 
   for (int i = 0; i < size; ++i) {
     analyzed_morphs[i] = morphs[i].c_str();
