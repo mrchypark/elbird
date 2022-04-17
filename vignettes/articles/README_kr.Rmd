@@ -69,30 +69,24 @@ tokenize_tidy(c("새롭게 작성된 패키지 입니다.", "tidytext와의 호�
 아래 `tar`는 형태소 분석을 위한 타겟 텍스트입니다.
 
 ```{r}
-suppressMessages(library(dplyr))
+# 텍스트 데이터는 presidentSpeech 패키지를 사용했습니다.
 # install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev/")
-library(stringr)
-library(tidytext)
-library(presidentSpeech)
+library(vroom)
 
-spidx %>% 
-  filter(president == "이명박") %>% 
-  filter(str_detect(title, "취임사")) %>% 
-  pull(link) %>% 
-  get_speech(paragraph = T) %>%
-  select(paragraph, content) -> tar
+tar <- vroom("exam.txt")
 tar
 ```
 
 `tar`를 [tidytext][tidytext] 패키지의 함수인 `unnest_tokens()`로 [elbird][elbird]의 `tokenize_tidy()`를 tokenizer로 사용하는 예시입니다.
 
 ```{r}
-tar %>% 
-  unnest_tokens(
-    input = content,
-    output = word,
-    token = tokenize_tidy
-    )
+library(tidytext)
+unnest_tokens(
+  tar,
+  input = content,
+  output = word,
+  token = tokenize_tidy
+)
 ```
 
 ### analyze 함수
@@ -115,6 +109,7 @@ cat(paste0("* The table below is fetched at ", Sys.time()," ",Sys.timezone(),"."
 ```
 
 ```{r echo=FALSE}
+library(magrittr)
 httr::GET("https://github.com/bab2min/kiwipiepy/blob/master/README.md") %>% 
   httr::content() %>% 
   rvest::html_table() %>% 

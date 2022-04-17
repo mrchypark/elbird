@@ -13,14 +13,19 @@ kiwi_builder_extract_words_wrap <-
            min_cnt,
            max_word_len,
            min_score,
-           pos_threshold) {
-    res <- kiwi_builder_extract_words_(handle_ex,
-                                       input,
-                                       min_cnt,
-                                       max_word_len,
-                                       min_score,
-                                       pos_threshold)
-    purrr::map_dfr(res, ~ tibble::tibble(
+           pos_threshold,
+           apply) {
+    ext_func <- kiwi_builder_extract_words_
+    if (apply) {
+      ext_func <- kiwi_builder_extract_add_words_
+    }
+    purrr::map_dfr(
+      ext_func(input,
+               min_cnt,
+               max_word_len,
+               min_score,
+               pos_threshold)
+      , ~ tibble::tibble(
       form = .x$form,
       tag_score = .x$tag_score,
       freq = .x$freq,

@@ -105,17 +105,20 @@ Kiwi <- R6::R6Class(
     #' @param max_word_len \code{int(required)}: max word length.
     #' @param min_score \code{num(required)}: minimum score.
     #' @param pos_threshold \code{num(required)}: pos threashold.
+    #' @param apply \code{bool(optional)}: apply extracted word as user word dict.
     extract_words =  function(input,
                               min_cnt,
                               max_word_len,
                               min_score,
-                              pos_threshold) {
+                              pos_threshold,
+                              apply = FALSE) {
       res <- kiwi_builder_extract_words_wrap(private$kiwi_builder,
                                   input,
                                   min_cnt,
                                   max_word_len,
                                   min_score,
-                                  pos_threshold)
+                                  pos_threshold,
+                                  apply)
       private$builder_updated <- TRUE
       return(res)
     },

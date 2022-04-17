@@ -1,0 +1,55 @@
+---
+output: github_document
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/extract-",
+  out.width = "100%"
+)
+options(crayon.enabled = NULL)
+```
+
+# 텍스트 데이터에서 명사 추출
+
+[kiwi][kiwi]는 [soynlp][soynlp]의 단어 추출의 아이디어를 사용해서 해당 기능을 제공합니다.
+[elbird][elbird] 역시 [kiwi][kiwi]에서 제공하는 `extract_words()` 메소드를 제공합니다.
+우선 헌법을 예시 데이터로 가져와보겠습니다.
+
+```{r}
+library(elbird)
+library(vroom)
+kw <- Kiwi$new()
+text <- vroom_lines("test.txt")
+head(text)
+```
+
+그럼 이제 이 데이터를 기준으로 단어 추출을 해보겠습니다.
+우선 입력은 텍스트 파일의 경로만 가능합니다.    
+`min_cnt`는 문서 내에 최소한 출현한 횟수입니다.
+그래도 이만큼은 나와야 단어로 보겠다는 뜻입니다.    
+`max_word_len`은 최대 단어의 길이입니다.
+예를 들어 `가까운목장의신선한원유로만든저지방우유`는 19자 인데, 이렇게 긴 단어는 필요 없을 수 있습니다.    
+`min_score`는 단어 점수입니다. 기본값은 0.25이며 출력에 `score` 컬럼으로 제공됩니다.
+처음에는 기본값을, 추출이 너무 없으면 0으로 값을 보고 조절하시면 됩니다.    
+`pos_threshold`는 명사 점수로 기존값은 -3 입니다. 이 값을 낮출수록 명사가 아닌 단어들이 추출될 가능성이 높으며, 반대로 높일수록 추출되는 명사의 개수가 줄어듭니다. 
+
+```{r}
+kw$extract_words(input = "test.txt",
+                 min_cnt = 3,
+                 max_word_len = 8,
+                 min_score = 0.2,
+                 pos_threshold = -2)
+```
+
+오 뭔가 결과가 좋습니다.
+이제부터 어떤 과정을 거쳤는지 살펴보겠습니다.
+
+[soynlp]: https://github.com/lovit/soynlp
+[kiwipiepy]: https://github.com/bab2min/kiwipiepy
+[kiwi]: https://github.com/bab2min/Kiwi
+[elbird]: https://mrchypark.github.io/elbird/index.html
+
+

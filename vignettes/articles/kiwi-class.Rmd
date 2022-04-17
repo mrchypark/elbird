@@ -54,30 +54,26 @@ kw$tokenize("박박사입니다.")
 그럼 예시 데이터를 준비해보겠습니다.
 
 ```{r}
-suppressMessages(library(dplyr))
-library(stringr)
-library(tidytext)
-library(presidentSpeech)
+# 텍스트 데이터는 presidentSpeech 패키지를 사용했습니다.
+# install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev/")
 
-spidx %>% 
-  filter(president == "이명박") %>% 
-  filter(str_detect(title, "취임사")) %>% 
-  pull(link) %>% 
-  get_speech(paragraph = T) %>%
-  select(paragraph, content) -> tar
+library(vroom)
+tar <- vroom("exam.txt")
 tar
 ```
 
 `get_tidytext_func()` 메소드는 [tidytext][tidytext]의 `unnest_tokens()` 함수와 동작하는 `함수`를 리턴합니다.
 
 ```{r}
+library(tidytext)
+
 token_func <- kw$get_tidytext_func()
-tar %>% 
-  unnest_tokens(
-    input = content,
-    output = word,
-    token = token_func
-    )
+unnest_tokens(
+  tar,
+  input = content,
+  output = word,
+  token = tokenize_tidy
+)
 ```
 
 `Stopwords` 를 추가해서 사용해보겠습니다.
@@ -88,12 +84,12 @@ sw$add(tag = Tags$sf)
 sw$add("는", Tags$etm)
 
 token_func <- kw$get_tidytext_func(stopwords = sw)
-tar %>% 
-  unnest_tokens(
-    input = content,
-    output = word,
-    token = token_func
-    )
+unnest_tokens(
+  tar,
+  input = content,
+  output = word,
+  token = token_funcs
+)
 ```
 
 사용자 단어 사전도 추가해서 진행해보겠습니다.
@@ -108,15 +104,13 @@ sw$add(tag = Tags$sf)
 sw$add("는", Tags$etm)
 
 token_func <- kw$get_tidytext_func(stopwords = sw)
-tar %>% 
-  unnest_tokens(
-    input = content,
-    output = word,
-    token = token_func
-    )
+unnest_tokens(
+  tar,
+  input = content,
+  output = word,
+  token = token_funcs
+)
 ```
-
-
 
 [tidytext]: https://www.tidytextmining.com/tidytext.html
 [kiwipiepy]: https://github.com/bab2min/kiwipiepy
