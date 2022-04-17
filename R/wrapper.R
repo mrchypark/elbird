@@ -20,7 +20,8 @@ kiwi_builder_extract_words_wrap <-
       ext_func <- kiwi_builder_extract_add_words_
     }
     purrr::map_dfr(
-      ext_func(input,
+      ext_func(handle_ex,
+               input,
                min_cnt,
                max_word_len,
                min_score,
