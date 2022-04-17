@@ -58,7 +58,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">elbird</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9006</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,11 +129,11 @@
 </h2>
 <!-- badges: start -->
 <p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a> <a href="https://github.com/mrchypark/elbird/actions" class="external-link"><img src="https://github.com/mrchypark/elbird/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a> <a href="https://CRAN.R-project.org/package=elbird" class="external-link"><img src="https://www.r-pkg.org/badges/version/elbird" alt="CRAN status"></a> <a href="https://mrchypark.r-universe.dev/" class="external-link"><img src="https://mrchypark.r-universe.dev/badges/:name" alt="runiverse-name"></a> <a href="https://mrchypark.r-universe.dev/ui#packages" class="external-link"><img src="https://mrchypark.r-universe.dev/badges/elbird" alt="runiverse-package"></a> <a href="https://cran.r-project.org/package=elbird" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/elbird" alt="metacran downloads"></a> <a href="https://app.codecov.io/gh/mrchypark/elbird?branch=main" class="external-link"><img src="https://codecov.io/gh/mrchypark/elbird/branch/main/graph/badge.svg" alt="Codecov test coverage"></a> <!-- badges: end --></p>
-<p><code>elbird</code> 패키지는 <code>cpp</code> 기반의 <a href="https://github.com/bab2min/Kiwi" class="external-link">Kiwi</a> 를 wrapping한 형태소 분석기 패키지입니다. 다른 분석기에 비해 빠른 성능과 쉬운 사용자 사전 추가, 미등록 명사 추출 등의 편의 기능이 있습니다.</p>
+<p><a href="https://mrchypark.github.io/elbird/index.html">elbird</a> 패키지는 <code>cpp</code> 기반의 <a href="https://github.com/bab2min/Kiwi" class="external-link">Kiwi</a> 를 wrapping한 형태소 분석기 패키지입니다. 다른 분석기에 비해 빠른 성능과 쉬운 사용자 사전 추가, 미등록 명사 추출 등의 편의 기능이 있습니다.</p>
 <div class="section level3">
 <h3 id="설치">설치<a class="anchor" aria-label="anchor" href="#%EC%84%A4%EC%B9%98"></a>
 </h3>
-<p><code>elbird</code>는 아래 명령어로 설치할 수 있습니다.</p>
+<p><a href="https://mrchypark.github.io/elbird/index.html">elbird</a>는 아래 명령어로 설치할 수 있습니다.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># CRAN</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"elbird"</span><span class="op">)</span>
@@ -148,7 +148,7 @@
 <div class="section level4">
 <h4 id="tokenize-함수">tokenize 함수<a class="anchor" aria-label="anchor" href="#tokenize-%ED%95%A8%EC%88%98"></a>
 </h4>
-<p>기본적으로 tibble 자료형으로 출력하는 <code>tokenize</code>, tidytext와의 호환을 지원하는 <code>tokenize_tidy</code> 함수를 제공합니다.</p>
+<p>기본적으로 tibble 자료형으로 출력하는 <code><a href="../reference/tokenize.html">tokenize()</a></code>, tidytext와의 호환을 지원하는 <code><a href="../reference/tokenize.html">tokenize_tidy()</a></code> 함수를 제공합니다.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrchypark/elbird/" class="external-link">elbird</a></span><span class="op">)</span>
 <span class="fu"><a href="../reference/tokenize.html">tokenize</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>
@@ -194,24 +194,25 @@
 <div class="section level4">
 <h4 id="with-tidytext">With tidytext<a class="anchor" aria-label="anchor" href="#with-tidytext"></a>
 </h4>
-<p><code>tokenize_tidy</code> 함수는 <code>tokenize_tt</code>, <code>tokenize_tidytext</code> 로도 사용할 수 있습니다. 아래는 <code>tidytext</code> 패키지와 함께 사용하는 예시 입니다. 아래 <code>tar</code>는 형태소 분석을 위한 타겟 텍스트입니다.</p>
+<p><code><a href="../reference/tokenize.html">tokenize_tidy()</a></code> 함수는 <code>tokenize_tt()</code>, <code><a href="../reference/tokenize.html">tokenize_tidytext()</a></code> 로도 사용할 수 있습니다. 아래는 <a href="https://www.tidytextmining.com/tidytext.html" class="external-link">tidytext</a> 패키지와 함께 사용하는 예시 입니다. 아래 <code>tar</code>는 형태소 분석을 위한 타겟 텍스트입니다.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="co"># 텍스트 데이터는 presidentSpeech 패키지를 사용했습니다.</span>
 <span class="co"># install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev/")</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org" class="external-link">stringr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext" class="external-link">tidytext</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/forkonlp/presidentSpeech" class="external-link">presidentSpeech</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vroom.r-lib.org" class="external-link">vroom</a></span><span class="op">)</span>
 
-<span class="va">spidx</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">president</span> <span class="op">==</span> <span class="st">"이명박"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect</a></span><span class="op">(</span><span class="va">title</span>, <span class="st">"취임사"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">link</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/presidentSpeech/man/get_speech.html" class="external-link">get_speech</a></span><span class="op">(</span>paragraph <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">paragraph</span>, <span class="va">content</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">tar</span>
+<span class="va">tar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://vroom.r-lib.org/reference/vroom.html" class="external-link">vroom</a></span><span class="op">(</span><span class="st">"exam.txt"</span><span class="op">)</span>
+<span class="co">#&gt; <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">62</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">2</span></span>
+<span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span>
+<span class="co">#&gt; <span style="font-weight: bold;">Delimiter:</span> "\t"</span>
+<span class="co">#&gt; <span style="color: #BB0000;">chr</span> (1): content</span>
+<span class="co">#&gt; <span style="color: #00BB00;">dbl</span> (1): paragraph</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `spec()` to retrieve the full column specification for this data.</span>
+<span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span>
 <span class="va">tar</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 62 × 2</span></span>
 <span class="co">#&gt;    paragraph content                                                            </span>
-<span class="co">#&gt;        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                              </span>
+<span class="co">#&gt;        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                              </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>         1 존경하는 국민 여러분!                                              </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>         2 700만 해외동포 여러분!                                             </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>         3 이 자리에 참석하신 노무현ㆍ김대중ㆍ김영삼ㆍ전두환 전 대통령, 그리… </span>
@@ -223,17 +224,18 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>         9 독립을 위해 목숨을 바친 선열들, 전선에서 산화한 장병들, 뙤약볕과 … </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">10</span>        10 장롱 속 금붙이를 들고나와 외환위기에 맞섰던 시민들, 겨울 바닷가에… </span>
 <span class="co">#&gt; <span style="color: #949494;"># … with 52 more rows</span></span></code></pre></div>
-<p><code>tar</code>를 <code>tidytext</code> 패키지의 함수인 <code>unnest_tokens</code>로 <code>elbird</code>의 <code>tokenize_tidy</code>를 tokenizer로 사용하는 예시입니다.</p>
+<p><code>tar</code>를 <a href="https://www.tidytextmining.com/tidytext.html" class="external-link">tidytext</a> 패키지의 함수인 <code><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html" class="external-link">unnest_tokens()</a></code>로 <a href="https://mrchypark.github.io/elbird/index.html">elbird</a>의 <code><a href="../reference/tokenize.html">tokenize_tidy()</a></code>를 tokenizer로 사용하는 예시입니다.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tar</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html" class="external-link">unnest_tokens</a></span><span class="op">(</span>
-    input <span class="op">=</span> <span class="va">content</span>,
-    output <span class="op">=</span> <span class="va">word</span>,
-    token <span class="op">=</span> <span class="va">tokenize_tidy</span>
-    <span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext" class="external-link">tidytext</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html" class="external-link">unnest_tokens</a></span><span class="op">(</span>
+  <span class="va">tar</span>,
+  input <span class="op">=</span> <span class="va">content</span>,
+  output <span class="op">=</span> <span class="va">word</span>,
+  token <span class="op">=</span> <span class="va">tokenize_tidy</span>
+<span class="op">)</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 2,117 × 2</span></span>
 <span class="co">#&gt;    paragraph word     </span>
-<span class="co">#&gt;        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
+<span class="co">#&gt;        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>         1 존경/nng </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>         1 국민/nng </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>         1 여러분/np</span>
@@ -249,7 +251,7 @@
 <div class="section level4">
 <h4 id="analyze-함수">analyze 함수<a class="anchor" aria-label="anchor" href="#analyze-%ED%95%A8%EC%88%98"></a>
 </h4>
-<p>추가로 여러 분석 후보와 분석결과의 점수를 함께 제공하는 <code>analyze</code> 함수를 제공합니다.</p>
+<p>추가로 여러 분석 후보와 분석결과의 점수를 함께 제공하는 <code><a href="../reference/analyze.html">analyze()</a></code> 함수를 제공합니다.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrchypark/elbird/" class="external-link">elbird</a></span><span class="op">)</span>
 <span class="fu"><a href="../reference/analyze.html">analyze</a></span><span class="op">(</span><span class="st">"안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."</span><span class="op">)</span>
@@ -1209,7 +1211,7 @@
 </h3>
 <p><a href="https://github.com/bab2min/kiwipiepy" class="external-link">kiwipiepy</a>패키지에서 사용하는 <a href="https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8" class="external-link">형태소 태그</a>는 아래와 같습니다.</p>
 <ul>
-<li>The table below is fetched at 2022-04-15 20:54:47 UTC.</li>
+<li>The table below is fetched at 2022-04-17 17:28:04 UTC.</li>
 </ul>
 <table class="table kable_wrapper"><tbody><tr>
 <td>

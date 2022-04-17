@@ -58,7 +58,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">elbird</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9006</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -401,6 +401,119 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 1     이     VCP       4     1</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 1     ᆸ니다  EF        4     3</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 1     .      SF        7     1</span></code></pre></div>
+<p><a href="https://mrchypark.github.io/elbird/index.html">elbird</a>는 <a href="https://www.tidytextmining.com/tidytext.html" class="external-link">tidytext</a>와 함께 사용할 수 있습니다. 그럼 예시 데이터를 준비해보겠습니다.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># 텍스트 데이터는 presidentSpeech 패키지를 사용했습니다.</span>
+<span class="co"># install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev/")</span>
+
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vroom.r-lib.org" class="external-link">vroom</a></span><span class="op">)</span>
+<span class="va">tar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://vroom.r-lib.org/reference/vroom.html" class="external-link">vroom</a></span><span class="op">(</span><span class="st">"exam.txt"</span><span class="op">)</span>
+<span class="co">#&gt; <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">62</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">2</span></span>
+<span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span>
+<span class="co">#&gt; <span style="font-weight: bold;">Delimiter:</span> "\t"</span>
+<span class="co">#&gt; <span style="color: #BB0000;">chr</span> (1): content</span>
+<span class="co">#&gt; <span style="color: #00BB00;">dbl</span> (1): paragraph</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `spec()` to retrieve the full column specification for this data.</span>
+<span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span>
+<span class="va">tar</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 62 × 2</span></span>
+<span class="co">#&gt;    paragraph content                                                            </span>
+<span class="co">#&gt;        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>         1 존경하는 국민 여러분!                                              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>         2 700만 해외동포 여러분!                                             </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>         3 이 자리에 참석하신 노무현ㆍ김대중ㆍ김영삼ㆍ전두환 전 대통령, 그리… </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>         4 저는 오늘 국민 여러분의 부름을 받고 대한민국의 제17대 대통령에 취… </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>         5 저는 이 자리에서 국민 여러분께 약속드립니다. 국민을 섬겨 나라를 편…</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>         6 올해로 대한민국 건국 60주년을 맞이합니다. 우리는 잃었던 땅을 되찾… </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>         7 지구 상에서 가장 가난했던 나라가 세계 10위권의 경제 대국이 되었습… </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>         8 그러나 우리는 알고 있습니다. 그것은 기적이 아니라 우리가 다 함께 … </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>         9 독립을 위해 목숨을 바친 선열들, 전선에서 산화한 장병들, 뙤약볕과 … </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>        10 장롱 속 금붙이를 들고나와 외환위기에 맞섰던 시민들, 겨울 바닷가에… </span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 52 more rows</span></span></code></pre></div>
+<p><code>get_tidytext_func()</code> 메소드는 <a href="https://www.tidytextmining.com/tidytext.html" class="external-link">tidytext</a>의 <code><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html" class="external-link">unnest_tokens()</a></code> 함수와 동작하는 <code>함수</code>를 리턴합니다.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext" class="external-link">tidytext</a></span><span class="op">)</span>
+
+<span class="va">token_func</span> <span class="op">&lt;-</span> <span class="va">kw</span><span class="op">$</span><span class="fu">get_tidytext_func</span><span class="op">(</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html" class="external-link">unnest_tokens</a></span><span class="op">(</span>
+  <span class="va">tar</span>,
+  input <span class="op">=</span> <span class="va">content</span>,
+  output <span class="op">=</span> <span class="va">word</span>,
+  token <span class="op">=</span> <span class="va">tokenize_tidy</span>
+<span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 2,117 × 2</span></span>
+<span class="co">#&gt;    paragraph word     </span>
+<span class="co">#&gt;        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>         1 존경/nng </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>         1 국민/nng </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>         1 여러분/np</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>         2 700/sn   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>         2 해외/nng </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>         2 동포/nng </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>         2 여러분/np</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>         3 자리/nng </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>         3 참석/nng </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>         3 시/ep    </span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 2,107 more rows</span></span></code></pre></div>
+<p><code>Stopwords</code> 를 추가해서 사용해보겠습니다.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sw</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/Stopwords.html">Stopwords</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">sw</span><span class="op">$</span><span class="fu">add</span><span class="op">(</span>tag <span class="op">=</span> <span class="va">Tags</span><span class="op">$</span><span class="va">sf</span><span class="op">)</span>
+<span class="va">sw</span><span class="op">$</span><span class="fu">add</span><span class="op">(</span><span class="st">"는"</span>, <span class="va">Tags</span><span class="op">$</span><span class="va">etm</span><span class="op">)</span>
+
+<span class="va">token_func</span> <span class="op">&lt;-</span> <span class="va">kw</span><span class="op">$</span><span class="fu">get_tidytext_func</span><span class="op">(</span>stopwords <span class="op">=</span> <span class="va">sw</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html" class="external-link">unnest_tokens</a></span><span class="op">(</span>
+  <span class="va">tar</span>,
+  input <span class="op">=</span> <span class="va">content</span>,
+  output <span class="op">=</span> <span class="va">word</span>,
+  token <span class="op">=</span> <span class="va">token_func</span>
+<span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 4,223 × 2</span></span>
+<span class="co">#&gt;    paragraph word     </span>
+<span class="co">#&gt;        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>         1 존경/nng </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>         1 하/xsv   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>         1 국민/nng </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>         1 여러분/np</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>         2 700/sn   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>         2 만/nr    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>         2 해외/nng </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>         2 동포/nng </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>         2 여러분/np</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>         3 이/mm    </span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 4,213 more rows</span></span></code></pre></div>
+<p>사용자 단어 사전도 추가해서 진행해보겠습니다.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrchypark/elbird/" class="external-link">elbird</a></span><span class="op">)</span>
+<span class="va">kw</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/Kiwi.html">Kiwi</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span>
+<span class="va">kw</span><span class="op">$</span><span class="fu">add_user_word</span><span class="op">(</span><span class="st">"해외동포"</span>, <span class="va">Tags</span><span class="op">$</span><span class="va">nng</span>, <span class="fl">0</span><span class="op">)</span>
+
+<span class="va">sw</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/Stopwords.html">Stopwords</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">sw</span><span class="op">$</span><span class="fu">add</span><span class="op">(</span>tag <span class="op">=</span> <span class="va">Tags</span><span class="op">$</span><span class="va">sf</span><span class="op">)</span>
+<span class="va">sw</span><span class="op">$</span><span class="fu">add</span><span class="op">(</span><span class="st">"는"</span>, <span class="va">Tags</span><span class="op">$</span><span class="va">etm</span><span class="op">)</span>
+
+<span class="va">token_func</span> <span class="op">&lt;-</span> <span class="va">kw</span><span class="op">$</span><span class="fu">get_tidytext_func</span><span class="op">(</span>stopwords <span class="op">=</span> <span class="va">sw</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html" class="external-link">unnest_tokens</a></span><span class="op">(</span>
+  <span class="va">tar</span>,
+  input <span class="op">=</span> <span class="va">content</span>,
+  output <span class="op">=</span> <span class="va">word</span>,
+  token <span class="op">=</span> <span class="va">token_func</span>
+<span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 4,222 × 2</span></span>
+<span class="co">#&gt;    paragraph word        </span>
+<span class="co">#&gt;        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>         1 존경/nng    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>         1 하/xsv      </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>         1 국민/nng    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>         1 여러분/np   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>         2 700/sn      </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>         2 만/nr       </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>         2 해외동포/nng</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>         2 여러분/np   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>         3 이/mm       </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>         3 자리/nng    </span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 4,212 more rows</span></span></code></pre></div>
 </div>
   </main>
 </div>
