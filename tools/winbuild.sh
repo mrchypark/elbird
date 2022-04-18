@@ -14,7 +14,7 @@ git submodule update --init --recursive
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DKIWI_USE_CPUINFO=OFF -DKIWI_USE_MIMALLOC=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
-cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DKIWI_USE_CPUINFO=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
+cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
 make kiwi_static
 # cp libkiwi_static.a ../../kiwi-build/lib/i386/libkiwi.a
 # cp libkiwi_static.a ../../kiwi-build/lib/x64/libkiwi.a
