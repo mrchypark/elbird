@@ -257,7 +257,14 @@
 <h3 id="method-extract-words-">Method <code>extract_words()</code><a class="anchor" aria-label="anchor" href="#method-extract-words-"></a></h3>
 <p>Extract Noun word candidate from texts.</p><div class="section">
 <h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">Kiwi</span><span class="op">$</span><span class="fu">extract_words</span><span class="op">(</span><span class="va">input</span>, <span class="va">min_cnt</span>, <span class="va">max_word_len</span>, <span class="va">min_score</span>, <span class="va">pos_threshold</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">Kiwi</span><span class="op">$</span><span class="fu">extract_words</span><span class="op">(</span>
+  <span class="va">input</span>,
+  <span class="va">min_cnt</span>,
+  <span class="va">max_word_len</span>,
+  <span class="va">min_score</span>,
+  <span class="va">pos_threshold</span>,
+  apply <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -280,6 +287,10 @@
 
 <dt><code>pos_threshold</code></dt>
 <dd><p><code>num(required)</code>: pos threashold.</p></dd>
+
+
+<dt><code>apply</code></dt>
+<dd><p><code>bool(optional)</code>: apply extracted word as user word dict.</p></dd>
 
 
 </dl><p></p></div>
