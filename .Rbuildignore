@@ -24,3 +24,5 @@ kiwilibs/*
 ^vignettes/*
 ^CRAN-SUBMISSION$
 ^cran-comments\.md$
+^.lintr$
+^inst/model/*

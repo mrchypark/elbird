@@ -1,4 +1,4 @@
-RWINLIB = ../windows/rwinlib-elbird-0.11.1
+RWINLIB = ../windows/rwinlib-elbird-0.11.2
 
 PKG_CPPFLAGS=-pthread -I${RWINLIB}/include
 PKG_LIBS=-pthread -L${RWINLIB}/lib${R_ARCH}${CRT} -lkiwi
