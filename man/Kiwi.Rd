@@ -177,7 +177,14 @@ add user dictionary using text file.
 \subsection{Method \code{extract_words()}}{
 Extract Noun word candidate from texts.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Kiwi$extract_words(input, min_cnt, max_word_len, min_score, pos_threshold)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$extract_words(
+  input,
+  min_cnt,
+  max_word_len,
+  min_score,
+  pos_threshold,
+  apply = FALSE
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -192,6 +199,8 @@ Extract Noun word candidate from texts.
 \item{\code{min_score}}{\code{num(required)}: minimum score.}
 
 \item{\code{pos_threshold}}{\code{num(required)}: pos threashold.}
+
+\item{\code{apply}}{\code{bool(optional)}: apply extracted word as user word dict.}
 }
 \if{html}{\out{</div>}}
 }

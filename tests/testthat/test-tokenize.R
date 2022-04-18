@@ -1,5 +1,7 @@
 test_that("tokenize works", {
   skip_if_offline()
+  skip_on_cran()
+
   res <- tokenize("Test text.")
   expect_true(tibble::is_tibble(res))
   expect_equal(nrow(res), 2)

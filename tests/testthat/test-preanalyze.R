@@ -1,5 +1,6 @@
 test_that("pre analyze words df", {
   skip_if_offline()
+  skip_on_cran()
   if (!model_works("small"))
     get_model("small")
 
