@@ -1,4 +1,4 @@
-# elbird (development version)
+# elbird 0.2.3
 
 # elbird 0.2.2
 
