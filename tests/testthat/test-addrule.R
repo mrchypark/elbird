@@ -1,6 +1,6 @@
 test_that("add rule works", {
   skip_if_offline()
-  skip_on_cran()
+  skip_on_os(arch = "i386")
   if (!model_works("small"))
     get_model("small")
 
