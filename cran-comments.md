@@ -2,4 +2,4 @@
 
 0 errors | 0 warnings | 1 note
 
-* Fix [-Wvla] warninng on 0.2.1
+* Fix cran test fail on 0.2.2
