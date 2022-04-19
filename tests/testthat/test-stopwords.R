@@ -1,6 +1,6 @@
 test_that("tokenize stopword works", {
   skip_if_offline()
-  skip_on_os(arch = "i386")
+  skip_on_os(os = "windows", arch = "i386")
   res <- tokenize("Test text.", stopwords = FALSE)
   expect_equal(nrow(res), 3)
   expect_true(res[nrow(res), "form"] == ".")

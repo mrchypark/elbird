@@ -1,6 +1,6 @@
 test_that("split sents works", {
   skip_if_offline()
-  skip_on_os(arch = "i386")
+  skip_on_os(os = "windows", arch = "i386")
   res <- split_into_sents("안녕하세요 박박사입니다 다시 한번 인사드립니다")
   expect_equal(length(res), 2)
   expect_equal(res[[1]]$tokens, list())
