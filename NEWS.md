@@ -1,5 +1,7 @@
 # elbird 0.2.3
 
+* Fix cran test fail.
+
 # elbird 0.2.2
 
 * size to 30 for [-Wvla]
