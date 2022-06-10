@@ -21,11 +21,8 @@ analyze <-
     if (init_chk_not())
       init()
 
-    kiwi_analyze_wrap(
-      get("kw", envir = .el),
-      text,
-      top_n,
-      match_option,
-      stopwords
-    )
+    get("kw", envir = .el)$analyze(text,
+                                   top_n,
+                                   match_option,
+                                   stopwords)
   }
