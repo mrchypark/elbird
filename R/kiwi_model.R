@@ -143,7 +143,7 @@ kiwi_model_clean <- function(size = "all") {
 #' @importFrom utils download.file
 #' @importFrom utils untar
 kiwi_model_get <- function(size, path) {
-  version <- "v0.11.2"
+  version <- "v0.12.0"
   size <- match.arg(size, c("small", "base", "large"))
   fnm <- paste0("kiwi_model_", version, "_", size, ".tgz")
   tarurl <-
