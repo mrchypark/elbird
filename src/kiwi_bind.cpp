@@ -120,11 +120,6 @@ int ruleprovider(const char* input, int size, char* buffer, void* user) {
 
 
 [[cpp11::register]]
-std::string kiwi_version_() {
-  return kiwi_version();
-}
-
-[[cpp11::register]]
 std::string kiwi_error_() {
   if (kiwi_error() == nullptr) return "0";
   return kiwi_error();

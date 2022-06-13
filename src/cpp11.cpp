@@ -5,6 +5,13 @@
 #include "cpp11/declarations.hpp"
 #include <R_ext/Visibility.h>
 
+// kiwi_b.cpp
+std::string kiwi_version();
+extern "C" SEXP _elbird_kiwi_version() {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_version());
+  END_CPP11
+}
 // kiwi_bind.cpp
 std::string kiwi_version_();
 extern "C" SEXP _elbird_kiwi_version_() {
@@ -161,6 +168,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_elbird_kiwi_init_",                          (DL_FUNC) &_elbird_kiwi_init_,                          3},
     {"_elbird_kiwi_set_option_",                    (DL_FUNC) &_elbird_kiwi_set_option_,                    3},
     {"_elbird_kiwi_split_into_sents_",              (DL_FUNC) &_elbird_kiwi_split_into_sents_,              4},
+    {"_elbird_kiwi_version",                        (DL_FUNC) &_elbird_kiwi_version,                        0},
     {"_elbird_kiwi_version_",                       (DL_FUNC) &_elbird_kiwi_version_,                       0},
     {NULL, NULL, 0}
 };
