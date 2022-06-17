@@ -19,7 +19,7 @@ sticker(
   package = "e/bird",
   p_size = 55, p_y = 1.4, p_x = 1,
   filename = "man/figures/logo.png",
-  h_fill = "#a9e6ff",
+  h_fill = "#cce8f4",
   p_color = "#160840",
   h_color = "#003458",
   url = "mrchypark.github.io/elbird",
