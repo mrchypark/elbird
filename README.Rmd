@@ -31,6 +31,11 @@ options(crayon.enabled = NULL)
 The `elbird` package is a morpheme analysis package packed with [Kiwi](https://github.com/bab2min/Kiwi).
 It is based on cpp package `Kiwi` and that has convenient functions such as faster performance compared to other tokenizers, easy user dictionary addition, unregistered noun extraction, etc.
 
+### logo
+
+<a href="https://www.flaticon.com/free-icons/wings" title="wings icons">Wings icons created by Good Ware - Flaticon</a>    
+<a href="https://www.flaticon.com/free-icons/africa" title="africa icons">Africa icons created by Eucalyp - Flaticon</a>
+
 ## Installation
 
 You can install the elbird with:

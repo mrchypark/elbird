@@ -3,11 +3,13 @@ library(cowplot)
 
 ggdraw() +
   draw_image(
+    # https://www.flaticon.com/premium-icon/wings_4442490?related_id=4442490
     "man/figures/wings.png",
     scale = 3,
     y = .1
   ) +
   draw_image(
+    # https://www.flaticon.com/free-icon/elephant_1123692?term=elephant&related_id=1123692
     "man/figures/elephant.png",
     scale = 1.5,
     y = -.5
