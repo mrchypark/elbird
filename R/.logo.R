@@ -1,17 +1,31 @@
 library(hexSticker)
+library(cowplot)
 
+ggdraw() +
+  draw_image(
+    "man/figures/wings.png",
+    scale = 3,
+    y = .1
+  ) +
+  draw_image(
+    "man/figures/elephant.png",
+    scale = 1.5,
+    y = -.5
+  ) -> p
 # for windows
 sticker(
-  "man/figures/moa.png",
-  s_x = 1.4, s_y = 0.85, s_width = 0.3,
-  package = "elbird",
-  p_size = 55, p_y = 1.3, p_x = 0.85,
+  p,
+  s_x = 1, s_y = 0.75,
+  package = "e/bird",
+  p_size = 55, p_y = 1.4, p_x = 1,
   filename = "man/figures/logo.png",
-  h_fill = "#A9C772",
-  p_color = "#333333",
-  h_color = "#73553D",
+  h_fill = "#a9e6ff",
+  p_color = "#160840",
+  h_color = "#003458",
   url = "mrchypark.github.io/elbird",
   u_size = 9,
-  u_color = "#333333",
+  u_color = "#003458",
   dpi = 500
 )
+
+# wing color : f2d961
