@@ -119,7 +119,6 @@ int ruleprovider(const char* input, int size, char* buffer, void* user) {
   return 0;
 }
 
-
 [[cpp11::register]]
 std::string kiwi_version_() {
   return kiwi_version();

@@ -1,3 +1,16 @@
+Kiwi <- function(num_workers = 0,
+                model_size = "base",
+                integrate_allomorph = TRUE,
+                load_default_dict = TRUE) {
+  Kiwi_Class$new(
+    num_workers,
+    model_size,
+    integrate_allomorph,
+    load_default_dict
+  )
+
+}
+
 #' Kiwi Class
 #'
 #' @description
@@ -6,29 +19,27 @@
 #' @importFrom R6 R6Class
 #' @examples
 #' \dontrun{
-#'   kw <- Kiwi$new()
-#'   kw$analyze("test")
-#'   kw$tokenize("test")
+#'   el <- Elbird$new()
+#'   el$analyze("test")
+#'   el$tokenize("test")
 #'   }
 #' @export
-Kiwi <- R6::R6Class(
+Kiwi_Class <- R6::R6Class(
   "Kiwi",
   public = list(
     #' @description print method for `Kiwi` objects
     #' @param x self
     #' @param ... ignored
     print = function(x, ...) {
-      cat("<kiwi class> ", sep = "\n")
+      cat("<elbird class> ", sep = "\n")
       cat(paste0("  model: ",private$model_size), sep = "\n")
       invisible(self)
     },
 
     #' @description
     #'   Create a kiwi instance.
-    #' @param num_workers \code{int(optional)}: use multi-thread core number. default is 0 which means use all core.
-    #' @param model_size \code{char(optional)}: kiwi model select. default is "base". "small", "large" is available.
-    #' @param integrate_allomorph \code{bool(optional)}: default is TRUE.
-    #' @param load_default_dict \code{bool(optional)}: use defualt dictionary. default is TRUE.
+    #'
+    #' @inheritParams init
     initialize = function(num_workers = 0,
                           model_size = "base",
                           integrate_allomorph = TRUE,
