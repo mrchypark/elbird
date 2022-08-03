@@ -278,12 +278,26 @@ int kiwi_builder_extract_add_words_(SEXP handle_ex, const char* input, int min_c
 }
 
 [[cpp11::register]]
-SEXP kiwi_builder_build_(SEXP handle_ex, ) {
+SEXP kiwi_builder_build_(SEXP handle_ex) {
   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
-  kiwi_h kw = kiwi_builder_build(handle.get());
+  kiwi_h kw = kiwi_builder_build(handle.get(), nullptr, 0);
   cpp11::external_pointer<kiwi_s, _finalizer_kiwi_h> res(kw);
   return res;
 }
+
+
+// static void _finalizer_kiwi_typo_h(kiwi_typo_h handle){
+//   kiwi_typo_close(handle);
+// }
+//
+// [[cpp11::register]]
+// SEXP kiwi_typo_init_() {
+//   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
+//   kiwi_typo_h tyh = kiwi_typo_init();
+//   cpp11::external_pointer<kiwi_typo_h, _finalizer_kiwi_typo_h> res(tyh);
+//   return res;
+// }
+
 
 [[cpp11::register]]
 SEXP kiwi_init_(const char* model_path, int num_threads, int options) {
