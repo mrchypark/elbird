@@ -23,7 +23,7 @@ static std::map<std::string, int> m = {
   { "JOIN_VERB_SUFFIX", KIWI_MATCH_JOIN_VERB_SUFFIX },
   { "JOIN_ADJ_SUFFIX", KIWI_MATCH_JOIN_ADJ_SUFFIX },
   { "JOIN_V_SUFFIX", KIWI_MATCH_JOIN_V_SUFFIX },
-  { "JOIN_V_SUFFIX", KIWI_MATCH_JOIN_NOUN_AFFIX },
+  { "JOIN_NOUN_SUFFIX", KIWI_MATCH_JOIN_NOUN_AFFIX },
 };
 
 int match_options_(const std::string match_string) {
@@ -278,7 +278,7 @@ int kiwi_builder_extract_add_words_(SEXP handle_ex, const char* input, int min_c
 }
 
 [[cpp11::register]]
-SEXP kiwi_builder_build_(SEXP handle_ex) {
+SEXP kiwi_builder_build_(SEXP handle_ex, ) {
   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
   kiwi_h kw = kiwi_builder_build(handle.get());
   cpp11::external_pointer<kiwi_s, _finalizer_kiwi_h> res(kw);
