@@ -14,6 +14,3 @@ init <- function(size = "base") {
 
   assign("kw", kw, envir = .el)
 }
-
-
-
