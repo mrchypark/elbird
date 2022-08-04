@@ -1,8 +1,8 @@
 test_that("pre analyze words df", {
   skip_if_offline()
   skip_on_os(os = "windows", arch = "i386")
-  if (!model_works("small"))
-    get_model("small")
+  if (!model_works("base"))
+    get_model("base")
 
   anl <- tibble::tibble(
     morphs = c("팅기", "었", "어"),
@@ -11,7 +11,7 @@ test_that("pre analyze words df", {
     end = c(1L, 2L, 3L)
   )
 
-  kb <- kiwi_builder_init_(kiwi_model_path_full("small"), 0, BuildOpt$DEFAULT)
+  kb <- kiwi_builder_init_(kiwi_model_path_full("base"), 0, BuildOpt$DEFAULT)
 
   res <- kiwi_builder_add_pre_analyzed_word_(kb, "팅겼어", anl, 0)
   expect_equal(res, -1)
