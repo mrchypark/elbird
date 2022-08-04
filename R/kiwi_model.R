@@ -43,6 +43,7 @@ kiwi_model_exists_one <- function(size) {
       "default.dict",
       "extract.mdl",
       "sj.knlm",
+      "skipbigram.mdl",
       "sj.morph")
   all(sapply(chk_list, function(x)
     file.exists(file.path(
