@@ -2,4 +2,4 @@
 
 0 errors | 0 warnings | 1 note
 
-* Fix cran test fail on 0.2.2
+* Rebuild document with roxygen2 7.2.1

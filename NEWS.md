@@ -1,5 +1,7 @@
 # elbird 0.2.4
 
+* Rebuild document with roxygen2 7.2.1
+
 # elbird 0.2.3
 
 * Fix cran test fail.

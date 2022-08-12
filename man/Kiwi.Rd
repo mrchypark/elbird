@@ -26,23 +26,23 @@ Kiwi class is provide method for korean mophological analyze result.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-print}{\code{Kiwi$print()}}
-\item \href{#method-new}{\code{Kiwi$new()}}
-\item \href{#method-add_user_word}{\code{Kiwi$add_user_word()}}
-\item \href{#method-add_pre_analyzed_words}{\code{Kiwi$add_pre_analyzed_words()}}
-\item \href{#method-add_rules}{\code{Kiwi$add_rules()}}
-\item \href{#method-load_user_dictionarys}{\code{Kiwi$load_user_dictionarys()}}
-\item \href{#method-extract_words}{\code{Kiwi$extract_words()}}
-\item \href{#method-analyze}{\code{Kiwi$analyze()}}
-\item \href{#method-tokenize}{\code{Kiwi$tokenize()}}
-\item \href{#method-split_into_sents}{\code{Kiwi$split_into_sents()}}
-\item \href{#method-get_tidytext_func}{\code{Kiwi$get_tidytext_func()}}
-\item \href{#method-clone}{\code{Kiwi$clone()}}
+\item \href{#method-Kiwi-print}{\code{Kiwi$print()}}
+\item \href{#method-Kiwi-new}{\code{Kiwi$new()}}
+\item \href{#method-Kiwi-add_user_word}{\code{Kiwi$add_user_word()}}
+\item \href{#method-Kiwi-add_pre_analyzed_words}{\code{Kiwi$add_pre_analyzed_words()}}
+\item \href{#method-Kiwi-add_rules}{\code{Kiwi$add_rules()}}
+\item \href{#method-Kiwi-load_user_dictionarys}{\code{Kiwi$load_user_dictionarys()}}
+\item \href{#method-Kiwi-extract_words}{\code{Kiwi$extract_words()}}
+\item \href{#method-Kiwi-analyze}{\code{Kiwi$analyze()}}
+\item \href{#method-Kiwi-tokenize}{\code{Kiwi$tokenize()}}
+\item \href{#method-Kiwi-split_into_sents}{\code{Kiwi$split_into_sents()}}
+\item \href{#method-Kiwi-get_tidytext_func}{\code{Kiwi$get_tidytext_func()}}
+\item \href{#method-Kiwi-clone}{\code{Kiwi$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-Kiwi-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Kiwi-print}{}}}
 \subsection{Method \code{print()}}{
 print method for \code{Kiwi} objects
 \subsection{Usage}{
@@ -60,8 +60,8 @@ print method for \code{Kiwi} objects
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Kiwi-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Kiwi-new}{}}}
 \subsection{Method \code{new()}}{
 Create a kiwi instance.
 \subsection{Usage}{
@@ -88,8 +88,8 @@ Create a kiwi instance.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add_user_word"></a>}}
-\if{latex}{\out{\hypertarget{method-add_user_word}{}}}
+\if{html}{\out{<a id="method-Kiwi-add_user_word"></a>}}
+\if{latex}{\out{\hypertarget{method-Kiwi-add_user_word}{}}}
 \subsection{Method \code{add_user_word()}}{
 add user word with pos and score
 \subsection{Usage}{
@@ -111,8 +111,8 @@ add user word with pos and score
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add_pre_analyzed_words"></a>}}
-\if{latex}{\out{\hypertarget{method-add_pre_analyzed_words}{}}}
+\if{html}{\out{<a id="method-Kiwi-add_pre_analyzed_words"></a>}}
+\if{latex}{\out{\hypertarget{method-Kiwi-add_pre_analyzed_words}{}}}
 \subsection{Method \code{add_pre_analyzed_words()}}{
 TODO
 \subsection{Usage}{
@@ -132,8 +132,8 @@ TODO
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add_rules"></a>}}
-\if{latex}{\out{\hypertarget{method-add_rules}{}}}
+\if{html}{\out{<a id="method-Kiwi-add_rules"></a>}}
+\if{latex}{\out{\hypertarget{method-Kiwi-add_rules}{}}}
 \subsection{Method \code{add_rules()}}{
 TODO
 \subsection{Usage}{
@@ -155,8 +155,8 @@ TODO
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-load_user_dictionarys"></a>}}
-\if{latex}{\out{\hypertarget{method-load_user_dictionarys}{}}}
+\if{html}{\out{<a id="method-Kiwi-load_user_dictionarys"></a>}}
+\if{latex}{\out{\hypertarget{method-Kiwi-load_user_dictionarys}{}}}
 \subsection{Method \code{load_user_dictionarys()}}{
 add user dictionary using text file.
 \subsection{Usage}{
@@ -172,8 +172,8 @@ add user dictionary using text file.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-extract_words"></a>}}
-\if{latex}{\out{\hypertarget{method-extract_words}{}}}
+\if{html}{\out{<a id="method-Kiwi-extract_words"></a>}}
+\if{latex}{\out{\hypertarget{method-Kiwi-extract_words}{}}}
 \subsection{Method \code{extract_words()}}{
 Extract Noun word candidate from texts.
 \subsection{Usage}{
@@ -206,8 +206,8 @@ Extract Noun word candidate from texts.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-analyze"></a>}}
-\if{latex}{\out{\hypertarget{method-analyze}{}}}
+\if{html}{\out{<a id="method-Kiwi-analyze"></a>}}
+\if{latex}{\out{\hypertarget{method-Kiwi-analyze}{}}}
 \subsection{Method \code{analyze()}}{
 Analyze text to token and tag results.
 \subsection{Usage}{
@@ -236,8 +236,8 @@ If not valid value, work same as FALSE.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tokenize"></a>}}
-\if{latex}{\out{\hypertarget{method-tokenize}{}}}
+\if{html}{\out{<a id="method-Kiwi-tokenize"></a>}}
+\if{latex}{\out{\hypertarget{method-Kiwi-tokenize}{}}}
 \subsection{Method \code{tokenize()}}{
 Analyze text to token and pos result just top 1.
 \subsection{Usage}{
@@ -269,8 +269,8 @@ If not valid value, work same as FALSE.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-split_into_sents"></a>}}
-\if{latex}{\out{\hypertarget{method-split_into_sents}{}}}
+\if{html}{\out{<a id="method-Kiwi-split_into_sents"></a>}}
+\if{latex}{\out{\hypertarget{method-Kiwi-split_into_sents}{}}}
 \subsection{Method \code{split_into_sents()}}{
 Some text may not split sentence by sentence.
 split_into_sents works split sentences to sentence by sentence.
@@ -291,8 +291,8 @@ split_into_sents works split sentences to sentence by sentence.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_tidytext_func"></a>}}
-\if{latex}{\out{\hypertarget{method-get_tidytext_func}{}}}
+\if{html}{\out{<a id="method-Kiwi-get_tidytext_func"></a>}}
+\if{latex}{\out{\hypertarget{method-Kiwi-get_tidytext_func}{}}}
 \subsection{Method \code{get_tidytext_func()}}{
 set function to tidytext unnest_tokens.
 \subsection{Usage}{
@@ -330,8 +330,8 @@ If not valid value, work same as FALSE.}
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Kiwi-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Kiwi-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
