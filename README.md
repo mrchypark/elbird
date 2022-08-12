@@ -9,12 +9,12 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/mrchypark/elbird/workflows/R-CMD-check/badge.svg)](https://github.com/mrchypark/elbird/actions)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/elbird)](https://CRAN.R-project.org/package=elbird)
+status](https://www.r-pkg.org/badges/version/elbird)](https://cran.r-project.org/package=elbird)
 [![runiverse-name](https://mrchypark.r-universe.dev/badges/:name)](https://mrchypark.r-universe.dev/)
 [![runiverse-package](https://mrchypark.r-universe.dev/badges/elbird)](https://mrchypark.r-universe.dev/ui#packages)
 [![metacran
 downloads](https://cranlogs.r-pkg.org/badges/elbird)](https://cran.r-project.org/package=elbird)
-[![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/elbird)](https://cran.rstudio.com/package=elbird)
+[![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/elbird)](https://cran.r-project.org/package=elbird)
 [![Codecov test
 coverage](https://codecov.io/gh/mrchypark/elbird/branch/main/graph/badge.svg)](https://app.codecov.io/gh/mrchypark/elbird?branch=main)
 <!-- badges: end -->
@@ -111,12 +111,12 @@ package. The `tar` below is the target text for morpheme analysis.
 
 ``` r
 suppressMessages(library(dplyr))
-# install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev/")
+# install.packages("komment", repos = "https://forkonlp.r-universe.dev/")
 library(stringr)
 library(tidytext)
-library(presidentSpeech)
+library(komment)
 
-spidx %>% 
+speech_list %>% 
   filter(president == "이명박") %>% 
   filter(str_detect(title, "취임사")) %>% 
   pull(link) %>% 
@@ -149,7 +149,7 @@ tar %>%
     output = word,
     token = tokenize_tidy
     )
-#> # A tibble: 2,119 × 2
+#> # A tibble: 2,117 × 2
 #>    paragraph word     
 #>        <int> <chr>    
 #>  1         1 존경/nng 
@@ -162,7 +162,7 @@ tar %>%
 #>  8         3 자리/nng 
 #>  9         3 참석/nng 
 #> 10         3 시/ep    
-#> # … with 2,109 more rows
+#> # … with 2,107 more rows
 ```
 
 ### analyze
@@ -1186,7 +1186,7 @@ analyze(c("안녕하세요. kiwi 형태소 분석기의 R wrapper인 elbird를 �
 list](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)
 that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
--   The table below is fetched at 2022-06-18 15:37:26 Asia/Seoul.
+-   The table below is fetched at 2022-08-13 00:02:46 Asia/Seoul.
 
 | 대분류                    | 태그      | 설명                                                        |
 |:--------------------------|:----------|:------------------------------------------------------------|
