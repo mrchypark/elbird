@@ -58,7 +58,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">elbird</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -430,7 +430,8 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>         8 그러나 우리는 알고 있습니다. 그것은 기적이 아니라 우리가 다 함께 … </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>         9 독립을 위해 목숨을 바친 선열들, 전선에서 산화한 장병들, 뙤약볕과 … </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">10</span>        10 장롱 속 금붙이를 들고나와 외환위기에 맞섰던 시민들, 겨울 바닷가에… </span>
-<span class="co">#&gt; <span style="color: #949494;"># … with 52 more rows</span></span></code></pre></div>
+<span class="co">#&gt; <span style="color: #949494;"># … with 52 more rows</span></span>
+<span class="co">#&gt; <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
 <p><code>get_tidytext_func()</code> 메소드는 <a href="https://www.tidytextmining.com/tidytext.html" class="external-link">tidytext</a>의 <code><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html" class="external-link">unnest_tokens()</a></code> 함수와 동작하는 <code>함수</code>를 리턴합니다.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext" class="external-link">tidytext</a></span><span class="op">)</span>
@@ -455,7 +456,8 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>         3 자리/nng </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>         3 참석/nng </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">10</span>         3 시/ep    </span>
-<span class="co">#&gt; <span style="color: #949494;"># … with 2,107 more rows</span></span></code></pre></div>
+<span class="co">#&gt; <span style="color: #949494;"># … with 2,107 more rows</span></span>
+<span class="co">#&gt; <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
 <p><code>Stopwords</code> 를 추가해서 사용해보겠습니다.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sw</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/Stopwords.html">Stopwords</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span>
@@ -482,7 +484,8 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>         2 동포/nng </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>         2 여러분/np</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">10</span>         3 이/mm    </span>
-<span class="co">#&gt; <span style="color: #949494;"># … with 4,213 more rows</span></span></code></pre></div>
+<span class="co">#&gt; <span style="color: #949494;"># … with 4,213 more rows</span></span>
+<span class="co">#&gt; <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
 <p>사용자 단어 사전도 추가해서 진행해보겠습니다.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrchypark/elbird/" class="external-link">elbird</a></span><span class="op">)</span>
@@ -513,7 +516,8 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>         2 여러분/np   </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>         3 이/mm       </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">10</span>         3 자리/nng    </span>
-<span class="co">#&gt; <span style="color: #949494;"># … with 4,212 more rows</span></span></code></pre></div>
+<span class="co">#&gt; <span style="color: #949494;"># … with 4,212 more rows</span></span>
+<span class="co">#&gt; <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
 </div>
   </main>
 </div>
@@ -527,7 +531,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
   <p class="preferably">Using <a href="https://preferably.amirmasoudabdol.name/?source=footer" class="external-link">preferably</a> template.</p>
 </div>
 
