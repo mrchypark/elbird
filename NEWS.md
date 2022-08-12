@@ -1,5 +1,7 @@
 # elbird 0.2.5
 
+* Fix url on readme for cran.
+
 # elbird 0.2.4
 
 * Rebuild document with roxygen2 7.2.1
