@@ -19,11 +19,11 @@ options(crayon.enabled = NULL)
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/mrchypark/elbird/workflows/R-CMD-check/badge.svg)](https://github.com/mrchypark/elbird/actions)
-[![CRAN status](https://www.r-pkg.org/badges/version/elbird)](https://CRAN.R-project.org/package=elbird)
+[![CRAN status](https://www.r-pkg.org/badges/version/elbird)](https://cran.r-project.org/package=elbird)
 [![runiverse-name](https://mrchypark.r-universe.dev/badges/:name)](https://mrchypark.r-universe.dev/)
 [![runiverse-package](https://mrchypark.r-universe.dev/badges/elbird)](https://mrchypark.r-universe.dev/ui#packages)
 [![metacran downloads](https://cranlogs.r-pkg.org/badges/elbird)](https://cran.r-project.org/package=elbird)
-[![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/elbird)](https://cran.rstudio.com/package=elbird)
+[![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/elbird)](https://cran.r-project.org/package=elbird)
 [![Codecov test coverage](https://codecov.io/gh/mrchypark/elbird/branch/main/graph/badge.svg)](https://app.codecov.io/gh/mrchypark/elbird?branch=main)
 <!-- badges: end -->
 
@@ -78,12 +78,12 @@ The `tar` below is the target text for morpheme analysis.
 
 ```{r}
 suppressMessages(library(dplyr))
-# install.packages("presidentSpeech", repos = "https://forkonlp.r-universe.dev/")
+# install.packages("komment", repos = "https://forkonlp.r-universe.dev/")
 library(stringr)
 library(tidytext)
-library(presidentSpeech)
+library(komment)
 
-spidx %>% 
+speech_list %>% 
   filter(president == "이명박") %>% 
   filter(str_detect(title, "취임사")) %>% 
   pull(link) %>% 
