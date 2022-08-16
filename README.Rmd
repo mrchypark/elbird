@@ -103,6 +103,21 @@ tar %>%
     )
 ```
 
+```{r}
+library(ggplot2)
+tar %>% 
+  unnest_tokens(
+    input = content,
+    output = word,
+    token = tokenize_tidy
+    ) %>%
+  count(word) %>%
+  top_n(10) %>%
+  ggplot(aes(n, word)) +
+  geom_col(show.legend = FALSE)
+```
+
+
 ### analyze
 
 In addition, an `analyze` function is provided that uses the output of multi-result with there score.
