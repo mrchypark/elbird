@@ -24,7 +24,7 @@ jobs:
           extra-packages: |
             github::forkonlp/komment
             any::ggplot2
-            any::pkgdwon
+            any::pkgdown
             any::preferably
 
       - name: Install package
