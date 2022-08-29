@@ -21,7 +21,11 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           cache-version: 2
-          extra-packages: pkgdown preferably
+          extra-packages: |
+            github::forkonlp/komment
+            any::ggplot2
+            any::pkgdown
+            any::preferably
 
       - name: Install package
         run: R CMD INSTALL .

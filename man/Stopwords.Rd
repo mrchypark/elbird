@@ -24,19 +24,19 @@ Stopwords is for filter result.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-print}{\code{Stopwords$print()}}
-\item \href{#method-new}{\code{Stopwords$new()}}
-\item \href{#method-add}{\code{Stopwords$add()}}
-\item \href{#method-add_from_dict}{\code{Stopwords$add_from_dict()}}
-\item \href{#method-remove}{\code{Stopwords$remove()}}
-\item \href{#method-save_dict}{\code{Stopwords$save_dict()}}
-\item \href{#method-get}{\code{Stopwords$get()}}
-\item \href{#method-clone}{\code{Stopwords$clone()}}
+\item \href{#method-Stopwords-print}{\code{Stopwords$print()}}
+\item \href{#method-Stopwords-new}{\code{Stopwords$new()}}
+\item \href{#method-Stopwords-add}{\code{Stopwords$add()}}
+\item \href{#method-Stopwords-add_from_dict}{\code{Stopwords$add_from_dict()}}
+\item \href{#method-Stopwords-remove}{\code{Stopwords$remove()}}
+\item \href{#method-Stopwords-save_dict}{\code{Stopwords$save_dict()}}
+\item \href{#method-Stopwords-get}{\code{Stopwords$get()}}
+\item \href{#method-Stopwords-clone}{\code{Stopwords$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-Stopwords-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Stopwords-print}{}}}
 \subsection{Method \code{print()}}{
 print method for \code{Stopwords} objects
 \subsection{Usage}{
@@ -54,8 +54,8 @@ print method for \code{Stopwords} objects
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Stopwords-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Stopwords-new}{}}}
 \subsection{Method \code{new()}}{
 Create a stopwords object for filter stopwords on \code{\link[=analyze]{analyze()}} and \code{\link[=tokenize]{tokenize()}} results.
 \subsection{Usage}{
@@ -72,8 +72,8 @@ Defualt is TRUE.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add"></a>}}
-\if{latex}{\out{\hypertarget{method-add}{}}}
+\if{html}{\out{<a id="method-Stopwords-add"></a>}}
+\if{latex}{\out{\hypertarget{method-Stopwords-add}{}}}
 \subsection{Method \code{add()}}{
 add stopword one at a time.
 \subsection{Usage}{
@@ -103,8 +103,8 @@ add stopword one at a time.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add_from_dict"></a>}}
-\if{latex}{\out{\hypertarget{method-add_from_dict}{}}}
+\if{html}{\out{<a id="method-Stopwords-add_from_dict"></a>}}
+\if{latex}{\out{\hypertarget{method-Stopwords-add_from_dict}{}}}
 \subsection{Method \code{add_from_dict()}}{
 add stopword from text file.
 text file need to form "TEXT/TAG".
@@ -125,8 +125,8 @@ TAG required like "FORM/NNP".
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-remove"></a>}}
-\if{latex}{\out{\hypertarget{method-remove}{}}}
+\if{html}{\out{<a id="method-Stopwords-remove"></a>}}
+\if{latex}{\out{\hypertarget{method-Stopwords-remove}{}}}
 \subsection{Method \code{remove()}}{
 remove stopword one at a time.
 \subsection{Usage}{
@@ -144,8 +144,8 @@ remove stopword one at a time.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-save_dict"></a>}}
-\if{latex}{\out{\hypertarget{method-save_dict}{}}}
+\if{html}{\out{<a id="method-Stopwords-save_dict"></a>}}
+\if{latex}{\out{\hypertarget{method-Stopwords-save_dict}{}}}
 \subsection{Method \code{save_dict()}}{
 save current stopwords list in text file.
 \subsection{Usage}{
@@ -161,8 +161,8 @@ save current stopwords list in text file.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get"></a>}}
-\if{latex}{\out{\hypertarget{method-get}{}}}
+\if{html}{\out{<a id="method-Stopwords-get"></a>}}
+\if{latex}{\out{\hypertarget{method-Stopwords-get}{}}}
 \subsection{Method \code{get()}}{
 return tibble of stopwords.
 \subsection{Usage}{
@@ -175,8 +175,8 @@ for \code{\link[=analyze]{analyze()}} / \code{\link[=tokenize]{tokenize()}} func
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Stopwords-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Stopwords-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

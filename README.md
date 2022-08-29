@@ -149,7 +149,7 @@ tar %>%
     output = word,
     token = tokenize_tidy
     )
-#> # A tibble: 2,119 × 2
+#> # A tibble: 2,117 × 2
 #>    paragraph word     
 #>        <int> <chr>    
 #>  1         1 존경/nng 
@@ -162,8 +162,25 @@ tar %>%
 #>  8         3 자리/nng 
 #>  9         3 참석/nng 
 #> 10         3 시/ep    
-#> # … with 2,109 more rows
+#> # … with 2,107 more rows
 ```
+
+``` r
+library(ggplot2)
+tar %>% 
+  unnest_tokens(
+    input = content,
+    output = word,
+    token = tokenize_tidy
+    ) %>%
+  count(word) %>%
+  top_n(10) %>%
+  ggplot(aes(n, word)) +
+  geom_col(show.legend = FALSE)
+#> Selecting by n
+```
+
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
 
 ### analyze
 
@@ -1186,7 +1203,7 @@ analyze(c("안녕하세요. kiwi 형태소 분석기의 R wrapper인 elbird를 �
 list](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8)
 that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.
 
--   The table below is fetched at 2022-06-18 15:37:26 Asia/Seoul.
+-   The table below is fetched at 2022-08-17 01:10:32 Asia/Seoul.
 
 | 대분류                    | 태그      | 설명                                                        |
 |:--------------------------|:----------|:------------------------------------------------------------|
