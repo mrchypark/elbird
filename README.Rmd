@@ -46,7 +46,7 @@ You can install the elbird with:
 install.packages("elbird")
 
 # Dev version
-install.packages("elbird", repos = 'https://mrchypark.r-universe.dev')
+install.packages('elbird', repos = c('https://mrchypark.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 
 ## Example
