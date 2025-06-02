@@ -9,10 +9,13 @@ kiwi_model_path <- function() {
 }
 
 kiwi_model_path_full <- function(size) {
-  size <- match.arg(size, c("small", "base", "large"))
-  if (size == "base")
-    size <- "ModelGenerator"
-  file.path(kiwi_model_path(), size)
+  valid_model_sizes <- c("small", "base", "large", "CoNg-base", "CoNg-large")
+  size <- match.arg(size, valid_model_sizes)
+  if (size == "base") {
+    file.path(kiwi_model_path(), "ModelGenerator")
+  } else {
+    file.path(kiwi_model_path(), size)
+  }
 }
 
 #' A simple exported version of \code{kiwi_model_path()}
@@ -29,15 +32,17 @@ model_home <- function() {
 }
 
 kiwi_model_exists <- function(size) {
-  size <- match.arg(size, c("all", "small", "base", "large"))
+  valid_model_sizes <- c("small", "base", "large", "CoNg-base", "CoNg-large")
+  size <- match.arg(size, c("all", valid_model_sizes))
   if (size == "all")
-    size <- list("small", "base", "large")
+    size <- valid_model_sizes
   all(sapply(size, function(x)
     kiwi_model_exists_one(x)))
 }
 
 kiwi_model_exists_one <- function(size) {
-  size <- match.arg(size, c("small", "base", "large"))
+  valid_model_sizes <- c("small", "base", "large", "CoNg-base", "CoNg-large")
+  size <- match.arg(size, valid_model_sizes)
   chk_list <-
     c("combiningRule.txt",
       "default.dict",
@@ -65,15 +70,17 @@ model_exists <- function(size = "all") {
 }
 
 kiwi_model_works <- function(size) {
-  size <- match.arg(size, c("all", "small", "base", "large"))
+  valid_model_sizes <- c("small", "base", "large", "CoNg-base", "CoNg-large")
+  size <- match.arg(size, c("all", valid_model_sizes))
   if (size == "all")
-    size <- list("small", "base", "large")
+    size <- valid_model_sizes
   all(sapply(size, function(x)
     kiwi_model_work_one(x)))
 }
 
 kiwi_model_work_one <- function(size) {
-  size <- match.arg(size, c("small", "base", "large"))
+  valid_model_sizes <- c("small", "base", "large", "CoNg-base", "CoNg-large")
+  size <- match.arg(size, valid_model_sizes)
   if (!kiwi_model_exists_one(size))
     return(FALSE)
   invisible(kiwi_init_(kiwi_model_path_full(size), 1, 1))
@@ -118,12 +125,13 @@ get_kiwi_models <-
   function(size = "all",
            path = kiwi_model_path(),
            clean = FALSE) {
-    size <- match.arg(size, c("all", "small", "base", "large"))
+    valid_model_sizes <- c("small", "base", "large", "CoNg-base", "CoNg-large")
+    size <- match.arg(size, c("all", valid_model_sizes))
     if (clean)
       kiwi_model_clean(size)
 
     if (size == "all")
-      size <- list("small", "base", "large")
+      size <- valid_model_sizes
 
     lapply(size, function(x)
       kiwi_model_get(x, path))
@@ -131,7 +139,8 @@ get_kiwi_models <-
   }
 
 kiwi_model_clean <- function(size = "all") {
-  size <- match.arg(size, c("all", "small", "base", "large"))
+  valid_model_sizes <- c("small", "base", "large", "CoNg-base", "CoNg-large")
+  size <- match.arg(size, c("all", valid_model_sizes))
   lapply(size, function(x) {
     unlink
   })
@@ -143,8 +152,9 @@ kiwi_model_clean <- function(size = "all") {
 #' @importFrom utils download.file
 #' @importFrom utils untar
 kiwi_model_get <- function(size, path) {
-  version <- "v0.11.2"
-  size <- match.arg(size, c("small", "base", "large"))
+  version <- "v0.21.0"
+  valid_model_sizes <- c("small", "base", "large", "CoNg-base", "CoNg-large")
+  size <- match.arg(size, valid_model_sizes)
   fnm <- paste0("kiwi_model_", version, "_", size, ".tgz")
   tarurl <-
     paste0("https://github.com/bab2min/Kiwi/releases/download/",
