@@ -62,8 +62,8 @@ kiwi_model_exists_one <- function(size) {
 #' @return \code{logical} model files exists or not.
 #' @examples
 #' \dontrun{
-#'   get_model("small")
-#'   model_exists("small")
+#'   get_model("base")
+#'   model_exists("base")
 #' }
 #' @export
 model_exists <- function(size = "all") {
@@ -94,8 +94,8 @@ kiwi_model_work_one <- function(size) {
 #' @return \code{logical} model work or not.
 #' @examples
 #' \dontrun{
-#'   get_model("small")
-#'   model_works("small")
+#'   get_model("base")
+#'   model_works("base")
 #' }
 #' @export
 model_works <- function(size = "all") {
@@ -104,14 +104,14 @@ model_works <- function(size = "all") {
 
 #' Get kiwi language model file.
 #'
-#' @param size "small", "base", "large" model. default is "base". Also "all" available.
+#' @param size "base", "CoNg-base" model. default is "base". Also "all" available.
 #' @param path path for model files. default is [model_home()].
 #' @param clean remove previous model files before get new.
 #'
 #' @source \url{https://github.com/bab2min/Kiwi/releases}
 #' @examples
 #' \dontrun{
-#'   get_model("small")
+#'   get_model("base")
 #' }
 #' @export
 get_model <-

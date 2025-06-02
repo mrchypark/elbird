@@ -26,7 +26,7 @@ Kiwi <- R6::R6Class(
     #' @description
     #'   Create a kiwi instance.
     #' @param num_workers \code{int(optional)}: use multi-thread core number. default is 0 which means use all core.
-    #' @param model_size \code{char(optional)}: kiwi model select. default is "base". "small", "large", "CoNg-base" (experimental), "CoNg-large" (experimental) is available.
+    #' @param model_size \code{char(optional)}: kiwi model select. default is "base". "CoNg-base" (experimental) is available.
     #' @param integrate_allomorph \code{bool(optional)}: default is TRUE.
     #' @param load_default_dict \code{bool(optional)}: use defualt dictionary. default is TRUE.
     initialize = function(num_workers = 0,

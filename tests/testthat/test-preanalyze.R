@@ -26,7 +26,7 @@ test_that("pre analyze words df", {
         start = c(0L, 1L, 2L),
         end = c(1L, 2L, 3L)
       )
-      kb <- kiwi_builder_init_(kiwi_model_path_full("small"), 0, BuildOpt$DEFAULT)
+      kb <- kiwi_builder_init_(kiwi_model_path_full("base"), 0, BuildOpt$DEFAULT)
       res_add1 <- kiwi_builder_add_pre_analyzed_word_(kb, "팅겼어", anl, 0)
       kiwi_builder_add_alias_word_(kb, "팅기","vv", -1, "튕기")
       res_add2 <- kiwi_builder_add_pre_analyzed_word_(kb, "팅겼어", anl, 0)
