@@ -14,7 +14,7 @@ test_that("pre analyze words df", {
   res_analyze <- NULL
 
   tryCatch({
-    if (!model_exists("small")) {
+    if (!model_exists("small")) { 
       get_model("small")
     }
     model_successfully_acquired <- model_exists("small")
@@ -30,8 +30,8 @@ test_that("pre analyze words df", {
       res_add1 <- kiwi_builder_add_pre_analyzed_word_(kb, "팅겼어", anl, 0)
       kiwi_builder_add_alias_word_(kb, "팅기","vv", -1, "튕기")
       res_add2 <- kiwi_builder_add_pre_analyzed_word_(kb, "팅겼어", anl, 0)
-      kw_built <- kiwi_builder_build_(kb)
-      res_analyze <- kiwi_analyze_wrap(kw_built, text = "팅겼어...", 1, Match$ALL_WITH_NORMALIZING)
+      kw_built <- kiwi_builder_build_(kb) 
+      res_analyze <- kiwi_analyze_wrap(kw_built, text = "팅겼어...", 1, Match$ALL_WITH_NORMALIZING) 
     }
   }, error = function(e) {
     err <<- e
@@ -45,10 +45,10 @@ test_that("pre analyze words df", {
     }
     return() # Ensure exit after skip or fail
   }
-
+  
   if (!model_successfully_acquired) {
       skip("Skipping test for 'preanalyze': 'small' model not available after attempted acquisition.")
-      return()
+      return() 
   }
 
   # Assertions

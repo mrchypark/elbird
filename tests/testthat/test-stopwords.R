@@ -24,7 +24,7 @@ test_that("tokenize stopword works", {
   })
 
   if (!is.null(err)) {
-    if (grepl("HTTP status was '404 Not Found'", err$message) &&
+    if (grepl("HTTP status was '404 Not Found'", err$message) && 
         (grepl("base", err$message) || grepl("kiwi_model_v0.21.0_base.tgz", err$message) || grepl("cong_base", err$message) ) ) {
       fail(paste0("Test setup failed: 'base' model (v0.21.0) not found, but was expected. Error: ", err$message))
       return() # Ensure exit after fail
@@ -33,10 +33,10 @@ test_that("tokenize stopword works", {
       return() # Ensure exit after fail
     }
   }
-
+  
   if (!model_successfully_acquired) {
       skip("Skipping test for 'stopwords': 'base' model not available after attempted acquisition.")
-      return()
+      return() 
   }
 
   expect_false(is.null(res_false), "res_false should not be NULL if setup succeeded.")

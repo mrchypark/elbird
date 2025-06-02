@@ -25,19 +25,19 @@ test_that("tokenize works", {
   })
 
   if (!is.null(err)) {
-    if (grepl("HTTP status was '404 Not Found'", err$message) &&
+    if (grepl("HTTP status was '404 Not Found'", err$message) && 
         (grepl("base", err$message) || grepl("kiwi_model_v0.21.0_base.tgz", err$message) || grepl("cong_base", err$message) ) ) {
       fail(paste0("Test setup failed: 'base' model (v0.21.0) not found, but was expected. Error: ", err$message))
-      return()
+      return() 
     } else {
       fail(paste0("Test setup for 'tokenize' failed with an unexpected error: ", err$message))
-      return()
+      return() 
     }
   }
-
+  
   if (!model_successfully_acquired) {
       skip("Skipping test for 'tokenize': 'base' model not available after attempted acquisition.")
-      return()
+      return() 
   }
 
   expect_false(is.null(res_default_stopwords), "res_default_stopwords should not be NULL if setup succeeded.")

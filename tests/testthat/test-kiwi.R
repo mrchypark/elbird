@@ -3,7 +3,7 @@ library(elbird)
 test_that("kiwi works with model_size = small", {
   skip_if_offline()
   skip_on_os(os = "windows", arch = "i386")
-
+  
   err <- NULL
   kw <- NULL
   res <- NULL
@@ -11,7 +11,7 @@ test_that("kiwi works with model_size = small", {
 
   tryCatch({
     # Kiwi$new will attempt to download the model if not present.
-    kw <- Kiwi$new(model_size = "small")
+    kw <- Kiwi$new(model_size = "small") 
     res <- kw$analyze("테스트 문장입니다.")
     model_successfully_acquired_and_analyzed <- TRUE
   }, error = function(e) {
@@ -26,7 +26,7 @@ test_that("kiwi works with model_size = small", {
     }
     return() # Ensure exit after skip or fail
   }
-
+  
   # This part should only be reached if err is NULL
   expect_true(model_successfully_acquired_and_analyzed, "Model 'small' acquisition and analysis flag should be TRUE if no error.")
   expect_false(is.null(kw), "Kiwi object 'kw' for 'small' model should have been created.")
@@ -48,13 +48,13 @@ test_that("kiwi works with model_size = base", {
 test_that("kiwi works with model_size = large", {
   skip_if_offline()
   skip_on_os(os = "windows", arch = "i386")
-
+  
   res <- NULL
   err <- NULL
-  kw <- NULL
+  kw <- NULL 
   model_successfully_acquired_and_analyzed <- FALSE
   tryCatch({
-    kw <- Kiwi$new(model_size = "large")
+    kw <- Kiwi$new(model_size = "large") 
     res <- kw$analyze("테스트 문장입니다.")
     model_successfully_acquired_and_analyzed <- TRUE
   }, error = function(e) {
@@ -69,7 +69,7 @@ test_that("kiwi works with model_size = large", {
     }
     return() # Ensure exit after skip or fail
   }
-
+  
   expect_true(model_successfully_acquired_and_analyzed, "Model 'large' acquisition and analysis flag should be TRUE if no error.")
   expect_false(is.null(kw), "Kiwi object 'kw' for 'large' model should have been created.")
   expect_equal(class(kw), c("Kiwi","R6"))
@@ -92,13 +92,13 @@ test_that("kiwi works with model_size = CoNg-base", {
 test_that("kiwi works with model_size = CoNg-large", {
   skip_if_offline()
   skip_on_os(os = "windows", arch = "i386")
-
+  
   res <- NULL
   err <- NULL
-  kw <- NULL
+  kw <- NULL 
   model_successfully_acquired_and_analyzed <- FALSE
   tryCatch({
-    kw <- Kiwi$new(model_size = "CoNg-large")
+    kw <- Kiwi$new(model_size = "CoNg-large") 
     res <- kw$analyze("테스트 문장입니다.")
     model_successfully_acquired_and_analyzed <- TRUE
   }, error = function(e) {
@@ -113,7 +113,7 @@ test_that("kiwi works with model_size = CoNg-large", {
     }
     return() # Ensure exit after skip or fail
   }
-
+  
   expect_true(model_successfully_acquired_and_analyzed, "Model 'CoNg-large' acquisition and analysis flag should be TRUE if no error.")
   expect_false(is.null(kw), "Kiwi object 'kw' for 'CoNg-large' model should have been created.")
   expect_equal(class(kw), c("Kiwi","R6"))

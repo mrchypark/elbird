@@ -36,7 +36,7 @@ kiwi_model_exists <- function(size) {
   valid_model_sizes <- c("base", "CoNg-base") # Restricted list
   size <- match.arg(size, c("all", valid_model_sizes)) # "all" still uses restricted list for iteration
   if (size == "all")
-    size <- valid_model_sizes
+    size <- valid_model_sizes 
   all(sapply(size, function(x)
     kiwi_model_exists_one(x)))
 }

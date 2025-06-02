@@ -8,9 +8,9 @@ test_that("split sents works", {
   model_successfully_acquired <- FALSE
   res_sents1 <- NULL
   res_sents2 <- NULL
-
+  
   tryCatch({
-    if (!model_exists("base")) {
+    if (!model_exists("base")) { 
       get_model("base")
     }
     model_successfully_acquired <- model_exists("base")
@@ -24,7 +24,7 @@ test_that("split sents works", {
   })
 
   if (!is.null(err)) {
-    if (grepl("HTTP status was '404 Not Found'", err$message) &&
+    if (grepl("HTTP status was '404 Not Found'", err$message) && 
         (grepl("base", err$message) || grepl("kiwi_model_v0.21.0_base.tgz", err$message) || grepl("cong_base", err$message) ) ) {
       fail(paste0("Test setup failed: 'base' model (v0.21.0) not found, but was expected. Error: ", err$message))
       return() # Ensure exit after fail
@@ -33,10 +33,10 @@ test_that("split sents works", {
       return() # Ensure exit after fail
     }
   }
-
+  
   if (!model_successfully_acquired) {
       skip("Skipping test for 'splitsents': 'base' model not available after attempted acquisition.")
-      return()
+      return() 
   }
 
   expect_false(is.null(res_sents1), "res_sents1 should not be NULL if setup succeeded.")

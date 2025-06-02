@@ -10,12 +10,12 @@ test_that("analyze works", {
 
   tryCatch({
     if (!model_exists("small")) {
-      get_model("small")
+      get_model("small") 
     }
     model_successfully_acquired <- model_exists("small")
 
     if(model_successfully_acquired){
-      res_analyze <- analyze("Test text.")
+      res_analyze <- analyze("Test text.") 
     }
   }, error = function(e) {
     err <<- e
@@ -29,10 +29,10 @@ test_that("analyze works", {
     }
     return() # Ensure exit after skip or fail
   }
-
+  
   if (!model_successfully_acquired) {
       skip("Skipping test for 'analyze': 'small' model not available after attempted acquisition.")
-      return()
+      return() 
   }
 
   expect_false(is.null(res_analyze), "res_analyze should not be NULL if setup succeeded for 'analyze' with small model.")
