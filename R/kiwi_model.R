@@ -155,7 +155,11 @@ kiwi_model_get <- function(size, path) {
   version <- "v0.21.0"
   valid_model_sizes <- c("small", "base", "large", "CoNg-base", "CoNg-large")
   size <- match.arg(size, valid_model_sizes)
-  fnm <- paste0("kiwi_model_", version, "_", size, ".tgz")
+  if (size == "CoNg-base") {
+    fnm <- paste0("kiwi_model_", version, "_cong_base", ".tgz")
+  } else {
+    fnm <- paste0("kiwi_model_", version, "_", size, ".tgz")
+  }
   tarurl <-
     paste0("https://github.com/bab2min/Kiwi/releases/download/",
            version,

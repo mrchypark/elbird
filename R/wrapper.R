@@ -40,14 +40,17 @@ kiwi_analyze_wrap <-
            top_n = 3,
            match_option = Match$ALL,
            stopwords = FALSE) {
-    sw <- purrr::when(
-      stopwords,
-      isFALSE(.) ~ Stopwords$new(use_system_dict = FALSE),
-      isTRUE(.) ~ Stopwords$new(),
-      any(class(.) == "Stopwords") ~ .,
-      file.exists(.) ~ Stopwords$new(FALSE)$add_from_dict(.),
-      ~ Stopwords$new(use_system_dict = FALSE)
-    )
+    if (isFALSE(stopwords)) {
+      sw <- Stopwords$new(use_system_dict = FALSE)
+    } else if (isTRUE(stopwords)) {
+      sw <- Stopwords$new()
+    } else if (any(class(stopwords) == "Stopwords")) {
+      sw <- stopwords
+    } else if (is.character(stopwords) && length(stopwords) == 1 && file.exists(stopwords)) {
+      sw <- Stopwords$new(FALSE)$add_from_dict(stopwords)
+    } else {
+      sw <- Stopwords$new(use_system_dict = FALSE)
+    }
 
     res <- kiwi_analyze_(handle_ex,
                          text,
