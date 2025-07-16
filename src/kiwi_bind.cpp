@@ -23,7 +23,7 @@ static std::map<std::string, int> m = {
   { "JOIN_VERB_SUFFIX", KIWI_MATCH_JOIN_VERB_SUFFIX },
   { "JOIN_ADJ_SUFFIX", KIWI_MATCH_JOIN_ADJ_SUFFIX },
   { "JOIN_V_SUFFIX", KIWI_MATCH_JOIN_V_SUFFIX },
-  { "JOIN_V_SUFFIX", KIWI_MATCH_JOIN_NOUN_AFFIX },
+  { "JOIN_NOUN_AFFIX", KIWI_MATCH_JOIN_NOUN_PREFIX | KIWI_MATCH_JOIN_NOUN_SUFFIX },
 };
 
 int match_options_(const std::string match_string) {
@@ -278,9 +278,26 @@ int kiwi_builder_extract_add_words_(SEXP handle_ex, const char* input, int min_c
 }
 
 [[cpp11::register]]
-SEXP kiwi_builder_build_(SEXP handle_ex) {
+SEXP kiwi_builder_build_(SEXP handle_ex, SEXP typos_ex = R_NilValue, double typo_cost_threshold = -1.0) {
   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
-  kiwi_h kw = kiwi_builder_build(handle.get());
+  
+  // Handle new typo correction parameters for v0.21.0 API
+  kiwi_typo_h typos = nullptr;
+  float threshold = (typo_cost_threshold < 0) ? 2.5f : static_cast<float>(typo_cost_threshold);
+  
+  if (!Rf_isNull(typos_ex)) {
+    cpp11::external_pointer<kiwi_typo> tp(typos_ex);
+    typos = tp.get();
+  }
+  
+  // Call new API with typo correction parameters
+  // If typos is nullptr, typo correction will be disabled by default
+  kiwi_h kw = kiwi_builder_build(handle.get(), typos, threshold);
+  
+  if (kw == nullptr) {
+    cpp11::stop("Failed to build Kiwi instance. Check kiwi_error() for details.");
+  }
+  
   cpp11::external_pointer<kiwi_s, _finalizer_kiwi_h> res(kw);
   return res;
 }
@@ -309,7 +326,9 @@ SEXP kiwi_analyze_(
     SEXP handle_ex,
     const char* text,
     int top_n, std::string match_options,
-    const cpp11::data_frame stopwords_r) {
+    const cpp11::data_frame stopwords_r,
+    SEXP blocklist_ex = R_NilValue,
+    SEXP pretokenized_ex = R_NilValue) {
 
   std::vector<std::pair<std::string, std::string>> filters;
   cpp11::strings form_r = stopwords_r["form"];
@@ -320,10 +339,28 @@ SEXP kiwi_analyze_(
   }
 
   cpp11::external_pointer<kiwi_s> handle(handle_ex);
+  
+  // Handle new parameters for v0.21.0 API
+  kiwi_morphset_h blocklist = nullptr;
+  kiwi_pretokenized_h pretokenized = nullptr;
+  
+  if (!Rf_isNull(blocklist_ex)) {
+    cpp11::external_pointer<kiwi_morphset> bl(blocklist_ex);
+    blocklist = bl.get();
+  }
+  
+  if (!Rf_isNull(pretokenized_ex)) {
+    cpp11::external_pointer<kiwi_pretokenized> pt(pretokenized_ex);
+    pretokenized = pt.get();
+  }
+  
+  // Call new API with additional parameters
   kiwi_res_h res_h = kiwi_analyze(handle.get(),
                                   text,
                                   top_n,
-                                  match_options_(match_options));
+                                  match_options_(match_options),
+                                  blocklist,
+                                  pretokenized);
 
   int resSize = kiwi_res_size(res_h);
   cpp11::writable::list res;
@@ -422,3 +459,102 @@ SEXP kiwi_split_into_sents_(
 }
 
 
+
+// ============================================================================
+// New API functions for Kiwi v0.21.0
+// ============================================================================
+
+// Morphset functions
+static void _finalizer_kiwi_morphset_h(kiwi_morphset_h handle){
+  kiwi_morphset_close(handle);
+}
+
+[[cpp11::register]]
+SEXP kiwi_new_morphset_(SEXP handle_ex) {
+  cpp11::external_pointer<kiwi_s> handle(handle_ex);
+  kiwi_morphset_h ms = kiwi_new_morphset(handle.get());
+  if (ms == nullptr) {
+    cpp11::stop("Failed to create morphset. Check kiwi_error() for details.");
+  }
+  cpp11::external_pointer<kiwi_morphset, _finalizer_kiwi_morphset_h> res(ms);
+  return res;
+}
+
+[[cpp11::register]]
+int kiwi_morphset_add_(SEXP handle_ex, const char* form, const char* tag) {
+  cpp11::external_pointer<kiwi_morphset> handle(handle_ex);
+  return kiwi_morphset_add(handle.get(), form, tag);
+}
+
+[[cpp11::register]]
+int kiwi_morphset_close_(SEXP handle_ex) {
+  cpp11::external_pointer<kiwi_morphset> handle(handle_ex);
+  return kiwi_morphset_close(handle.get());
+}
+
+// Pretokenization functions
+static void _finalizer_kiwi_pretokenized_h(kiwi_pretokenized_h handle){
+  kiwi_pt_close(handle);
+}
+
+[[cpp11::register]]
+SEXP kiwi_pt_init_() {
+  kiwi_pretokenized_h pt = kiwi_pt_init();
+  if (pt == nullptr) {
+    cpp11::stop("Failed to create pretokenized object. Check kiwi_error() for details.");
+  }
+  cpp11::external_pointer<kiwi_pretokenized, _finalizer_kiwi_pretokenized_h> res(pt);
+  return res;
+}
+
+[[cpp11::register]]
+int kiwi_pt_add_span_(SEXP handle_ex, int begin, int end) {
+  cpp11::external_pointer<kiwi_pretokenized> handle(handle_ex);
+  return kiwi_pt_add_span(handle.get(), begin, end);
+}
+
+[[cpp11::register]]
+int kiwi_pt_add_token_to_span_(SEXP handle_ex, int span_id, const char* form, const char* tag, int begin, int end) {
+  cpp11::external_pointer<kiwi_pretokenized> handle(handle_ex);
+  return kiwi_pt_add_token_to_span(handle.get(), span_id, form, tag, begin, end);
+}
+
+[[cpp11::register]]
+int kiwi_pt_close_(SEXP handle_ex) {
+  cpp11::external_pointer<kiwi_pretokenized> handle(handle_ex);
+  return kiwi_pt_close(handle.get());
+}
+
+// Typo correction functions
+static void _finalizer_kiwi_typo_h(kiwi_typo_h handle){
+  kiwi_typo_close(handle);
+}
+
+[[cpp11::register]]
+SEXP kiwi_typo_init_() {
+  kiwi_typo_h typo = kiwi_typo_init();
+  if (typo == nullptr) {
+    cpp11::stop("Failed to create typo corrector. Check kiwi_error() for details.");
+  }
+  cpp11::external_pointer<kiwi_typo, _finalizer_kiwi_typo_h> res(typo);
+  return res;
+}
+
+[[cpp11::register]]
+int kiwi_typo_add_(SEXP handle_ex, const char* orig, const char* error, float cost) {
+  cpp11::external_pointer<kiwi_typo> handle(handle_ex);
+  
+  // Convert single strings to arrays as required by the API
+  const char* orig_array[] = {orig};
+  const char* error_array[] = {error};
+  
+  return kiwi_typo_add(handle.get(), orig_array, 1, error_array, 1, cost, 0);
+}
+
+
+
+[[cpp11::register]]
+int kiwi_typo_close_(SEXP handle_ex) {
+  cpp11::external_pointer<kiwi_typo> handle(handle_ex);
+  return kiwi_typo_close(handle.get());
+}

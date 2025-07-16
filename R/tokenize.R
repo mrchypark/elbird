@@ -9,6 +9,8 @@
 #'                  If [`Stopwords`] class, use it.
 #'                  If not valid value, work same as FALSE.
 #'                  Check [analyze()] how to use stopwords param.
+#' @param blocklist \code{Morphset(optional)}: morpheme set to block from analysis results. Default is NULL.
+#' @param pretokenized \code{Pretokenized(optional)}: pretokenized object for guided analysis. Default is NULL.
 #' @importFrom purrr map
 #' @returns list type of result.
 #' @export
@@ -16,6 +18,11 @@
 #' \dontrun{
 #'   tokenize("Test text.")
 #'   tokenize("Please use Korean.", Match$ALL_WITH_NORMALIZING)
+#'   
+#'   # New features with Kiwi v0.21.0
+#'   kw <- Kiwi$new()
+#'   morphset <- kw$create_morphset()
+#'   tokenize("Test text.", blocklist = morphset)
 #' }
 #' @name tokenize
 NULL
@@ -25,8 +32,10 @@ NULL
 #' @importFrom dplyr bind_rows
 tokenize <- function(text,
                      match_option = Match$ALL,
-                     stopwords = TRUE) {
-  dplyr::bind_rows(tokenize_raw(text, match_option, stopwords), .id = "sent")
+                     stopwords = TRUE,
+                     blocklist = NULL,
+                     pretokenized = NULL) {
+  dplyr::bind_rows(tokenize_raw(text, match_option, stopwords, blocklist, pretokenized), .id = "sent")
 }
 
 #' @rdname tokenize
@@ -38,8 +47,10 @@ tokenize_tbl <- tokenize
 #' @importFrom purrr map
 tokenize_tidytext <- function(text,
                               match_option = Match$ALL,
-                              stopwords = TRUE) {
-  purrr::map(tokenize_raw(text, match_option, stopwords),
+                              stopwords = TRUE,
+                              blocklist = NULL,
+                              pretokenized = NULL) {
+  purrr::map(tokenize_raw(text, match_option, stopwords, blocklist, pretokenized),
              ~ paste0(.x$form, "/", .x$tag))
 }
 
@@ -48,7 +59,7 @@ tokenize_tidytext <- function(text,
 tokenize_tidy <- tokenize_tt <- tokenize_tidytext
 
 #' @importFrom purrr map_chr map_int
-tokenize_raw <- function(text, match_option, stopwords) {
+tokenize_raw <- function(text, match_option, stopwords, blocklist = NULL, pretokenized = NULL) {
   purrr::map(
     purrr::map(
       text,
@@ -56,7 +67,9 @@ tokenize_raw <- function(text, match_option, stopwords) {
         text = .x,
         top_n = 1,
         match_option = match_option,
-        stopwords = stopwords
+        stopwords = stopwords,
+        blocklist = blocklist,
+        pretokenized = pretokenized
       )[[1]][1]
     ),
     ~ tibble::tibble(

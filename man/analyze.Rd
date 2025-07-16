@@ -4,7 +4,14 @@
 \alias{analyze}
 \title{Simple version of analyze function.}
 \usage{
-analyze(text, top_n = 3, match_option = Match$ALL, stopwords = FALSE)
+analyze(
+  text,
+  top_n = 3,
+  match_option = Match$ALL,
+  stopwords = FALSE,
+  blocklist = NULL,
+  pretokenized = NULL
+)
 }
 \arguments{
 \item{text}{target text.}
@@ -13,13 +20,15 @@ analyze(text, top_n = 3, match_option = Match$ALL, stopwords = FALSE)
 
 \item{match_option}{\code{\link{Match}}: use Match. Default is Match$ALL}
 
-\item{stopwords}{stopwords option. Default is TRUE which is
-to use embaded stopwords dictionany.
-If FALSE, use not embaded stopwords dictionany.
-If char: path of dictionary txt file, use file.
+\item{stopwords}{stopwords option. Default is FALSE which is use nothing.
+If \code{TRUE}, use embaded stopwords dictionany.
+If \code{char}: path of dictionary txt file, use file.
 If \code{\link{Stopwords}} class, use it.
-If not valid value, work same as FALSE.
-Check \code{\link[=analyze]{analyze()}} how to use stopwords param.}
+If not valid value, work same as FALSE.}
+
+\item{blocklist}{\code{Morphset(optional)}: morpheme set to block from analysis results. Default is NULL.}
+
+\item{pretokenized}{\code{Pretokenized(optional)}: pretokenized object for guided analysis. Default is NULL.}
 }
 \description{
 Simple version of analyze function.
@@ -33,5 +42,10 @@ Simple version of analyze function.
   analyze("Test text.", stopwords = TRUE)
   analyze("Test text.", stopwords = "user_dict.txt")
   analyze("Test text.", stopwords = Stopwords$new(TRUE))
+  
+  # New features with Kiwi v0.21.0
+  kw <- Kiwi$new()
+  morphset <- kw$create_morphset()
+  analyze("Test text.", blocklist = morphset)
 }
 }

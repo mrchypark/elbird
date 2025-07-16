@@ -52,8 +52,8 @@ kiwi_builder_extract_add_words_ <- function(handle_ex, input, min_cnt, max_word_
   .Call(`_elbird_kiwi_builder_extract_add_words_`, handle_ex, input, min_cnt, max_word_len, min_score, pos_threshold)
 }
 
-kiwi_builder_build_ <- function(handle_ex) {
-  .Call(`_elbird_kiwi_builder_build_`, handle_ex)
+kiwi_builder_build_ <- function(handle_ex, typos_ex, typo_cost_threshold) {
+  .Call(`_elbird_kiwi_builder_build_`, handle_ex, typos_ex, typo_cost_threshold)
 }
 
 kiwi_init_ <- function(model_path, num_threads, options) {
@@ -68,10 +68,50 @@ kiwi_get_option_ <- function(handle_ex, option) {
   .Call(`_elbird_kiwi_get_option_`, handle_ex, option)
 }
 
-kiwi_analyze_ <- function(handle_ex, text, top_n, match_options, stopwords_r) {
-  .Call(`_elbird_kiwi_analyze_`, handle_ex, text, top_n, match_options, stopwords_r)
+kiwi_analyze_ <- function(handle_ex, text, top_n, match_options, stopwords_r, blocklist_ex, pretokenized_ex) {
+  .Call(`_elbird_kiwi_analyze_`, handle_ex, text, top_n, match_options, stopwords_r, blocklist_ex, pretokenized_ex)
 }
 
 kiwi_split_into_sents_ <- function(handle_ex, text, match_options, return_tokens) {
   .Call(`_elbird_kiwi_split_into_sents_`, handle_ex, text, match_options, return_tokens)
+}
+
+kiwi_new_morphset_ <- function(handle_ex) {
+  .Call(`_elbird_kiwi_new_morphset_`, handle_ex)
+}
+
+kiwi_morphset_add_ <- function(handle_ex, form, tag) {
+  .Call(`_elbird_kiwi_morphset_add_`, handle_ex, form, tag)
+}
+
+kiwi_morphset_close_ <- function(handle_ex) {
+  .Call(`_elbird_kiwi_morphset_close_`, handle_ex)
+}
+
+kiwi_pt_init_ <- function() {
+  .Call(`_elbird_kiwi_pt_init_`)
+}
+
+kiwi_pt_add_span_ <- function(handle_ex, begin, end) {
+  .Call(`_elbird_kiwi_pt_add_span_`, handle_ex, begin, end)
+}
+
+kiwi_pt_add_token_to_span_ <- function(handle_ex, span_id, form, tag, begin, end) {
+  .Call(`_elbird_kiwi_pt_add_token_to_span_`, handle_ex, span_id, form, tag, begin, end)
+}
+
+kiwi_pt_close_ <- function(handle_ex) {
+  .Call(`_elbird_kiwi_pt_close_`, handle_ex)
+}
+
+kiwi_typo_init_ <- function() {
+  .Call(`_elbird_kiwi_typo_init_`)
+}
+
+kiwi_typo_add_ <- function(handle_ex, orig, error, cost) {
+  .Call(`_elbird_kiwi_typo_add_`, handle_ex, orig, error, cost)
+}
+
+kiwi_typo_close_ <- function(handle_ex) {
+  .Call(`_elbird_kiwi_typo_close_`, handle_ex)
 }

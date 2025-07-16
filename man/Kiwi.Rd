@@ -22,6 +22,26 @@ Kiwi class is provide method for korean mophological analyze result.
    tidytoken <- kw$get_tidytext_func()
    tidytoken("test")
 }
+
+## ------------------------------------------------
+## Method `Kiwi$set_typo_correction`
+## ------------------------------------------------
+
+\dontrun{
+  kw <- Kiwi$new()
+  # Enable with default settings
+  kw$set_typo_correction(TRUE)
+  
+  # Enable with custom rules
+  custom_rules <- list(
+    list(orig = "안녕", error = "안뇽", cost = 1.0),
+    list(orig = "하세요", error = "하셰요", cost = 1.5)
+  )
+  kw$set_typo_correction(TRUE, cost_threshold = 3.0, custom_typos = custom_rules)
+  
+  # Disable typo correction
+  kw$set_typo_correction(FALSE)
+}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -37,6 +57,10 @@ Kiwi class is provide method for korean mophological analyze result.
 \item \href{#method-Kiwi-tokenize}{\code{Kiwi$tokenize()}}
 \item \href{#method-Kiwi-split_into_sents}{\code{Kiwi$split_into_sents()}}
 \item \href{#method-Kiwi-get_tidytext_func}{\code{Kiwi$get_tidytext_func()}}
+\item \href{#method-Kiwi-set_typo_correction}{\code{Kiwi$set_typo_correction()}}
+\item \href{#method-Kiwi-get_typo_correction_settings}{\code{Kiwi$get_typo_correction_settings()}}
+\item \href{#method-Kiwi-create_morphset}{\code{Kiwi$create_morphset()}}
+\item \href{#method-Kiwi-create_pretokenized}{\code{Kiwi$create_pretokenized()}}
 \item \href{#method-Kiwi-clone}{\code{Kiwi$clone()}}
 }
 }
@@ -211,7 +235,14 @@ Extract Noun word candidate from texts.
 \subsection{Method \code{analyze()}}{
 Analyze text to token and tag results.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Kiwi$analyze(text, top_n = 3, match_option = Match$ALL, stopwords = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$analyze(
+  text,
+  top_n = 3,
+  match_option = Match$ALL,
+  stopwords = FALSE,
+  blocklist = NULL,
+  pretokenized = NULL
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -228,6 +259,10 @@ If \code{TRUE}, use embaded stopwords dictionany.
 If \code{char}: path of dictionary txt file, use file.
 If \code{\link{Stopwords}} class, use it.
 If not valid value, work same as FALSE.}
+
+\item{\code{blocklist}}{\code{Morphset(optional)}: morpheme set to block from analysis results.}
+
+\item{\code{pretokenized}}{\code{Pretokenized(optional)}: pretokenized object for guided analysis.}
 }
 \if{html}{\out{</div>}}
 }
@@ -328,6 +363,93 @@ If not valid value, work same as FALSE.}
 
 }
 
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Kiwi-set_typo_correction"></a>}}
+\if{latex}{\out{\hypertarget{method-Kiwi-set_typo_correction}{}}}
+\subsection{Method \code{set_typo_correction()}}{
+Set typo correction settings for the Kiwi instance.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$set_typo_correction(
+  enabled = TRUE,
+  cost_threshold = 2.5,
+  custom_typos = NULL
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{enabled}}{\code{bool(optional)}: enable or disable typo correction. Default is TRUE.}
+
+\item{\code{cost_threshold}}{\code{num(optional)}: cost threshold for typo correction. Default is 2.5.}
+
+\item{\code{custom_typos}}{\code{list(optional)}: list of custom typo corrections.
+Each element should be a list with 'orig', 'error', and optionally 'cost' fields.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{\dontrun{
+  kw <- Kiwi$new()
+  # Enable with default settings
+  kw$set_typo_correction(TRUE)
+  
+  # Enable with custom rules
+  custom_rules <- list(
+    list(orig = "안녕", error = "안뇽", cost = 1.0),
+    list(orig = "하세요", error = "하셰요", cost = 1.5)
+  )
+  kw$set_typo_correction(TRUE, cost_threshold = 3.0, custom_typos = custom_rules)
+  
+  # Disable typo correction
+  kw$set_typo_correction(FALSE)
+}
+}
+\if{html}{\out{</div>}}
+
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Kiwi-get_typo_correction_settings"></a>}}
+\if{latex}{\out{\hypertarget{method-Kiwi-get_typo_correction_settings}{}}}
+\subsection{Method \code{get_typo_correction_settings()}}{
+Get current typo correction settings.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$get_typo_correction_settings()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} with typo correction settings
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Kiwi-create_morphset"></a>}}
+\if{latex}{\out{\hypertarget{method-Kiwi-create_morphset}{}}}
+\subsection{Method \code{create_morphset()}}{
+Create a new morpheme set for blocking specific morphemes from analysis.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$create_morphset()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{Morphset} object
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Kiwi-create_pretokenized"></a>}}
+\if{latex}{\out{\hypertarget{method-Kiwi-create_pretokenized}{}}}
+\subsection{Method \code{create_pretokenized()}}{
+Create a new pretokenized object for guided analysis.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Kiwi$create_pretokenized()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{Pretokenized} object
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Kiwi-clone"></a>}}

@@ -98,10 +98,10 @@ extern "C" SEXP _elbird_kiwi_builder_extract_add_words_(SEXP handle_ex, SEXP inp
   END_CPP11
 }
 // kiwi_bind.cpp
-SEXP kiwi_builder_build_(SEXP handle_ex);
-extern "C" SEXP _elbird_kiwi_builder_build_(SEXP handle_ex) {
+SEXP kiwi_builder_build_(SEXP handle_ex, SEXP typos_ex, double typo_cost_threshold);
+extern "C" SEXP _elbird_kiwi_builder_build_(SEXP handle_ex, SEXP typos_ex, SEXP typo_cost_threshold) {
   BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_builder_build_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex)));
+    return cpp11::as_sexp(kiwi_builder_build_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<SEXP>>(typos_ex), cpp11::as_cpp<cpp11::decay_t<double>>(typo_cost_threshold)));
   END_CPP11
 }
 // kiwi_bind.cpp
@@ -127,10 +127,10 @@ extern "C" SEXP _elbird_kiwi_get_option_(SEXP handle_ex, SEXP option) {
   END_CPP11
 }
 // kiwi_bind.cpp
-SEXP kiwi_analyze_(SEXP handle_ex, const char* text, int top_n, std::string match_options, const cpp11::data_frame stopwords_r);
-extern "C" SEXP _elbird_kiwi_analyze_(SEXP handle_ex, SEXP text, SEXP top_n, SEXP match_options, SEXP stopwords_r) {
+SEXP kiwi_analyze_(SEXP handle_ex, const char* text, int top_n, std::string match_options, const cpp11::data_frame stopwords_r, SEXP blocklist_ex, SEXP pretokenized_ex);
+extern "C" SEXP _elbird_kiwi_analyze_(SEXP handle_ex, SEXP text, SEXP top_n, SEXP match_options, SEXP stopwords_r, SEXP blocklist_ex, SEXP pretokenized_ex) {
   BEGIN_CPP11
-    return cpp11::as_sexp(kiwi_analyze_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(text), cpp11::as_cpp<cpp11::decay_t<int>>(top_n), cpp11::as_cpp<cpp11::decay_t<std::string>>(match_options), cpp11::as_cpp<cpp11::decay_t<const cpp11::data_frame>>(stopwords_r)));
+    return cpp11::as_sexp(kiwi_analyze_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(text), cpp11::as_cpp<cpp11::decay_t<int>>(top_n), cpp11::as_cpp<cpp11::decay_t<std::string>>(match_options), cpp11::as_cpp<cpp11::decay_t<const cpp11::data_frame>>(stopwords_r), cpp11::as_cpp<cpp11::decay_t<SEXP>>(blocklist_ex), cpp11::as_cpp<cpp11::decay_t<SEXP>>(pretokenized_ex)));
   END_CPP11
 }
 // kiwi_bind.cpp
@@ -140,15 +140,85 @@ extern "C" SEXP _elbird_kiwi_split_into_sents_(SEXP handle_ex, SEXP text, SEXP m
     return cpp11::as_sexp(kiwi_split_into_sents_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(text), cpp11::as_cpp<cpp11::decay_t<std::string>>(match_options), cpp11::as_cpp<cpp11::decay_t<bool>>(return_tokens)));
   END_CPP11
 }
+// kiwi_bind.cpp
+SEXP kiwi_new_morphset_(SEXP handle_ex);
+extern "C" SEXP _elbird_kiwi_new_morphset_(SEXP handle_ex) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_new_morphset_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex)));
+  END_CPP11
+}
+// kiwi_bind.cpp
+int kiwi_morphset_add_(SEXP handle_ex, const char* form, const char* tag);
+extern "C" SEXP _elbird_kiwi_morphset_add_(SEXP handle_ex, SEXP form, SEXP tag) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_morphset_add_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(form), cpp11::as_cpp<cpp11::decay_t<const char*>>(tag)));
+  END_CPP11
+}
+// kiwi_bind.cpp
+int kiwi_morphset_close_(SEXP handle_ex);
+extern "C" SEXP _elbird_kiwi_morphset_close_(SEXP handle_ex) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_morphset_close_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex)));
+  END_CPP11
+}
+// kiwi_bind.cpp
+SEXP kiwi_pt_init_();
+extern "C" SEXP _elbird_kiwi_pt_init_() {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_pt_init_());
+  END_CPP11
+}
+// kiwi_bind.cpp
+int kiwi_pt_add_span_(SEXP handle_ex, int begin, int end);
+extern "C" SEXP _elbird_kiwi_pt_add_span_(SEXP handle_ex, SEXP begin, SEXP end) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_pt_add_span_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<int>>(begin), cpp11::as_cpp<cpp11::decay_t<int>>(end)));
+  END_CPP11
+}
+// kiwi_bind.cpp
+int kiwi_pt_add_token_to_span_(SEXP handle_ex, int span_id, const char* form, const char* tag, int begin, int end);
+extern "C" SEXP _elbird_kiwi_pt_add_token_to_span_(SEXP handle_ex, SEXP span_id, SEXP form, SEXP tag, SEXP begin, SEXP end) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_pt_add_token_to_span_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<int>>(span_id), cpp11::as_cpp<cpp11::decay_t<const char*>>(form), cpp11::as_cpp<cpp11::decay_t<const char*>>(tag), cpp11::as_cpp<cpp11::decay_t<int>>(begin), cpp11::as_cpp<cpp11::decay_t<int>>(end)));
+  END_CPP11
+}
+// kiwi_bind.cpp
+int kiwi_pt_close_(SEXP handle_ex);
+extern "C" SEXP _elbird_kiwi_pt_close_(SEXP handle_ex) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_pt_close_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex)));
+  END_CPP11
+}
+// kiwi_bind.cpp
+SEXP kiwi_typo_init_();
+extern "C" SEXP _elbird_kiwi_typo_init_() {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_typo_init_());
+  END_CPP11
+}
+// kiwi_bind.cpp
+int kiwi_typo_add_(SEXP handle_ex, const char* orig, const char* error, float cost);
+extern "C" SEXP _elbird_kiwi_typo_add_(SEXP handle_ex, SEXP orig, SEXP error, SEXP cost) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_typo_add_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex), cpp11::as_cpp<cpp11::decay_t<const char*>>(orig), cpp11::as_cpp<cpp11::decay_t<const char*>>(error), cpp11::as_cpp<cpp11::decay_t<float>>(cost)));
+  END_CPP11
+}
+// kiwi_bind.cpp
+int kiwi_typo_close_(SEXP handle_ex);
+extern "C" SEXP _elbird_kiwi_typo_close_(SEXP handle_ex) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(kiwi_typo_close_(cpp11::as_cpp<cpp11::decay_t<SEXP>>(handle_ex)));
+  END_CPP11
+}
 
 extern "C" {
 static const R_CallMethodDef CallEntries[] = {
-    {"_elbird_kiwi_analyze_",                       (DL_FUNC) &_elbird_kiwi_analyze_,                       5},
+    {"_elbird_kiwi_analyze_",                       (DL_FUNC) &_elbird_kiwi_analyze_,                       7},
     {"_elbird_kiwi_builder_add_alias_word_",        (DL_FUNC) &_elbird_kiwi_builder_add_alias_word_,        5},
     {"_elbird_kiwi_builder_add_pre_analyzed_word_", (DL_FUNC) &_elbird_kiwi_builder_add_pre_analyzed_word_, 4},
     {"_elbird_kiwi_builder_add_rule_",              (DL_FUNC) &_elbird_kiwi_builder_add_rule_,              5},
     {"_elbird_kiwi_builder_add_word_",              (DL_FUNC) &_elbird_kiwi_builder_add_word_,              4},
-    {"_elbird_kiwi_builder_build_",                 (DL_FUNC) &_elbird_kiwi_builder_build_,                 1},
+    {"_elbird_kiwi_builder_build_",                 (DL_FUNC) &_elbird_kiwi_builder_build_,                 3},
     {"_elbird_kiwi_builder_close_",                 (DL_FUNC) &_elbird_kiwi_builder_close_,                 1},
     {"_elbird_kiwi_builder_extract_add_words_",     (DL_FUNC) &_elbird_kiwi_builder_extract_add_words_,     6},
     {"_elbird_kiwi_builder_extract_words_",         (DL_FUNC) &_elbird_kiwi_builder_extract_words_,         6},
@@ -159,8 +229,18 @@ static const R_CallMethodDef CallEntries[] = {
     {"_elbird_kiwi_error_",                         (DL_FUNC) &_elbird_kiwi_error_,                         0},
     {"_elbird_kiwi_get_option_",                    (DL_FUNC) &_elbird_kiwi_get_option_,                    2},
     {"_elbird_kiwi_init_",                          (DL_FUNC) &_elbird_kiwi_init_,                          3},
+    {"_elbird_kiwi_morphset_add_",                  (DL_FUNC) &_elbird_kiwi_morphset_add_,                  3},
+    {"_elbird_kiwi_morphset_close_",                (DL_FUNC) &_elbird_kiwi_morphset_close_,                1},
+    {"_elbird_kiwi_new_morphset_",                  (DL_FUNC) &_elbird_kiwi_new_morphset_,                  1},
+    {"_elbird_kiwi_pt_add_span_",                   (DL_FUNC) &_elbird_kiwi_pt_add_span_,                   3},
+    {"_elbird_kiwi_pt_add_token_to_span_",          (DL_FUNC) &_elbird_kiwi_pt_add_token_to_span_,          6},
+    {"_elbird_kiwi_pt_close_",                      (DL_FUNC) &_elbird_kiwi_pt_close_,                      1},
+    {"_elbird_kiwi_pt_init_",                       (DL_FUNC) &_elbird_kiwi_pt_init_,                       0},
     {"_elbird_kiwi_set_option_",                    (DL_FUNC) &_elbird_kiwi_set_option_,                    3},
     {"_elbird_kiwi_split_into_sents_",              (DL_FUNC) &_elbird_kiwi_split_into_sents_,              4},
+    {"_elbird_kiwi_typo_add_",                      (DL_FUNC) &_elbird_kiwi_typo_add_,                      4},
+    {"_elbird_kiwi_typo_close_",                    (DL_FUNC) &_elbird_kiwi_typo_close_,                    1},
+    {"_elbird_kiwi_typo_init_",                     (DL_FUNC) &_elbird_kiwi_typo_init_,                     0},
     {"_elbird_kiwi_version_",                       (DL_FUNC) &_elbird_kiwi_version_,                       0},
     {NULL, NULL, 0}
 };

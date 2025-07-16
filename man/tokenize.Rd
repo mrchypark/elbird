@@ -7,13 +7,37 @@
 \alias{tokenize_tidy}
 \title{Simple version of tokenizer function.}
 \usage{
-tokenize(text, match_option = Match$ALL, stopwords = TRUE)
+tokenize(
+  text,
+  match_option = Match$ALL,
+  stopwords = TRUE,
+  blocklist = NULL,
+  pretokenized = NULL
+)
 
-tokenize_tbl(text, match_option = Match$ALL, stopwords = TRUE)
+tokenize_tbl(
+  text,
+  match_option = Match$ALL,
+  stopwords = TRUE,
+  blocklist = NULL,
+  pretokenized = NULL
+)
 
-tokenize_tidytext(text, match_option = Match$ALL, stopwords = TRUE)
+tokenize_tidytext(
+  text,
+  match_option = Match$ALL,
+  stopwords = TRUE,
+  blocklist = NULL,
+  pretokenized = NULL
+)
 
-tokenize_tidy(text, match_option = Match$ALL, stopwords = TRUE)
+tokenize_tidy(
+  text,
+  match_option = Match$ALL,
+  stopwords = TRUE,
+  blocklist = NULL,
+  pretokenized = NULL
+)
 }
 \arguments{
 \item{text}{target text.}
@@ -27,6 +51,10 @@ If char: path of dictionary txt file, use file.
 If \code{\link{Stopwords}} class, use it.
 If not valid value, work same as FALSE.
 Check \code{\link[=analyze]{analyze()}} how to use stopwords param.}
+
+\item{blocklist}{\code{Morphset(optional)}: morpheme set to block from analysis results. Default is NULL.}
+
+\item{pretokenized}{\code{Pretokenized(optional)}: pretokenized object for guided analysis. Default is NULL.}
 }
 \value{
 list type of result.
@@ -38,5 +66,10 @@ Simple version of tokenizer function.
 \dontrun{
   tokenize("Test text.")
   tokenize("Please use Korean.", Match$ALL_WITH_NORMALIZING)
+  
+  # New features with Kiwi v0.21.0
+  kw <- Kiwi$new()
+  morphset <- kw$create_morphset()
+  tokenize("Test text.", blocklist = morphset)
 }
 }

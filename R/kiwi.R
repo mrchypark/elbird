@@ -133,15 +133,19 @@ Kiwi <- R6::R6Class(
     #'                  If \code{char}: path of dictionary txt file, use file.
     #'                  If [`Stopwords`] class, use it.
     #'                  If not valid value, work same as FALSE.
+    #' @param blocklist \code{Morphset(optional)}: morpheme set to block from analysis results.
+    #' @param pretokenized \code{Pretokenized(optional)}: pretokenized object for guided analysis.
     #' @return \code{list} of result.
     analyze = function(text,
                        top_n = 3,
                        match_option = Match$ALL,
-                       stopwords = FALSE) {
+                       stopwords = FALSE,
+                       blocklist = NULL,
+                       pretokenized = NULL) {
       if (any(private$kiwi_not_ready(), private$builder_updated))
         private$kiwi_build()
 
-      kiwi_analyze_wrap(private$kiwi, text, top_n, match_option, stopwords)
+      kiwi_analyze_wrap(private$kiwi, text, top_n, match_option, stopwords, blocklist, pretokenized)
     },
 
     #' @description
@@ -226,6 +230,157 @@ Kiwi <- R6::R6Class(
                       stopwords,
                       form = "tidytext")
       }
+    },
+
+    #' @description
+    #'   Set typo correction settings for the Kiwi instance.
+    #' @param enabled \code{bool(optional)}: enable or disable typo correction. Default is TRUE.
+    #' @param cost_threshold \code{num(optional)}: cost threshold for typo correction. Default is 2.5.
+    #' @param custom_typos \code{list(optional)}: list of custom typo corrections.
+    #'   Each element should be a list with 'orig', 'error', and optionally 'cost' fields.
+    #' @examples
+    #' \dontrun{
+    #'   kw <- Kiwi$new()
+    #'   # Enable with default settings
+    #'   kw$set_typo_correction(TRUE)
+    #'   
+    #'   # Enable with custom rules
+    #'   custom_rules <- list(
+    #'     list(orig = "안녕", error = "안뇽", cost = 1.0),
+    #'     list(orig = "하세요", error = "하셰요", cost = 1.5)
+    #'   )
+    #'   kw$set_typo_correction(TRUE, cost_threshold = 3.0, custom_typos = custom_rules)
+    #'   
+    #'   # Disable typo correction
+    #'   kw$set_typo_correction(FALSE)
+    #' }
+    set_typo_correction = function(enabled = TRUE, cost_threshold = 2.5, custom_typos = NULL) {
+      # Validate parameters
+      if (!is.logical(enabled) || length(enabled) != 1) {
+        stop("'enabled' must be a single logical value")
+      }
+      
+      if (!is.numeric(cost_threshold) || length(cost_threshold) != 1 || cost_threshold < 0) {
+        stop("'cost_threshold' must be a single non-negative numeric value")
+      }
+      
+      if (!is.null(custom_typos) && !is.list(custom_typos)) {
+        stop("'custom_typos' must be a list or NULL")
+      }
+      
+      if (enabled) {
+        # Create typo corrector if custom rules are provided
+        if (!is.null(custom_typos)) {
+          private$typo_corrector <- kiwi_typo_init_()
+          
+          # Validate and add custom typo rules
+          if (is.list(custom_typos)) {
+            added_rules <- 0
+            for (i in seq_along(custom_typos)) {
+              typo <- custom_typos[[i]]
+              
+              # Validate typo rule structure
+              if (!is.list(typo)) {
+                warning(paste0("Skipping typo rule ", i, ": not a list"))
+                next
+              }
+              
+              if (!("orig" %in% names(typo)) || !("error" %in% names(typo))) {
+                warning(paste0("Skipping typo rule ", i, ": missing 'orig' or 'error' field"))
+                next
+              }
+              
+              if (!is.character(typo$orig) || !is.character(typo$error) ||
+                  length(typo$orig) != 1 || length(typo$error) != 1) {
+                warning(paste0("Skipping typo rule ", i, ": 'orig' and 'error' must be single character strings"))
+                next
+              }
+              
+              cost <- if ("cost" %in% names(typo)) {
+                if (!is.numeric(typo$cost) || length(typo$cost) != 1 || typo$cost < 0) {
+                  warning(paste0("Invalid cost for typo rule ", i, ", using default 1.0"))
+                  1.0
+                } else {
+                  typo$cost
+                }
+              } else {
+                1.0
+              }
+              
+              # Add the typo rule
+              result <- kiwi_typo_add_(private$typo_corrector, typo$orig, typo$error, cost)
+              if (result == 0) {
+                added_rules <- added_rules + 1
+              } else {
+                warning(paste0("Failed to add typo rule: ", typo$orig, " -> ", typo$error))
+              }
+            }
+            
+            if (added_rules == 0) {
+              warning("No valid typo rules were added")
+            } else {
+              message(paste0("Added ", added_rules, " typo correction rules"))
+            }
+          }
+        } else {
+          # Enable typo correction with default settings (no custom rules)
+          private$typo_corrector <- NULL
+        }
+      } else {
+        # Disable typo correction
+        if (!is.null(private$typo_corrector)) {
+          # Clean up existing typo corrector
+          tryCatch({
+            kiwi_typo_close_(private$typo_corrector)
+          }, error = function(e) {
+            # Handle may already be closed, ignore error
+          })
+        }
+        private$typo_corrector <- NULL
+      }
+      
+      private$typo_enabled <- enabled
+      private$typo_cost_threshold <- cost_threshold
+      private$builder_updated <- TRUE
+      
+      invisible(self)
+    },
+
+    #' @description
+    #'   Get current typo correction settings.
+    #' @return \code{list} with typo correction settings
+    get_typo_correction_settings = function() {
+      list(
+        enabled = private$typo_enabled,
+        cost_threshold = private$typo_cost_threshold,
+        has_custom_rules = !is.null(private$typo_corrector)
+      )
+    },
+
+    #' @description
+    #'   Create a new morpheme set for blocking specific morphemes from analysis.
+    #' @return \code{Morphset} object
+    create_morphset = function() {
+      # Ensure Kiwi instance is built before creating morphset
+      if (any(private$kiwi_not_ready(), private$builder_updated))
+        private$kiwi_build()
+      
+      # Create morphset handle using C++ binding
+      morphset_handle <- kiwi_new_morphset_(private$kiwi)
+      
+      # Return new Morphset instance
+      return(Morphset$new(morphset_handle))
+    },
+
+    #' @description
+    #'   Create a new pretokenized object for guided analysis.
+    #' @return \code{Pretokenized} object
+    create_pretokenized = function() {
+      # Create pretokenized handle using C++ binding
+      pt_handle <- kiwi_pt_init_()
+      
+      # Return new Pretokenized instance
+      return(Pretokenized$new(pt_handle))
     }
 
   ),
@@ -275,13 +430,33 @@ Kiwi <- R6::R6Class(
     },
 
     kiwi_build = function() {
-      private$kiwi <- kiwi_builder_build_(private$kiwi_builder)
+      # Use new API with typo correction parameters
+      # Pass NULL for typos if not enabled or not set
+      typos_param <- if (private$typo_enabled && !is.null(private$typo_corrector)) {
+        private$typo_corrector
+      } else {
+        NULL
+      }
+      
+      # Call new kiwi_builder_build_ API with typo correction parameters
+      private$kiwi <- kiwi_builder_build_(private$kiwi_builder, 
+                                          typos_param, 
+                                          private$typo_cost_threshold)
       private$builder_updated <- FALSE
+      
+      # Check for build errors
+      error_msg <- kiwi_error_wrap()
+      if (!is.null(error_msg)) {
+        stop("Failed to build Kiwi instance: ", error_msg)
+      }
     },
 
     num_workers = NULL,
     model_path = NULL,
     model_size = NULL,
-    build_options = NULL
+    build_options = NULL,
+    typo_corrector = NULL,
+    typo_enabled = FALSE,
+    typo_cost_threshold = 2.5
   )
 )
