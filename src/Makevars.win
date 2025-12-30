@@ -1,5 +1,11 @@
 CXX_STD=CXX17
-RWINLIB = ../windows/rwinlib-elbird-0.22.2
+ifeq ($(R_ARCH),/x64)
+WIN_ARCH = x64
+else
+WIN_ARCH = Win32
+endif
+
+RWINLIB = ../windows/kiwi_win_$(WIN_ARCH)_v0.22.2
 
 CXX_STD=CXX17
 
