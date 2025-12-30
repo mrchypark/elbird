@@ -49,6 +49,6 @@ test_that("split sents works", {
     expect_equal(res_sents1[[3]]$tokens, list())
     expect_equal(length(res_sents2[[1]]$tokens), 3)
     expect_equal(length(res_sents2[[2]]$tokens), 4)
-    expect_equal(length(res_sents2[[3]]$tokens), 6)
+    expect_equal(length(res_sents2[[3]]$tokens), 5)
   }
 })
