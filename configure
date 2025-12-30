@@ -147,6 +147,9 @@ else
     if [ ! -f "kiwilibs/libs/libkiwi.so" ]; then
       ln -sf "$(basename "$LIB_SRC")" "kiwilibs/libs/libkiwi.so"
     fi
+    if [ ! -f "kiwilibs/libs/libkiwi.so.0" ]; then
+      ln -sf "$(basename "$LIB_SRC")" "kiwilibs/libs/libkiwi.so.0"
+    fi
   else
     cp -f "$LIB_SRC" kiwilibs/libs/libkiwi.a
   fi

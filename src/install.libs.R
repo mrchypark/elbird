@@ -33,6 +33,10 @@ if (!is.na(sysname) && sysname == "Windows") {
     so_files <- list.files(lib_dir, pattern = "^libkiwi\\.so", full.names = TRUE)
     if (length(so_files) > 0) {
       file.copy(so_files, dest_dir, overwrite = TRUE)
+      so_targets <- list.files(dest_dir, pattern = "^libkiwi\\.so", full.names = TRUE)
+      if (length(so_targets) > 0 && !file.exists(file.path(dest_dir, "libkiwi.so.0"))) {
+        file.symlink(basename(so_targets[1]), file.path(dest_dir, "libkiwi.so.0"))
+      }
     }
   }
 }
