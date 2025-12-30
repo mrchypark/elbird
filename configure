@@ -31,13 +31,11 @@ if [ "$INCLUDE_DIR" ] || [ "$LIB_DIR" ]; then
 elif [ -d "`pwd`/kiwilibs/libs/" ]; then
   echo "Found libkiwi on pwd installation..."
   PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
-  if [ -f "`pwd`/kiwilibs/libs/libkiwi.dylib" ]; then
-    mkdir -p inst/libs
-    cp -f "`pwd`/kiwilibs/libs/libkiwi.dylib" inst/libs/libkiwi.dylib
-    if command -v install_name_tool >/dev/null 2>&1; then
-      install_name_tool -id "@rpath/libkiwi.dylib" inst/libs/libkiwi.dylib
-    fi
-    PKG_LIBS="-L`pwd`/kiwilibs/libs -Wl,-rpath,@loader_path $PKG_LIBS"
+  if [ -f "`pwd`/kiwilibs/libs/libkiwi.a" ]; then
+    PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
+  elif [ -f "`pwd`/kiwilibs/libs/libkiwi.dylib" ]; then
+    echo "Found libkiwi.dylib; relying on system loader paths."
+    PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
   else
     PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
   fi
@@ -126,14 +124,6 @@ else
 
   if [ -z "$LIB_SRC" ]; then
     echo "------------------------------[ ELBIRD ]------------------------------"
-    echo "Configuration failed because libkiwi output was not found."
-    echo "Build directory: $KIWI_SRC/build"
-    echo "-------------------------------------------------------------------------"
-    exit 1
-  fi
-
-  if [ -z "$LIB_SRC" ]; then
-    echo "------------------------------[ ELBIRD ]------------------------------"
     echo "Configuration failed because libkiwi static library was not found."
     echo "Build directory: $KIWI_SRC/build"
     echo "-------------------------------------------------------------------------"
@@ -163,7 +153,7 @@ CXXFLAGS=`${R_HOME}/bin/R CMD config CXXFLAGS`
 # Check for C++17 support
 if [ -z "$CXX17" ]; then
     echo "------------------------------[ ELBIRD ]------------------------------"
-    echo "Configuration failed because C++17 support is required for Kiwi v0.21.0."
+    echo "Configuration failed because C++17 support is required for Kiwi v0.22.2."
     echo "Please upgrade your compiler or R installation to support C++17."
     echo "Current R version: `${R_HOME}/bin/R --version | head -1`"
     echo "-------------------------------------------------------------------------"

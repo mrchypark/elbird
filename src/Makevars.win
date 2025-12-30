@@ -10,7 +10,7 @@ RWINLIB = ../windows/kiwi_win_$(WIN_ARCH)_v0.22.2
 CXX_STD=CXX17
 
 PKG_CPPFLAGS=-pthread -I${RWINLIB}/include
-PKG_LIBS=-pthread -L${RWINLIB}/lib -lkiwi
+PKG_LIBS=-pthread -L${RWINLIB}/lib -lkiwi_static
 
 all: winlibs
 
