@@ -25,7 +25,9 @@ if (!is.na(sysname) && sysname == "Windows") {
   win_arch <- if (arch == "x64") "x64" else "Win32"
   src_dll <- file.path("..", "windows", paste0("kiwi_win_", win_arch, "_v", version), "lib", "kiwi.dll")
   if (file.exists(src_dll)) {
-    file.copy(src_dll, file.path(dest_dir, "kiwi.dll"), overwrite = TRUE)
+    kiwi_dir <- file.path(pkgdir, "kiwilibs")
+    dir.create(kiwi_dir, showWarnings = FALSE, recursive = TRUE)
+    file.copy(src_dll, file.path(kiwi_dir, "kiwi.dll"), overwrite = TRUE)
   }
 } else if (!is.na(sysname) && sysname == "Linux") {
   lib_dir <- file.path("..", "kiwilibs", "libs")
