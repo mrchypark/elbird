@@ -2,7 +2,7 @@
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
-    paths: ['**.Rmd']
+    paths: ["**.Rmd"]
 
 name: render-rmarkdown
 
@@ -13,15 +13,16 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set System libs
         run: |
+          sudo apt-get update
           sudo apt-get install -y libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev libmagick++-dev
 
-      - uses: r-lib/actions/setup-pandoc@v1
+      - uses: r-lib/actions/setup-pandoc@v2
 
       - uses: r-lib/actions/setup-r@v2
 
