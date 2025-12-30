@@ -78,7 +78,7 @@ Create a kiwi instance.
 \describe{
 \item{\code{num_workers}}{\code{int(optional)}: use multi-thread core number. default is 0 which means use all core.}
 
-\item{\code{model_size}}{\code{char(optional)}: kiwi model select. default is "base". "small", "large" is available.}
+\item{\code{model_size}}{\code{char(optional)}: kiwi model select. default is "base".}
 
 \item{\code{integrate_allomorph}}{\code{bool(optional)}: default is TRUE.}
 

@@ -26,13 +26,17 @@ Kiwi <- R6::R6Class(
     #' @description
     #'   Create a kiwi instance.
     #' @param num_workers \code{int(optional)}: use multi-thread core number. default is 0 which means use all core.
-    #' @param model_size \code{char(optional)}: kiwi model select. default is "base". "CoNg-base" (experimental) is available.
+    #' @param model_size \code{char(optional)}: kiwi model select. default is "base".
     #' @param integrate_allomorph \code{bool(optional)}: default is TRUE.
     #' @param load_default_dict \code{bool(optional)}: use defualt dictionary. default is TRUE.
+    #' @param load_typo_dict \code{bool(optional)}: use typo dictionary. default is FALSE.
+    #' @param load_multi_dict \code{bool(optional)}: use multi dictionary. default is FALSE.
     initialize = function(num_workers = 0,
                           model_size = "base",
                           integrate_allomorph = TRUE,
-                          load_default_dict = TRUE) {
+                          load_default_dict = TRUE,
+                          load_typo_dict = FALSE,
+                          load_multi_dict = FALSE) {
 
       private$num_workers <-  num_workers
       private$model_size <- model_size
@@ -47,6 +51,13 @@ Kiwi <- R6::R6Class(
       if (load_default_dict) {
         boptions <- bitwOr(boptions, BuildOpt$LOAD_DEFAULT_DICT)
       }
+      if (load_typo_dict) {
+        boptions <- bitwOr(boptions, BuildOpt$LOAD_TYPO_DICT)
+      }
+      if (load_multi_dict) {
+        boptions <- bitwOr(boptions, BuildOpt$LOAD_MULTI_DICT)
+      }
+      boptions <- bitwOr(boptions, BuildOpt$MODEL_TYPE_CONG)
       private$build_options <- boptions
       private$kiwi_builder <-
         kiwi_builder_init_(kiwi_model_path_full(model_size), num_workers, boptions)

@@ -8,15 +8,17 @@ kiwi_model_path <- function() {
   }
 }
 
+kiwi_default_build_options <- function() {
+  bitwOr(
+    bitwOr(BuildOpt$INTEGRATE_ALLOMORPH, BuildOpt$LOAD_DEFAULT_DICT),
+    BuildOpt$MODEL_TYPE_CONG
+  )
+}
+
 kiwi_model_path_full <- function(size) {
-  valid_model_sizes <- c("base", "CoNg-base") # Restricted list
+  valid_model_sizes <- c("base") # Restricted list
   size <- match.arg(size, valid_model_sizes)
-  if (size == "base") {
-    return(file.path(kiwi_model_path(), "ModelGenerator"))
-  } else if (size == "CoNg-base") {
-    return(file.path(kiwi_model_path(), size)) # Directory name is "CoNg-base"
-  }
-  # No other cases needed as match.arg would have errored.
+  file.path(kiwi_model_path(), "models", "cong", "base")
 }
 
 #' A simple exported version of \code{kiwi_model_path()}
@@ -33,23 +35,26 @@ model_home <- function() {
 }
 
 kiwi_model_exists <- function(size) {
-  valid_model_sizes <- c("base", "CoNg-base") # Restricted list
+  valid_model_sizes <- c("base") # Restricted list
   size <- match.arg(size, c("all", valid_model_sizes)) # "all" still uses restricted list for iteration
   if (size == "all")
-    size <- valid_model_sizes 
+    size <- valid_model_sizes
   all(sapply(size, function(x)
     kiwi_model_exists_one(x)))
 }
 
 kiwi_model_exists_one <- function(size) {
-  valid_model_sizes <- c("base", "CoNg-base") # Restricted list
+  valid_model_sizes <- c("base") # Restricted list
   size <- match.arg(size, valid_model_sizes)
   chk_list <-
     c("combiningRule.txt",
+      "cong.mdl",
       "default.dict",
+      "dialect.dict",
       "extract.mdl",
-      "sj.knlm",
-      "sj.morph")
+      "multi.dict",
+      "sj.morph",
+      "typo.dict")
   all(sapply(chk_list, function(x)
     file.exists(file.path(
       kiwi_model_path_full(size), x
@@ -71,7 +76,7 @@ model_exists <- function(size = "all") {
 }
 
 kiwi_model_works <- function(size) {
-  valid_model_sizes <- c("base", "CoNg-base") # Restricted list
+  valid_model_sizes <- c("base") # Restricted list
   size <- match.arg(size, c("all", valid_model_sizes)) # "all" still uses restricted list
   if (size == "all")
     size <- valid_model_sizes
@@ -80,11 +85,11 @@ kiwi_model_works <- function(size) {
 }
 
 kiwi_model_work_one <- function(size) {
-  valid_model_sizes <- c("base", "CoNg-base") # Restricted list
+  valid_model_sizes <- c("base") # Restricted list
   size <- match.arg(size, valid_model_sizes)
   if (!kiwi_model_exists_one(size))
     return(FALSE)
-  invisible(kiwi_init_(kiwi_model_path_full(size), 1, 1))
+  invisible(kiwi_init_(kiwi_model_path_full(size), 1, kiwi_default_build_options()))
   is.null(kiwi_error_wrap())
 }
 
@@ -104,7 +109,7 @@ model_works <- function(size = "all") {
 
 #' Get kiwi language model file.
 #'
-#' @param size "base", "CoNg-base" model. default is "base". Also "all" available.
+#' @param size "base" model. default is "base". Also "all" available.
 #' @param path path for model files. default is [model_home()].
 #' @param clean remove previous model files before get new.
 #'
@@ -126,7 +131,7 @@ get_kiwi_models <-
   function(size = "all",
            path = kiwi_model_path(),
            clean = FALSE) {
-    valid_model_sizes <- c("base", "CoNg-base") # Restricted list
+    valid_model_sizes <- c("base") # Restricted list
     size <- match.arg(size, c("all", valid_model_sizes)) # "all" still uses restricted list
     if (clean)
       kiwi_model_clean(size)
@@ -140,7 +145,7 @@ get_kiwi_models <-
   }
 
 kiwi_model_clean <- function(size = "all") {
-  valid_model_sizes <- c("base", "CoNg-base") # Restricted list
+  valid_model_sizes <- c("base") # Restricted list
   size <- match.arg(size, c("all", valid_model_sizes)) # "all" still uses restricted list
   lapply(size, function(x) {
     unlink
@@ -153,14 +158,10 @@ kiwi_model_clean <- function(size = "all") {
 #' @importFrom utils download.file
 #' @importFrom utils untar
 kiwi_model_get <- function(size, path) {
-  version <- "v0.21.0"
-  valid_model_sizes <- c("base", "CoNg-base") # Restricted list
+  version <- "v0.22.2"
+  valid_model_sizes <- c("base") # Restricted list
   size <- match.arg(size, valid_model_sizes)
-  if (size == "CoNg-base") {
-    fnm <- paste0("kiwi_model_", version, "_cong_base", ".tgz") # Retain specific CoNg-base filename logic
-  } else {
-    fnm <- paste0("kiwi_model_", version, "_", size, ".tgz")
-  }
+  fnm <- paste0("kiwi_model_", version, "_", size, ".tgz")
   tarurl <-
     paste0("https://github.com/bab2min/Kiwi/releases/download/",
            version,
