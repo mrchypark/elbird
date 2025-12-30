@@ -76,7 +76,7 @@ else
   }
   trap cleanup_kiwi_dir EXIT
 
-  git clone -b v$LIB_VER https://github.com/bab2min/Kiwi "$KIWI_BUILD_DIR/Kiwi"
+  git clone -b v$LIB_VER --depth 1 https://github.com/bab2min/Kiwi "$KIWI_BUILD_DIR/Kiwi"
   KIWI_SRC="$KIWI_BUILD_DIR/Kiwi"
 
   git -C "$KIWI_SRC" config -f .gitmodules --remove-section submodule."third_party/googletest" 2>/dev/null || true
