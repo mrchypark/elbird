@@ -15,24 +15,40 @@ static std::map<std::string, int> m = {
   { "EMAIL", KIWI_MATCH_EMAIL },
   { "HASHTAG", KIWI_MATCH_HASHTAG },
   { "MENTION", KIWI_MATCH_MENTION },
+  { "SERIAL", KIWI_MATCH_SERIAL },
   { "ALL", KIWI_MATCH_ALL },
+  { "NORMALIZE_CODA", KIWI_MATCH_NORMALIZE_CODA },
   { "NORMALIZING_CODA", KIWI_MATCH_NORMALIZE_CODA },
   { "ALL_WITH_NORMALIZING", KIWI_MATCH_ALL_WITH_NORMALIZING },
   { "JOIN_NOUN_PREFIX", KIWI_MATCH_JOIN_NOUN_PREFIX },
   { "JOIN_NOUN_SUFFIX", KIWI_MATCH_JOIN_NOUN_SUFFIX },
   { "JOIN_VERB_SUFFIX", KIWI_MATCH_JOIN_VERB_SUFFIX },
   { "JOIN_ADJ_SUFFIX", KIWI_MATCH_JOIN_ADJ_SUFFIX },
+  { "JOIN_ADV_SUFFIX", KIWI_MATCH_JOIN_ADV_SUFFIX },
   { "JOIN_V_SUFFIX", KIWI_MATCH_JOIN_V_SUFFIX },
-  { "JOIN_V_SUFFIX", KIWI_MATCH_JOIN_NOUN_AFFIX },
+  { "JOIN_AFFIX", KIWI_MATCH_JOIN_AFFIX },
+  { "JOIN_NOUN_AFFIX", KIWI_MATCH_JOIN_AFFIX },
+  { "SPLIT_COMPLEX", KIWI_MATCH_SPLIT_COMPLEX },
+  { "Z_CODA", KIWI_MATCH_Z_CODA },
+  { "COMPATIBLE_JAMO", KIWI_MATCH_COMPATIBLE_JAMO },
+  { "SPLIT_SAISIOT", KIWI_MATCH_SPLIT_SAISIOT },
+  { "MERGE_SAISIOT", KIWI_MATCH_MERGE_SAISIOT },
 };
 
 int match_options_(const std::string match_string) {
   if (!m.count(match_string)) {
     throw std::invalid_argument{
-      std::string{"Unknown Build Options : "} + match_string
+      std::string{"Unknown Match Options : "} + match_string
       };
   }
   return m.find(match_string)->second;
+}
+
+int ensure_model_type_option(int options) {
+  if ((options & 0x0F00) == 0) {
+    options |= KIWI_BUILD_MODEL_TYPE_CONG;
+  }
+  return options;
 }
 
 class Scanner {
@@ -147,7 +163,8 @@ static void _finalizer_kiwi_builder_h(kiwi_builder_h handle){
 
 [[cpp11::register]]
 SEXP kiwi_builder_init_(const char* model_path, int num_threads, int options) {
-  kiwi_builder_h kb = kiwi_builder_init(model_path, num_threads, options);
+  int normalized_options = ensure_model_type_option(options);
+  kiwi_builder_h kb = kiwi_builder_init(model_path, num_threads, normalized_options, KIWI_DIALECT_STANDARD);
   cpp11::external_pointer<kiwi_builder, _finalizer_kiwi_builder_h> res(kb);
   return res;
 }
@@ -280,14 +297,15 @@ int kiwi_builder_extract_add_words_(SEXP handle_ex, const char* input, int min_c
 [[cpp11::register]]
 SEXP kiwi_builder_build_(SEXP handle_ex) {
   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
-  kiwi_h kw = kiwi_builder_build(handle.get());
+  kiwi_h kw = kiwi_builder_build(handle.get(), nullptr, 0.0f);
   cpp11::external_pointer<kiwi_s, _finalizer_kiwi_h> res(kw);
   return res;
 }
 
 [[cpp11::register]]
 SEXP kiwi_init_(const char* model_path, int num_threads, int options) {
-  kiwi_h kw = kiwi_init(model_path, num_threads, options);
+  int normalized_options = ensure_model_type_option(options);
+  kiwi_h kw = kiwi_init(model_path, num_threads, normalized_options);
   cpp11::external_pointer<kiwi_s, _finalizer_kiwi_h> res(kw);
   return res;
 }
@@ -320,10 +338,18 @@ SEXP kiwi_analyze_(
   }
 
   cpp11::external_pointer<kiwi_s> handle(handle_ex);
+  kiwi_analyze_option_t options{};
+  options.match_options = match_options_(match_options);
+  options.blocklist = nullptr;
+  options.open_ending = 0;
+  options.allowed_dialects = KIWI_DIALECT_STANDARD;
+  options.dialect_cost = 3.0f;
+
   kiwi_res_h res_h = kiwi_analyze(handle.get(),
                                   text,
                                   top_n,
-                                  match_options_(match_options));
+                                  options,
+                                  nullptr);
 
   int resSize = kiwi_res_size(res_h);
   cpp11::writable::list res;
@@ -420,5 +446,3 @@ SEXP kiwi_split_into_sents_(
   kiwi_ss_close(res_h);
   return res;
 }
-
-

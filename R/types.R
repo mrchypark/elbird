@@ -60,8 +60,10 @@ Match <- matchr::Enum("match",
   EMAIL = "EMAIL",
   HASHTAG = "HASHTAG",
   MENTION = "MENTION",
+  SERIAL = "SERIAL",
   ALL = "ALL",
 
+  NORMALIZE_CODA = "NORMALIZE_CODA",
   NORMALIZING_CODA = "NORMALIZING_CODA",
   ALL_WITH_NORMALIZING = "ALL_WITH_NORMALIZING",
 
@@ -69,13 +71,29 @@ Match <- matchr::Enum("match",
   JOIN_NOUN_SUFFIX = "JOIN_NOUN_SUFFIX",
   JOIN_VERB_SUFFIX = "JOIN_VERB_SUFFIX",
   JOIN_ADJ_SUFFIX = "JOIN_ADJ_SUFFIX",
+  JOIN_ADV_SUFFIX = "JOIN_ADV_SUFFIX",
 
   JOIN_V_SUFFIX  = "JOIN_V_SUFFIX",
-  JOIN_NOUN_AFFIX = "JOIN_NOUN_AFFIX"
+  JOIN_AFFIX = "JOIN_AFFIX",
+  JOIN_NOUN_AFFIX = "JOIN_NOUN_AFFIX",
+
+  SPLIT_COMPLEX = "SPLIT_COMPLEX",
+  Z_CODA = "Z_CODA",
+  COMPATIBLE_JAMO = "COMPATIBLE_JAMO",
+  SPLIT_SAISIOT = "SPLIT_SAISIOT",
+  MERGE_SAISIOT = "MERGE_SAISIOT"
 )
 
 BuildOpt <- matchr::Enum("buildOpt",
                          INTEGRATE_ALLOMORPH = 1L,
                          LOAD_DEFAULT_DICT = 2L,
-                         DEFAULT = 3L
+                         LOAD_TYPO_DICT = 4L,
+                         LOAD_MULTI_DICT = 8L,
+                         DEFAULT = 15L,
+                         MODEL_TYPE_DEFAULT = 0x0000L,
+                         MODEL_TYPE_LARGEST = 0x0100L,
+                         MODEL_TYPE_KNLM = 0x0200L,
+                         MODEL_TYPE_SBG = 0x0300L,
+                         MODEL_TYPE_CONG = 0x0400L,
+                         MODEL_TYPE_CONG_GLOBAL = 0x0500L
 )
