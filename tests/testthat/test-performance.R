@@ -1,4 +1,3 @@
-
 test_that("large text processing performance", {
   skip_if_offline()
   skip_on_os(os = "windows", arch = "i386")
@@ -62,15 +61,27 @@ test_that("batch processing performance", {
 
 test_that("memory usage stability", {
   skip_if_offline()
-  skip_on_os(os = "windows", arch = "i386")
+  skip_on_os(os = "windows")
   skip_on_cran() # Skip on CRAN due to resource constraints
 
   if (!model_works("base")) {
     get_model("base")
   }
 
+  get_rss_kb <- function() {
+    rss <- suppressWarnings(system("ps -o rss= -p $$", intern = TRUE))
+    rss <- suppressWarnings(as.numeric(rss))
+    if (length(rss) == 0 || is.na(rss)) {
+      return(NA_real_)
+    }
+    rss
+  }
+
   # Test repeated operations for memory leaks
-  initial_memory <- as.numeric(system("ps -o rss= -p $$", intern = TRUE))
+  initial_memory <- get_rss_kb()
+  if (is.na(initial_memory)) {
+    skip("RSS measurement not available on this platform")
+  }
 
   # Perform repeated operations
   for (i in 1:50) {
@@ -84,7 +95,10 @@ test_that("memory usage stability", {
   }
 
   # Check memory usage after operations
-  final_memory <- as.numeric(system("ps -o rss= -p $$", intern = TRUE))
+  final_memory <- get_rss_kb()
+  if (is.na(final_memory)) {
+    skip("RSS measurement not available on this platform")
+  }
   memory_increase <- final_memory - initial_memory
 
   # Memory increase should be reasonable (less than 100MB)
