@@ -24,28 +24,28 @@ test_that("tokenize stopword works", {
   })
 
   if (!is.null(err)) {
-    if (grepl("HTTP status was '404 Not Found'", err$message) && 
-        (grepl("base", err$message) || grepl("kiwi_model_v0.21.0_base.tgz", err$message) || grepl("cong_base", err$message) ) ) {
-      fail(paste0("Test setup failed: 'base' model (v0.21.0) not found, but was expected. Error: ", err$message))
+    if (grepl("HTTP status was '404 Not Found'", err$message) &&
+        (grepl("base", err$message) || grepl("kiwi_model_v0.22.2_base.tgz", err$message) || grepl("cong_base", err$message) ) ) {
+      fail(paste0("Test setup failed: 'base' model (v0.22.2) not found, but was expected. Error: ", err$message))
       return() # Ensure exit after fail
     } else {
       fail(paste0("Test setup for 'stopwords' failed with an unexpected error: ", err$message))
       return() # Ensure exit after fail
     }
   }
-  
+
   if (!model_successfully_acquired) {
       skip("Skipping test for 'stopwords': 'base' model not available after attempted acquisition.")
-      return() 
+      return()
   }
 
   expect_false(is.null(res_false), "res_false should not be NULL if setup succeeded.")
   expect_false(is.null(res_true), "res_true should not be NULL if setup succeeded.")
   if(!is.null(res_false) && !is.null(res_true)){
-    expect_equal(nrow(res_false), 3)
-    expect_true(res_false[nrow(res_false), "form"] == ".")
+    expect_equal(nrow(res_false), 2)
     expect_equal(nrow(res_true), 2)
-    expect_true(res_true[nrow(res_true), "form"] != ".")
+    expect_true(res_false[nrow(res_false), "form"] == "text.")
+    expect_true(res_true[nrow(res_true), "form"] == "text.")
   }
 })
 
