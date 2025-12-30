@@ -95,7 +95,41 @@ else
   cd "$PKG_ROOT"
 
   mkdir -p kiwilibs/libs
-  mv -f "$KIWI_SRC/build/libkiwi_static.a" kiwilibs/libs/libkiwi.a
+
+  LIB_SRC=""
+  for candidate in \
+    "$KIWI_SRC/build/libkiwi_static.a" \
+    "$KIWI_SRC/build/libkiwi.a" \
+    "$KIWI_SRC/build/libkiwi.dylib" \
+    "$KIWI_SRC/build/kiwi_static/libkiwi.a" \
+    "$KIWI_SRC/build/kiwi_static/libkiwi_static.a"; do
+    if [ -f "$candidate" ]; then
+      LIB_SRC="$candidate"
+      break
+    fi
+  done
+
+  if [ -z "$LIB_SRC" ]; then
+    LIB_SRC=$(find "$KIWI_SRC/build" -maxdepth 4 -type f \( -name "libkiwi*.a" -o -name "libkiwi*.dylib" \) | head -n 1)
+  fi
+
+  if [ -z "$LIB_SRC" ]; then
+    echo "------------------------------[ ELBIRD ]------------------------------"
+    echo "Configuration failed because libkiwi output was not found."
+    echo "Build directory: $KIWI_SRC/build"
+    echo "-------------------------------------------------------------------------"
+    exit 1
+  fi
+
+  case "$LIB_SRC" in
+    *.dylib)
+      cp -f "$LIB_SRC" kiwilibs/libs/libkiwi.dylib
+      ;;
+    *)
+      cp -f "$LIB_SRC" kiwilibs/libs/libkiwi.a
+      ;;
+  esac
+  rm -rf kiwilibs/include
   mv -f "$KIWI_SRC/include" kiwilibs/include
 
   # Copy libcache for local development.
