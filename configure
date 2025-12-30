@@ -13,7 +13,7 @@ fi
 PKG_TEST_HEADER="<kiwi/Kiwi.h>"
 PKG_LIBS="-lkiwi"
 PKG_CPPFLAGS=""
-LIB_VER="0.21.0"
+LIB_VER="0.22.2"
 
 # Copy libcache for local development.
 if [ -f "`pwd`/kiwilibtmp/libs/libkiwi.a" ]; then
@@ -67,25 +67,36 @@ else
   fi
 
   git config --global advice.detachedHead false
-  git clone -b v$LIB_VER https://github.com/bab2min/Kiwi
-  cd Kiwi
+  PKG_ROOT="$(pwd)"
+  KIWI_BUILD_DIR="$(mktemp -d)"
+  cleanup_kiwi_dir() {
+    if [ -n "$KIWI_BUILD_DIR" ] && [ -d "$KIWI_BUILD_DIR" ]; then
+      rm -rf "$KIWI_BUILD_DIR"
+    fi
+  }
+  trap cleanup_kiwi_dir EXIT
 
-  git rm third_party/googletest
-  git rm third_party/cpuinfo
-  git submodule update --init --recursive
+  git clone -b v$LIB_VER https://github.com/bab2min/Kiwi "$KIWI_BUILD_DIR/Kiwi"
+  KIWI_SRC="$KIWI_BUILD_DIR/Kiwi"
 
-  mkdir build
-  cd build
-   cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DKIWI_USE_CPUINFO=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_CXX_STANDARD=17 -Wno-dev --log-level=ERROR -DCMAKE_POLICY_VERSION_MINIMUM=3.10 ..
+  git -C "$KIWI_SRC" config -f .gitmodules --remove-section submodule."third_party/googletest" 2>/dev/null || true
+  git -C "$KIWI_SRC" config -f .gitmodules --remove-section submodule."third_party/cpuinfo" 2>/dev/null || true
+  rm -rf "$KIWI_SRC/third_party/googletest" "$KIWI_SRC/third_party/cpuinfo"
+  git -C "$KIWI_SRC" submodule sync --recursive
+  REQUIRED_SUBMODULES="third_party/tclap third_party/mimalloc third_party/cpp-btree third_party/eigen third_party/json third_party/streamvbyte"
+  git -C "$KIWI_SRC" submodule update --init --recursive --depth 1 -- $REQUIRED_SUBMODULES
+
+  mkdir "$KIWI_SRC/build"
+  cd "$KIWI_SRC/build"
+  cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DKIWI_USE_CPUINFO=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_CXX_STANDARD=17 -Wno-dev --log-level=ERROR -DCMAKE_POLICY_VERSION_MINIMUM=3.10 ..
   echo "** make is running..."
   make kiwi_static 1> makelog.txt
   echo "** done!"
-  cd ../..
+  cd "$PKG_ROOT"
 
   mkdir -p kiwilibs/libs
-  mv -f Kiwi/build/libkiwi_static.a kiwilibs/libs/libkiwi.a
-  mv -f Kiwi/include kiwilibs/include
-  rm -rf Kiwi
+  mv -f "$KIWI_SRC/build/libkiwi_static.a" kiwilibs/libs/libkiwi.a
+  mv -f "$KIWI_SRC/include" kiwilibs/include
 
   # Copy libcache for local development.
   cp -rf kiwilibs/ kiwilibtmp/
@@ -119,4 +130,3 @@ sed -e "s|@cppflags@|$PKG_CPPFLAGS|" -e "s|@libs@|$PKG_LIBS|" -e "s|@cxxflags@|$
 
 # Success
 exit 0
-
