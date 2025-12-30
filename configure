@@ -90,7 +90,7 @@ else
   cd "$KIWI_SRC/build"
   cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DKIWI_USE_CPUINFO=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_CXX_STANDARD=17 -Wno-dev --log-level=ERROR -DCMAKE_POLICY_VERSION_MINIMUM=3.10 ..
   echo "** make is running..."
-  make Kiwi_static 1> makelog.txt 2>&1
+  make kiwi_static 1> makelog.txt 2>&1
   echo "** done!"
   cd "$PKG_ROOT"
 
