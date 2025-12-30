@@ -1,5 +1,5 @@
 CXX_STD=CXX17
-RWINLIB = ../windows/rwinlib-elbird-0.21.0
+RWINLIB = ../windows/rwinlib-elbird-0.22.2
 
 CXX_STD=CXX17
 
