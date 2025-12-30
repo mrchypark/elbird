@@ -1,12 +1,17 @@
 version <- "0.22.2"
 arch <- Sys.getenv("R_ARCH")
-arch <- if (nzchar(arch)) sub("^/", "", arch) else "x64"
+arch <- if (nzchar(arch)) sub("^/", "", arch) else ""
 pkgdir <- Sys.getenv("R_PACKAGE_DIR")
 if (!nzchar(pkgdir)) {
   quit(status = 0)
 }
 
-dest_dir <- file.path(pkgdir, "libs", arch)
+sysname <- Sys.info()[["sysname"]]
+if (!is.na(sysname) && sysname == "Windows" && !nzchar(arch)) {
+  arch <- "x64"
+}
+
+dest_dir <- if (nzchar(arch)) file.path(pkgdir, "libs", arch) else file.path(pkgdir, "libs")
 dir.create(dest_dir, showWarnings = FALSE, recursive = TRUE)
 
 dyn_ext <- .Platform$dynlib.ext
@@ -16,8 +21,6 @@ if (nzchar(dyn_ext)) {
     file.copy(dynlibs, dest_dir, overwrite = TRUE)
   }
 }
-
-sysname <- Sys.info()[["sysname"]]
 if (!is.na(sysname) && sysname == "Windows") {
   win_arch <- if (arch == "x64") "x64" else "Win32"
   src_dll <- file.path("..", "windows", paste0("kiwi_win_", win_arch, "_v", version), "lib", "kiwi.dll")
