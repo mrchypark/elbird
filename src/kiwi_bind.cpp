@@ -295,7 +295,7 @@ int kiwi_builder_extract_add_words_(SEXP handle_ex, const char* input, int min_c
 }
 
 [[cpp11::register]]
-SEXP kiwi_builder_build_(SEXP handle_ex) {
+SEXP kiwi_builder_build_(SEXP handle_ex, SEXP typos_ex = R_NilValue, double typo_cost_threshold = -1.0) {
   cpp11::external_pointer<kiwi_builder> handle(handle_ex);
   kiwi_h kw = kiwi_builder_build(handle.get(), nullptr, 0.0f);
   cpp11::external_pointer<kiwi_s, _finalizer_kiwi_h> res(kw);
@@ -327,7 +327,9 @@ SEXP kiwi_analyze_(
     SEXP handle_ex,
     const char* text,
     int top_n, std::string match_options,
-    const cpp11::data_frame stopwords_r) {
+    const cpp11::data_frame stopwords_r,
+    SEXP blocklist_ex = R_NilValue,
+    SEXP pretokenized_ex = R_NilValue) {
 
   std::vector<std::pair<std::string, std::string>> filters;
   cpp11::strings form_r = stopwords_r["form"];

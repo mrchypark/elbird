@@ -90,7 +90,7 @@ else
   cd "$KIWI_SRC/build"
   cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DKIWI_USE_CPUINFO=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_CXX_STANDARD=17 -Wno-dev --log-level=ERROR -DCMAKE_POLICY_VERSION_MINIMUM=3.10 ..
   echo "** make is running..."
-  make kiwi_static 1> makelog.txt
+  make Kiwi_static 1> makelog.txt 2>&1
   echo "** done!"
   cd "$PKG_ROOT"
 
@@ -108,12 +108,41 @@ fi
 echo "Using PKG_CPPFLAGS=$PKG_CPPFLAGS"
 echo "Using PKG_LIBS=$PKG_LIBS"
 
-# Find compiler
+# Find compiler and check C++17 support first
+CXX17=`${R_HOME}/bin/R CMD config CXX17`
+CXX17FLAGS=`${R_HOME}/bin/R CMD config CXX17FLAGS`
 CXX11=`${R_HOME}/bin/R CMD config CXX11`
 CXXFLAGS=`${R_HOME}/bin/R CMD config CXXFLAGS`
 
-# Test for libkiwi
-echo "#include $PKG_TEST_HEADER" | ${CXX11} ${PKG_CPPFLAGS} ${CXXFLAGS} -E -xc++ - >/dev/null 2>&1
+# Check for C++17 support
+if [ -z "$CXX17" ]; then
+    echo "------------------------------[ ELBIRD ]------------------------------"
+    echo "Configuration failed because C++17 support is required for Kiwi v0.21.0."
+    echo "Please upgrade your compiler or R installation to support C++17."
+    echo "Current R version: `${R_HOME}/bin/R --version | head -1`"
+    echo "-------------------------------------------------------------------------"
+    exit 1
+fi
+
+# Test C++17 compilation
+echo "int main() { return 0; }" > /tmp/test_cpp17.cpp
+${CXX17} ${CXX17FLAGS} -std=c++17 /tmp/test_cpp17.cpp -o /tmp/test_cpp17_out >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "------------------------------[ ELBIRD ]------------------------------"
+    echo "Configuration failed because C++17 compilation test failed."
+    echo "Please ensure your compiler supports C++17 standard."
+    echo "Compiler: $CXX17"
+    echo "Flags: $CXX17FLAGS"
+    echo "-------------------------------------------------------------------------"
+    rm -f /tmp/test_cpp17.cpp /tmp/test_cpp17_out
+    exit 1
+fi
+rm -f /tmp/test_cpp17.cpp /tmp/test_cpp17_out
+
+echo "C++17 support confirmed."
+
+# Test for libkiwi using C++17
+echo "#include $PKG_TEST_HEADER" | ${CXX17} ${PKG_CPPFLAGS} ${CXX17FLAGS} -std=c++17 -E -xc++ - >/dev/null 2>&1
 
 if [ $? -ne 0 ]; then
     echo "------------------------------[ ELBIRD ]------------------------------"
@@ -126,7 +155,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Write to Makevars
-sed -e "s|@cppflags@|$PKG_CPPFLAGS|" -e "s|@libs@|$PKG_LIBS|" -e "s|@cxxflags@|$CXXFLAGS|" src/Makevars.in > src/Makevars
+sed -e "s|@cppflags@|$PKG_CPPFLAGS|" -e "s|@libs@|$PKG_LIBS|" -e "s|@cxx17flags@|$CXX17FLAGS|" src/Makevars.in > src/Makevars
 
 # Success
 exit 0

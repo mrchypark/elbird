@@ -128,6 +128,114 @@ analyze("안녕하세요 kiwi 형태소 분석기의 R wrapper인 elbird를 소�
 analyze(c("안녕하세요. kiwi 형태소 분석기의 R wrapper인 elbird를 소개합니다."), top_n = 1)
 ```
 
+## New Features in v0.3.0 (Kiwi v0.21.0)
+
+elbird v0.3.0 introduces several powerful new features based on the upgraded Kiwi v0.21.0 library:
+
+### Advanced Analysis with Morphset and Pretokenized Objects
+
+The new version supports advanced morphological analysis with morpheme blocking and guided tokenization:
+
+```{r}
+# Create a Kiwi instance
+kw <- Kiwi$new()
+
+# Create a morphset to block specific morphemes
+morphset <- kw$create_morphset()
+morphset$add("안녕", "IC")  # Block interjection "안녕"
+
+# Analyze with morpheme blocking
+result_with_blocklist <- kw$analyze("안녕하세요 여러분", blocklist = morphset)
+result_without_blocklist <- kw$analyze("안녕하세요 여러분")
+
+# Compare results
+cat("Without blocklist:\n")
+print(result_without_blocklist[[1]][[1]]$Token)
+cat("\nWith blocklist (blocking '안녕'):\n")
+print(result_with_blocklist[[1]][[1]]$Token)
+```
+
+### Typo Correction
+
+Enable automatic typo correction for more robust text analysis:
+
+```{r}
+# Enable typo correction with default settings
+kw$set_typo_correction(TRUE)
+
+# Analyze text with intentional typos
+result_with_typo <- kw$analyze("안뇽하세요 여러뷴")  # "안녕하세요 여러분" with typos
+print(result_with_typo[[1]][[1]]$Token)
+
+# Add custom typo correction rules
+custom_rules <- list(
+  list(orig = "안녕", error = "안뇽", cost = 1.0),
+  list(orig = "여러분", error = "여러뷴", cost = 1.5)
+)
+kw$set_typo_correction(TRUE, cost_threshold = 2.0, custom_typos = custom_rules)
+```
+
+### Pretokenized Analysis
+
+Guide the analysis process with predefined token boundaries:
+
+```{r}
+# Create a pretokenized object
+pt <- kw$create_pretokenized()
+
+# Add a span and tokens
+span_id <- pt$add_span(0, 15)  # Span for "안녕하세요 여러분"
+pt$add_token_to_span(span_id, "안녕하세요", "IC", 0, 5)
+pt$add_token_to_span(span_id, "여러분", "NP", 6, 9)
+
+# Analyze with pretokenized guidance
+result_pretokenized <- kw$analyze("안녕하세요 여러분", pretokenized = pt)
+print(result_pretokenized[[1]][[1]]$Token)
+```
+
+### Enhanced Simple Functions
+
+The simple `analyze()` and `tokenize()` functions now support the new features:
+
+```{r}
+# Use morphset with simple functions
+morphset <- kw$create_morphset()
+morphset$add("하세요", "EP")
+
+# Simple analyze with blocklist
+result <- analyze("안녕하세요 여러분", blocklist = morphset)
+print(result[[1]][[1]]$Token)
+
+# Simple tokenize with blocklist
+tokens <- tokenize("안녕하세요 여러분", blocklist = morphset)
+print(tokens)
+```
+
+## Migration Guide
+
+### For Existing Users
+
+All existing code will continue to work without any changes. The new parameters (`blocklist`, `pretokenized`) are optional and default to `NULL`.
+
+```{r eval=FALSE}
+# Existing code works unchanged
+result <- analyze("텍스트 분석")
+tokens <- tokenize("텍스트 분석")
+kw <- Kiwi$new()
+kw_result <- kw$analyze("텍스트 분석")
+```
+
+### To Use New Features
+
+1. **Morpheme Blocking**: Create a morphset and add morphemes to block
+2. **Typo Correction**: Enable with `set_typo_correction()` method
+3. **Pretokenized Analysis**: Create pretokenized objects with predefined spans and tokens
+
+### System Requirements
+
+- **C++17 compatible compiler** (upgraded from C++11)
+- All other requirements remain the same
+
 ## tag set
 
 [Tag list](https://github.com/bab2min/kiwipiepy#%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8) that used in [kiwipiepy](https://github.com/bab2min/kiwipiepy) package.

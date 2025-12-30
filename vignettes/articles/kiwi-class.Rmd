@@ -112,6 +112,123 @@ unnest_tokens(
 )
 ```
 
+## 새로운 기능들 (v0.3.0)
+
+elbird v0.3.0에서는 Kiwi v0.21.0 기반의 새로운 기능들을 제공합니다.
+
+### Morphset을 이용한 형태소 차단
+
+특정 형태소를 분석 결과에서 제외할 수 있습니다.
+
+```{r}
+# Morphset 생성
+morphset <- kw$create_morphset()
+morphset$add("안녕", "IC")  # 감탄사 "안녕" 차단
+
+# 차단 없이 분석
+result_normal <- kw$analyze("안녕하세요 여러분")
+print("일반 분석:")
+print(result_normal[[1]][[1]]$Token)
+
+# 차단하여 분석
+result_blocked <- kw$analyze("안녕하세요 여러분", blocklist = morphset)
+print("형태소 차단 분석:")
+print(result_blocked[[1]][[1]]$Token)
+```
+
+### 오타 교정 기능
+
+자동 오타 교정을 통해 더 정확한 분석이 가능합니다.
+
+```{r}
+# 오타 교정 활성화
+kw$set_typo_correction(TRUE)
+
+# 의도적 오타가 포함된 텍스트 분석
+result_typo <- kw$analyze("안뇽하세요 여러뷴")
+print("오타 교정 결과:")
+print(result_typo[[1]][[1]]$Token)
+
+# 사용자 정의 오타 교정 규칙 추가
+custom_rules <- list(
+  list(orig = "안녕", error = "안뇽", cost = 1.0),
+  list(orig = "여러분", error = "여러뷴", cost = 1.5)
+)
+kw$set_typo_correction(TRUE, cost_threshold = 2.0, custom_typos = custom_rules)
+
+# 오타 교정 설정 확인
+settings <- kw$get_typo_correction_settings()
+print("오타 교정 설정:")
+print(settings)
+```
+
+### Pretokenized 객체를 이용한 가이드 분석
+
+미리 정의된 토큰 경계를 사용하여 분석을 가이드할 수 있습니다.
+
+```{r}
+# Pretokenized 객체 생성
+pt <- kw$create_pretokenized()
+
+# 스팬 추가 (텍스트 범위 지정)
+span_id <- pt$add_span(0, 15)  # "안녕하세요 여러분" 범위
+
+# 스팬에 토큰 추가
+pt$add_token_to_span(span_id, "안녕하세요", "IC", 0, 5)
+pt$add_token_to_span(span_id, "여러분", "NP", 6, 9)
+
+print("Pretokenized 객체 정보:")
+print(pt)
+
+# 가이드된 분석 수행
+result_pretokenized <- kw$analyze("안녕하세요 여러분", pretokenized = pt)
+print("가이드된 분석 결과:")
+print(result_pretokenized[[1]][[1]]$Token)
+```
+
+### 간단한 함수들과의 통합
+
+새로운 기능들은 간단한 함수들(`analyze()`, `tokenize()`)에서도 사용할 수 있습니다.
+
+```{r}
+# 전역 함수에서 morphset 사용
+morphset <- kw$create_morphset()
+morphset$add("하세요", "EP")
+
+result_simple <- analyze("안녕하세요 여러분", blocklist = morphset)
+print("간단한 함수에서 morphset 사용:")
+print(result_simple[[1]][[1]]$Token)
+
+# 전역 함수에서 tokenize와 morphset 사용
+tokens_simple <- tokenize("안녕하세요 여러분", blocklist = morphset)
+print("간단한 tokenize에서 morphset 사용:")
+print(tokens_simple)
+```
+
+## 마이그레이션 가이드
+
+### 기존 사용자
+
+기존 코드는 수정 없이 그대로 작동합니다. 새로운 매개변수들(`blocklist`, `pretokenized`)은 선택사항이며 기본값은 `NULL`입니다.
+
+```{r eval=FALSE}
+# 기존 코드는 변경 없이 작동
+kw <- Kiwi$new()
+result <- kw$analyze("텍스트 분석")
+tokens <- kw$tokenize("텍스트 분석")
+```
+
+### 새로운 기능 사용
+
+1. **형태소 차단**: `create_morphset()`으로 morphset을 생성하고 차단할 형태소 추가
+2. **오타 교정**: `set_typo_correction()` 메서드로 활성화
+3. **가이드 분석**: `create_pretokenized()`로 pretokenized 객체 생성
+
+### 시스템 요구사항
+
+- **C++17 호환 컴파일러** (C++11에서 업그레이드)
+- 기타 요구사항은 동일
+
 [tidytext]: https://www.tidytextmining.com/tidytext.html
 [kiwipiepy]: https://github.com/bab2min/kiwipiepy
 [kiwi]: https://github.com/bab2min/Kiwi
