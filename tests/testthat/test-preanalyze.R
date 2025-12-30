@@ -1,5 +1,3 @@
-library(elbird)
-
 test_that("pre analyze words df", {
   skip_if_offline()
   skip_on_os(os = "windows", arch = "i386")
@@ -13,29 +11,37 @@ test_that("pre analyze words df", {
   kw_built <- NULL # Changed from kw to kw_built for clarity
   res_analyze <- NULL
 
-  tryCatch({
-    if (!model_exists("base")) {
-      get_model("base")
-    }
-    model_successfully_acquired <- model_exists("base")
+  tryCatch(
+    {
+      if (!model_exists("base")) {
+        get_model("base")
+      }
+      model_successfully_acquired <- model_exists("base")
 
-    if(model_successfully_acquired){
-      anl <- tibble::tibble(
-        morphs = c("팅기", "었", "어"),
-        pos = c("vv", "ep", "ef"),
-        start = c(0L, 1L, 2L),
-        end = c(1L, 2L, 3L)
-      )
-      kb <- elbird:::kiwi_builder_init_(elbird:::kiwi_model_path_full("base"), 0, elbird:::kiwi_default_build_options())
-      res_add1 <- elbird:::kiwi_builder_add_pre_analyzed_word_(kb, "팅겼어", anl, 0)
-      elbird:::kiwi_builder_add_alias_word_(kb, "팅기","vv", -1, "튕기")
-      res_add2 <- elbird:::kiwi_builder_add_pre_analyzed_word_(kb, "팅겼어", anl, 0)
-      kw_built <- elbird:::kiwi_builder_build_(kb)
-      res_analyze <- elbird:::kiwi_analyze_wrap(kw_built, text = "팅겼어...", 1, Match$ALL_WITH_NORMALIZING)
+      if (model_successfully_acquired) {
+        anl <- tibble::tibble(
+          morphs = c("팅기", "었", "어"),
+          pos = c("vv", "ep", "ef"),
+          start = c(0L, 1L, 2L),
+          end = c(1L, 2L, 3L)
+        )
+        kb <- elbird:::kiwi_builder_init_(
+          elbird:::kiwi_model_path_full("base"),
+          0,
+          elbird:::kiwi_default_build_options(),
+          Dialect$STANDARD
+        )
+        res_add1 <- elbird:::kiwi_builder_add_pre_analyzed_word_(kb, "팅겼어", anl, 0)
+        elbird:::kiwi_builder_add_alias_word_(kb, "팅기", "vv", -1, "튕기")
+        res_add2 <- elbird:::kiwi_builder_add_pre_analyzed_word_(kb, "팅겼어", anl, 0)
+        kw_built <- elbird:::kiwi_builder_build_(kb, NULL, -1)
+        res_analyze <- elbird:::kiwi_analyze_wrap(kw_built, text = "팅겼어...", 1, Match$ALL_WITH_NORMALIZING)
+      }
+    },
+    error = function(e) {
+      err <<- e
     }
-  }, error = function(e) {
-    err <<- e
-  })
+  )
 
   if (!is.null(err)) {
     if (grepl("HTTP status was '404 Not Found'", err$message)) {
@@ -55,7 +61,7 @@ test_that("pre analyze words df", {
   expect_equal(res_add1, 0)
   expect_equal(res_add2, -1)
   expect_false(is.null(res_analyze), "res_analyze should not be NULL if setup succeeded for 'preanalyze'.")
-  if(!is.null(res_analyze)) {
+  if (!is.null(res_analyze)) {
     expect_equal(res_analyze[[1]]$Token[[1]]$form, "팅기")
     expect_equal(res_analyze[[1]]$Token[[1]]$tag, "VV")
   }

@@ -7,20 +7,18 @@
 #' @param return_tokens add tokenized resault.
 #' @examples
 #' \dontrun{
-#'  split_into_sents("text")
-#'  split_into_sents("text", return_tokens = TRUE)
+#' split_into_sents("text")
+#' split_into_sents("text", return_tokens = TRUE)
 #' }
 #' @export
 split_into_sents <- function(text, return_tokens = FALSE) {
-  if (init_chk_not())
+  if (init_chk_not()) {
     init()
+  }
 
-  return(
-    kiwi_split_into_sents_(
-      get("kw", envir = .el),
-      text,
-      Match$ALL_WITH_NORMALIZING,
-      return_tokens
-    )
+  kw <- get("kw", envir = .el)
+  kw$split_into_sents(text,
+    match_option = Match$ALL_WITH_NORMALIZING,
+    return_tokens = return_tokens
   )
 }

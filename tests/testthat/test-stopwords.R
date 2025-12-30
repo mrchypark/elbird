@@ -1,4 +1,3 @@
-library(elbird)
 
 test_that("tokenize stopword works", {
   skip_if_offline()

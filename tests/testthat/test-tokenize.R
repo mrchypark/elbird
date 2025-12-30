@@ -1,4 +1,3 @@
-library(elbird) # Adding library call
 
 test_that("tokenize works", {
   skip_if_offline()

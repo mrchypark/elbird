@@ -1,4 +1,3 @@
-library(elbird)
 
 test_that("split sents works", {
   skip_if_offline()

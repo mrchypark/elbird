@@ -84,6 +84,30 @@ Match <- matchr::Enum("match",
   MERGE_SAISIOT = "MERGE_SAISIOT"
 )
 
+Dialect <- matchr::Enum("dialect",
+  STANDARD = 0L,
+  GYEONGGI = 1L,
+  CHUNGCHEONG = 2L,
+  GANGWON = 4L,
+  GYEONGSANG = 8L,
+  JEOLLA = 16L,
+  JEJU = 32L,
+  HWANGHAE = 64L,
+  HAMGYEONG = 128L,
+  PYEONGAN = 256L,
+  ARCHAIC = 512L,
+  ALL = 1023L
+)
+
+TypoSet <- matchr::Enum("typoset",
+  WITHOUT_TYPO = 0L,
+  BASIC_TYPO_SET = 1L,
+  CONTINUAL_TYPO_SET = 2L,
+  BASIC_TYPO_SET_WITH_CONTINUAL = 3L,
+  LENGTHENING_TYPO_SET = 4L,
+  BASIC_TYPO_SET_WITH_CONTINUAL_AND_LENGTHENING = 5L
+)
+
 BuildOpt <- matchr::Enum("buildOpt",
                          INTEGRATE_ALLOMORPH = 1L,
                          LOAD_DEFAULT_DICT = 2L,
@@ -97,3 +121,17 @@ BuildOpt <- matchr::Enum("buildOpt",
                          MODEL_TYPE_CONG = 0x0400L,
                          MODEL_TYPE_CONG_GLOBAL = 0x0500L
 )
+
+normalize_match_option <- function(match_option, normalize_coda) {
+  if (!isTRUE(normalize_coda)) {
+    return(match_option)
+  }
+  if (identical(match_option, Match$ALL)) {
+    return(Match$ALL_WITH_NORMALIZING)
+  }
+  if (identical(match_option, Match$ALL_WITH_NORMALIZING) ||
+      identical(match_option, Match$NORMALIZE_CODA)) {
+    return(match_option)
+  }
+  match_option
+}

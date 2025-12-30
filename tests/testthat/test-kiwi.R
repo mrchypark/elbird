@@ -1,4 +1,3 @@
-library(elbird)
 
 test_that("kiwi works with model_size = base", {
   skip_if_offline()

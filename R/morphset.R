@@ -7,10 +7,10 @@
 #' @importFrom R6 R6Class
 #' @examples
 #' \dontrun{
-#'   kw <- Kiwi$new()
-#'   morphset <- kw$create_morphset()
-#'   morphset$add("테스트", "NNG")
-#'   result <- kw$analyze("테스트 문장", blocklist = morphset)
+#' kw <- Kiwi$new()
+#' morphset <- kw$create_morphset()
+#' morphset$add("테스트", "NNG")
+#' result <- kw$analyze("테스트 문장", blocklist = morphset)
 #' }
 #' @export
 Morphset <- R6::R6Class(
@@ -55,32 +55,37 @@ Morphset <- R6::R6Class(
       if (missing(form) || missing(tag)) {
         stop("Both 'form' and 'tag' are required")
       }
-      
+
       if (!is.character(form) || !is.character(tag)) {
         stop("Both 'form' and 'tag' must be character strings")
       }
-      
+
       if (length(form) != 1 || length(tag) != 1) {
         stop("Both 'form' and 'tag' must be single character strings")
       }
-      
+
       # Validate tag
       if (!is_tag(tag)) {
         stop(paste0("'", tag, "' is not a valid POS tag. Check Tags for valid options."))
       }
-      
+
       # Add to C++ morphset
       result <- kiwi_morphset_add_(private$handle, form, check_tag(tag))
-      
-      if (result == 0) {
+
+      if (result > 0) {
         # Add to internal tracking list for print method
-        private$morphemes <- append(private$morphemes, 
-                                   list(list(form = form, tag = tag)))
+        private$morphemes <- append(
+          private$morphemes,
+          list(list(form = form, tag = tag))
+        )
         return(TRUE)
+      }
+      if (result == 0) {
+        warning(paste0("Morpheme not found in model: ", form, "/", tag))
       } else {
         warning(paste0("Failed to add morpheme: ", form, "/", tag))
-        return(FALSE)
       }
+      return(FALSE)
     },
 
     #' @description
@@ -92,20 +97,20 @@ Morphset <- R6::R6Class(
       if (missing(forms) || missing(tags)) {
         stop("Both 'forms' and 'tags' are required")
       }
-      
+
       if (!is.character(forms) || !is.character(tags)) {
         stop("Both 'forms' and 'tags' must be character vectors")
       }
-      
+
       if (length(forms) != length(tags)) {
         stop("'forms' and 'tags' must have the same length")
       }
-      
+
       results <- logical(length(forms))
       for (i in seq_along(forms)) {
         results[i] <- self$add(forms[i], tags[i])
       }
-      
+
       return(results)
     },
 
@@ -132,38 +137,55 @@ Morphset <- R6::R6Class(
     },
 
     #' @description
+    #'   Get morphemes as a data frame.
+    #' @return \code{data.frame} with columns form and tag
+    get = function() {
+      if (length(private$morphemes) == 0) {
+        return(data.frame(form = character(), tag = character(), stringsAsFactors = FALSE))
+      }
+      forms <- vapply(private$morphemes, function(x) x$form, character(1))
+      tags <- vapply(private$morphemes, function(x) x$tag, character(1))
+      data.frame(form = forms, tag = tags, stringsAsFactors = FALSE)
+    },
+
+    #' @description
     #'   Clear all morphemes from this morphset.
     #'   Note: This creates a new morphset handle, so existing references may become invalid.
     clear = function() {
       # Close current handle
       if (!is.null(private$handle)) {
-        tryCatch({
-          kiwi_morphset_close_(private$handle)
-        }, error = function(e) {
-          # Handle may already be closed, ignore error
-        })
+        tryCatch(
+          {
+            kiwi_morphset_close_(private$handle)
+          },
+          error = function(e) {
+            # Handle may already be closed, ignore error
+          }
+        )
       }
-      
+
       # Reset internal state
       private$morphemes <- list()
       private$handle <- NULL
-      
+
       warning("Morphset has been cleared. You need to create a new morphset from Kiwi instance.")
     }
   ),
-
   private = list(
     handle = NULL,
     morphemes = NULL,
-    
+
     # Finalizer to clean up C++ resources
     finalize = function() {
       if (!is.null(private$handle)) {
-        tryCatch({
-          kiwi_morphset_close_(private$handle)
-        }, error = function(e) {
-          # Handle may already be closed, ignore error
-        })
+        tryCatch(
+          {
+            kiwi_morphset_close_(private$handle)
+          },
+          error = function(e) {
+            # Handle may already be closed, ignore error
+          }
+        )
       }
     }
   )

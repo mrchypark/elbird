@@ -16,8 +16,8 @@ kiwi_builder_close_ <- function(handle_ex) {
   .Call(`_elbird_kiwi_builder_close_`, handle_ex)
 }
 
-kiwi_builder_init_ <- function(model_path, num_threads, options) {
-  .Call(`_elbird_kiwi_builder_init_`, model_path, num_threads, options)
+kiwi_builder_init_ <- function(model_path, num_threads, options, enabled_dialects) {
+  .Call(`_elbird_kiwi_builder_init_`, model_path, num_threads, options, enabled_dialects)
 }
 
 kiwi_builder_add_word_ <- function(handle_ex, word, pos, score) {
@@ -68,8 +68,24 @@ kiwi_get_option_ <- function(handle_ex, option) {
   .Call(`_elbird_kiwi_get_option_`, handle_ex, option)
 }
 
-kiwi_analyze_ <- function(handle_ex, text, top_n, match_options, stopwords_r, blocklist_ex, pretokenized_ex) {
-  .Call(`_elbird_kiwi_analyze_`, handle_ex, text, top_n, match_options, stopwords_r, blocklist_ex, pretokenized_ex)
+kiwi_set_option_f_ <- function(handle_ex, option, value) {
+  invisible(.Call(`_elbird_kiwi_set_option_f_`, handle_ex, option, value))
+}
+
+kiwi_get_option_f_ <- function(handle_ex, option) {
+  .Call(`_elbird_kiwi_get_option_f_`, handle_ex, option)
+}
+
+kiwi_get_global_config_ <- function(handle_ex) {
+  .Call(`_elbird_kiwi_get_global_config_`, handle_ex)
+}
+
+kiwi_set_global_config_ <- function(handle_ex, config_ex) {
+  invisible(.Call(`_elbird_kiwi_set_global_config_`, handle_ex, config_ex))
+}
+
+kiwi_analyze_ <- function(handle_ex, text, top_n, match_options, stopwords_r, blocklist_ex, pretokenized_ex, open_ending, allowed_dialects, dialect_cost) {
+  .Call(`_elbird_kiwi_analyze_`, handle_ex, text, top_n, match_options, stopwords_r, blocklist_ex, pretokenized_ex, open_ending, allowed_dialects, dialect_cost)
 }
 
 kiwi_split_into_sents_ <- function(handle_ex, text, match_options, return_tokens) {
@@ -108,10 +124,126 @@ kiwi_typo_init_ <- function() {
   .Call(`_elbird_kiwi_typo_init_`)
 }
 
-kiwi_typo_add_ <- function(handle_ex, orig, error, cost) {
-  .Call(`_elbird_kiwi_typo_add_`, handle_ex, orig, error, cost)
+kiwi_typo_get_basic_ <- function() {
+  .Call(`_elbird_kiwi_typo_get_basic_`)
+}
+
+kiwi_typo_get_default_ <- function(typo_set) {
+  .Call(`_elbird_kiwi_typo_get_default_`, typo_set)
+}
+
+kiwi_typo_add_ <- function(handle_ex, orig, error, cost, condition) {
+  .Call(`_elbird_kiwi_typo_add_`, handle_ex, orig, error, cost, condition)
+}
+
+kiwi_typo_copy_ <- function(handle_ex) {
+  .Call(`_elbird_kiwi_typo_copy_`, handle_ex)
+}
+
+kiwi_typo_update_ <- function(handle_ex, src_ex) {
+  .Call(`_elbird_kiwi_typo_update_`, handle_ex, src_ex)
+}
+
+kiwi_typo_scale_cost_ <- function(handle_ex, scale) {
+  .Call(`_elbird_kiwi_typo_scale_cost_`, handle_ex, scale)
+}
+
+kiwi_typo_set_continual_typo_cost_ <- function(handle_ex, threshold) {
+  .Call(`_elbird_kiwi_typo_set_continual_typo_cost_`, handle_ex, threshold)
+}
+
+kiwi_typo_set_lengthening_typo_cost_ <- function(handle_ex, threshold) {
+  .Call(`_elbird_kiwi_typo_set_lengthening_typo_cost_`, handle_ex, threshold)
 }
 
 kiwi_typo_close_ <- function(handle_ex) {
   .Call(`_elbird_kiwi_typo_close_`, handle_ex)
+}
+
+kiwi_new_joiner_ <- function(handle_ex, lm_search) {
+  .Call(`_elbird_kiwi_new_joiner_`, handle_ex, lm_search)
+}
+
+kiwi_joiner_add_ <- function(handle_ex, form, tag, option) {
+  .Call(`_elbird_kiwi_joiner_add_`, handle_ex, form, tag, option)
+}
+
+kiwi_joiner_get_ <- function(handle_ex) {
+  .Call(`_elbird_kiwi_joiner_get_`, handle_ex)
+}
+
+kiwi_joiner_close_ <- function(handle_ex) {
+  .Call(`_elbird_kiwi_joiner_close_`, handle_ex)
+}
+
+kiwi_swt_init_ <- function(path, kiwi_ex) {
+  .Call(`_elbird_kiwi_swt_init_`, path, kiwi_ex)
+}
+
+kiwi_swt_encode_ <- function(handle_ex, text, text_size, return_offsets) {
+  .Call(`_elbird_kiwi_swt_encode_`, handle_ex, text, text_size, return_offsets)
+}
+
+kiwi_swt_decode_ <- function(handle_ex, token_ids) {
+  .Call(`_elbird_kiwi_swt_decode_`, handle_ex, token_ids)
+}
+
+kiwi_swt_close_ <- function(handle_ex) {
+  .Call(`_elbird_kiwi_swt_close_`, handle_ex)
+}
+
+kiwi_tag_to_string_ <- function(handle_ex, tag_id) {
+  .Call(`_elbird_kiwi_tag_to_string_`, handle_ex, tag_id)
+}
+
+kiwi_get_script_name_ <- function(script) {
+  .Call(`_elbird_kiwi_get_script_name_`, script)
+}
+
+kiwi_find_morphemes_ <- function(handle_ex, form, tag_ex, sense_id, max_count) {
+  .Call(`_elbird_kiwi_find_morphemes_`, handle_ex, form, tag_ex, sense_id, max_count)
+}
+
+kiwi_find_morphemes_with_prefix_ <- function(handle_ex, form_prefix, tag_ex, sense_id, max_count) {
+  .Call(`_elbird_kiwi_find_morphemes_with_prefix_`, handle_ex, form_prefix, tag_ex, sense_id, max_count)
+}
+
+kiwi_get_morpheme_info_ <- function(handle_ex, morph_id) {
+  .Call(`_elbird_kiwi_get_morpheme_info_`, handle_ex, morph_id)
+}
+
+kiwi_get_morpheme_form_ <- function(handle_ex, morph_id) {
+  .Call(`_elbird_kiwi_get_morpheme_form_`, handle_ex, morph_id)
+}
+
+kiwi_cong_most_similar_words_ <- function(handle_ex, morph_id, top_n) {
+  .Call(`_elbird_kiwi_cong_most_similar_words_`, handle_ex, morph_id, top_n)
+}
+
+kiwi_cong_similarity_ <- function(handle_ex, morph_id1, morph_id2) {
+  .Call(`_elbird_kiwi_cong_similarity_`, handle_ex, morph_id1, morph_id2)
+}
+
+kiwi_cong_most_similar_contexts_ <- function(handle_ex, context_id, top_n) {
+  .Call(`_elbird_kiwi_cong_most_similar_contexts_`, handle_ex, context_id, top_n)
+}
+
+kiwi_cong_context_similarity_ <- function(handle_ex, context_id1, context_id2) {
+  .Call(`_elbird_kiwi_cong_context_similarity_`, handle_ex, context_id1, context_id2)
+}
+
+kiwi_cong_predict_words_from_context_ <- function(handle_ex, context_id, top_n) {
+  .Call(`_elbird_kiwi_cong_predict_words_from_context_`, handle_ex, context_id, top_n)
+}
+
+kiwi_cong_predict_words_from_context_diff_ <- function(handle_ex, context_id, bg_context_id, weight, top_n) {
+  .Call(`_elbird_kiwi_cong_predict_words_from_context_diff_`, handle_ex, context_id, bg_context_id, weight, top_n)
+}
+
+kiwi_cong_to_context_id_ <- function(handle_ex, morph_ids) {
+  .Call(`_elbird_kiwi_cong_to_context_id_`, handle_ex, morph_ids)
+}
+
+kiwi_cong_from_context_id_ <- function(handle_ex, context_id, max_size) {
+  .Call(`_elbird_kiwi_cong_from_context_id_`, handle_ex, context_id, max_size)
 }

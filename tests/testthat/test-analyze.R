@@ -1,4 +1,3 @@
-library(elbird)
 
 test_that("analyze works", {
   skip_if_offline()

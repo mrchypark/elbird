@@ -6,10 +6,10 @@
 #' @importFrom R6 R6Class
 #' @examples
 #' \dontrun{
-#'   kw <- Kiwi$new()
-#'   kw$analyze("test")
-#'   kw$tokenize("test")
-#'   }
+#' kw <- Kiwi$new()
+#' kw$analyze("test")
+#' kw$tokenize("test")
+#' }
 #' @export
 Kiwi <- R6::R6Class(
   "Kiwi",
@@ -19,7 +19,7 @@ Kiwi <- R6::R6Class(
     #' @param ... ignored
     print = function(x, ...) {
       cat("<kiwi class> ", sep = "\n")
-      cat(paste0("  model: ",private$model_size), sep = "\n")
+      cat(paste0("  model: ", private$model_size), sep = "\n")
       invisible(self)
     },
 
@@ -36,13 +36,14 @@ Kiwi <- R6::R6Class(
                           integrate_allomorph = TRUE,
                           load_default_dict = TRUE,
                           load_typo_dict = FALSE,
-                          load_multi_dict = FALSE) {
-
-      private$num_workers <-  num_workers
+                          load_multi_dict = FALSE,
+                          enabled_dialects = Dialect$STANDARD) {
+      private$num_workers <- num_workers
       private$model_size <- model_size
       private$model_path <- kiwi_model_path_full(model_size)
-      if (!kiwi_model_exists(model_size))
+      if (!kiwi_model_exists(model_size)) {
         get_kiwi_models(model_size)
+      }
 
       boptions <- 0L
       if (integrate_allomorph) {
@@ -59,8 +60,14 @@ Kiwi <- R6::R6Class(
       }
       boptions <- bitwOr(boptions, BuildOpt$MODEL_TYPE_CONG)
       private$build_options <- boptions
+      private$enabled_dialects <- as.integer(enabled_dialects)
       private$kiwi_builder <-
-        kiwi_builder_init_(kiwi_model_path_full(model_size), num_workers, boptions)
+        kiwi_builder_init_(
+          kiwi_model_path_full(model_size),
+          num_workers,
+          boptions,
+          private$enabled_dialects
+        )
     },
 
     #' @description
@@ -117,19 +124,21 @@ Kiwi <- R6::R6Class(
     #' @param min_score \code{num(required)}: minimum score.
     #' @param pos_threshold \code{num(required)}: pos threashold.
     #' @param apply \code{bool(optional)}: apply extracted word as user word dict.
-    extract_words =  function(input,
-                              min_cnt,
-                              max_word_len,
-                              min_score,
-                              pos_threshold,
-                              apply = FALSE) {
-      res <- kiwi_builder_extract_words_wrap(private$kiwi_builder,
-                                  input,
-                                  min_cnt,
-                                  max_word_len,
-                                  min_score,
-                                  pos_threshold,
-                                  apply)
+    extract_words = function(input,
+                             min_cnt,
+                             max_word_len,
+                             min_score,
+                             pos_threshold,
+                             apply = FALSE) {
+      res <- kiwi_builder_extract_words_wrap(
+        private$kiwi_builder,
+        input,
+        min_cnt,
+        max_word_len,
+        min_score,
+        pos_threshold,
+        apply
+      )
       private$builder_updated <- TRUE
       return(res)
     },
@@ -152,11 +161,32 @@ Kiwi <- R6::R6Class(
                        match_option = Match$ALL,
                        stopwords = FALSE,
                        blocklist = NULL,
-                       pretokenized = NULL) {
-      if (any(private$kiwi_not_ready(), private$builder_updated))
+                       pretokenized = NULL,
+                       normalize_coda = FALSE,
+                       typos = NULL,
+                       typo_cost_threshold = 2.5,
+                       open_ending = FALSE,
+                       allowed_dialects = Dialect$STANDARD,
+                       dialect_cost = 3.0) {
+      if (!is.null(typos)) {
+        self$set_typo_correction(enabled = isTRUE(typos), cost_threshold = typo_cost_threshold)
+      }
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
         private$kiwi_build()
-
-      kiwi_analyze_wrap(private$kiwi, text, top_n, match_option, stopwords, blocklist, pretokenized)
+      }
+      match_option <- normalize_match_option(match_option, normalize_coda)
+      kiwi_analyze_wrap(
+        private$kiwi,
+        text,
+        top_n,
+        match_option,
+        stopwords,
+        blocklist,
+        pretokenized,
+        open_ending,
+        allowed_dialects,
+        dialect_cost
+      )
     },
 
     #' @description
@@ -175,7 +205,15 @@ Kiwi <- R6::R6Class(
     tokenize = function(text,
                         match_option = Match$ALL,
                         stopwords = FALSE,
-                        form = "tibble") {
+                        form = "tibble",
+                        blocklist = NULL,
+                        pretokenized = NULL,
+                        normalize_coda = FALSE,
+                        typos = NULL,
+                        typo_cost_threshold = 2.5,
+                        open_ending = FALSE,
+                        allowed_dialects = Dialect$STANDARD,
+                        dialect_cost = 3.0) {
       form <- match.arg(form, c("tibble", "tidytext"))
       res <- purrr::map(
         text,
@@ -183,7 +221,15 @@ Kiwi <- R6::R6Class(
           text = .x,
           top_n = 1,
           match_option = match_option,
-          stopwords = stopwords
+          stopwords = stopwords,
+          blocklist = blocklist,
+          pretokenized = pretokenized,
+          normalize_coda = normalize_coda,
+          typos = typos,
+          typo_cost_threshold = typo_cost_threshold,
+          open_ending = open_ending,
+          allowed_dialects = allowed_dialects,
+          dialect_cost = dialect_cost
         )[[1]][1]
       )
       raw <- purrr::map(
@@ -195,10 +241,12 @@ Kiwi <- R6::R6Class(
           len = purrr::map_int(.x$Token, ~ .x$len),
         )
       )
-      if (form == "tibble")
+      if (form == "tibble") {
         return(dplyr::bind_rows(raw, .id = "sent"))
-      if (form == "tidytext")
+      }
+      if (form == "tidytext") {
         return(purrr::map(raw, ~ paste0(.x$form, "/", .x$tag)))
+      }
     },
 
     #' @description
@@ -211,8 +259,9 @@ Kiwi <- R6::R6Class(
     split_into_sents = function(text,
                                 match_option = Match$ALL,
                                 return_tokens = FALSE) {
-      if (any(private$kiwi_not_ready(), private$builder_updated))
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
         private$kiwi_build()
+      }
 
       kiwi_split_into_sents_(private$kiwi, text, match_option, return_tokens)
     },
@@ -237,9 +286,10 @@ Kiwi <- R6::R6Class(
                                  stopwords = FALSE) {
       function(text) {
         self$tokenize(text,
-                      match_option,
-                      stopwords,
-                      form = "tidytext")
+          match_option,
+          stopwords,
+          form = "tidytext"
+        )
       }
     },
 
@@ -254,59 +304,89 @@ Kiwi <- R6::R6Class(
     #'   kw <- Kiwi$new()
     #'   # Enable with default settings
     #'   kw$set_typo_correction(TRUE)
-    #'   
+    #'
     #'   # Enable with custom rules
     #'   custom_rules <- list(
     #'     list(orig = "안녕", error = "안뇽", cost = 1.0),
     #'     list(orig = "하세요", error = "하셰요", cost = 1.5)
     #'   )
     #'   kw$set_typo_correction(TRUE, cost_threshold = 3.0, custom_typos = custom_rules)
-    #'   
+    #'
     #'   # Disable typo correction
     #'   kw$set_typo_correction(FALSE)
     #' }
-    set_typo_correction = function(enabled = TRUE, cost_threshold = 2.5, custom_typos = NULL) {
+    set_typo_correction = function(enabled = TRUE,
+                                   cost_threshold = 2.5,
+                                   custom_typos = NULL,
+                                   typo_set = TypoSet$BASIC_TYPO_SET,
+                                   include_default = TRUE) {
       # Validate parameters
       if (!is.logical(enabled) || length(enabled) != 1) {
         stop("'enabled' must be a single logical value")
       }
-      
+
       if (!is.numeric(cost_threshold) || length(cost_threshold) != 1 || cost_threshold < 0) {
         stop("'cost_threshold' must be a single non-negative numeric value")
       }
-      
+
       if (!is.null(custom_typos) && !is.list(custom_typos)) {
         stop("'custom_typos' must be a list or NULL")
       }
-      
+
+      if (!is.numeric(typo_set) || length(typo_set) != 1) {
+        stop("'typo_set' must be a single numeric value")
+      }
+
+      if (!is.logical(include_default) || length(include_default) != 1) {
+        stop("'include_default' must be a single logical value")
+      }
+
+      if (!is.null(private$typo_corrector) && private$typo_handle_owned) {
+        tryCatch(
+          {
+            kiwi_typo_close_(private$typo_corrector)
+          },
+          error = function(e) {}
+        )
+      }
+
       if (enabled) {
+        default_typo <- NULL
+        if (include_default) {
+          default_typo <- kiwi_typo_get_default_(as.integer(typo_set))
+        }
         # Create typo corrector if custom rules are provided
         if (!is.null(custom_typos)) {
-          private$typo_corrector <- kiwi_typo_init_()
-          
+          if (include_default) {
+            private$typo_corrector <- kiwi_typo_copy_(default_typo)
+          } else {
+            private$typo_corrector <- kiwi_typo_init_()
+          }
+          private$typo_handle_owned <- TRUE
+
           # Validate and add custom typo rules
           if (is.list(custom_typos)) {
             added_rules <- 0
             for (i in seq_along(custom_typos)) {
               typo <- custom_typos[[i]]
-              
+
               # Validate typo rule structure
               if (!is.list(typo)) {
                 warning(paste0("Skipping typo rule ", i, ": not a list"))
                 next
               }
-              
+
               if (!("orig" %in% names(typo)) || !("error" %in% names(typo))) {
                 warning(paste0("Skipping typo rule ", i, ": missing 'orig' or 'error' field"))
                 next
               }
-              
+
               if (!is.character(typo$orig) || !is.character(typo$error) ||
-                  length(typo$orig) != 1 || length(typo$error) != 1) {
-                warning(paste0("Skipping typo rule ", i, ": 'orig' and 'error' must be single character strings"))
+                length(typo$orig) < 1 || length(typo$error) < 1) {
+                warning(paste0("Skipping typo rule ", i, ": 'orig' and 'error' must be character vectors"))
                 next
               }
-              
+
               cost <- if ("cost" %in% names(typo)) {
                 if (!is.numeric(typo$cost) || length(typo$cost) != 1 || typo$cost < 0) {
                   warning(paste0("Invalid cost for typo rule ", i, ", using default 1.0"))
@@ -317,7 +397,7 @@ Kiwi <- R6::R6Class(
               } else {
                 1.0
               }
-              
+
               # Add the typo rule
               result <- kiwi_typo_add_(private$typo_corrector, typo$orig, typo$error, cost)
               if (result == 0) {
@@ -326,7 +406,7 @@ Kiwi <- R6::R6Class(
                 warning(paste0("Failed to add typo rule: ", typo$orig, " -> ", typo$error))
               }
             }
-            
+
             if (added_rules == 0) {
               warning("No valid typo rules were added")
             } else {
@@ -335,25 +415,27 @@ Kiwi <- R6::R6Class(
           }
         } else {
           # Enable typo correction with default settings (no custom rules)
-          private$typo_corrector <- NULL
+          if (include_default) {
+            private$typo_corrector <- default_typo
+            private$typo_handle_owned <- FALSE
+          } else {
+            private$typo_corrector <- NULL
+            private$typo_handle_owned <- FALSE
+            warning("Typo correction enabled without defaults or custom rules.")
+          }
         }
       } else {
         # Disable typo correction
-        if (!is.null(private$typo_corrector)) {
-          # Clean up existing typo corrector
-          tryCatch({
-            kiwi_typo_close_(private$typo_corrector)
-          }, error = function(e) {
-            # Handle may already be closed, ignore error
-          })
-        }
         private$typo_corrector <- NULL
+        private$typo_handle_owned <- FALSE
       }
-      
+
       private$typo_enabled <- enabled
       private$typo_cost_threshold <- cost_threshold
+      private$typo_set <- as.integer(typo_set)
+      private$typo_include_default <- include_default
       private$builder_updated <- TRUE
-      
+
       invisible(self)
     },
 
@@ -364,7 +446,9 @@ Kiwi <- R6::R6Class(
       list(
         enabled = private$typo_enabled,
         cost_threshold = private$typo_cost_threshold,
-        has_custom_rules = !is.null(private$typo_corrector)
+        has_custom_rules = !is.null(private$typo_corrector) && private$typo_handle_owned,
+        typo_set = private$typo_set,
+        include_default = private$typo_include_default
       )
     },
 
@@ -373,12 +457,13 @@ Kiwi <- R6::R6Class(
     #' @return \code{Morphset} object
     create_morphset = function() {
       # Ensure Kiwi instance is built before creating morphset
-      if (any(private$kiwi_not_ready(), private$builder_updated))
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
         private$kiwi_build()
-      
+      }
+
       # Create morphset handle using C++ binding
       morphset_handle <- kiwi_new_morphset_(private$kiwi)
-      
+
       # Return new Morphset instance
       return(Morphset$new(morphset_handle))
     },
@@ -389,21 +474,189 @@ Kiwi <- R6::R6Class(
     create_pretokenized = function() {
       # Create pretokenized handle using C++ binding
       pt_handle <- kiwi_pt_init_()
-      
+
       # Return new Pretokenized instance
       return(Pretokenized$new(pt_handle))
+    },
+
+    #' @description
+    #'   Create a new joiner for composing morphemes into text.
+    #' @param lm_search \code{bool(optional)}: use language model search. Default is FALSE.
+    #' @return \code{Joiner} object
+    create_joiner = function(lm_search = FALSE) {
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
+        private$kiwi_build()
+      }
+      joiner_handle <- kiwi_new_joiner_(private$kiwi, as.integer(lm_search))
+      return(Joiner$new(joiner_handle))
+    },
+
+    #' @description
+    #'   Create a new subword tokenizer instance.
+    #' @param path \code{char(required)}: path to tokenizer JSON.
+    #' @return \code{SwTokenizer} object
+    create_swtokenizer = function(path) {
+      if (missing(path) || !is.character(path) || length(path) != 1) {
+        stop("'path' must be a single character string")
+      }
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
+        private$kiwi_build()
+      }
+      swt_handle <- kiwi_swt_init_(path, private$kiwi)
+      return(SwTokenizer$new(swt_handle))
+    },
+
+    #' @description
+    #'   Get global config values for this Kiwi instance.
+    #' @return \code{list} of config values
+    get_global_config = function() {
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
+        private$kiwi_build()
+      }
+      kiwi_get_global_config_(private$kiwi)
+    },
+
+    #' @description
+    #'   Update global config values for this Kiwi instance.
+    #' @param config \code{list(required)}: named list of config values.
+    set_global_config = function(config) {
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
+        private$kiwi_build()
+      }
+      if (!is.list(config)) {
+        stop("'config' must be a list")
+      }
+      kiwi_set_global_config_(private$kiwi, config)
+      invisible(self)
+    },
+
+    #' @description
+    #'   Find morphemes matching a form and optional tag.
+    #' @param form \code{char(required)}: morpheme form.
+    #' @param tag \code{char(optional)}: POS tag to filter.
+    #' @param sense_id \code{int(optional)}: sense id. Default is -1.
+    #' @param max_count \code{int(optional)}: max number of results. Default is 256.
+    find_morphemes = function(form, tag = NULL, sense_id = -1, max_count = 256) {
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
+        private$kiwi_build()
+      }
+      tag_value <- if (is.null(tag)) NULL else check_tag(tag)
+      kiwi_find_morphemes_(private$kiwi, form, tag_value, sense_id, max_count)
+    },
+
+    #' @description
+    #'   Find morphemes matching a prefix and optional tag.
+    #' @param form_prefix \code{char(required)}: morpheme prefix.
+    #' @param tag \code{char(optional)}: POS tag to filter.
+    #' @param sense_id \code{int(optional)}: sense id. Default is -1.
+    #' @param max_count \code{int(optional)}: max number of results. Default is 256.
+    find_morphemes_with_prefix = function(form_prefix, tag = NULL, sense_id = -1, max_count = 256) {
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
+        private$kiwi_build()
+      }
+      tag_value <- if (is.null(tag)) NULL else check_tag(tag)
+      kiwi_find_morphemes_with_prefix_(private$kiwi, form_prefix, tag_value, sense_id, max_count)
+    },
+
+    #' @description
+    #'   Get morpheme info for an ID.
+    #' @param morph_id \code{int(required)}: morpheme id.
+    get_morpheme_info = function(morph_id) {
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
+        private$kiwi_build()
+      }
+      kiwi_get_morpheme_info_(private$kiwi, as.integer(morph_id))
+    },
+
+    #' @description
+    #'   Get morpheme form for an ID.
+    #' @param morph_id \code{int(required)}: morpheme id.
+    get_morpheme_form = function(morph_id) {
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
+        private$kiwi_build()
+      }
+      kiwi_get_morpheme_form_(private$kiwi, as.integer(morph_id))
+    },
+
+    #' @description
+    #'   Get tag name for a tag id.
+    #' @param tag_id \code{int(required)}: tag id.
+    get_tag_name = function(tag_id) {
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
+        private$kiwi_build()
+      }
+      kiwi_tag_to_string_(private$kiwi, as.integer(tag_id))
+    },
+
+    #' @description
+    #'   Get script name for a script id.
+    #' @param script_id \code{int(required)}: script id.
+    get_script_name = function(script_id) {
+      kiwi_get_script_name_(as.integer(script_id))
+    },
+
+    #' @description
+    #'   Cong model similarity helpers.
+    cong_most_similar_words = function(morph_id, top_n = 10) {
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
+        private$kiwi_build()
+      }
+      kiwi_cong_most_similar_words_(private$kiwi, as.integer(morph_id), top_n)
+    },
+    cong_similarity = function(morph_id1, morph_id2) {
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
+        private$kiwi_build()
+      }
+      kiwi_cong_similarity_(private$kiwi, as.integer(morph_id1), as.integer(morph_id2))
+    },
+    cong_most_similar_contexts = function(context_id, top_n = 10) {
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
+        private$kiwi_build()
+      }
+      kiwi_cong_most_similar_contexts_(private$kiwi, as.integer(context_id), top_n)
+    },
+    cong_context_similarity = function(context_id1, context_id2) {
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
+        private$kiwi_build()
+      }
+      kiwi_cong_context_similarity_(private$kiwi, as.integer(context_id1), as.integer(context_id2))
+    },
+    cong_predict_words_from_context = function(context_id, top_n = 10) {
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
+        private$kiwi_build()
+      }
+      kiwi_cong_predict_words_from_context_(private$kiwi, as.integer(context_id), top_n)
+    },
+    cong_predict_words_from_context_diff = function(context_id, bg_context_id, weight = 1.0, top_n = 10) {
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
+        private$kiwi_build()
+      }
+      kiwi_cong_predict_words_from_context_diff_(
+        private$kiwi,
+        as.integer(context_id),
+        as.integer(bg_context_id),
+        weight,
+        top_n
+      )
+    },
+    cong_to_context_id = function(morph_ids) {
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
+        private$kiwi_build()
+      }
+      kiwi_cong_to_context_id_(private$kiwi, as.integer(morph_ids))
+    },
+    cong_from_context_id = function(context_id, max_size = 16) {
+      if (any(private$kiwi_not_ready(), private$builder_updated)) {
+        private$kiwi_build()
+      }
+      kiwi_cong_from_context_id_(private$kiwi, as.integer(context_id), max_size)
     }
-
   ),
-
   private = list(
     kiwi = NULL,
     kiwi_builder = NULL,
     builder_updated = FALSE,
-
-    save_user_dictionary = function(user_dict_path) {
-
-    },
+    save_user_dictionary = function(user_dict_path) {},
 
     # # type is user and extracted
     # word_list = tibble::tibble(type = character(),
@@ -439,7 +692,6 @@ Kiwi <- R6::R6Class(
     kiwi_not_ready = function() {
       is.null(private$kiwi)
     },
-
     kiwi_build = function() {
       # Use new API with typo correction parameters
       # Pass NULL for typos if not enabled or not set
@@ -448,26 +700,31 @@ Kiwi <- R6::R6Class(
       } else {
         NULL
       }
-      
+
       # Call new kiwi_builder_build_ API with typo correction parameters
-      private$kiwi <- kiwi_builder_build_(private$kiwi_builder, 
-                                          typos_param, 
-                                          private$typo_cost_threshold)
+      private$kiwi <- kiwi_builder_build_(
+        private$kiwi_builder,
+        typos_param,
+        private$typo_cost_threshold
+      )
       private$builder_updated <- FALSE
-      
+
       # Check for build errors
       error_msg <- kiwi_error_wrap()
       if (!is.null(error_msg)) {
         stop("Failed to build Kiwi instance: ", error_msg)
       }
     },
-
     num_workers = NULL,
     model_path = NULL,
     model_size = NULL,
     build_options = NULL,
+    enabled_dialects = NULL,
     typo_corrector = NULL,
     typo_enabled = FALSE,
-    typo_cost_threshold = 2.5
+    typo_cost_threshold = 2.5,
+    typo_handle_owned = FALSE,
+    typo_set = 1L,
+    typo_include_default = TRUE
   )
 )
