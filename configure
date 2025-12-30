@@ -14,6 +14,7 @@ PKG_TEST_HEADER="<kiwi/Kiwi.h>"
 PKG_LIBS="-lkiwi"
 PKG_CPPFLAGS=""
 LIB_VER="0.22.2"
+UNAME_S="$(uname -s)"
 
 # Copy libcache for local development.
 if [ -f "`pwd`/kiwilibtmp/libs/libkiwi.a" ]; then
@@ -28,10 +29,12 @@ if [ "$INCLUDE_DIR" ] || [ "$LIB_DIR" ]; then
   PKG_CPPFLAGS="-I$INCLUDE_DIR $PKG_CPPFLAGS"
   PKG_LIBS="-L$LIB_DIR $PKG_LIBS"
 
-elif [ -d "`pwd`/kiwilibs/libs/" ]; then
+elif [ -d "`pwd`/kiwilibs/libs/" ] && { [ "$UNAME_S" != "Linux" ] || [ -n "$(find "`pwd`/kiwilibs/libs" -maxdepth 1 -name 'libkiwi.so*' -print -quit)" ]; }; then
   echo "Found libkiwi on pwd installation..."
   PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
-  if [ -f "`pwd`/kiwilibs/libs/libkiwi.a" ]; then
+  if [ "$UNAME_S" = "Linux" ]; then
+    PKG_LIBS="-L`pwd`/kiwilibs/libs -Wl,-rpath,'\$ORIGIN' -lkiwi"
+  elif [ -f "`pwd`/kiwilibs/libs/libkiwi.a" ]; then
     PKG_LIBS="`pwd`/kiwilibs/libs/libkiwi.a"
   elif [ -f "`pwd`/kiwilibs/libs/libkiwi.dylib" ]; then
     echo "Found libkiwi.dylib; relying on system loader paths."
@@ -97,9 +100,13 @@ else
   cd "$KIWI_SRC/build"
   cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DKIWI_USE_CPUINFO=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_CXX_STANDARD=17 -Wno-dev --log-level=ERROR -DCMAKE_POLICY_VERSION_MINIMUM=3.10 ..
   echo "** make is running..."
-  make kiwi_static 1> makelog.txt 2>&1
-  if [ $? -ne 0 ]; then
-    make kiwi 1>> makelog.txt 2>&1
+  if [ "$UNAME_S" = "Linux" ]; then
+    make kiwi 1> makelog.txt 2>&1
+  else
+    make kiwi_static 1> makelog.txt 2>&1
+    if [ $? -ne 0 ]; then
+      make kiwi 1>> makelog.txt 2>&1
+    fi
   fi
   echo "** done!"
   cd "$PKG_ROOT"
@@ -107,37 +114,52 @@ else
   mkdir -p kiwilibs/libs
 
   LIB_SRC=""
-  for candidate in \
-    "$KIWI_SRC/build/libkiwi_static.a" \
-    "$KIWI_SRC/build/libkiwi.a" \
-    "$KIWI_SRC/build/kiwi_static/libkiwi.a" \
-    "$KIWI_SRC/build/kiwi_static/libkiwi_static.a"; do
-    if [ -f "$candidate" ]; then
-      LIB_SRC="$candidate"
-      break
-    fi
-  done
+  if [ "$UNAME_S" = "Linux" ]; then
+    LIB_SRC=$(find "$KIWI_SRC/build" -maxdepth 4 -type f \( -name "libkiwi.so*" \) | head -n 1)
+  else
+    for candidate in \
+      "$KIWI_SRC/build/libkiwi_static.a" \
+      "$KIWI_SRC/build/libkiwi.a" \
+      "$KIWI_SRC/build/kiwi_static/libkiwi.a" \
+      "$KIWI_SRC/build/kiwi_static/libkiwi_static.a"; do
+      if [ -f "$candidate" ]; then
+        LIB_SRC="$candidate"
+        break
+      fi
+    done
 
-  if [ -z "$LIB_SRC" ]; then
-    LIB_SRC=$(find "$KIWI_SRC/build" -maxdepth 4 -type f \( -name "libkiwi*.a" \) | head -n 1)
+    if [ -z "$LIB_SRC" ]; then
+      LIB_SRC=$(find "$KIWI_SRC/build" -maxdepth 4 -type f \( -name "libkiwi*.a" \) | head -n 1)
+    fi
   fi
 
   if [ -z "$LIB_SRC" ]; then
     echo "------------------------------[ ELBIRD ]------------------------------"
-    echo "Configuration failed because libkiwi static library was not found."
+    echo "Configuration failed because libkiwi library was not found."
     echo "Build directory: $KIWI_SRC/build"
     echo "-------------------------------------------------------------------------"
     exit 1
   fi
 
-  cp -f "$LIB_SRC" kiwilibs/libs/libkiwi.a
+  if [ "$UNAME_S" = "Linux" ]; then
+    cp -f "$LIB_SRC" "kiwilibs/libs/$(basename "$LIB_SRC")"
+    if [ ! -f "kiwilibs/libs/libkiwi.so" ]; then
+      ln -sf "$(basename "$LIB_SRC")" "kiwilibs/libs/libkiwi.so"
+    fi
+  else
+    cp -f "$LIB_SRC" kiwilibs/libs/libkiwi.a
+  fi
   rm -rf kiwilibs/include
   mv -f "$KIWI_SRC/include" kiwilibs/include
 
   # Copy libcache for local development.
   cp -rf kiwilibs/ kiwilibtmp/
   PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
-  PKG_LIBS="`pwd`/kiwilibs/libs/libkiwi.a"
+  if [ "$UNAME_S" = "Linux" ]; then
+    PKG_LIBS="-L`pwd`/kiwilibs/libs -Wl,-rpath,'\$ORIGIN' -lkiwi"
+  else
+    PKG_LIBS="`pwd`/kiwilibs/libs/libkiwi.a"
+  fi
 fi
 
 # For debugging
