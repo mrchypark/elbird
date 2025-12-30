@@ -9,6 +9,14 @@ if (!nzchar(pkgdir)) {
 dest_dir <- file.path(pkgdir, "libs", arch)
 dir.create(dest_dir, showWarnings = FALSE, recursive = TRUE)
 
+dyn_ext <- .Platform$dynlib.ext
+if (nzchar(dyn_ext)) {
+  dynlibs <- list.files(".", pattern = paste0("\\", dyn_ext, "$"), full.names = TRUE)
+  if (length(dynlibs) > 0) {
+    file.copy(dynlibs, dest_dir, overwrite = TRUE)
+  }
+}
+
 sysname <- Sys.info()[["sysname"]]
 if (!is.na(sysname) && sysname == "Windows") {
   win_arch <- if (arch == "x64") "x64" else "Win32"
