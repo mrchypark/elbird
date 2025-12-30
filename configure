@@ -33,7 +33,7 @@ elif [ -d "`pwd`/kiwilibs/libs/" ] && { [ "$UNAME_S" != "Linux" ] || [ -n "$(fin
   echo "Found libkiwi on pwd installation..."
   PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
   if [ "$UNAME_S" = "Linux" ]; then
-    PKG_LIBS="-L`pwd`/kiwilibs/libs -Wl,-rpath,'\$ORIGIN' -lkiwi"
+    PKG_LIBS="-L`pwd`/kiwilibs/libs -Wl,-rpath,'$$ORIGIN' -lkiwi"
   elif [ -f "`pwd`/kiwilibs/libs/libkiwi.a" ]; then
     PKG_LIBS="`pwd`/kiwilibs/libs/libkiwi.a"
   elif [ -f "`pwd`/kiwilibs/libs/libkiwi.dylib" ]; then
@@ -156,7 +156,7 @@ else
   cp -rf kiwilibs/ kiwilibtmp/
   PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
   if [ "$UNAME_S" = "Linux" ]; then
-    PKG_LIBS="-L`pwd`/kiwilibs/libs -Wl,-rpath,'\$ORIGIN' -lkiwi"
+    PKG_LIBS="-L`pwd`/kiwilibs/libs -Wl,-rpath,'$$ORIGIN' -lkiwi"
   else
     PKG_LIBS="`pwd`/kiwilibs/libs/libkiwi.a"
   fi
