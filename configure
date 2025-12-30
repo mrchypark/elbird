@@ -99,19 +99,17 @@ else
   cd "$KIWI_SRC/build"
   cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DKIWI_USE_CPUINFO=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_CXX_STANDARD=17 -Wno-dev --log-level=ERROR -DCMAKE_POLICY_VERSION_MINIMUM=3.10 ..
   echo "** make is running..."
-  make kiwi 1> makelog.txt 2>&1
+  make kiwi_static 1> makelog.txt 2>&1
   if [ $? -ne 0 ]; then
-    make kiwi_static 1>> makelog.txt 2>&1
+    make kiwi 1>> makelog.txt 2>&1
   fi
   echo "** done!"
   cd "$PKG_ROOT"
 
   mkdir -p kiwilibs/libs
-  mkdir -p inst/libs
 
   LIB_SRC=""
   for candidate in \
-    "$KIWI_SRC/build/libkiwi.dylib" \
     "$KIWI_SRC/build/libkiwi_static.a" \
     "$KIWI_SRC/build/libkiwi.a" \
     "$KIWI_SRC/build/kiwi_static/libkiwi.a" \
@@ -123,7 +121,7 @@ else
   done
 
   if [ -z "$LIB_SRC" ]; then
-    LIB_SRC=$(find "$KIWI_SRC/build" -maxdepth 4 -type f \( -name "libkiwi*.a" -o -name "libkiwi*.dylib" \) | head -n 1)
+    LIB_SRC=$(find "$KIWI_SRC/build" -maxdepth 4 -type f \( -name "libkiwi*.a" \) | head -n 1)
   fi
 
   if [ -z "$LIB_SRC" ]; then
@@ -134,25 +132,22 @@ else
     exit 1
   fi
 
-  case "$LIB_SRC" in
-    *.dylib)
-      cp -f "$LIB_SRC" kiwilibs/libs/libkiwi.dylib
-      cp -f "$LIB_SRC" inst/libs/libkiwi.dylib
-      if command -v install_name_tool >/dev/null 2>&1; then
-        install_name_tool -id "@rpath/libkiwi.dylib" inst/libs/libkiwi.dylib
-      fi
-      ;;
-    *)
-      cp -f "$LIB_SRC" kiwilibs/libs/libkiwi.a
-      ;;
-  esac
+  if [ -z "$LIB_SRC" ]; then
+    echo "------------------------------[ ELBIRD ]------------------------------"
+    echo "Configuration failed because libkiwi static library was not found."
+    echo "Build directory: $KIWI_SRC/build"
+    echo "-------------------------------------------------------------------------"
+    exit 1
+  fi
+
+  cp -f "$LIB_SRC" kiwilibs/libs/libkiwi.a
   rm -rf kiwilibs/include
   mv -f "$KIWI_SRC/include" kiwilibs/include
 
   # Copy libcache for local development.
   cp -rf kiwilibs/ kiwilibtmp/
   PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
-  PKG_LIBS="-L`pwd`/kiwilibs/libs -Wl,-rpath,@loader_path $PKG_LIBS"
+  PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
 fi
 
 # For debugging
