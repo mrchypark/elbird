@@ -12,7 +12,13 @@ tokenize(
   match_option = Match$ALL,
   stopwords = TRUE,
   blocklist = NULL,
-  pretokenized = NULL
+  pretokenized = NULL,
+  normalize_coda = FALSE,
+  typos = NULL,
+  typo_cost_threshold = 2.5,
+  open_ending = FALSE,
+  allowed_dialects = Dialect$STANDARD,
+  dialect_cost = 3
 )
 
 tokenize_tbl(
@@ -20,7 +26,13 @@ tokenize_tbl(
   match_option = Match$ALL,
   stopwords = TRUE,
   blocklist = NULL,
-  pretokenized = NULL
+  pretokenized = NULL,
+  normalize_coda = FALSE,
+  typos = NULL,
+  typo_cost_threshold = 2.5,
+  open_ending = FALSE,
+  allowed_dialects = Dialect$STANDARD,
+  dialect_cost = 3
 )
 
 tokenize_tidytext(
@@ -28,7 +40,13 @@ tokenize_tidytext(
   match_option = Match$ALL,
   stopwords = TRUE,
   blocklist = NULL,
-  pretokenized = NULL
+  pretokenized = NULL,
+  normalize_coda = FALSE,
+  typos = NULL,
+  typo_cost_threshold = 2.5,
+  open_ending = FALSE,
+  allowed_dialects = Dialect$STANDARD,
+  dialect_cost = 3
 )
 
 tokenize_tidy(
@@ -36,7 +54,13 @@ tokenize_tidy(
   match_option = Match$ALL,
   stopwords = TRUE,
   blocklist = NULL,
-  pretokenized = NULL
+  pretokenized = NULL,
+  normalize_coda = FALSE,
+  typos = NULL,
+  typo_cost_threshold = 2.5,
+  open_ending = FALSE,
+  allowed_dialects = Dialect$STANDARD,
+  dialect_cost = 3
 )
 }
 \arguments{
@@ -55,6 +79,18 @@ Check \code{\link[=analyze]{analyze()}} how to use stopwords param.}
 \item{blocklist}{\code{Morphset(optional)}: morpheme set to block from analysis results. Default is NULL.}
 
 \item{pretokenized}{\code{Pretokenized(optional)}: pretokenized object for guided analysis. Default is NULL.}
+
+\item{normalize_coda}{\code{bool(optional)}: apply coda normalization. Default is FALSE.}
+
+\item{typos}{\code{bool(optional)}: enable typo correction. Default is NULL (keep current).}
+
+\item{typo_cost_threshold}{\code{num(optional)}: typo correction cost threshold. Default is 2.5.}
+
+\item{open_ending}{\code{bool(optional)}: keep sentence open after last morpheme. Default is FALSE.}
+
+\item{allowed_dialects}{\code{Dialect(optional)}: allowed dialects for analysis. Default is Dialect$STANDARD.}
+
+\item{dialect_cost}{\code{num(optional)}: cost added to dialect morphemes. Default is 3.0.}
 }
 \value{
 list type of result.
@@ -66,7 +102,7 @@ Simple version of tokenizer function.
 \dontrun{
   tokenize("Test text.")
   tokenize("Please use Korean.", Match$ALL_WITH_NORMALIZING)
-  
+
   # New features with Kiwi v0.21.0
   kw <- Kiwi$new()
   morphset <- kw$create_morphset()

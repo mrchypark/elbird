@@ -1,11 +1,18 @@
 CXX_STD=CXX17
-RWINLIB = ../windows/rwinlib-elbird-0.21.0
+ifeq ($(R_ARCH),/x64)
+WIN_ARCH = x64
+else
+WIN_ARCH = Win32
+endif
+
+RWINLIB = ../windows/kiwi_win_$(WIN_ARCH)_v0.22.2
+
+CXX_STD=CXX17
 
 PKG_CPPFLAGS=-pthread -I${RWINLIB}/include
-PKG_LIBS=-pthread -L${RWINLIB}/lib${R_ARCH}${CRT} -lkiwi
+PKG_LIBS=-pthread -L${RWINLIB}/lib -lkiwi
 
 all: winlibs
 
 winlibs:
 	"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" "../tools/winlibs.R"
-

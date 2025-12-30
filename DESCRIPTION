@@ -21,7 +21,7 @@ BugReports: https://github.com/mrchypark/elbird/issues
 SystemRequirements: A valid Kiwi installation. Dynamic library is 
  downloaded from <https://github.com/bab2min/Kiwi/releases> during the
  build step. See <https://github.com/bab2min/Kiwi> as well as for API
- documentation. A C++17 compatible compiler is required for Kiwi v0.21.0.
+ documentation. A C++17 compatible compiler is required for Kiwi v0.22.2.
  git, curl and cmake required to build from source for kiwi.
 Depends: 
     R (>= 3.5)

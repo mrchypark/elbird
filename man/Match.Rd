@@ -5,13 +5,13 @@
 \alias{Match}
 \title{Analyze Match Options.}
 \format{
-An object of class \code{EnumGenerator} of length 13.
+An object of class \code{EnumGenerator} of length 22.
 }
 \usage{
 Match
 }
 \description{
-ALL option contains URL, EMAIL, HASHTAG, MENTION.
+ALL option contains URL, EMAIL, HASHTAG, MENTION, SERIAL.
 }
 \examples{
 \dontrun{

@@ -10,7 +10,7 @@
 get_model(size = "base", path = model_home(), clean = FALSE)
 }
 \arguments{
-\item{size}{"small", "base", "large" model. default is "base". Also "all" available.}
+\item{size}{"base" model. default is "base". Also "all" available.}
 
 \item{path}{path for model files. default is \code{\link[=model_home]{model_home()}}.}
 
@@ -21,6 +21,6 @@ Get kiwi language model file.
 }
 \examples{
 \dontrun{
-  get_model("small")
+  get_model("base")
 }
 }

@@ -1,9 +1,30 @@
-if (!file.exists("../windows/rwinlib-elbird-0.21.0/include/kiwi/capi.h")) {
+version <- "0.22.2"
+arch <- if (nzchar(.Platform$r_arch)) sub("^/", "", .Platform$r_arch) else "x64"
+win_arch <- if (arch == "x64") "x64" else "Win32"
+target_dir <- file.path("..", "windows", paste0("kiwi_win_", win_arch, "_v", version))
+header_path <- file.path(target_dir, "include", "kiwi", "capi.h")
+lib_dir <- file.path(target_dir, "lib")
 
+if (!file.exists(header_path)) {
   if (getRversion() < "3.3.0") setInternet2()
-  download.file("https://github.com/mrchypark/rwinlib-elbird/archive/refs/tags/v0.21.0.zip", destfile = "kiwi-release.zip", quiet = TRUE)
-  dir.create("../windows", showWarnings = FALSE)
-  unzip("kiwi-release.zip", exdir = "../windows")
+  download.file(
+    paste0(
+      "https://github.com/bab2min/Kiwi/releases/download/v",
+      version,
+      "/kiwi_win_",
+      win_arch,
+      "_v",
+      version,
+      ".zip"
+    ),
+    destfile = "kiwi-release.zip",
+    quiet = TRUE
+  )
+  dir.create(target_dir, showWarnings = FALSE, recursive = TRUE)
+  unzip("kiwi-release.zip", exdir = target_dir)
   unlink("kiwi-release.zip")
+}
 
+if (!dir.exists(lib_dir)) {
+  stop(paste0("Expected Kiwi lib directory not found at ", lib_dir))
 }

@@ -13,7 +13,8 @@ fi
 PKG_TEST_HEADER="<kiwi/Kiwi.h>"
 PKG_LIBS="-lkiwi"
 PKG_CPPFLAGS=""
-LIB_VER="0.21.0"
+LIB_VER="0.22.2"
+UNAME_S="$(uname -s)"
 
 # Copy libcache for local development.
 if [ -f "`pwd`/kiwilibtmp/libs/libkiwi.a" ]; then
@@ -28,10 +29,20 @@ if [ "$INCLUDE_DIR" ] || [ "$LIB_DIR" ]; then
   PKG_CPPFLAGS="-I$INCLUDE_DIR $PKG_CPPFLAGS"
   PKG_LIBS="-L$LIB_DIR $PKG_LIBS"
 
-elif [ -d "`pwd`/kiwilibs/libs/" ]; then
+elif [ -d "`pwd`/kiwilibs/libs/" ] && { [ "$UNAME_S" != "Linux" ] || [ -n "$(find "`pwd`/kiwilibs/libs" -maxdepth 1 -name 'libkiwi.so*' -print -quit)" ]; }; then
   echo "Found libkiwi on pwd installation..."
   PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
-  PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
+  if [ "$UNAME_S" = "Linux" ]; then
+    RPATH_ORIGIN='$$ORIGIN'
+    PKG_LIBS="-L`pwd`/kiwilibs/libs -Wl,-rpath,'${RPATH_ORIGIN}' -lkiwi"
+  elif [ -f "`pwd`/kiwilibs/libs/libkiwi.a" ]; then
+    PKG_LIBS="`pwd`/kiwilibs/libs/libkiwi.a"
+  elif [ -f "`pwd`/kiwilibs/libs/libkiwi.dylib" ]; then
+    echo "Found libkiwi.dylib; relying on system loader paths."
+    PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
+  else
+    PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
+  fi
 
 else
   echo "Prior system libkiwi installation not found"
@@ -67,39 +78,93 @@ else
   fi
 
   git config --global advice.detachedHead false
-  git clone -b v$LIB_VER --depth 1 https://github.com/bab2min/Kiwi
-  cd Kiwi
+  PKG_ROOT="$(pwd)"
+  KIWI_BUILD_DIR="$(mktemp -d)"
+  cleanup_kiwi_dir() {
+    if [ -n "$KIWI_BUILD_DIR" ] && [ -d "$KIWI_BUILD_DIR" ]; then
+      rm -rf "$KIWI_BUILD_DIR"
+    fi
+  }
+  trap cleanup_kiwi_dir EXIT
 
-  git rm third_party/googletest
-  git rm third_party/cpuinfo
-  git submodule update --init --recursive
+  git clone -b v$LIB_VER --depth 1 https://github.com/bab2min/Kiwi "$KIWI_BUILD_DIR/Kiwi"
+  KIWI_SRC="$KIWI_BUILD_DIR/Kiwi"
 
-  mkdir build
-  cd build
-  cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DKIWI_USE_CPUINFO=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_POLICY_DEFAULT_CMP0048=NEW -DCMAKE_POLICY_DEFAULT_CMP0077=NEW -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -Wno-dev --log-level=ERROR ..
+  git -C "$KIWI_SRC" config -f .gitmodules --remove-section submodule."third_party/googletest" 2>/dev/null || true
+  git -C "$KIWI_SRC" config -f .gitmodules --remove-section submodule."third_party/cpuinfo" 2>/dev/null || true
+  rm -rf "$KIWI_SRC/third_party/googletest" "$KIWI_SRC/third_party/cpuinfo"
+  git -C "$KIWI_SRC" submodule sync --recursive
+  REQUIRED_SUBMODULES="third_party/tclap third_party/mimalloc third_party/cpp-btree third_party/eigen third_party/json third_party/streamvbyte"
+  git -C "$KIWI_SRC" submodule update --init --recursive --depth 1 -- $REQUIRED_SUBMODULES
+
+  mkdir "$KIWI_SRC/build"
+  cd "$KIWI_SRC/build"
+  cmake -DCMAKE_BUILD_TYPE=Release -DKIWI_BUILD_TEST=OFF -DKIWI_USE_CPUINFO=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_CXX_STANDARD=17 -Wno-dev --log-level=ERROR -DCMAKE_POLICY_VERSION_MINIMUM=3.10 ..
   echo "** make is running..."
-  make Kiwi_static 1> makelog.txt 2>&1
+  if [ "$UNAME_S" = "Linux" ]; then
+    make kiwi 1> makelog.txt 2>&1
+  else
+    make kiwi_static 1> makelog.txt 2>&1
+    if [ $? -ne 0 ]; then
+      make kiwi 1>> makelog.txt 2>&1
+    fi
+  fi
   echo "** done!"
-  cd ../..
+  cd "$PKG_ROOT"
 
   mkdir -p kiwilibs/libs
-  # Check for different possible library names
-  if [ -f "Kiwi/build/libkiwi_static.a" ]; then
-    mv -f Kiwi/build/libkiwi_static.a kiwilibs/libs/libkiwi.a
-  elif [ -f "Kiwi/build/libKiwi_static.a" ]; then
-    mv -f Kiwi/build/libKiwi_static.a kiwilibs/libs/libkiwi.a
+
+  LIB_SRC=""
+  if [ "$UNAME_S" = "Linux" ]; then
+    LIB_SRC=$(find "$KIWI_SRC/build" -maxdepth 4 -type f \( -name "libkiwi.so*" \) | head -n 1)
   else
-    echo "Error: Could not find static library file"
-    ls -la Kiwi/build/lib*.a
+    for candidate in \
+      "$KIWI_SRC/build/libkiwi_static.a" \
+      "$KIWI_SRC/build/libkiwi.a" \
+      "$KIWI_SRC/build/kiwi_static/libkiwi.a" \
+      "$KIWI_SRC/build/kiwi_static/libkiwi_static.a"; do
+      if [ -f "$candidate" ]; then
+        LIB_SRC="$candidate"
+        break
+      fi
+    done
+
+    if [ -z "$LIB_SRC" ]; then
+      LIB_SRC=$(find "$KIWI_SRC/build" -maxdepth 4 -type f \( -name "libkiwi*.a" \) | head -n 1)
+    fi
+  fi
+
+  if [ -z "$LIB_SRC" ]; then
+    echo "------------------------------[ ELBIRD ]------------------------------"
+    echo "Configuration failed because libkiwi library was not found."
+    echo "Build directory: $KIWI_SRC/build"
+    echo "-------------------------------------------------------------------------"
     exit 1
   fi
-  mv -f Kiwi/include kiwilibs/include
-  rm -rf Kiwi
+
+  if [ "$UNAME_S" = "Linux" ]; then
+    cp -f "$LIB_SRC" "kiwilibs/libs/$(basename "$LIB_SRC")"
+    if [ ! -f "kiwilibs/libs/libkiwi.so" ]; then
+      ln -sf "$(basename "$LIB_SRC")" "kiwilibs/libs/libkiwi.so"
+    fi
+    if [ ! -f "kiwilibs/libs/libkiwi.so.0" ]; then
+      ln -sf "$(basename "$LIB_SRC")" "kiwilibs/libs/libkiwi.so.0"
+    fi
+  else
+    cp -f "$LIB_SRC" kiwilibs/libs/libkiwi.a
+  fi
+  rm -rf kiwilibs/include
+  mv -f "$KIWI_SRC/include" kiwilibs/include
 
   # Copy libcache for local development.
   cp -rf kiwilibs/ kiwilibtmp/
   PKG_CPPFLAGS="-I`pwd`/kiwilibs/include $PKG_CPPFLAGS"
-  PKG_LIBS="-L`pwd`/kiwilibs/libs $PKG_LIBS"
+  if [ "$UNAME_S" = "Linux" ]; then
+    RPATH_ORIGIN='$$ORIGIN'
+    PKG_LIBS="-L`pwd`/kiwilibs/libs -Wl,-rpath,'${RPATH_ORIGIN}' -lkiwi"
+  else
+    PKG_LIBS="`pwd`/kiwilibs/libs/libkiwi.a"
+  fi
 fi
 
 # For debugging
@@ -115,7 +180,7 @@ CXXFLAGS=`${R_HOME}/bin/R CMD config CXXFLAGS`
 # Check for C++17 support
 if [ -z "$CXX17" ]; then
     echo "------------------------------[ ELBIRD ]------------------------------"
-    echo "Configuration failed because C++17 support is required for Kiwi v0.21.0."
+    echo "Configuration failed because C++17 support is required for Kiwi v0.22.2."
     echo "Please upgrade your compiler or R installation to support C++17."
     echo "Current R version: `${R_HOME}/bin/R --version | head -1`"
     echo "-------------------------------------------------------------------------"
@@ -157,4 +222,3 @@ sed -e "s|@cppflags@|$PKG_CPPFLAGS|" -e "s|@libs@|$PKG_LIBS|" -e "s|@cxx17flags@
 
 # Success
 exit 0
-

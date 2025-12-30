@@ -18,19 +18,19 @@ options(crayon.enabled = NULL)
 하지만 더욱 복잡한 동작에 대한 요구는 당연히 있겠죠.
 그래서 `Kiwi` 클래스 api를 제공합니다.
 
-```{R}
+```{r}
 library(elbird)
 kw <- Kiwi$new()
 kw
 ```
 
-[kiwi][kiwi]는 분석기 모델을 3가지로 제공합니다. `small`, `base`, `large`,
-함수 api에서는 `small`을 사용하고 있으며, 아직 변경 방법을 제공하고 있지 않습니다.
+[kiwi][kiwi]는 분석기 모델을 2가지로 제공합니다. `base`, `CoGn`,
+함수 api에서는 `base`을 사용하고 있으며, 아직 변경 방법을 제공하고 있지 않습니다.
 
 `Kiwi` 클래스는 생성시 크기를 지정할 수 있습니다.
 
 ```{r}
-kwl <- Kiwi$new(model_size = "large")
+kwl <- Kiwi$new(model_size = "base")
 kwl
 ```
 
